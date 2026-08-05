@@ -1,0 +1,19 @@
+{
+    "samples": 15339,
+    "emotion_distribution": {
+        "sad": 2460,
+        "happy": 5957,
+        "surprise": 1619,
+        "angry": 867,
+        "fear": 355,
+        "disgust": 877,
+        "neutral": 3204
+    },
+    "split_distribution": {
+        "train": 12271,
+        "test": 3068
+    },
+    "modalities": {
+        "image": 15339
+    }
+}
