@@ -1,0 +1,127 @@
+{
+    "num_datasets": 5,
+    "total_samples": 481013,
+    "dataset_distribution": {
+        "AffectNet+": 420299,
+        "CREMA-D": 7442,
+        "FERPlus": 35481,
+        "RAF-DB": 15339,
+        "RAVDESS": 2452
+    },
+    "modality_distribution": {
+        "audio": 9894,
+        "image": 471119
+    },
+    "emotion_distribution": {
+        "angry": 40888,
+        "calm": 376,
+        "contempt": 4250,
+        "disgust": 11070,
+        "fear": 13374,
+        "happy": 142769,
+        "neutral": 82977,
+        "non_face": 82915,
+        "none": 33588,
+        "sad": 39431,
+        "surprise": 17230,
+        "uncertain": 12145
+    },
+    "datasets": {
+        "AffectNet+": {
+            "samples": 420299,
+            "modalities": {
+                "image": 420299
+            },
+            "emotions": {
+                "angry": 25382,
+                "contempt": 4250,
+                "disgust": 4303,
+                "fear": 6878,
+                "happy": 134915,
+                "neutral": 75374,
+                "non_face": 82915,
+                "none": 33588,
+                "sad": 25959,
+                "surprise": 14590,
+                "uncertain": 12145
+            },
+            "splits": {
+                "train": 414799,
+                "validation": 5500
+            }
+        },
+        "CREMA-D": {
+            "samples": 7442,
+            "modalities": {
+                "audio": 7442
+            },
+            "emotions": {
+                "angry": 1271,
+                "disgust": 1271,
+                "fear": 1271,
+                "happy": 1271,
+                "neutral": 1087,
+                "sad": 1271
+            },
+            "splits": {
+                "unspecified": 7442
+            }
+        },
+        "FERPlus": {
+            "samples": 35481,
+            "modalities": {
+                "image": 35481
+            },
+            "emotions": {
+                "angry": 12992,
+                "disgust": 4427,
+                "fear": 4494,
+                "happy": 250,
+                "neutral": 3124,
+                "sad": 9365,
+                "surprise": 829
+            },
+            "splits": {
+                "train": 35481
+            }
+        },
+        "RAF-DB": {
+            "samples": 15339,
+            "modalities": {
+                "image": 15339
+            },
+            "emotions": {
+                "angry": 867,
+                "disgust": 877,
+                "fear": 355,
+                "happy": 5957,
+                "neutral": 3204,
+                "sad": 2460,
+                "surprise": 1619
+            },
+            "splits": {
+                "test": 3068,
+                "train": 12271
+            }
+        },
+        "RAVDESS": {
+            "samples": 2452,
+            "modalities": {
+                "audio": 2452
+            },
+            "emotions": {
+                "angry": 376,
+                "calm": 376,
+                "disgust": 192,
+                "fear": 376,
+                "happy": 376,
+                "neutral": 188,
+                "sad": 376,
+                "surprise": 192
+            },
+            "splits": {
+                "unspecified": 2452
+            }
+        }
+    }
+}

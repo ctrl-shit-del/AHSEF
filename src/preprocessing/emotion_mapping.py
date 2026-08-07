@@ -110,4 +110,33 @@ AFFECTNET_EMOTIONS = {
     7: "contempt",
 
     8: "none",
+
+    9: "uncertain",
+
+    10: "non_face",
+}
+
+FERPLUS_EMOTIONS = {
+
+    0: "neutral",
+
+    1: "happy",
+
+    2: "surprise",
+
+    3: "sad",
+
+    4: "angry",
+
+    5: "disgust",
+
+    6: "fear",
+}
+
+DATASET_EMOTION_MAPPINGS = {
+    "RAVDESS": RAVDESS_EMOTIONS,
+    "CREMA-D": CREMAD_EMOTIONS,
+    "RAF-DB": RAFDB_EMOTIONS,
+    "FER-Plus": FERPLUS_EMOTIONS,
+    "AffectNet+": AFFECTNET_EMOTIONS,
 }

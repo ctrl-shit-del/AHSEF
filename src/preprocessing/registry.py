@@ -78,6 +78,12 @@ class AdapterRegistry:
             "modalities": ("physiology",),
             "priority": 9,
         },
+        "FERPlus": {
+            "adapter": FERPlusAdapter,
+            "enabled": True,
+            "modalities": ("image",),
+            "priority": 6,
+        },
     }
 
     @classmethod

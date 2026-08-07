@@ -37,7 +37,9 @@ class MetadataSerializer:
 
                 "gender": sample.gender,
 
-                "raw_emotion": sample.raw_emotion,
+                "raw_emotion": str(sample.raw_emotion)
+                if sample.raw_emotion is not None
+                else None,
 
                 "emotion": sample.emotion,
 
