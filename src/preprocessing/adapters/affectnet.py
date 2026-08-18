@@ -14,6 +14,23 @@ class AffectNetAdapter(BaseAdapter):
 
     DATASET_NAME = "AffectNet+"
 
+    @staticmethod
+    def _normalize_dimension(value):
+        """
+        Normalize AffectNet valence/arousal values.
+
+        AffectNet+ uses -2 as a sentinel value indicating that
+        valence/arousal is unavailable (e.g. non-face or uncertain).
+        """
+
+        if value == -2:
+            return None
+
+        if value is None:
+            return None
+
+        return float(value)
+
     def scan(self) -> List[EmotionRecord]:
 
         self.clear()
@@ -67,6 +84,14 @@ class AffectNetAdapter(BaseAdapter):
                         key=meta["gender"].get,
                     )
 
+                valence = self._normalize_dimension(
+                    meta.get("valence")
+                )
+
+                arousal = self._normalize_dimension(
+                    meta.get("arousal")
+                )
+
                 self.add(
 
                     self.create_record(
@@ -91,13 +116,9 @@ class AffectNetAdapter(BaseAdapter):
                             image_path
                         ),
 
-                        valence=meta.get(
-                            "valence"
-                        ),
+                        valence=valence,
 
-                        arousal=meta.get(
-                            "arousal"
-                        ),
+                        arousal=arousal,
 
                         gender=gender,
 
@@ -124,7 +145,9 @@ class AffectNetAdapter(BaseAdapter):
                             "landmark_68": meta.get(
                                 "landmark-68"
                             ),
+
                         },
+
                     )
 
                 )

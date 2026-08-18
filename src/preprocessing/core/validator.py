@@ -36,6 +36,10 @@ class MetadataValidator:
             MetadataValidator._check_duplicates(samples)
         )
 
+        errors.extend(
+            MetadataValidator._check_dimensions(samples)
+        )
+
         if errors:
 
             raise ValueError(
@@ -74,10 +78,10 @@ class MetadataValidator:
                     f"{sample.sample_id}: dataset missing"
                 )
 
-            if not sample.emotion:
+            if not sample.modalities:
 
                 errors.append(
-                    f"{sample.sample_id}: emotion missing"
+                    f"{sample.sample_id}: modalities missing"
                 )
 
         return errors
@@ -108,23 +112,57 @@ class MetadataValidator:
 
         errors = []
 
+        modality_paths = {
+
+            "audio": "audio_path",
+
+            "video": "video_path",
+
+            "image": "image_path",
+
+            "physiology": "physiology_path",
+
+        }
+
+        # Feature-backed datasets do not store individual
+        # modality files. Their representations are stored
+        # inside a feature container such as a PKL file.
+        FEATURE_BACKED_DATASETS = {
+
+            "CMU-MOSEI",
+
+        }
+
         for sample in samples:
 
-            paths = [
+            for modality in sample.modalities:
 
-                sample.audio_path,
+                # CMU-MOSEI audio, video and text are stored
+                # inside aligned_50.pkl rather than individual
+                # audio/video files.
+                if sample.dataset in FEATURE_BACKED_DATASETS:
 
-                sample.video_path,
+                    continue
 
-                sample.image_path,
+                attribute = modality_paths.get(modality)
 
-                sample.physiology_path,
+                if attribute is None:
+                    continue
 
-            ]
-
-            for relative_path in paths:
+                relative_path = getattr(
+                    sample,
+                    attribute,
+                )
 
                 if relative_path is None:
+
+                    errors.append(
+
+                        f"{sample.sample_id}: "
+                        f"{attribute} missing"
+
+                    )
+
                     continue
 
                 full_path = DATASETS_DIR / relative_path
@@ -134,7 +172,6 @@ class MetadataValidator:
                     errors.append(
 
                         f"{sample.sample_id}: "
-
                         f"Missing file -> {relative_path}"
 
                     )
@@ -150,18 +187,101 @@ class MetadataValidator:
 
         for sample in samples:
 
-            if sample.sample_id in seen:
+            key = (
+                sample.dataset,
+                sample.sample_id,
+            )
+
+            if key in seen:
 
                 errors.append(
-
-                    f"Duplicate sample_id: {sample.sample_id}"
-
+                    f"Duplicate sample: {key}"
                 )
 
-            seen.add(sample.sample_id)
+            seen.add(key)
 
         return errors
-    @staticmethod
-    def absolute_path(self, relative_path: str) -> Path:
 
-        return DATASETS_DIR / relative_path
+    @staticmethod
+    def _check_dimensions(samples):
+
+        errors = []
+
+        for sample in samples:
+
+            if sample.dataset == "IEMOCAP":
+
+                # IEMOCAP V/A/D annotations in the source
+                # contain the following observed ranges:
+                #
+                # Valence:    1.0 - 5.5
+                # Arousal:    1.0 - 5.0
+                # Dominance:  0.5 - 5.0
+
+                if sample.valence is not None:
+
+                    if not (1.0 <= sample.valence <= 5.5):
+
+                        errors.append(
+                            f"{sample.sample_id}: invalid valence"
+                        )
+
+                if sample.arousal is not None:
+
+                    if not (1.0 <= sample.arousal <= 5.0):
+
+                        errors.append(
+                            f"{sample.sample_id}: invalid arousal"
+                        )
+
+                if sample.dominance is not None:
+
+                    if not (0.5 <= sample.dominance <= 5.0):
+
+                        errors.append(
+                            f"{sample.sample_id}: invalid dominance"
+                        )
+
+            else:
+
+                # Existing convention for other datasets.
+                if sample.valence is not None:
+
+                    if not (-1.0 <= sample.valence <= 1.0):
+
+                        errors.append(
+                            f"{sample.sample_id}: invalid valence"
+                        )
+
+                if sample.arousal is not None:
+
+                    if not (-1.0 <= sample.arousal <= 1.0):
+
+                        errors.append(
+                            f"{sample.sample_id}: invalid arousal"
+                        )
+
+                if sample.dominance is not None:
+
+                    if not (-1.0 <= sample.dominance <= 1.0):
+
+                        errors.append(
+                            f"{sample.sample_id}: invalid dominance"
+                        )
+
+        return errors
+
+    @staticmethod
+    def _check_extras(samples):
+
+        errors = []
+
+        for sample in samples:
+
+            if sample.extras is None:
+
+                errors.append(
+                    f"{sample.sample_id}: extras is None"
+                )
+
+        return errors    

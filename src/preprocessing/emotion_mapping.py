@@ -133,10 +133,73 @@ FERPLUS_EMOTIONS = {
     6: "fear",
 }
 
+WESAD_EMOTIONS = {
+
+    0: "transition",
+
+    1: "baseline",
+
+    2: "stress",
+
+    3: "amusement",
+
+    4: "meditation",
+
+    5: "ignore",
+
+    6: "ignore",
+
+    7: "ignore",
+
+}
+
+IEMOCAP_EMOTIONS = {
+
+    "ang": "angry",
+    "hap": "happy",
+    "exc": "excited",
+    "sad": "sad",
+    "neu": "neutral",
+    "fru": "frustrated",
+    "fea": "fear",
+    "sur": "surprise",
+    "dis": "disgust",
+    "oth": "other",
+    "xxx": "other",
+}
+
+MELD_EMOTIONS = {
+
+    "anger": "angry",
+
+    "disgust": "disgust",
+
+    "fear": "fear",
+
+    "joy": "happy",
+
+    "neutral": "neutral",
+
+    "sadness": "sad",
+
+    "surprise": "surprise",
+
+}
+
+MOSEI_EMOTIONS = {
+    "Positive": "happy",
+    "Neutral": "neutral",
+    "Negative": "sad",
+}
+
 DATASET_EMOTION_MAPPINGS = {
     "RAVDESS": RAVDESS_EMOTIONS,
     "CREMA-D": CREMAD_EMOTIONS,
     "RAF-DB": RAFDB_EMOTIONS,
     "FER-Plus": FERPLUS_EMOTIONS,
     "AffectNet+": AFFECTNET_EMOTIONS,
+    "WESAD": WESAD_EMOTIONS,
+    "IEMOCAP": IEMOCAP_EMOTIONS,
+    "MELD": MELD_EMOTIONS,
+    "CMU-MOSEI": MOSEI_EMOTIONS,
 }

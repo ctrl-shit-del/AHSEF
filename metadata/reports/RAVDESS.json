@@ -11,7 +11,8 @@
         "surprise": 192
     },
     "split_distribution": {
-        "null": 2452
+        "speech": 1440,
+        "song": 1012
     },
     "modalities": {
         "audio": 2452

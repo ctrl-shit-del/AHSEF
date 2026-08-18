@@ -1,0 +1,18 @@
+{
+    "samples": 22856,
+    "emotion_distribution": {
+        "positive": 11264,
+        "neutral": 4998,
+        "negative": 6594
+    },
+    "split_distribution": {
+        "train": 16326,
+        "validation": 1871,
+        "test": 4659
+    },
+    "modalities": {
+        "audio": 22856,
+        "video": 22856,
+        "text": 22856
+    }
+}

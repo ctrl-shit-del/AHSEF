@@ -8,7 +8,6 @@ from src.preprocessing.adapters.rafdb import RAFDBAdapter
 from src.preprocessing.adapters.ravdess import RAVDESSAdapter
 from src.preprocessing.adapters.wesad import WESADAdapter
 
-
 class AdapterRegistry:
     """
     Central registry for all dataset adapters.
@@ -32,30 +31,23 @@ class AdapterRegistry:
 
         "IEMOCAP": {
             "adapter": IEMOCAPAdapter,
-            "enabled": False,
+            "enabled": True,
             "modalities": ("audio", "video", "text"),
             "priority": 3,
         },
 
         "MELD": {
             "adapter": MELDAdapter,
-            "enabled": False,
+            "enabled": True,
             "modalities": ("audio", "video", "text"),
             "priority": 4,
         },
 
         "CMU-MOSEI": {
             "adapter": MOSEIAdapter,
-            "enabled": False,
+            "enabled": True,
             "modalities": ("audio", "video", "text"),
             "priority": 5,
-        },
-
-        "FERPlus": {
-            "adapter": FERPlusAdapter,
-            "enabled": False,
-            "modalities": ("image",),
-            "priority": 6,
         },
 
         "RAF-DB": {
@@ -74,7 +66,7 @@ class AdapterRegistry:
 
         "WESAD": {
             "adapter": WESADAdapter,
-            "enabled": False,
+            "enabled": True,
             "modalities": ("physiology",),
             "priority": 9,
         },

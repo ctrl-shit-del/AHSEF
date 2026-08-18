@@ -20,7 +20,6 @@ class BaseAdapter(ABC):
         self.logger = get_logger(self.DATASET_NAME)
 
     def add(self, sample: EmotionRecord):
-
         self.samples.append(sample)
 
     def clear(self):
@@ -44,6 +43,8 @@ class BaseAdapter(ABC):
             "split": None,
 
             "modalities": [],
+
+            "raw_emotion": None,
 
             "emotion": None,
 
@@ -69,7 +70,14 @@ class BaseAdapter(ABC):
 
             "duration": None,
 
+            "segment_start": None,
+
+            "segment_end": None,
+
+            "sentiment_score": None,
+
             "extras": {},
+
         }
 
         defaults.update(kwargs)

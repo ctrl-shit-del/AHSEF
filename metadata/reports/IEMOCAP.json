@@ -1,0 +1,25 @@
+{
+    "samples": 10039,
+    "emotion_distribution": {
+        "neutral": 1708,
+        "other": 2510,
+        "frustrated": 1849,
+        "angry": 1103,
+        "sad": 1084,
+        "happy": 595,
+        "excited": 1041,
+        "surprise": 107,
+        "fear": 40,
+        "disgust": 2
+    },
+    "split_distribution": {
+        "Session1": 1819,
+        "Session2": 1811,
+        "Session3": 2136,
+        "Session4": 2103,
+        "Session5": 2170
+    },
+    "modalities": {
+        "audio": 10039
+    }
+}

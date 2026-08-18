@@ -37,9 +37,11 @@ class MetadataSerializer:
 
                 "gender": sample.gender,
 
-                "raw_emotion": str(sample.raw_emotion)
-                if sample.raw_emotion is not None
-                else None,
+                "raw_emotion": (
+                    str(sample.raw_emotion)
+                    if sample.raw_emotion is not None
+                    else None
+                ),
 
                 "emotion": sample.emotion,
 
@@ -63,7 +65,13 @@ class MetadataSerializer:
 
                 "dominance": sample.dominance,
 
+                "sentiment_score": sample.sentiment_score,
+
                 "duration": sample.duration,
+
+                "segment_start": sample.segment_start,
+
+                "segment_end": sample.segment_end,
 
                 "extras": json.dumps(
                     sample.extras,

@@ -4,6 +4,9 @@ import pandas as pd
 
 from src.common.models import EmotionRecord
 from src.preprocessing.core.serializer import MetadataSerializer
+from src.utils.logger import get_logger
+
+logger = get_logger("MasterMetadata")
 
 
 class MasterMetadataBuilder:
@@ -35,6 +38,34 @@ class MasterMetadataBuilder:
 
         assert len(master) == expected_rows
 
+        # ---------- Normalize dataframe types ----------
+
+        object_columns = master.select_dtypes(
+            include="object"
+        ).columns
+
+        for column in object_columns:
+
+            master[column] = master[column].astype("string")
+
+        # keep numeric columns numeric
+        for column in (
+            "valence",
+            "arousal",
+            "dominance",
+            "sentiment_score",
+            "duration",
+            "segment_start",
+            "segment_end",
+        ):
+
+            if column in master.columns:
+
+                master[column] = pd.to_numeric(
+                    master[column],
+                    errors="coerce",
+                )
+
         return master
 
     def save_csv(self, output_path):
@@ -46,6 +77,10 @@ class MasterMetadataBuilder:
             index=False,
         )
 
+        logger.info(
+            f"Saved {len(df)} samples -> {output_path}"
+        )
+
     def save_parquet(self, output_path):
 
         df = self.build()
@@ -54,6 +89,10 @@ class MasterMetadataBuilder:
             output_path,
             index=False,
             compression="snappy",
+        )
+
+        logger.info(
+            f"Saved {len(df)} samples -> {output_path}"
         )
 
     def summary(self):

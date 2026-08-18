@@ -1,0 +1,21 @@
+{
+    "samples": 13708,
+    "emotion_distribution": {
+        "neutral": 6436,
+        "surprise": 1636,
+        "fear": 358,
+        "sad": 1002,
+        "happy": 2308,
+        "disgust": 361,
+        "angry": 1607
+    },
+    "split_distribution": {
+        "train": 9989,
+        "validation": 1109,
+        "test": 2610
+    },
+    "modalities": {
+        "video": 13707,
+        "text": 13708
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "samples": 15,
+    "emotion_distribution": {
+        "null": 15
+    },
+    "split_distribution": {
+        "null": 15
+    },
+    "modalities": {
+        "physiology": 15
+    }
+}

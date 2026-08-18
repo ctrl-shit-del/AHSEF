@@ -2,37 +2,34 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 
-@dataclass(slots=True)
+@dataclass
 class EmotionRecord:
-    """
-    Unified metadata representation for a single sample
-    across all supported emotion datasets.
-    """
 
     sample_id: str
     dataset: str
 
-    split: str | None
+    split: Optional[str] = None
+    modalities: list[str] = field(default_factory=list)
 
-    modalities: list[str]
+    raw_emotion: Optional[Any] = None
+    emotion: Optional[str] = None
 
-    raw_emotion: Optional[str | int]
+    valence: Optional[float] = None
+    arousal: Optional[float] = None
+    dominance: Optional[float] = None
+    sentiment_score: Optional[float] = None
 
-    emotion: Optional[str]
+    audio_path: Optional[str] = None
+    video_path: Optional[str] = None
+    image_path: Optional[str] = None
+    text: Optional[str] = None
+    physiology_path: Optional[str] = None
 
-    valence: float | None
-    arousal: float | None
-    dominance: float | None
+    speaker: Optional[str] = None
+    gender: Optional[str] = None
+    duration: Optional[float] = None
 
-    audio_path: str | None
-    video_path: str | None
-    image_path: str | None
-    text: str | None
-    physiology_path: str | None
-
-    speaker: str | None
-    gender: str | None
-
-    duration: float | None
+    segment_start: Optional[float] = None
+    segment_end: Optional[float] = None
 
     extras: dict[str, Any] = field(default_factory=dict)

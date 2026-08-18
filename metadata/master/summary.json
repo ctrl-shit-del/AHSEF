@@ -1,29 +1,42 @@
 {
-    "num_datasets": 5,
-    "total_samples": 481013,
+    "num_datasets": 9,
+    "total_samples": 527631,
     "dataset_distribution": {
         "AffectNet+": 420299,
+        "CMU-MOSEI": 22856,
         "CREMA-D": 7442,
         "FERPlus": 35481,
+        "IEMOCAP": 10039,
+        "MELD": 13708,
         "RAF-DB": 15339,
-        "RAVDESS": 2452
+        "RAVDESS": 2452,
+        "WESAD": 15
     },
     "modality_distribution": {
-        "audio": 9894,
-        "image": 471119
+        "audio": 19933,
+        "audio,video,text": 22856,
+        "image": 471119,
+        "physiology": 15,
+        "text": 1,
+        "video,text": 13707
     },
     "emotion_distribution": {
-        "angry": 40888,
+        "angry": 43598,
         "calm": 376,
         "contempt": 4250,
-        "disgust": 11070,
-        "fear": 13374,
-        "happy": 142769,
-        "neutral": 82977,
+        "disgust": 11433,
+        "excited": 1041,
+        "fear": 13772,
+        "frustrated": 1849,
+        "happy": 145672,
+        "negative": 6594,
+        "neutral": 96119,
         "non_face": 82915,
         "none": 33588,
-        "sad": 39431,
-        "surprise": 17230,
+        "other": 2510,
+        "positive": 11264,
+        "sad": 41517,
+        "surprise": 18973,
         "uncertain": 12145
     },
     "datasets": {
@@ -48,6 +61,22 @@
             "splits": {
                 "train": 414799,
                 "validation": 5500
+            }
+        },
+        "CMU-MOSEI": {
+            "samples": 22856,
+            "modalities": {
+                "audio,video,text": 22856
+            },
+            "emotions": {
+                "negative": 6594,
+                "neutral": 4998,
+                "positive": 11264
+            },
+            "splits": {
+                "test": 4659,
+                "train": 16326,
+                "validation": 1871
             }
         },
         "CREMA-D": {
@@ -85,6 +114,52 @@
                 "train": 35481
             }
         },
+        "IEMOCAP": {
+            "samples": 10039,
+            "modalities": {
+                "audio": 10039
+            },
+            "emotions": {
+                "angry": 1103,
+                "disgust": 2,
+                "excited": 1041,
+                "fear": 40,
+                "frustrated": 1849,
+                "happy": 595,
+                "neutral": 1708,
+                "other": 2510,
+                "sad": 1084,
+                "surprise": 107
+            },
+            "splits": {
+                "Session1": 1819,
+                "Session2": 1811,
+                "Session3": 2136,
+                "Session4": 2103,
+                "Session5": 2170
+            }
+        },
+        "MELD": {
+            "samples": 13708,
+            "modalities": {
+                "text": 1,
+                "video,text": 13707
+            },
+            "emotions": {
+                "angry": 1607,
+                "disgust": 361,
+                "fear": 358,
+                "happy": 2308,
+                "neutral": 6436,
+                "sad": 1002,
+                "surprise": 1636
+            },
+            "splits": {
+                "test": 2610,
+                "train": 9989,
+                "validation": 1109
+            }
+        },
         "RAF-DB": {
             "samples": 15339,
             "modalities": {
@@ -120,7 +195,18 @@
                 "surprise": 192
             },
             "splits": {
-                "unspecified": 2452
+                "song": 1012,
+                "speech": 1440
+            }
+        },
+        "WESAD": {
+            "samples": 15,
+            "modalities": {
+                "physiology": 15
+            },
+            "emotions": {},
+            "splits": {
+                "unspecified": 15
             }
         }
     }
