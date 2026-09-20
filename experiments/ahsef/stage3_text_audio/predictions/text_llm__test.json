@@ -1,0 +1,376 @@
+{
+  "schema": {
+    "schema_version": "ahsef.llm.response.v1",
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "emotion": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "happy",
+            "sad",
+            "angry",
+            "fear",
+            "disgust",
+            "surprise"
+          ],
+          "description": "The single emotional state expressed by the speaker."
+        },
+        "class_scores": {
+          "type": "object",
+          "description": "How strongly the text supports each label. Non-negative graded judgement, not calibrated probabilities. All seven required.",
+          "properties": {
+            "neutral": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "happy": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "sad": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "angry": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "fear": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "disgust": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "surprise": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            }
+          },
+          "required": [
+            "neutral",
+            "happy",
+            "sad",
+            "angry",
+            "fear",
+            "disgust",
+            "surprise"
+          ],
+          "additionalProperties": false
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "How strongly you back the chosen label."
+        },
+        "evidence_strength": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "How much explicit affective evidence the text actually contains."
+        },
+        "ambiguity": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "How well a competing label would also fit the text."
+        },
+        "evidence": {
+          "type": "string",
+          "maxLength": 240,
+          "description": "The span or cue that drove the decision. Quote or describe briefly."
+        },
+        "abstain": {
+          "type": "boolean",
+          "description": "True only if the text cannot support any of the seven labels."
+        }
+      },
+      "required": [
+        "emotion",
+        "class_scores",
+        "confidence",
+        "evidence_strength",
+        "ambiguity",
+        "evidence",
+        "abstain"
+      ],
+      "additionalProperties": false
+    },
+    "score_semantics": "class_scores are the model's graded self-assessment of how well each label fits the text. They are NOT calibrated probabilities and are never reported as such; normalising them yields a score distribution.",
+    "confidence_semantics": "confidence, evidence_strength and ambiguity are self-reported scalars, carried under llm_-prefixed names throughout so they cannot be mistaken for a statistical model's posterior confidence.",
+    "rejection_policy": "A response failing the contract is recorded as rejected with a reason and counted; it is never repaired, and an unmappable label is never folded into neutral."
+  },
+  "modality": "text_llm",
+  "split": "test",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "samples": 482,
+  "predictions_path": "experiments\\ahsef\\stage3_text_audio\\predictions\\text_llm__test.parquet",
+  "provider": {
+    "provider": "replay",
+    "model": "gemma4:31b-cloud",
+    "deterministic": true,
+    "transcript": "experiments\\ahsef\\stage3_text_audio\\transcripts\\transcript_test.jsonl",
+    "recorded_prompts": 482,
+    "misses": 0,
+    "corrupt_lines_dropped": [],
+    "note": "Responses are replayed from a recorded transcript; no API call was made."
+  },
+  "prompt": {
+    "version": "v2_explicit_json",
+    "sha256": "a6e8e7d02edb101f68b7886ec603871f31f6d9ce09fe37c01e47d20eb3e7ba7b",
+    "notes": "Carries the JSON contract in the prompt for backends whose `format` schema is not enforced (observed on ollama/gemma4:31b-cloud). Same task, label space, evidence discipline and out-of-scope rules as v1; adds exact key names and explicit type rules, and forbids markdown fences.",
+    "classes": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "system": "You are an emotion-recognition component in a research pipeline. Your only task is categorical emotion recognition from a supplied span of text.\n\nReturn ONE JSON object and NOTHING else: no markdown fences, no prose, no commentary, no explanation outside the object.\n\nThe object must have EXACTLY these seven keys, spelled exactly as shown:\n\n{\n  \"emotion\": one of \"neutral\", \"happy\", \"sad\", \"angry\", \"fear\", \"disgust\", \"surprise\",\n  \"class_scores\": {\"neutral\": <number>, \"happy\": <number>, \"sad\": <number>, \"angry\": <number>, \"fear\": <number>, \"disgust\": <number>, \"surprise\": <number>},\n  \"confidence\": <number between 0 and 1>,\n  \"evidence_strength\": <number between 0 and 1>,\n  \"ambiguity\": <number between 0 and 1>,\n  \"evidence\": \"<short cue quoted from the text>\",\n  \"abstain\": true or false\n}\n\nType rules, which matter as much as the content:\n- \"emotion\" MUST be exactly one of the seven words above, lowercase, and nothing else. Never a synonym, never two labels, never a new class.\n- \"class_scores\" MUST contain all seven keys, each a non-negative number. Larger means the text supports that label better. They are your graded judgement, not calibrated probabilities, and downstream code treats them as such.\n- \"confidence\", \"evidence_strength\" and \"ambiguity\" MUST be numbers, never words.\n- \"abstain\" MUST be a boolean. Set it true only if the text cannot support any of the seven labels.\n\nWhat you are judging. Label the emotional state expressed by the speaker or writer, not the topic, and not how a reader might feel. A calm sentence about a funeral is neutral or sad depending on how the speaker writes it, not because funerals are sad. If the text carries no discernible emotional state, \"neutral\" is the correct answer -- a real answer, not a fallback.\n\nEvidence discipline. Use only the supplied text. Do not use outside knowledge about any named person, work, or event. Do not invent cues that are not present. If the only signal is subject matter rather than the speaker's expression, say so through a low evidence_strength rather than a confident guess. Short, context-free or affectively flat text is genuinely ambiguous, and reporting that through confidence and ambiguity is more useful than a confident guess.\n\nOut of scope. Do not infer or comment on any protected or sensitive characteristic of the speaker -- among them race, ethnicity, religion, national origin, immigration status, gender identity, sexual orientation, disability, health status, or political affiliation. Do not assess, diagnose, or speculate about any mental-health condition, self-harm risk, or clinical state. You are labelling one categorical emotion in one span of text and nothing else.",
+    "user_template": "Classify the emotion expressed by the speaker of the following text.\n\n<text>\n{text}\n</text>\n\nReturn the JSON object only.",
+    "available_versions": [
+      "v1",
+      "v2_explicit_json"
+    ],
+    "immutability": "A published prompt version is never edited; a change is a new version."
+  },
+  "mapping": {
+    "canonical_classes": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "synonyms": {
+      "neutral": [
+        "neutral",
+        "calm",
+        "indifferent",
+        "impassive",
+        "unemotional",
+        "no emotion",
+        "none",
+        "no_emotion",
+        "emotionless",
+        "flat"
+      ],
+      "happy": [
+        "happy",
+        "happiness",
+        "joy",
+        "joyful",
+        "joyous",
+        "glad",
+        "gladness",
+        "pleased",
+        "delighted",
+        "delight",
+        "cheerful",
+        "elated",
+        "content",
+        "contentment",
+        "amused",
+        "amusement"
+      ],
+      "sad": [
+        "sad",
+        "sadness",
+        "sorrow",
+        "sorrowful",
+        "unhappy",
+        "unhappiness",
+        "grief",
+        "grieving",
+        "downcast",
+        "dejected",
+        "despondent",
+        "miserable"
+      ],
+      "angry": [
+        "angry",
+        "anger",
+        "mad",
+        "furious",
+        "fury",
+        "irate",
+        "enraged",
+        "rage",
+        "annoyed",
+        "annoyance",
+        "irritated",
+        "irritation",
+        "indignant",
+        "outraged",
+        "outrage"
+      ],
+      "fear": [
+        "fear",
+        "fearful",
+        "afraid",
+        "scared",
+        "frightened",
+        "terrified",
+        "terror",
+        "panic",
+        "panicked",
+        "dread",
+        "apprehensive",
+        "apprehension"
+      ],
+      "disgust": [
+        "disgust",
+        "disgusted",
+        "disgusting",
+        "revulsion",
+        "revolted",
+        "repulsed",
+        "repulsion",
+        "repugnance",
+        "loathing",
+        "sickened"
+      ],
+      "surprise": [
+        "surprise",
+        "surprised",
+        "surprising",
+        "astonished",
+        "astonishment",
+        "amazed",
+        "amazement",
+        "astounded",
+        "startled",
+        "taken aback"
+      ]
+    },
+    "ambiguous_refused": {
+      "excited": "excitement is happy in some taxonomies and surprise in others",
+      "excitement": "excitement is happy in some taxonomies and surprise in others",
+      "anxious": "anxiety sits between fear and sadness and is not one of the seven",
+      "anxiety": "anxiety sits between fear and sadness and is not one of the seven",
+      "nervous": "nervousness sits between fear and neutral and is not one of the seven",
+      "shocked": "shock reads as surprise or fear depending on valence",
+      "shock": "shock reads as surprise or fear depending on valence",
+      "contempt": "contempt is a separate class in Ekman-plus schemes, not one of the seven",
+      "frustrated": "frustration spans anger and sadness",
+      "frustration": "frustration spans anger and sadness",
+      "confused": "confusion is an epistemic state, not one of the seven emotions",
+      "confusion": "confusion is an epistemic state, not one of the seven emotions",
+      "bored": "boredom is not one of the seven and is not reliably neutral",
+      "boredom": "boredom is not one of the seven and is not reliably neutral",
+      "sarcastic": "sarcasm is a pragmatic register, not an emotion class",
+      "mixed": "a mixed emotion names no single class",
+      "other": "'other' names no class in the canonical space",
+      "unknown": "'unknown' names no class in the canonical space",
+      "ambiguous": "'ambiguous' names no class in the canonical space"
+    },
+    "abstention_tokens": [
+      "abstain",
+      "abstained",
+      "decline",
+      "declined"
+    ],
+    "normalisation": "NFKD, accent-stripped, casefolded, punctuation removed, separators collapsed to single spaces",
+    "policy": "Only unambiguous synonyms are mapped. Contested words are refused by name and counted as 'ambiguous'; anything else is 'unknown'. Neither is folded into a canonical class."
+  },
+  "repeats": 1,
+  "uncertainty_policy": "score_entropy",
+  "uncertainty_definition": {
+    "llm_confidence": "model's self-reported backing for its chosen label, in [0, 1]",
+    "llm_uncertainty": "1 - llm_confidence; a rescaled self-report, NOT predictive entropy",
+    "llm_ambiguity": "model's self-reported fit of a competing label, in [0, 1]",
+    "llm_evidence_strength": "model's self-reported amount of affective evidence in the text",
+    "llm_score_top1_uncertainty": "U(x) = 1 - max_c score_c over the normalised self-reported scores. This is the specification's primary uncertainty measure. It is arithmetically the usual 1-minus-top-1 form, but the input is a self-report, not a posterior.",
+    "llm_normalized_score_entropy": "Shannon entropy of the normalised self-reported class scores, divided by ln(7); arithmetically the Stage 1 formula, semantically the spread of a written-down judgement rather than of a computed posterior",
+    "llm_vote_entropy": "normalised entropy of labels from repeated sampling of the same input; the only empirical (measured, not self-reported) uncertainty available here",
+    "policies": [
+      "llm_confidence",
+      "score_top1",
+      "score_entropy",
+      "ambiguity",
+      "empirical_votes",
+      "max_of_available"
+    ],
+    "calibrated": false,
+    "not_a_posterior": "No quantity in this module is a posterior over the label space. The LLM does not expose token logprobs through this interface, so nothing here is comparable to a softmax from the frozen baselines except by measurement against outcomes."
+  },
+  "store_text": "hash",
+  "budget": {
+    "calls": 482,
+    "max_calls": null,
+    "estimated_cost_usd": 0.0,
+    "max_cost_usd": null,
+    "unpriced_calls": 482,
+    "cost_is_complete": false,
+    "usage": {
+      "input_tokens": 330276,
+      "output_tokens": 71633,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0
+    },
+    "cost_basis": "provider list price per million tokens, applied to measured token counts; not an energy measurement"
+  },
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "run_at": "2026-08-30T10:56:12",
+  "stage3": {
+    "pool_split": "test",
+    "pool_fingerprint_sha256": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+    "pool_size": 482,
+    "llm_config": {
+      "model": "gemma4:31b-cloud",
+      "host": "http://localhost:11434",
+      "prompt_version": "v2_explicit_json",
+      "temperature": 0.0,
+      "llm_seed": 42,
+      "num_predict": 700,
+      "repeats": 1,
+      "uncertainty_policy": "score_entropy",
+      "inherited_from": "experiments/ahsef/stage2_llm/frozen_config.json",
+      "note": "Stage 3 changes which samples the LLM is asked about, never how it is asked. Model, prompt, decoding parameters and uncertainty policy are the Stage 2 frozen values."
+    },
+    "execution": {
+      "resumed": false,
+      "previously_recorded": 0,
+      "live_calls_this_invocation": 482,
+      "total_samples": 482
+    }
+  },
+  "kind": "llm",
+  "usable_predictions": 482,
+  "unusable_predictions": 0,
+  "status_counts": {
+    "ok": 482
+  },
+  "responses_with_class_scores": 482,
+  "distribution_source": "llm_self_reported_class_scores, normalised",
+  "distribution_is_calibrated_posterior": false,
+  "prob_columns_note": "prob_* hold NORMALISED SELF-REPORTED SCORES, not posterior probabilities. NaN means the model returned no usable scores for that sample; no filler distribution was invented.",
+  "unusable_rows_note": "Rows with predicted_class == -1 had no usable answer (abstention, unmappable label, malformed response, or a failed call). They are retained so metrics can state their coverage rather than silently excluding them.",
+  "measured_cost_usd": 0.0,
+  "uses_labels_for_prediction": false
+}

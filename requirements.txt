@@ -1,0 +1,63 @@
+# AHSEF dependency set.
+#
+# Torch is pinned WITHOUT a compute suffix on purpose.  The version resolved
+# here is the CPU build (2.12.0+cpu) because the development laptop has no
+# NVIDIA device; the CUDA profile needs the same version from the CUDA index:
+#
+#     pip install torch==2.12.0 torchaudio==2.11.0 torchvision==0.27.0 \
+#         --index-url https://download.pytorch.org/whl/cu124
+#
+# Keeping one version number for both builds is what makes the CPU-25% and
+# full-CUDA profiles provably the same architecture rather than merely similar.
+#
+# Every pin below matches the interpreter this was last verified against
+# (CPython 3.10.10).
+
+# --- core numeric / data -----------------------------------------------------
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==25.0.1
+scipy==1.15.3
+scikit-learn==1.7.2
+
+# --- deep learning -----------------------------------------------------------
+torch==2.12.0
+torchaudio==2.11.0
+torchvision==0.27.0          # supplies MobileNetV3 for the frozen face encoder
+
+# --- frozen encoders ---------------------------------------------------------
+transformers==5.17.0         # RoBERTa-base, text branch
+funasr==1.4.15               # emotion2vec, audio branch
+huggingface-hub==1.24.0      # snapshot_download() resolves the emotion2vec
+                             # checkpoint; modelscope.cn is unreachable here, so
+                             # audio_emotion2vec.py goes to the HF mirror instead
+
+# --- media I/O ---------------------------------------------------------------
+soundfile==0.14.0
+librosa==0.11.0
+opencv-python==4.13.0.92
+Pillow==12.2.0               # PIL.Image in the image loader and the FER+ adapter
+
+# --- reporting ---------------------------------------------------------------
+matplotlib==3.10.9
+PyYAML==6.0.2
+
+# --- development -------------------------------------------------------------
+pytest==9.1.1
+
+# --- pinned transitive dependencies ------------------------------------------
+# Not imported anywhere in src/, but pinned so a fresh install reproduces the
+# environment the reported numbers were produced on rather than whatever the
+# resolver picks that day.
+modelscope==1.40.0           # required by funasr
+tqdm==4.68.2                 # required by transformers / huggingface-hub
+
+# --- installed on demand, never eagerly --------------------------------------
+#   facenet-pytorch    MTCNN face detection, used only by the video
+#                      feature-extraction stage (src/hsen/features/video_face.py).
+#                      Its torch pin is narrower than the one above, so
+#                      installing it eagerly can silently downgrade torch.
+#
+#   anthropic          Only for `run_llm_text --provider anthropic`.  The default
+#                      `replay` provider reads recorded responses from disk and
+#                      needs no SDK, so the package stays out of the base set.

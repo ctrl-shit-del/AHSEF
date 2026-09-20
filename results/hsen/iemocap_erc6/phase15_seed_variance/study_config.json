@@ -1,0 +1,93 @@
+{
+  "study": "phase15_seed_variance",
+  "experiment": "iemocap_erc6",
+  "profile": "cpu25",
+  "profile_settings": {
+    "device": "cpu",
+    "amp": false,
+    "data_fraction": 0.25,
+    "batch_size": 8,
+    "num_workers": 0,
+    "epochs": 15
+  },
+  "modalities": [
+    "audio",
+    "text"
+  ],
+  "variants": [
+    "husformer",
+    "concat",
+    "self_attention"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "subset_seed": 42,
+  "reference_variant": "husformer",
+  "evaluate_test": false,
+  "checkpoint_selection": "best validation weighted_f1",
+  "trainer_config_template": {
+    "experiment": "iemocap_erc6",
+    "dataset": "IEMOCAP",
+    "output_root": "results\\hsen",
+    "device": "cpu",
+    "amp": false,
+    "num_workers": 0,
+    "data_fraction": 0.25,
+    "batch_size": 8,
+    "eval_batch_size": 16,
+    "epochs": 15,
+    "learning_rate": 0.0001,
+    "weight_decay": 1e-05,
+    "optimizer": "adamw",
+    "scheduler": "cosine_warmup",
+    "warmup_ratio": 0.1,
+    "gradient_clip": 1.0,
+    "patience": 5,
+    "min_epochs": 3,
+    "subset_seed": 42,
+    "log_every": 50,
+    "evaluate_test": false,
+    "max_train_batches": null,
+    "max_eval_batches": null
+  },
+  "loss_config": {
+    "lambda_cls": 1.0,
+    "lambda_valence": 0.0,
+    "lambda_arousal": 0.0,
+    "focal_gamma": 2.0,
+    "class_weights": "balanced",
+    "label_smoothing": 0.0,
+    "regression_loss": "mse",
+    "huber_delta": 1.0,
+    "lambda_modality": 0.0
+  },
+  "commands": {
+    "fusion_husformer_seed42": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants husformer --seeds 42 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_husformer_seed43": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants husformer --seeds 43 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_husformer_seed44": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants husformer --seeds 44 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_concat_seed42": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants concat --seeds 42 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_concat_seed43": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants concat --seeds 43 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_concat_seed44": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants concat --seeds 44 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_self_attention_seed42": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants self_attention --seeds 42 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_self_attention_seed43": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants self_attention --seeds 43 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15",
+    "fusion_self_attention_seed44": "python -m src.hsen.seed_variance --study phase15_seed_variance --experiment iemocap_erc6 --profile cpu25 --modalities audio+text --variants self_attention --seeds 44 --subset-seed 42  # device=cpu data_fraction=0.25 batch_size=8 epochs=15"
+  },
+  "training_subset": {
+    "count": 1062,
+    "sha256": "f11fc8baba14fe881acb4f738ae91e21f9d0c2a2da56b434cafdbce74a9be530",
+    "subset_seed": 42,
+    "data_fraction": 0.25
+  },
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "excited",
+    "frustrated"
+  ],
+  "written_at": "2026-09-11T17:23:51+0530"
+}

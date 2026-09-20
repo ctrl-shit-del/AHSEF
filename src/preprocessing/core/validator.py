@@ -1,5 +1,4 @@
 from typing import List
-from pathlib import Path
 
 from src.common.constants import MODALITIES
 from src.common.models import EmotionRecord
@@ -41,7 +40,6 @@ class MetadataValidator:
         )
 
         if errors:
-
             raise ValueError(
                 "\n\n".join(errors)
             )
@@ -52,7 +50,6 @@ class MetadataValidator:
         errors = []
 
         if len(samples) == 0:
-
             errors.append(
                 "No samples found."
             )
@@ -67,19 +64,16 @@ class MetadataValidator:
         for sample in samples:
 
             if not sample.sample_id:
-
                 errors.append(
                     "Sample missing sample_id."
                 )
 
             if not sample.dataset:
-
                 errors.append(
                     f"{sample.sample_id}: dataset missing"
                 )
 
             if not sample.modalities:
-
                 errors.append(
                     f"{sample.sample_id}: modalities missing"
                 )
@@ -98,11 +92,8 @@ class MetadataValidator:
                 if modality not in MODALITIES:
 
                     errors.append(
-
                         f"{sample.sample_id}: "
-
                         f"Unknown modality '{modality}'"
-
                     )
 
         return errors
@@ -113,35 +104,21 @@ class MetadataValidator:
         errors = []
 
         modality_paths = {
-
             "audio": "audio_path",
-
             "video": "video_path",
-
             "image": "image_path",
-
             "physiology": "physiology_path",
-
         }
 
-        # Feature-backed datasets do not store individual
-        # modality files. Their representations are stored
-        # inside a feature container such as a PKL file.
         FEATURE_BACKED_DATASETS = {
-
             "CMU-MOSEI",
-
         }
 
         for sample in samples:
 
             for modality in sample.modalities:
 
-                # CMU-MOSEI audio, video and text are stored
-                # inside aligned_50.pkl rather than individual
-                # audio/video files.
                 if sample.dataset in FEATURE_BACKED_DATASETS:
-
                     continue
 
                 attribute = modality_paths.get(modality)
@@ -157,10 +134,8 @@ class MetadataValidator:
                 if relative_path is None:
 
                     errors.append(
-
                         f"{sample.sample_id}: "
                         f"{attribute} missing"
-
                     )
 
                     continue
@@ -170,10 +145,8 @@ class MetadataValidator:
                 if not full_path.exists():
 
                     errors.append(
-
                         f"{sample.sample_id}: "
                         f"Missing file -> {relative_path}"
-
                     )
 
         return errors
@@ -209,64 +182,142 @@ class MetadataValidator:
 
         for sample in samples:
 
-            if sample.dataset == "IEMOCAP":
+            # -------------------------------------------------
+            # IEMOCAP
+            # -------------------------------------------------
 
-                # IEMOCAP V/A/D annotations in the source
-                # contain the following observed ranges:
-                #
-                # Valence:    1.0 - 5.5
-                # Arousal:    1.0 - 5.0
-                # Dominance:  0.5 - 5.0
+            if sample.dataset == "IEMOCAP":
 
                 if sample.valence is not None:
 
-                    if not (1.0 <= sample.valence <= 5.5):
+                    if not (
+                        1.0
+                        <= sample.valence
+                        <= 5.5
+                    ):
 
                         errors.append(
-                            f"{sample.sample_id}: invalid valence"
+                            f"{sample.sample_id}: "
+                            f"invalid valence"
                         )
 
                 if sample.arousal is not None:
 
-                    if not (1.0 <= sample.arousal <= 5.0):
+                    if not (
+                        1.0
+                        <= sample.arousal
+                        <= 5.0
+                    ):
 
                         errors.append(
-                            f"{sample.sample_id}: invalid arousal"
+                            f"{sample.sample_id}: "
+                            f"invalid arousal"
                         )
 
                 if sample.dominance is not None:
 
-                    if not (0.5 <= sample.dominance <= 5.0):
+                    if not (
+                        0.5
+                        <= sample.dominance
+                        <= 5.0
+                    ):
 
                         errors.append(
-                            f"{sample.sample_id}: invalid dominance"
+                            f"{sample.sample_id}: "
+                            f"invalid dominance"
                         )
+
+            # -------------------------------------------------
+            # MSP-Podcast
+            # -------------------------------------------------
+
+            elif sample.dataset == "MSP-Podcast":
+
+                # MSP-Podcast uses a 1-7 scale
+                # for Valence, Arousal and Dominance.
+
+                if sample.valence is not None:
+
+                    if not (
+                        1.0
+                        <= sample.valence
+                        <= 7.0
+                    ):
+
+                        errors.append(
+                            f"{sample.sample_id}: "
+                            f"invalid valence"
+                        )
+
+                if sample.arousal is not None:
+
+                    if not (
+                        1.0
+                        <= sample.arousal
+                        <= 7.0
+                    ):
+
+                        errors.append(
+                            f"{sample.sample_id}: "
+                            f"invalid arousal"
+                        )
+
+                if sample.dominance is not None:
+
+                    if not (
+                        1.0
+                        <= sample.dominance
+                        <= 7.0
+                    ):
+
+                        errors.append(
+                            f"{sample.sample_id}: "
+                            f"invalid dominance"
+                        )
+
+            # -------------------------------------------------
+            # Other datasets
+            # -------------------------------------------------
 
             else:
 
-                # Existing convention for other datasets.
                 if sample.valence is not None:
 
-                    if not (-1.0 <= sample.valence <= 1.0):
+                    if not (
+                        -1.0
+                        <= sample.valence
+                        <= 1.0
+                    ):
 
                         errors.append(
-                            f"{sample.sample_id}: invalid valence"
+                            f"{sample.sample_id}: "
+                            f"invalid valence"
                         )
 
                 if sample.arousal is not None:
 
-                    if not (-1.0 <= sample.arousal <= 1.0):
+                    if not (
+                        -1.0
+                        <= sample.arousal
+                        <= 1.0
+                    ):
 
                         errors.append(
-                            f"{sample.sample_id}: invalid arousal"
+                            f"{sample.sample_id}: "
+                            f"invalid arousal"
                         )
 
                 if sample.dominance is not None:
 
-                    if not (-1.0 <= sample.dominance <= 1.0):
+                    if not (
+                        -1.0
+                        <= sample.dominance
+                        <= 1.0
+                    ):
 
                         errors.append(
-                            f"{sample.sample_id}: invalid dominance"
+                            f"{sample.sample_id}: "
+                            f"invalid dominance"
                         )
 
         return errors
@@ -284,4 +335,4 @@ class MetadataValidator:
                     f"{sample.sample_id}: extras is None"
                 )
 
-        return errors    
+        return errors

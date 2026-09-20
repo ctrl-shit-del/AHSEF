@@ -1,0 +1,153 @@
+{
+  "fitted_on_split": "validation",
+  "uses_test_labels": false,
+  "ece_bins": 15,
+  "ece_threshold": 0.05,
+  "modalities": {
+    "audio": {
+      "method": "temperature_scaling",
+      "temperature": 0.674360523936611,
+      "fitted_on_split": "validation",
+      "fitted_on_samples": 5550,
+      "uses_test_labels": false,
+      "identity": false,
+      "optimisation": {
+        "method": "adam_on_log_temperature",
+        "objective": "cross_entropy_nll",
+        "iterations": 200,
+        "learning_rate": 0.05,
+        "bounds": [
+          0.05,
+          20.0
+        ],
+        "nll_before": 1.6625672482306197,
+        "nll_after": 1.6357545091502395,
+        "nll_improved": true,
+        "loss_history_tail": [
+          1.63575450914473,
+          1.6357545091363663,
+          1.6357545091347967,
+          1.6357545091388441,
+          1.6357545091452046
+        ]
+      },
+      "recommended": "temperature_scaled"
+    },
+    "image": {
+      "method": "temperature_scaling",
+      "temperature": 0.938186099650985,
+      "fitted_on_split": "validation",
+      "fitted_on_samples": 8459,
+      "uses_test_labels": false,
+      "identity": false,
+      "optimisation": {
+        "method": "adam_on_log_temperature",
+        "objective": "cross_entropy_nll",
+        "iterations": 200,
+        "learning_rate": 0.05,
+        "bounds": [
+          0.05,
+          20.0
+        ],
+        "nll_before": 1.3427801574426095,
+        "nll_after": 1.3414438017587353,
+        "nll_improved": true,
+        "loss_history_tail": [
+          1.341443801758123,
+          1.3414438017591397,
+          1.3414438017587298,
+          1.341443801757821,
+          1.3414438017581625
+        ]
+      },
+      "recommended": "temperature_scaled"
+    },
+    "physiology": {
+      "method": "temperature_scaling",
+      "temperature": 4.064442583541419,
+      "fitted_on_split": "validation",
+      "fitted_on_samples": 405,
+      "uses_test_labels": false,
+      "identity": false,
+      "optimisation": {
+        "method": "adam_on_log_temperature",
+        "objective": "cross_entropy_nll",
+        "iterations": 200,
+        "learning_rate": 0.05,
+        "bounds": [
+          0.05,
+          20.0
+        ],
+        "nll_before": 1.5272514383071374,
+        "nll_after": 0.9078738947634061,
+        "nll_improved": true,
+        "loss_history_tail": [
+          0.9078738952371178,
+          0.9078738951260296,
+          0.9078738950226067,
+          0.9078738949274863,
+          0.90787389484104
+        ]
+      },
+      "recommended": "raw"
+    },
+    "text": {
+      "method": "temperature_scaling",
+      "temperature": 1.0661968691931942,
+      "fitted_on_split": "validation",
+      "fitted_on_samples": 22109,
+      "uses_test_labels": false,
+      "identity": false,
+      "optimisation": {
+        "method": "adam_on_log_temperature",
+        "objective": "cross_entropy_nll",
+        "iterations": 200,
+        "learning_rate": 0.05,
+        "bounds": [
+          0.05,
+          20.0
+        ],
+        "nll_before": 1.581551239546732,
+        "nll_after": 1.5803947325214673,
+        "nll_improved": true,
+        "loss_history_tail": [
+          1.580394732521372,
+          1.5803947325215126,
+          1.5803947325223058,
+          1.58039473252203,
+          1.5803947325212926
+        ]
+      },
+      "recommended": "temperature_scaled"
+    },
+    "video": {
+      "method": "temperature_scaling",
+      "temperature": 0.2986755818398078,
+      "fitted_on_split": "validation",
+      "fitted_on_samples": 343,
+      "uses_test_labels": false,
+      "identity": false,
+      "optimisation": {
+        "method": "adam_on_log_temperature",
+        "objective": "cross_entropy_nll",
+        "iterations": 200,
+        "learning_rate": 0.05,
+        "bounds": [
+          0.05,
+          20.0
+        ],
+        "nll_before": 1.7921244713357574,
+        "nll_after": 1.6786001582337515,
+        "nll_improved": true,
+        "loss_history_tail": [
+          1.6786001583101333,
+          1.678600158249415,
+          1.6786001582137946,
+          1.6786001582027648,
+          1.6786001582117764
+        ]
+      },
+      "recommended": "temperature_scaled"
+    }
+  }
+}

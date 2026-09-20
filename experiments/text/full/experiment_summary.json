@@ -1,0 +1,430 @@
+{
+  "base_dir": "experiments\\text\\full",
+  "best_epochs": {
+    "1": 3,
+    "2": 2,
+    "debug": 1
+  },
+  "best_iteration": {
+    "best_epoch": 3,
+    "best_val_macro_f1": 0.27336013317108154,
+    "checkpoints": {
+      "best": "experiments/text/full/iteration_1/checkpoints/best.pt",
+      "last": "experiments/text/full/iteration_1/checkpoints/last.pt",
+      "reload_verified": true
+    },
+    "iteration": "1",
+    "test_accuracy": 0.3759375810623169,
+    "test_macro_f1": 0.27401307225227356,
+    "test_weighted_f1": 0.40170368552207947
+  },
+  "class_names": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "comparable_iterations": [
+    "1",
+    "2"
+  ],
+  "comparison": {
+    "best_val_macro_f1": {
+      "max": 0.27336013317108154,
+      "mean": 0.26937106251716614,
+      "min": 0.26538199186325073,
+      "n": 2,
+      "stdev": 0.005641397820031677,
+      "values": [
+        0.27336013317108154,
+        0.26538199186325073
+      ]
+    },
+    "test_accuracy": {
+      "max": 0.3759375810623169,
+      "mean": 0.371544286608696,
+      "min": 0.3671509921550751,
+      "n": 2,
+      "stdev": 0.006213056599809188,
+      "values": [
+        0.3759375810623169,
+        0.3671509921550751
+      ]
+    },
+    "test_loss": {
+      "max": 1.8075574451445062,
+      "mean": 1.7879557414912446,
+      "min": 1.768354037837983,
+      "n": 2,
+      "stdev": 0.027720995152060852,
+      "values": [
+        1.8075574451445062,
+        1.768354037837983
+      ]
+    },
+    "test_macro_f1": {
+      "max": 0.27401307225227356,
+      "mean": 0.27071207761764526,
+      "min": 0.26741108298301697,
+      "n": 2,
+      "stdev": 0.004668311381612156,
+      "values": [
+        0.27401307225227356,
+        0.26741108298301697
+      ]
+    },
+    "test_weighted_f1": {
+      "max": 0.40170368552207947,
+      "mean": 0.39884644746780396,
+      "min": 0.39598920941352844,
+      "n": 2,
+      "stdev": 0.0040407448072849435,
+      "values": [
+        0.40170368552207947,
+        0.39598920941352844
+      ]
+    }
+  },
+  "dataset_counts": {
+    "MELD": 13708,
+    "MSP-Podcast": 207216
+  },
+  "dataset_fraction": 1.0,
+  "datasets_used": [
+    "MELD",
+    "MSP-Podcast"
+  ],
+  "durations_seconds": {
+    "1": 499.641,
+    "2": 3116.205,
+    "debug": 1.72
+  },
+  "experiment": "text_full",
+  "fraction": 1.0,
+  "fraction_label": "full",
+  "iteration_count": 3,
+  "iteration_seeds": {
+    "1": 42,
+    "2": 43,
+    "debug": 42
+  },
+  "iterations": [
+    {
+      "best_epoch": 3,
+      "best_val_macro_f1": 0.27336013317108154,
+      "checkpoints": {
+        "best": "experiments/text/full/iteration_1/checkpoints/best.pt",
+        "last": "experiments/text/full/iteration_1/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments\\text\\full\\iteration_1\\config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 3,
+        "best_value": 0.27336013317108154,
+        "epochs_without_improvement": 2,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.25009778141975403,
+          0.2491784393787384,
+          0.27336013317108154,
+          0.2509867250919342,
+          0.2526301443576813
+        ],
+        "patience": 2,
+        "reason": "early stopping at epoch 5: val_macro_f1 did not improve for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.273360 at epoch 3",
+        "stopped_early": true,
+        "stopped_epoch": 5
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "1",
+      "log_file": "experiments/text/full/iteration_1/logs/training.log",
+      "modality": "text",
+      "model": {
+        "class": "TextEmotionBaseline",
+        "embedding_dim": 128,
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "parameters": 4229639,
+        "pooling": "masked mean over tokens",
+        "pretrained_weights": null,
+        "tokenizer": {
+          "fitted_on": null,
+          "hash": "blake2b-64",
+          "kind": "hashing",
+          "max_tokens": 64,
+          "note": "Hashing needs no fitted vocabulary, so no partition can influence it.",
+          "pad_index": 0,
+          "vocab_size": 32768
+        },
+        "vocab_size": 32768
+      },
+      "results_dir": "experiments\\text\\full\\iteration_1\\results",
+      "run_seed": 42,
+      "samples": {
+        "test": 23331,
+        "train": 175484,
+        "validation": 22109
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 5: val_macro_f1 did not improve for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.273360 at epoch 3",
+      "task": "emotion_7class",
+      "test_accuracy": 0.3759375810623169,
+      "test_loss": 1.8075574451445062,
+      "test_macro_f1": 0.27401307225227356,
+      "test_per_class_f1": [
+        0.42681685090065,
+        0.4612322747707367,
+        0.28111547231674194,
+        0.4182184636592865,
+        0.042529378086328506,
+        0.07436919212341309,
+        0.2138098031282425
+      ],
+      "test_weighted_f1": 0.40170368552207947,
+      "total_seconds": 499.641,
+      "training_seconds": 487.188,
+      "validation_accuracy": 0.3821520507335663,
+      "validation_macro_f1": 0.27336013317108154,
+      "validation_weighted_f1": 0.4070555865764618
+    },
+    {
+      "best_epoch": 2,
+      "best_val_macro_f1": 0.26538199186325073,
+      "checkpoints": {
+        "best": "experiments\\text\\full\\iteration_2\\checkpoints\\best.pt",
+        "last": "experiments\\text\\full\\iteration_2\\checkpoints\\last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments\\text\\full\\iteration_2\\config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 2,
+        "best_value": 0.26538199186325073,
+        "epochs_without_improvement": 2,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.24214501678943634,
+          0.26538199186325073,
+          0.25486114621162415,
+          0.24762459099292755
+        ],
+        "patience": 2,
+        "reason": "early stopping at epoch 4: val_macro_f1 degraded for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.265382 at epoch 2",
+        "stopped_early": true,
+        "stopped_epoch": 4
+      },
+      "epochs_completed": 4,
+      "epochs_configured": 5,
+      "iteration": "2",
+      "log_file": "experiments\\text\\full\\iteration_2\\logs\\training.log",
+      "modality": "text",
+      "model": {
+        "class": "TextEmotionBaseline",
+        "embedding_dim": 128,
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "parameters": 4229639,
+        "pooling": "masked mean over tokens",
+        "pretrained_weights": null,
+        "tokenizer": {
+          "fitted_on": null,
+          "hash": "blake2b-64",
+          "kind": "hashing",
+          "max_tokens": 64,
+          "note": "Hashing needs no fitted vocabulary, so no partition can influence it.",
+          "pad_index": 0,
+          "vocab_size": 32768
+        },
+        "vocab_size": 32768
+      },
+      "results_dir": "experiments\\text\\full\\iteration_2\\results",
+      "run_seed": 43,
+      "samples": {
+        "test": 23331,
+        "train": 175484,
+        "validation": 22109
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 4: val_macro_f1 degraded for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.265382 at epoch 2",
+      "task": "emotion_7class",
+      "test_accuracy": 0.3671509921550751,
+      "test_loss": 1.768354037837983,
+      "test_macro_f1": 0.26741108298301697,
+      "test_per_class_f1": [
+        0.426659494638443,
+        0.4410388171672821,
+        0.2896367013454437,
+        0.41470518708229065,
+        0.03255484625697136,
+        0.06400787830352783,
+        0.20327463746070862
+      ],
+      "test_weighted_f1": 0.39598920941352844,
+      "total_seconds": 3116.205,
+      "training_seconds": 2736.14,
+      "validation_accuracy": 0.3699398338794708,
+      "validation_macro_f1": 0.26538199186325073,
+      "validation_weighted_f1": 0.39703720808029175
+    },
+    {
+      "best_epoch": 1,
+      "best_val_macro_f1": 0.10643719881772995,
+      "checkpoints": {
+        "best": "experiments/text/full/iteration_debug/checkpoints/best.pt",
+        "last": "experiments/text/full/iteration_debug/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments\\text\\full\\iteration_debug\\config.json",
+      "debug": true,
+      "early_stopping": {
+        "best_epoch": 1,
+        "best_value": 0.10643719881772995,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 1,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.10643719881772995,
+          0.10193485021591187
+        ],
+        "patience": 1,
+        "reason": "early stopping at epoch 2: val_macro_f1 degraded for 1 consecutive epochs (patience=1, min_delta=0.0001); best val_macro_f1=0.106437 at epoch 1",
+        "stopped_early": true,
+        "stopped_epoch": 2
+      },
+      "epochs_completed": 2,
+      "epochs_configured": 2,
+      "iteration": "debug",
+      "log_file": "experiments/text/full/iteration_debug/logs/training.log",
+      "modality": "text",
+      "model": {
+        "class": "TextEmotionBaseline",
+        "embedding_dim": 128,
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "parameters": 4229639,
+        "pooling": "masked mean over tokens",
+        "pretrained_weights": null,
+        "tokenizer": {
+          "fitted_on": null,
+          "hash": "blake2b-64",
+          "kind": "hashing",
+          "max_tokens": 64,
+          "note": "Hashing needs no fitted vocabulary, so no partition can influence it.",
+          "pad_index": 0,
+          "vocab_size": 32768
+        },
+        "vocab_size": 32768
+      },
+      "results_dir": "experiments\\text\\full\\iteration_debug\\results",
+      "run_seed": 42,
+      "samples": {
+        "test": 128,
+        "train": 256,
+        "validation": 128
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 2: val_macro_f1 degraded for 1 consecutive epochs (patience=1, min_delta=0.0001); best val_macro_f1=0.106437 at epoch 1",
+      "task": "emotion_7class",
+      "test_accuracy": 0.2890625,
+      "test_loss": 2.149822250008583,
+      "test_macro_f1": 0.19973613321781158,
+      "test_per_class_f1": [
+        0.37647056579589844,
+        0.31707319617271423,
+        0.1764705926179886,
+        0.24242424964904785,
+        0.2857142984867096,
+        0.0,
+        0.0
+      ],
+      "test_weighted_f1": 0.28450918197631836,
+      "total_seconds": 1.72,
+      "training_seconds": 0.873,
+      "validation_accuracy": 0.1875,
+      "validation_macro_f1": 0.10643719881772995,
+      "validation_weighted_f1": 0.2002994865179062
+    }
+  ],
+  "metadata_dir": "experiments\\text\\full\\metadata",
+  "modality": "text",
+  "note": "Iterations are independent repeated runs. Test predictions are never averaged across iterations; each iteration's artefacts stand alone.",
+  "sampling_summary": {
+    "actual_fraction": 1.0,
+    "actual_split_ratios": {
+      "test": 0.10560645289782912,
+      "train": 0.7943184081403559,
+      "validation": 0.10007513896181493
+    },
+    "contributing_datasets": [
+      "MELD",
+      "CMU-MOSEI",
+      "MSP-Podcast"
+    ],
+    "eligible_records": 220924,
+    "integrity": {
+      "cross_split_sample_ids": 0,
+      "duplicate_sample_ids": 0,
+      "invalid_label_records": 0,
+      "leakage_checks_passed": true,
+      "official_holdout_in_train": 0,
+      "records_outside_contributing_datasets": 0,
+      "records_with_missing_modality_source": 0,
+      "source_path_column": "text_path",
+      "source_path_examples": [
+        {
+          "sample_id": "MSP-Podcast_MSP-PODCAST_0001_0008",
+          "text_path": "MSP-Podcast/Transcripts/Transcripts/MSP-PODCAST_0001_0008.txt"
+        },
+        {
+          "sample_id": "MSP-Podcast_MSP-PODCAST_0001_0009",
+          "text_path": "MSP-Podcast/Transcripts/Transcripts/MSP-PODCAST_0001_0009.txt"
+        },
+        {
+          "sample_id": "MSP-Podcast_MSP-PODCAST_0001_0011",
+          "text_path": "MSP-Podcast/Transcripts/Transcripts/MSP-PODCAST_0001_0011.txt"
+        }
+      ],
+      "source_paths_rewritten": 0
+    },
+    "path": "experiments\\text\\full\\metadata\\sampling_summary.json",
+    "requested_fraction": 1.0,
+    "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+    "seed": 42,
+    "selected_records": 220924,
+    "split_counts": {
+      "test": 23331,
+      "train": 175484,
+      "validation": 22109
+    },
+    "stratification_fields": [
+      "dataset",
+      "canonical_emotion_id"
+    ]
+  },
+  "selection_metric": "validation macro_f1 (higher is better)",
+  "split_counts": {
+    "test": 23331,
+    "train": 175484,
+    "validation": 22109
+  },
+  "task": "emotion_7class",
+  "task_limitation": null,
+  "validation_report": {
+    "failures": [],
+    "passed": true,
+    "path": "experiments\\text\\full\\metadata\\validation_report.json"
+  }
+}

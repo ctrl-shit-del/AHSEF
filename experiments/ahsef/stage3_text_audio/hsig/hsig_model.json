@@ -1,0 +1,234 @@
+{
+  "schema": "ahsef.stage3.hsig.v1",
+  "name": "stage3_text_audio_hsig",
+  "estimator_type": "paired_logistic",
+  "feature_set": "uncertainty_only",
+  "features": [
+    "uncertainty"
+  ],
+  "fitted_on_split": "validation",
+  "seed": 42,
+  "penalty_c": 1.0,
+  "components": {
+    "text_correct": {
+      "feature_names": [
+        "uncertainty"
+      ],
+      "scaler_mean": [
+        0.3956145375642518
+      ],
+      "scaler_scale": [
+        0.1941663954145373
+      ],
+      "coefficients": [
+        -0.29381525089566674
+      ],
+      "intercept": -0.11659880572904387,
+      "classes": [
+        0,
+        1
+      ]
+    },
+    "fused_correct": {
+      "feature_names": [
+        "uncertainty"
+      ],
+      "scaler_mean": [
+        0.3956145375642518
+      ],
+      "scaler_scale": [
+        0.1941663954145373
+      ],
+      "coefficients": [
+        -0.12886963465498028
+      ],
+      "intercept": 0.051276444912943156,
+      "classes": [
+        0,
+        1
+      ]
+    }
+  },
+  "training_summary": {
+    "split": "validation",
+    "samples": 509,
+    "text_correct": 240,
+    "fused_correct": 261,
+    "y_gain_positives": 34,
+    "y_gain_rate": 0.06679764243614932,
+    "y_harm_positives": 13,
+    "y_harm_rate": 0.025540275049115914,
+    "mean_signed_gain": 0.0412573673870334,
+    "class_imbalance_note": "AUPRC is reported alongside AUROC because the positive event is a minority; on an imbalanced target AUROC alone flatters a model that would be useless at the operating point.",
+    "target": "expected_decision_improvement",
+    "formula": "gain(m | A) = P(correct | A u {m}) - P(correct | A)",
+    "estimated_on": "validation only",
+    "rejected_target": "delta_uncertainty = U(A) - U(A u {m})",
+    "why_rejected": "Stage 1 measured it directly: the sign depends on which modality is the anchor and on the fusion rule, in five of six configurations it was negative while accuracy rose 8-10 points, and its largest per-sample correlation with actual decision improvement was 0.143. See docs/ahsef_stage1.md section 8.2 and experiments/ahsef/stage1/reports/gain_diagnostics_validation.json."
+  },
+  "quality": {
+    "selected_variant": "paired_logistic__uncertainty_only",
+    "out_of_fold": {
+      "estimator": "paired_logistic__uncertainty_only",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.7555108359133127,
+        "auroc_ci95": [
+          0.6585793226488169,
+          0.8386774808125186
+        ],
+        "auprc": 0.21591193614426835,
+        "auprc_ci95": [
+          0.11918828457907862,
+          0.35680192988806464
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.28466191066997515,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.12576168285312556,
+        "pearson_r": 0.12657705015033488,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.04089514171344782,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": -0.00036222567358558746,
+        "mae": 0.1281620620016062,
+        "rmse": 0.2986423629368505,
+        "bins": [
+          {
+            "lower": -0.05316141896729343,
+            "upper": -0.004972075692030842,
+            "samples": 47,
+            "mean_predicted_gain": -0.02742378276369459,
+            "mean_observed_gain": 0.0,
+            "residual": -0.02742378276369459
+          },
+          {
+            "lower": -0.004972075692030842,
+            "upper": 0.005709553961392994,
+            "samples": 55,
+            "mean_predicted_gain": 0.001288545973699142,
+            "mean_observed_gain": 0.03636363636363636,
+            "residual": -0.03507509038993722
+          },
+          {
+            "lower": 0.005709553961392994,
+            "upper": 0.012426723442879763,
+            "samples": 51,
+            "mean_predicted_gain": 0.00884297585025132,
+            "mean_observed_gain": 0.0,
+            "residual": 0.00884297585025132
+          },
+          {
+            "lower": 0.012426723442879763,
+            "upper": 0.026582431120787064,
+            "samples": 48,
+            "mean_predicted_gain": 0.019657870778786852,
+            "mean_observed_gain": 0.0,
+            "residual": 0.019657870778786852
+          },
+          {
+            "lower": 0.026582431120787064,
+            "upper": 0.04130616631291473,
+            "samples": 53,
+            "mean_predicted_gain": 0.031943464492718655,
+            "mean_observed_gain": 0.018867924528301886,
+            "residual": 0.01307553996441677
+          },
+          {
+            "lower": 0.04130616631291473,
+            "upper": 0.050279520340039685,
+            "samples": 45,
+            "mean_predicted_gain": 0.04565265052928522,
+            "mean_observed_gain": 0.044444444444444446,
+            "residual": 0.0012082060848407766
+          },
+          {
+            "lower": 0.050279520340039685,
+            "upper": 0.06387448822587372,
+            "samples": 56,
+            "mean_predicted_gain": 0.05721014026513054,
+            "mean_observed_gain": 0.0,
+            "residual": 0.05721014026513054
+          },
+          {
+            "lower": 0.06387448822587372,
+            "upper": 0.07644191435733222,
+            "samples": 47,
+            "mean_predicted_gain": 0.07105799138079874,
+            "mean_observed_gain": 0.02127659574468085,
+            "residual": 0.04978139563611789
+          },
+          {
+            "lower": 0.07644191435733222,
+            "upper": 0.09618751539040865,
+            "samples": 54,
+            "mean_predicted_gain": 0.08601909969200572,
+            "mean_observed_gain": 0.1111111111111111,
+            "residual": -0.025092011419105387
+          },
+          {
+            "lower": 0.09618751539040865,
+            "upper": 0.13940509882303403,
+            "samples": 53,
+            "mean_predicted_gain": 0.10760769061689547,
+            "mean_observed_gain": 0.16981132075471697,
+            "residual": -0.0622036301378215
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.04089514171344782,
+        "std": 0.03998472442410334,
+        "min": -0.05316141896729343,
+        "max": 0.13940509882303403,
+        "fraction_positive": 0.8526522593320236
+      }
+    },
+    "selection_rule": {
+      "primary": "highest out-of-fold AUROC against y_gain on validation",
+      "tie_break": "among variants whose AUROC falls inside the bootstrap 95% interval of the best -- that is, variants this pool cannot distinguish -- prefer 'paired_logistic'.",
+      "why_paired_wins_ties": "UGAPR computes J = gain - lambda*C - mu*L, so the gain has to be in the units the target is defined in: a DIFFERENCE of probabilities of being correct. paired_logistic emits exactly that. fix_logistic emits P(audio fixes a wrong answer), which lives in [0, 1], is a different quantity, and cannot express harm at all -- subtracting a cost from it would be a category error dressed as a utility. The preference is therefore a property of the estimator's output, not of its score on this pool.",
+      "best_by_auroc": "fix_logistic__uncertainty_only",
+      "best_auroc": 0.7564396284829721,
+      "indistinguishable_from_best": [
+        "fix_logistic__evidence_only",
+        "fix_logistic__evidence_plus_class",
+        "fix_logistic__uncertainty_only",
+        "paired_logistic__evidence_only",
+        "paired_logistic__evidence_plus_class",
+        "paired_logistic__uncertainty_only"
+      ],
+      "selected": "paired_logistic__uncertainty_only",
+      "selected_auroc": 0.7555108359133127,
+      "auroc_conceded_to_the_tie_break": 0.0009287925696593868
+    },
+    "folds": 5,
+    "note": "Reported quality is OUT OF FOLD. The saved coefficients are refitted on the whole validation split, which is what the router uses; the in-sample quality of that refit is not reported because it would be optimistic."
+  },
+  "created_at": "2026-08-30T10:38:58",
+  "target": "expected_decision_improvement",
+  "target_definition": {
+    "target": "expected_decision_improvement",
+    "formula": "gain(m | A) = P(correct | A u {m}) - P(correct | A)",
+    "estimated_on": "validation only",
+    "rejected_target": "delta_uncertainty = U(A) - U(A u {m})",
+    "why_rejected": "Stage 1 measured it directly: the sign depends on which modality is the anchor and on the fusion rule, in five of six configurations it was negative while accuracy rose 8-10 points, and its largest per-sample correlation with actual decision improvement was 0.143. See docs/ahsef_stage1.md section 8.2 and experiments/ahsef/stage1/reports/gain_diagnostics_validation.json."
+  },
+  "uses_test_labels": false,
+  "serialisation_note": "Stored as plain coefficients rather than a pickle so a routing decision can be audited, and replayed, without scikit-learn."
+}

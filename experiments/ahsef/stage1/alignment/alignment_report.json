@@ -1,0 +1,132 @@
+{
+  "anchor": "audio",
+  "minimum_pool": 30,
+  "modalities": [
+    "audio",
+    "text",
+    "image",
+    "video",
+    "physiology"
+  ],
+  "fusability_from_anchor": {
+    "validation": {
+      "anchor": "audio",
+      "split": "validation",
+      "minimum_pool": 30,
+      "candidates": {
+        "text": {
+          "co_split_samples": 509,
+          "shares_any_sample": true,
+          "same_task": true,
+          "fusable": true,
+          "blockers": []
+        },
+        "image": {
+          "co_split_samples": 0,
+          "shares_any_sample": false,
+          "same_task": true,
+          "fusable": false,
+          "blockers": [
+            "only 0 co-split validation samples (shared across any split: 0)"
+          ]
+        },
+        "video": {
+          "co_split_samples": 0,
+          "shares_any_sample": false,
+          "same_task": true,
+          "fusable": false,
+          "blockers": [
+            "only 0 co-split validation samples (shared across any split: 0)"
+          ]
+        },
+        "physiology": {
+          "co_split_samples": 0,
+          "shares_any_sample": false,
+          "same_task": false,
+          "fusable": false,
+          "blockers": [
+            "only 0 co-split validation samples (shared across any split: 0)",
+            "label spaces differ: audio solves 'emotion_7class' but physiology solves 'wesad_state_3class'"
+          ]
+        }
+      },
+      "fusable_candidates": [
+        "text"
+      ]
+    },
+    "test": {
+      "anchor": "audio",
+      "split": "test",
+      "minimum_pool": 30,
+      "candidates": {
+        "text": {
+          "co_split_samples": 482,
+          "shares_any_sample": true,
+          "same_task": true,
+          "fusable": true,
+          "blockers": []
+        },
+        "image": {
+          "co_split_samples": 0,
+          "shares_any_sample": false,
+          "same_task": true,
+          "fusable": false,
+          "blockers": [
+            "only 0 co-split test samples (shared across any split: 0)"
+          ]
+        },
+        "video": {
+          "co_split_samples": 0,
+          "shares_any_sample": false,
+          "same_task": true,
+          "fusable": false,
+          "blockers": [
+            "only 0 co-split test samples (shared across any split: 0)"
+          ]
+        },
+        "physiology": {
+          "co_split_samples": 0,
+          "shares_any_sample": false,
+          "same_task": false,
+          "fusable": false,
+          "blockers": [
+            "only 0 co-split test samples (shared across any split: 0)",
+            "label spaces differ: audio solves 'emotion_7class' but physiology solves 'wesad_state_3class'"
+          ]
+        }
+      },
+      "fusable_candidates": [
+        "text"
+      ]
+    }
+  },
+  "all_fusable_pairs": {
+    "audio+text": {
+      "validation": {
+        "co_split_samples": 509,
+        "same_task": true,
+        "fusable": true
+      },
+      "test": {
+        "co_split_samples": 482,
+        "same_task": true,
+        "fusable": true
+      }
+    },
+    "text+video": {
+      "validation": {
+        "co_split_samples": 343,
+        "same_task": true,
+        "fusable": true
+      },
+      "test": {
+        "co_split_samples": 343,
+        "same_task": true,
+        "fusable": true
+      }
+    }
+  },
+  "alignment_matrix_path": "experiments\\ahsef\\stage1\\alignment\\alignment_matrix.json",
+  "identity_basis": "sample_id column of each experiment's split manifest",
+  "rule": "Two modalities may be fused over a sample only if that sample is in the SAME split of both manifests and both models solve the same task. Samples shared across different splits are excluded: one model trained on them."
+}

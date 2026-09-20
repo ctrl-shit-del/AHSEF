@@ -1,0 +1,220 @@
+{
+  "admitted_records": 22856,
+  "audit": {
+    "checks": [
+      {
+        "detail": "Every sample id appears at most once within its split",
+        "evidence": {},
+        "name": "no_duplicate_sample_ids",
+        "passed": true
+      },
+      {
+        "detail": "No sample id appears in more than one split",
+        "evidence": {},
+        "name": "no_cross_split_sample_ids",
+        "passed": true
+      },
+      {
+        "detail": "speaker_id is present but unpopulated; speaker independence is asserted by the split protocol and cannot be verified from the manifest",
+        "evidence": {
+          "verifiable": false
+        },
+        "name": "speaker_independence",
+        "passed": true
+      },
+      {
+        "detail": "Every retained row carries a protocol class",
+        "evidence": {},
+        "name": "no_unlabelled_rows",
+        "passed": true
+      },
+      {
+        "detail": "All protocol classes appear in train, validation and test",
+        "evidence": {},
+        "name": "every_class_present_in_every_split",
+        "passed": true
+      },
+      {
+        "detail": "Every declared modality has a populated payload",
+        "evidence": {},
+        "name": "declared_modalities_have_payloads",
+        "passed": true
+      },
+      {
+        "detail": "All regression targets lie in [-1.0, 1.0]",
+        "evidence": {},
+        "name": "regression_targets_in_range",
+        "passed": true
+      },
+      {
+        "detail": "No feature cache built yet; nothing to check",
+        "evidence": {
+          "cache_root": "experiments\\hsen\\mosei_sentiment\\features"
+        },
+        "name": "feature_cache_split_isolation",
+        "passed": true
+      }
+    ],
+    "class_counts": {
+      "test": {
+        "highly_negative": 70,
+        "highly_positive": 41,
+        "negative": 399,
+        "neutral": 1927,
+        "positive": 440,
+        "weakly_negative": 554,
+        "weakly_positive": 1228
+      },
+      "train": {
+        "highly_negative": 311,
+        "highly_positive": 207,
+        "negative": 1305,
+        "neutral": 6798,
+        "positive": 1549,
+        "weakly_negative": 2039,
+        "weakly_positive": 4117
+      },
+      "validation": {
+        "highly_negative": 24,
+        "highly_positive": 19,
+        "negative": 110,
+        "neutral": 835,
+        "positive": 169,
+        "weakly_negative": 244,
+        "weakly_positive": 470
+      }
+    },
+    "counts": {
+      "test": 4659,
+      "train": 16326,
+      "validation": 1871
+    },
+    "experiment": "mosei_sentiment",
+    "modality_counts": {
+      "test": {
+        "audio": 4659,
+        "text": 4659,
+        "video": 4659
+      },
+      "train": {
+        "audio": 16326,
+        "text": 16326,
+        "video": 16326
+      },
+      "validation": {
+        "audio": 1871,
+        "text": 1871,
+        "video": 1871
+      }
+    },
+    "passed": true,
+    "speakers": {
+      "test": [],
+      "train": [],
+      "validation": []
+    }
+  },
+  "config": {
+    "built_at": "2026-09-10T05:47:41+00:00",
+    "dataset": "CMU-MOSEI",
+    "experiment": "mosei_sentiment",
+    "git_revision": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+    "label_protocol": "mosei_sentiment",
+    "seed": 42,
+    "source": "metadata\\standardized\\standardized.parquet",
+    "split_policy": "official_standard_partition",
+    "test_session": "Session5",
+    "validation_session": "Session4"
+  },
+  "counts": {
+    "test": 4659,
+    "train": 16326,
+    "validation": 1871
+  },
+  "excluded_by_protocol": 0,
+  "label_space": {
+    "classes": [
+      "highly_negative",
+      "negative",
+      "weakly_negative",
+      "neutral",
+      "weakly_positive",
+      "positive",
+      "highly_positive"
+    ],
+    "description": "CMU-MOSEI seven-point sentiment buckets, the Acc7 protocol: class id = round(sentiment_score) + 3 for a score in [-3, 3].",
+    "limitation": "These are ordinal sentiment buckets, not categorical emotions. Macro-F1 over them treats adjacent buckets as unrelated classes, which understates a model that is consistently one bucket out; report Acc7, Acc2 and MAE alongside it rather than in place of it.",
+    "mapping": {
+      "highly_negative": 0,
+      "highly_positive": 6,
+      "negative": 1,
+      "neutral": 3,
+      "positive": 5,
+      "weakly_negative": 2,
+      "weakly_positive": 4
+    },
+    "name": "mosei_sentiment7",
+    "num_classes": 7
+  },
+  "labels": {
+    "arousal_supervised": 0,
+    "class_counts": {
+      "highly_negative": 405,
+      "highly_positive": 267,
+      "negative": 1814,
+      "neutral": 9560,
+      "positive": 2158,
+      "weakly_negative": 2837,
+      "weakly_positive": 5815
+    },
+    "label_space": {
+      "classes": [
+        "highly_negative",
+        "negative",
+        "weakly_negative",
+        "neutral",
+        "weakly_positive",
+        "positive",
+        "highly_positive"
+      ],
+      "description": "CMU-MOSEI seven-point sentiment buckets, the Acc7 protocol: class id = round(sentiment_score) + 3 for a score in [-3, 3].",
+      "limitation": "These are ordinal sentiment buckets, not categorical emotions. Macro-F1 over them treats adjacent buckets as unrelated classes, which understates a model that is consistently one bucket out; report Acc7, Acc2 and MAE alongside it rather than in place of it.",
+      "mapping": {
+        "highly_negative": 0,
+        "highly_positive": 6,
+        "negative": 1,
+        "neutral": 3,
+        "positive": 5,
+        "weakly_negative": 2,
+        "weakly_positive": 4
+      },
+      "name": "mosei_sentiment7",
+      "num_classes": 7
+    },
+    "provenance": {
+      "adapter": "MOSEILabelAdapter",
+      "arousal": "not annotated by CMU-MOSEI; left unsupervised",
+      "categorical_definition": "round(score) + 3, the standard Acc7 buckets",
+      "emotion_columns_ignored": [
+        "canonical_emotion",
+        "canonical_emotion_id",
+        "emotion",
+        "raw_emotion"
+      ],
+      "protocol": "sentiment",
+      "score_column": "sentiment_score",
+      "sentiment_scale": [
+        -3.0,
+        3.0
+      ],
+      "valence_definition": "score / 3 -> [-1, 1]; fixed, not fitted",
+      "why_emotion_columns_ignored": "CMU-MOSEI's emotion column in the standardized metadata is derived from sentiment polarity, not annotated"
+    },
+    "samples": 22856,
+    "supervised": 22856,
+    "task": "single_label",
+    "valence_supervised": 22856
+  },
+  "source_records": 22856,
+  "text_provenance": {}
+}

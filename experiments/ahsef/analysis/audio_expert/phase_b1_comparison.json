@@ -1,0 +1,631 @@
+{
+  "phase": "B-1 -- baseline audio vs strong audio",
+  "split": "validation",
+  "samples": 5550,
+  "identical_samples": true,
+  "systems": {
+    "audio_baseline": {
+      "system": "audio_baseline",
+      "samples": 5550,
+      "excluded_unusable": 0,
+      "accuracy": 0.3490090072154999,
+      "macro_f1": 0.2624451816082001,
+      "weighted_f1": 0.33269214630126953,
+      "macro_precision": 0.2793946862220764,
+      "macro_recall": 0.3001136779785156,
+      "balanced_accuracy": 0.3001136830342667,
+      "per_class": {
+        "neutral": {
+          "support": 2052,
+          "precision": 0.5045180916786194,
+          "recall": 0.16325536370277405,
+          "f1": 0.24668629467487335
+        },
+        "happy": {
+          "support": 1514,
+          "precision": 0.39056047797203064,
+          "recall": 0.43725231289863586,
+          "f1": 0.4125896096229553
+        },
+        "sad": {
+          "support": 675,
+          "precision": 0.23055554926395416,
+          "recall": 0.4918518662452698,
+          "f1": 0.31394800543785095
+        },
+        "angry": {
+          "support": 967,
+          "precision": 0.4104423522949219,
+          "recall": 0.5853154063224792,
+          "f1": 0.48252344131469727
+        },
+        "fear": {
+          "support": 82,
+          "precision": 0.26923078298568726,
+          "recall": 0.17073170840740204,
+          "f1": 0.20895521342754364
+        },
+        "disgust": {
+          "support": 106,
+          "precision": 0.09917355328798294,
+          "recall": 0.22641509771347046,
+          "f1": 0.13793103396892548
+        },
+        "surprise": {
+          "support": 154,
+          "precision": 0.05128205195069313,
+          "recall": 0.025974025949835777,
+          "f1": 0.03448275849223137
+        }
+      },
+      "confusion_matrix": [
+        [
+          335,
+          545,
+          764,
+          285,
+          7,
+          83,
+          33
+        ],
+        [
+          145,
+          662,
+          218,
+          399,
+          4,
+          60,
+          26
+        ],
+        [
+          96,
+          141,
+          332,
+          67,
+          16,
+          22,
+          1
+        ],
+        [
+          55,
+          233,
+          66,
+          566,
+          2,
+          33,
+          12
+        ],
+        [
+          4,
+          17,
+          20,
+          8,
+          14,
+          18,
+          1
+        ],
+        [
+          8,
+          28,
+          15,
+          21,
+          9,
+          24,
+          1
+        ],
+        [
+          21,
+          69,
+          25,
+          33,
+          0,
+          2,
+          4
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "audio_strong": {
+      "system": "audio_strong",
+      "samples": 5550,
+      "excluded_unusable": 0,
+      "accuracy": 0.4740540683269501,
+      "macro_f1": 0.38311317563056946,
+      "weighted_f1": 0.4982871413230896,
+      "macro_precision": 0.4082363247871399,
+      "macro_recall": 0.4460720717906952,
+      "balanced_accuracy": 0.44607206327574594,
+      "per_class": {
+        "neutral": {
+          "support": 2052,
+          "precision": 0.598473310470581,
+          "recall": 0.5730994343757629,
+          "f1": 0.5855116248130798
+        },
+        "happy": {
+          "support": 1514,
+          "precision": 0.7154088020324707,
+          "recall": 0.3005284070968628,
+          "f1": 0.4232558310031891
+        },
+        "sad": {
+          "support": 675,
+          "precision": 0.38167938590049744,
+          "recall": 0.29629629850387573,
+          "f1": 0.3336113393306732
+        },
+        "angry": {
+          "support": 967,
+          "precision": 0.6253602504730225,
+          "recall": 0.6732161045074463,
+          "f1": 0.6484063863754272
+        },
+        "fear": {
+          "support": 82,
+          "precision": 0.3232323229312897,
+          "recall": 0.39024388790130615,
+          "f1": 0.3535911440849304
+        },
+        "disgust": {
+          "support": 106,
+          "precision": 0.13793103396892548,
+          "recall": 0.4150943458080292,
+          "f1": 0.2070588320493698
+        },
+        "surprise": {
+          "support": 154,
+          "precision": 0.07556936144828796,
+          "recall": 0.4740259647369385,
+          "f1": 0.13035714626312256
+        }
+      },
+      "confusion_matrix": [
+        [
+          1176,
+          97,
+          210,
+          156,
+          16,
+          100,
+          297
+        ],
+        [
+          354,
+          455,
+          85,
+          166,
+          25,
+          64,
+          365
+        ],
+        [
+          295,
+          26,
+          200,
+          37,
+          15,
+          37,
+          65
+        ],
+        [
+          81,
+          32,
+          14,
+          651,
+          5,
+          53,
+          131
+        ],
+        [
+          9,
+          3,
+          6,
+          7,
+          32,
+          13,
+          12
+        ],
+        [
+          17,
+          6,
+          3,
+          8,
+          5,
+          44,
+          23
+        ],
+        [
+          33,
+          17,
+          6,
+          16,
+          1,
+          8,
+          73
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    }
+  },
+  "calibration": {
+    "audio_baseline": {
+      "system": "audio_baseline",
+      "available": true,
+      "label": "audio_baseline",
+      "samples": 5550,
+      "num_bins": 10,
+      "accuracy": 0.349009009009009,
+      "mean_confidence": 0.2845850802716742,
+      "overconfidence": -0.06442392873733482,
+      "ece": 0.07468822242414623,
+      "mce": 0.29247635014617157,
+      "brier": 0.7702215594776194,
+      "nll": 1.6625672482306195,
+      "confidence_vs_correctness": {
+        "mean_confidence_when_correct": 0.29455804072797914,
+        "mean_confidence_when_wrong": 0.27923838101790643
+      },
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0,
+          "gap": 0.0
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 476,
+          "mean_confidence": 0.18835473975024897,
+          "accuracy": 0.27310924369747897,
+          "gap": -0.08475450394723
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 3319,
+          "mean_confidence": 0.2452073516539564,
+          "accuracy": 0.34829768002410366,
+          "gap": -0.10309032837014726
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 1175,
+          "mean_confidence": 0.34084438705764775,
+          "accuracy": 0.32595744680851063,
+          "gap": 0.014886940249137115
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 412,
+          "mean_confidence": 0.4431405985573229,
+          "accuracy": 0.42475728155339804,
+          "gap": 0.01838331700392487
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "count": 141,
+          "mean_confidence": 0.534874706259209,
+          "accuracy": 0.5106382978723404,
+          "gap": 0.02423640838686858
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "count": 25,
+          "mean_confidence": 0.641947078663304,
+          "accuracy": 0.76,
+          "gap": -0.11805292133669598
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "count": 2,
+          "mean_confidence": 0.7075236498538284,
+          "accuracy": 1.0,
+          "gap": -0.29247635014617157
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0,
+          "gap": 0.0
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0,
+          "gap": 0.0
+        }
+      ]
+    },
+    "audio_strong": {
+      "system": "audio_strong",
+      "available": true,
+      "label": "audio_strong",
+      "samples": 5550,
+      "num_bins": 10,
+      "accuracy": 0.47405405405405404,
+      "mean_confidence": 0.46014300220981214,
+      "overconfidence": -0.013911051844241906,
+      "ece": 0.025932151051301033,
+      "mce": 0.07707315220598221,
+      "brier": 0.6601290233755956,
+      "nll": 1.3658366603782814,
+      "confidence_vs_correctness": {
+        "mean_confidence_when_correct": 0.5125284384100891,
+        "mean_confidence_when_wrong": 0.41292611881038455
+      },
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_confidence": 0.0,
+          "accuracy": 0.0,
+          "gap": 0.0
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 32,
+          "mean_confidence": 0.18793555878249907,
+          "accuracy": 0.15625,
+          "gap": 0.03168555878249907
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 891,
+          "mean_confidence": 0.2625915423568556,
+          "accuracy": 0.2962962962962963,
+          "gap": -0.03370475393944067
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 1513,
+          "mean_confidence": 0.35010073238843786,
+          "accuracy": 0.38995373430270985,
+          "gap": -0.03985300191427199
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 1236,
+          "mean_confidence": 0.448558766719938,
+          "accuracy": 0.45792880258899676,
+          "gap": -0.009370035869058768
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "count": 832,
+          "mean_confidence": 0.5448858220617309,
+          "accuracy": 0.5552884615384616,
+          "gap": -0.010402639476730702
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "count": 468,
+          "mean_confidence": 0.6456218867394291,
+          "accuracy": 0.6282051282051282,
+          "gap": 0.017416758534300913
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "count": 265,
+          "mean_confidence": 0.7467412568412215,
+          "accuracy": 0.7283018867924528,
+          "gap": 0.018439370048768722
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 196,
+          "mean_confidence": 0.848416212007513,
+          "accuracy": 0.7959183673469388,
+          "gap": 0.05249784466057428
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 117,
+          "mean_confidence": 0.9403210154538455,
+          "accuracy": 0.8632478632478633,
+          "gap": 0.07707315220598221
+        }
+      ]
+    }
+  },
+  "uncertainty": {
+    "audio_baseline": {
+      "samples": 5550,
+      "mean_normalized_entropy": 0.9144892310360692,
+      "median_normalized_entropy": 0.9385930010366678,
+      "std_normalized_entropy": 0.07121419346447355,
+      "mean_predictive_entropy": 1.7795138758748763,
+      "mean_confidence": 0.2845850802716742,
+      "mean_margin": 0.07649965958409856,
+      "mean_uncertainty_when_correct": 0.9098515737362461,
+      "mean_uncertainty_when_wrong": 0.9169755698652298,
+      "uncertainty_separation": 0.007123996128983623,
+      "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+    },
+    "audio_strong": {
+      "samples": 5550,
+      "mean_normalized_entropy": 0.7284299032457843,
+      "median_normalized_entropy": 0.7734538580693984,
+      "std_normalized_entropy": 0.1837719987982567,
+      "mean_predictive_entropy": 1.4174591416013516,
+      "mean_confidence": 0.4601430022098121,
+      "mean_margin": 0.242202371259802,
+      "mean_uncertainty_when_correct": 0.6763403829171829,
+      "mean_uncertainty_when_wrong": 0.775380066995202,
+      "uncertainty_separation": 0.09903968407801911,
+      "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+    }
+  },
+  "latency": {
+    "audio_baseline": {
+      "measured_ms_per_sample": 27.860304000000067,
+      "measured_covers": "feature extraction plus forward pass",
+      "encoder_ms_per_sample": null,
+      "encoder": null,
+      "deployment_ms_per_sample": 27.860304000000067,
+      "median_ms": 27.071440625000776,
+      "p95_ms": 29.011221874995385
+    },
+    "audio_strong": {
+      "measured_ms_per_sample": 0.18134709909956967,
+      "measured_covers": "probe head over cached features only",
+      "encoder_ms_per_sample": 288.88308016697573,
+      "encoder": "WAV2VEC2_BASE",
+      "deployment_ms_per_sample": 289.0644272660753,
+      "median_ms": 0.17983671875043683,
+      "p95_ms": 0.20526739130534977,
+      "note": "The frozen encoder is the dominant cost and it is charged here even though it is cached during experiments. Reporting only the head's forward pass would understate this expert's real per-sample cost by roughly three orders of magnitude."
+    }
+  },
+  "resource_cost": {
+    "audio_baseline": {
+      "trainable_parameters": 35335,
+      "pretrained_parameters": 0,
+      "pretrained_weights_used": false
+    },
+    "audio_strong": {
+      "trainable_parameters": 266003,
+      "pretrained_parameters": 94400000,
+      "pretrained_weights_used": true,
+      "note": "The 94.4M encoder parameters are pretrained and frozen -- not trained by this project and not counted as trainable. They are listed because they are paid for at inference time."
+    }
+  },
+  "verdict": {
+    "rule": {
+      "primary_metric": "macro_f1",
+      "min_macro_f1_gain": 0.03,
+      "max_accuracy_regression": 0.0,
+      "rule": "The strong expert counts as a material improvement when validation macro-F1 rises by at least 0.03 absolute AND accuracy does not fall. Macro-F1 leads because this split is heavily imbalanced (neutral is 37% of it) and an accuracy-led rule would reward exactly the majority-class behaviour Stage 2 identified as the problem.",
+      "declared": "before any strong-expert result was computed",
+      "if_not_met": "Do not proceed to a second expensive encoder. Investigate a lighter alternative representation, or accept the baseline expert and spend the remaining effort on the routing policy, which Phase A showed has large unexploited headroom."
+    },
+    "macro_f1_gain": 0.12066799402236938,
+    "accuracy_delta": 0.1250450611114502,
+    "weighted_f1_delta": 0.16559499502182007,
+    "balanced_accuracy_delta": 0.14595838024147922,
+    "meets_macro_f1_bar": true,
+    "meets_accuracy_bar": true,
+    "material_improvement": true,
+    "classes_improved": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "classes_regressed": [],
+    "per_class": {
+      "neutral": {
+        "support": 2052,
+        "baseline_f1": 0.24668629467487335,
+        "strong_f1": 0.5855116248130798,
+        "f1_delta": 0.3388253301382065,
+        "baseline_recall": 0.16325536370277405,
+        "strong_recall": 0.5730994343757629,
+        "recall_delta": 0.4098440706729889
+      },
+      "happy": {
+        "support": 1514,
+        "baseline_f1": 0.4125896096229553,
+        "strong_f1": 0.4232558310031891,
+        "f1_delta": 0.010666221380233765,
+        "baseline_recall": 0.43725231289863586,
+        "strong_recall": 0.3005284070968628,
+        "recall_delta": -0.13672390580177307
+      },
+      "sad": {
+        "support": 675,
+        "baseline_f1": 0.31394800543785095,
+        "strong_f1": 0.3336113393306732,
+        "f1_delta": 0.019663333892822266,
+        "baseline_recall": 0.4918518662452698,
+        "strong_recall": 0.29629629850387573,
+        "recall_delta": -0.19555556774139404
+      },
+      "angry": {
+        "support": 967,
+        "baseline_f1": 0.48252344131469727,
+        "strong_f1": 0.6484063863754272,
+        "f1_delta": 0.16588294506072998,
+        "baseline_recall": 0.5853154063224792,
+        "strong_recall": 0.6732161045074463,
+        "recall_delta": 0.08790069818496704
+      },
+      "fear": {
+        "support": 82,
+        "baseline_f1": 0.20895521342754364,
+        "strong_f1": 0.3535911440849304,
+        "f1_delta": 0.14463593065738678,
+        "baseline_recall": 0.17073170840740204,
+        "strong_recall": 0.39024388790130615,
+        "recall_delta": 0.2195121794939041
+      },
+      "disgust": {
+        "support": 106,
+        "baseline_f1": 0.13793103396892548,
+        "strong_f1": 0.2070588320493698,
+        "f1_delta": 0.06912779808044434,
+        "baseline_recall": 0.22641509771347046,
+        "strong_recall": 0.4150943458080292,
+        "recall_delta": 0.18867924809455872
+      },
+      "surprise": {
+        "support": 154,
+        "baseline_f1": 0.03448275849223137,
+        "strong_f1": 0.13035714626312256,
+        "f1_delta": 0.09587438777089119,
+        "baseline_recall": 0.025974025949835777,
+        "strong_recall": 0.4740259647369385,
+        "recall_delta": 0.4480519387871027
+      }
+    },
+    "decision": "PROCEED -- the strong expert clears the pre-declared bar; carry it into the AHSEF routing redesign.",
+    "statement": "Validation macro-F1 moved +0.1207 (0.2624 -> 0.3831) and accuracy +0.1250 (0.3490 -> 0.4741) on 5550 identical validation samples. The pre-declared bar was +0.03 macro-F1 with no accuracy regression, so this MEETS it."
+  },
+  "test_data_accessed": false,
+  "created_at": "2026-08-30T15:13:58",
+  "git_commit": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]"
+  }
+}

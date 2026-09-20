@@ -1,7 +1,84 @@
+# ==============================
+# Datasets
+# ==============================
 datasets/
+data/
+*.wav
+*.mp3
+*.mp4
+*.avi
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.mat
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# ==============================
+# Python
+# ==============================
 venv/
+.venv/
+env/
+ENV/
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# ==============================
+# Logs
+# ==============================
 *.log
-*.parquet
+logs/
+
+# ==============================
+# Generated data / caches
+# ==============================
 *.csv
+*.parquet
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+cache/
+caches/
+features/
+feature_cache/
+checkpoints/
+outputs/
+runs/
+
+# ==============================
+# Jupyter
+# ==============================
+.ipynb_checkpoints/
+
+# ==============================
+# IDE / OS
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Python tooling
+# ==============================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==============================
+# Secrets / environment
+# ==============================
+.env
+.env.*
+!.env.example

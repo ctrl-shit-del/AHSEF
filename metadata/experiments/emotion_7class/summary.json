@@ -1,0 +1,79 @@
+{
+  "batch_size": 16384,
+  "canonical_label_mapping": {
+    "angry": 3,
+    "disgust": 5,
+    "fear": 4,
+    "happy": 1,
+    "neutral": 0,
+    "sad": 2,
+    "surprise": 6
+  },
+  "config": {
+    "held_out_session": "Session5",
+    "name": "emotion_7class",
+    "seed": 42,
+    "split_policy": "official_only",
+    "validation_session": null
+  },
+  "counts": {
+    "test": 5678,
+    "train": 341642,
+    "validation": 4609
+  },
+  "dataset_by_split": {
+    "test": {
+      "MELD": 2610,
+      "RAF-DB": 3068
+    },
+    "train": {
+      "AffectNet+": 283901,
+      "FERPlus": 35481,
+      "MELD": 9989,
+      "RAF-DB": 12271
+    },
+    "validation": {
+      "AffectNet+": 3500,
+      "MELD": 1109
+    }
+  },
+  "excluded_by_policy": 14533,
+  "label_by_split": {
+    "test": {
+      "angry": 507,
+      "disgust": 228,
+      "fear": 124,
+      "happy": 1587,
+      "neutral": 1936,
+      "sad": 686,
+      "surprise": 610
+    },
+    "train": {
+      "angry": 39688,
+      "disgust": 9218,
+      "fear": 11421,
+      "happy": 141180,
+      "neutral": 85232,
+      "sad": 37489,
+      "surprise": 17414
+    },
+    "validation": {
+      "angry": 653,
+      "disgust": 522,
+      "fear": 540,
+      "happy": 663,
+      "neutral": 970,
+      "sad": 611,
+      "surprise": 650
+    }
+  },
+  "modality_availability": {
+    "has_audio": 0,
+    "has_image": 338221,
+    "has_physiology": 0,
+    "has_text": 13708,
+    "has_video": 13707
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "target_definition": "canonical_emotion_id"
+}

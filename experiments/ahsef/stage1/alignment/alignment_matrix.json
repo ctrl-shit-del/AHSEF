@@ -1,0 +1,363 @@
+{
+  "modalities": {
+    "audio": {
+      "experiment": "audio_25pct",
+      "metadata_dir": "experiments\\audio\\25pct\\metadata",
+      "task": "emotion_7class",
+      "counts": {
+        "train": 44348,
+        "validation": 5550,
+        "test": 5542
+      }
+    },
+    "image": {
+      "experiment": "image_25pct",
+      "metadata_dir": "experiments\\image\\25pct\\metadata",
+      "task": "emotion_7class",
+      "counts": {
+        "train": 67642,
+        "validation": 8459,
+        "test": 8454
+      }
+    },
+    "physiology": {
+      "experiment": "physiology_full",
+      "metadata_dir": "experiments\\physiology\\full\\metadata",
+      "task": "wesad_state_3class",
+      "counts": {
+        "train": 2437,
+        "validation": 405,
+        "test": 198
+      }
+    },
+    "text": {
+      "experiment": "text_full",
+      "metadata_dir": "experiments\\text\\full\\metadata",
+      "task": "emotion_7class",
+      "counts": {
+        "train": 175484,
+        "validation": 22109,
+        "test": 23331
+      }
+    },
+    "video": {
+      "experiment": "video_25pct",
+      "metadata_dir": "experiments\\video\\25pct\\metadata",
+      "task": "emotion_7class",
+      "counts": {
+        "train": 2741,
+        "validation": 343,
+        "test": 343
+      }
+    }
+  },
+  "split_order": [
+    "train",
+    "validation",
+    "test"
+  ],
+  "pairs": {
+    "audio|image": {
+      "left": "audio",
+      "right": "image",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "audio|physiology": {
+      "left": "audio",
+      "right": "physiology",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "audio|text": {
+      "left": "audio",
+      "right": "text",
+      "matrix": {
+        "train": {
+          "train": 33217,
+          "validation": 4079,
+          "test": 4147
+        },
+        "validation": {
+          "train": 4137,
+          "validation": 509,
+          "test": 536
+        },
+        "test": {
+          "train": 4170,
+          "validation": 525,
+          "test": 482
+        }
+      },
+      "co_split": {
+        "train": 33217,
+        "validation": 509,
+        "test": 482
+      },
+      "cross_split_shared": 17594,
+      "shares_any_sample": true,
+      "fusable_splits": [
+        "train",
+        "validation",
+        "test"
+      ]
+    },
+    "audio|video": {
+      "left": "audio",
+      "right": "video",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "image|physiology": {
+      "left": "image",
+      "right": "physiology",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "image|text": {
+      "left": "image",
+      "right": "text",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "image|video": {
+      "left": "image",
+      "right": "video",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "physiology|text": {
+      "left": "physiology",
+      "right": "text",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "physiology|video": {
+      "left": "physiology",
+      "right": "video",
+      "matrix": {
+        "train": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        }
+      },
+      "co_split": {
+        "train": 0,
+        "validation": 0,
+        "test": 0
+      },
+      "cross_split_shared": 0,
+      "shares_any_sample": false,
+      "fusable_splits": []
+    },
+    "text|video": {
+      "left": "text",
+      "right": "video",
+      "matrix": {
+        "train": {
+          "train": 2672,
+          "validation": 0,
+          "test": 0
+        },
+        "validation": {
+          "train": 69,
+          "validation": 343,
+          "test": 0
+        },
+        "test": {
+          "train": 0,
+          "validation": 0,
+          "test": 343
+        }
+      },
+      "co_split": {
+        "train": 2672,
+        "validation": 343,
+        "test": 343
+      },
+      "cross_split_shared": 69,
+      "shares_any_sample": true,
+      "fusable_splits": [
+        "train",
+        "validation",
+        "test"
+      ]
+    }
+  },
+  "definition": {
+    "co_split": "ids present in the SAME split of both modalities; the only pool a fused evaluation may use",
+    "cross_split_shared": "ids shared but in different splits; excluded from fusion because one model trained on them"
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "base_dir": "experiments/video/25pct",
+  "best_epochs": {
+    "1": 4,
+    "2": 3,
+    "debug": 1
+  },
+  "best_iteration": {
+    "best_epoch": 3,
+    "best_val_macro_f1": 0.12229364365339279,
+    "checkpoints": {
+      "best": "experiments/video/25pct/iteration_2/checkpoints/best.pt",
+      "last": "experiments/video/25pct/iteration_2/checkpoints/last.pt",
+      "reload_verified": true
+    },
+    "iteration": "2",
+    "test_accuracy": 0.3352769613265991,
+    "test_macro_f1": 0.11726297438144684,
+    "test_weighted_f1": 0.2929321527481079
+  },
+  "class_names": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "comparable_iterations": [
+    "1",
+    "2"
+  ],
+  "comparison": {
+    "best_val_macro_f1": {
+      "max": 0.12229364365339279,
+      "mean": 0.11656203493475914,
+      "min": 0.11083042621612549,
+      "n": 2,
+      "stdev": 0.008105718784107587,
+      "values": [
+        0.11083042621612549,
+        0.12229364365339279
+      ]
+    },
+    "test_accuracy": {
+      "max": 0.3498542308807373,
+      "mean": 0.3425655961036682,
+      "min": 0.3352769613265991,
+      "n": 2,
+      "stdev": 0.01030768615291531,
+      "values": [
+        0.3498542308807373,
+        0.3352769613265991
+      ]
+    },
+    "test_loss": {
+      "max": 1.965536704563886,
+      "mean": 1.958530931882886,
+      "min": 1.951525159201886,
+      "n": 2,
+      "stdev": 0.009907658740373118,
+      "values": [
+        1.965536704563886,
+        1.951525159201886
+      ]
+    },
+    "test_macro_f1": {
+      "max": 0.11726297438144684,
+      "mean": 0.11415616050362587,
+      "min": 0.1110493466258049,
+      "n": 2,
+      "stdev": 0.004393698321783362,
+      "values": [
+        0.1110493466258049,
+        0.11726297438144684
+      ]
+    },
+    "test_weighted_f1": {
+      "max": 0.2929321527481079,
+      "mean": 0.2903737276792526,
+      "min": 0.28781530261039734,
+      "n": 2,
+      "stdev": 0.0036181594306904643,
+      "values": [
+        0.28781530261039734,
+        0.2929321527481079
+      ]
+    }
+  },
+  "dataset_counts": {
+    "MELD": 3427
+  },
+  "dataset_fraction": 0.25001823885605895,
+  "datasets_used": [
+    "MELD"
+  ],
+  "durations_seconds": {
+    "1": 1384.76,
+    "2": 1375.759,
+    "debug": 139.774
+  },
+  "experiment": "video_25pct",
+  "fraction": 0.25,
+  "fraction_label": "25pct",
+  "iteration_count": 3,
+  "iteration_seeds": {
+    "1": 42,
+    "2": 43,
+    "debug": 42
+  },
+  "iterations": [
+    {
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.11083042621612549,
+      "checkpoints": {
+        "best": "experiments/video/25pct/iteration_1/checkpoints/best.pt",
+        "last": "experiments/video/25pct/iteration_1/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/video/25pct/iteration_1/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 4,
+        "best_value": 0.11083042621612549,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.02341386303305626,
+          0.105892114341259,
+          0.04798031598329544,
+          0.11083042621612549,
+          0.07665976136922836
+        ],
+        "patience": 2,
+        "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.110830 at epoch 4",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "1",
+      "log_file": "experiments/video/25pct/iteration_1/logs/training.log",
+      "modality": "video",
+      "model": {
+        "class": "VideoEmotionBaseline",
+        "frame_size": 48,
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "num_frames": 8,
+        "parameters": 1772039,
+        "pooling": "masked mean over frames",
+        "temporal": "mean"
+      },
+      "results_dir": "experiments/video/25pct/iteration_1/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 343,
+        "train": 2741,
+        "validation": 343
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.110830 at epoch 4",
+      "task": "emotion_7class",
+      "test_accuracy": 0.3498542308807373,
+      "test_loss": 1.965536704563886,
+      "test_macro_f1": 0.1110493466258049,
+      "test_per_class_f1": [
+        0.5685279369354248,
+        0.0,
+        0.0776699036359787,
+        0.13114753365516663,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "test_weighted_f1": 0.28781530261039734,
+      "total_seconds": 1384.76,
+      "training_seconds": 1326.299,
+      "validation_accuracy": 0.31778424978256226,
+      "validation_macro_f1": 0.11083042621612549,
+      "validation_weighted_f1": 0.26886746287345886
+    },
+    {
+      "best_epoch": 3,
+      "best_val_macro_f1": 0.12229364365339279,
+      "checkpoints": {
+        "best": "experiments/video/25pct/iteration_2/checkpoints/best.pt",
+        "last": "experiments/video/25pct/iteration_2/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/video/25pct/iteration_2/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 3,
+        "best_value": 0.12229364365339279,
+        "epochs_without_improvement": 2,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.030746158212423325,
+          0.09518346935510635,
+          0.12229364365339279,
+          0.09745234996080399,
+          0.10439930111169815
+        ],
+        "patience": 2,
+        "reason": "early stopping at epoch 5: val_macro_f1 did not improve for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.122294 at epoch 3",
+        "stopped_early": true,
+        "stopped_epoch": 5
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "2",
+      "log_file": "experiments/video/25pct/iteration_2/logs/training.log",
+      "modality": "video",
+      "model": {
+        "class": "VideoEmotionBaseline",
+        "frame_size": 48,
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "num_frames": 8,
+        "parameters": 1772039,
+        "pooling": "masked mean over frames",
+        "temporal": "mean"
+      },
+      "results_dir": "experiments/video/25pct/iteration_2/results",
+      "run_seed": 43,
+      "samples": {
+        "test": 343,
+        "train": 2741,
+        "validation": 343
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 5: val_macro_f1 did not improve for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.122294 at epoch 3",
+      "task": "emotion_7class",
+      "test_accuracy": 0.3352769613265991,
+      "test_loss": 1.951525159201886,
+      "test_macro_f1": 0.11726297438144684,
+      "test_per_class_f1": [
+        0.5326371192932129,
+        0.17582416534423828,
+        0.0,
+        0.08421052992343903,
+        0.0,
+        0.0,
+        0.028169015422463417
+      ],
+      "test_weighted_f1": 0.2929321527481079,
+      "total_seconds": 1375.759,
+      "training_seconds": 1319.027,
+      "validation_accuracy": 0.32944607734680176,
+      "validation_macro_f1": 0.12229364365339279,
+      "validation_weighted_f1": 0.28351426124572754
+    },
+    {
+      "best_epoch": 1,
+      "best_val_macro_f1": 0.14028313755989075,
+      "checkpoints": {
+        "best": "experiments/video/25pct/iteration_debug/checkpoints/best.pt",
+        "last": "experiments/video/25pct/iteration_debug/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/video/25pct/iteration_debug/config.json",
+      "debug": true,
+      "early_stopping": {
+        "best_epoch": 1,
+        "best_value": 0.14028313755989075,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 1,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.14028313755989075,
+          0.07783576101064682
+        ],
+        "patience": 1,
+        "reason": "early stopping at epoch 2: val_macro_f1 degraded for 1 consecutive epochs (patience=1, min_delta=0.0001); best val_macro_f1=0.140283 at epoch 1",
+        "stopped_early": true,
+        "stopped_epoch": 2
+      },
+      "epochs_completed": 2,
+      "epochs_configured": 2,
+      "iteration": "debug",
+      "log_file": "experiments/video/25pct/iteration_debug/logs/training.log",
+      "modality": "video",
+      "model": {
+        "class": "VideoEmotionBaseline",
+        "frame_size": 48,
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "num_frames": 8,
+        "parameters": 1772039,
+        "pooling": "masked mean over frames",
+        "temporal": "mean"
+      },
+      "results_dir": "experiments/video/25pct/iteration_debug/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 128,
+        "train": 256,
+        "validation": 128
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 2: val_macro_f1 degraded for 1 consecutive epochs (patience=1, min_delta=0.0001); best val_macro_f1=0.140283 at epoch 1",
+      "task": "emotion_7class",
+      "test_accuracy": 0.359375,
+      "test_loss": 2.0229648500680923,
+      "test_macro_f1": 0.09577922523021698,
+      "test_per_class_f1": [
+        0.5454545617103577,
+        0.0,
+        0.125,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "test_weighted_f1": 0.23464134335517883,
+      "total_seconds": 139.774,
+      "training_seconds": 103.105,
+      "validation_accuracy": 0.4765625,
+      "validation_macro_f1": 0.14028313755989075,
+      "validation_weighted_f1": 0.32214245200157166
+    }
+  ],
+  "metadata_dir": "experiments/video/25pct/metadata",
+  "modality": "video",
+  "note": "Iterations are independent repeated runs. Test predictions are never averaged across iterations; each iteration's artefacts stand alone.",
+  "sampling_summary": {
+    "actual_fraction": 0.25001823885605895,
+    "actual_split_ratios": {
+      "test": 0.10008754012255618,
+      "train": 0.7998249197548877,
+      "validation": 0.10008754012255618
+    },
+    "contributing_datasets": [
+      "MELD",
+      "CMU-MOSEI"
+    ],
+    "eligible_records": 13707,
+    "integrity": {
+      "cross_split_sample_ids": 0,
+      "duplicate_sample_ids": 0,
+      "invalid_label_records": 0,
+      "leakage_checks_passed": true,
+      "official_holdout_in_train": 0,
+      "records_outside_contributing_datasets": 0,
+      "records_with_missing_modality_source": 0,
+      "source_path_column": "video_path",
+      "source_path_examples": [
+        {
+          "sample_id": "train_dia0_utt2",
+          "video_path": "MELD/train_splits/dia0_utt2.mp4"
+        },
+        {
+          "sample_id": "train_dia0_utt4",
+          "video_path": "MELD/train_splits/dia0_utt4.mp4"
+        },
+        {
+          "sample_id": "train_dia0_utt9",
+          "video_path": "MELD/train_splits/dia0_utt9.mp4"
+        }
+      ],
+      "source_paths_rewritten": 0
+    },
+    "path": "experiments/video/25pct/metadata/sampling_summary.json",
+    "requested_fraction": 0.25,
+    "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+    "seed": 42,
+    "selected_records": 3427,
+    "split_counts": {
+      "test": 343,
+      "train": 2741,
+      "validation": 343
+    },
+    "stratification_fields": [
+      "dataset",
+      "canonical_emotion_id"
+    ]
+  },
+  "selection_metric": "validation macro_f1 (higher is better)",
+  "split_counts": {
+    "test": 343,
+    "train": 2741,
+    "validation": 343
+  },
+  "task": "emotion_7class",
+  "task_limitation": null,
+  "validation_report": {
+    "failures": [],
+    "passed": true,
+    "path": "experiments/video/25pct/metadata/validation_report.json"
+  }
+}

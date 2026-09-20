@@ -1,0 +1,393 @@
+{
+  "study": "phase15_seed_variance",
+  "experiment": "iemocap_erc6",
+  "profile": "cpu25",
+  "modalities": [
+    "audio",
+    "text"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "subset_seed": 42,
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "excited",
+    "frustrated"
+  ],
+  "reference_variant": "husformer",
+  "runs": [
+    {
+      "variant": "husformer",
+      "seed": 42,
+      "best_epoch": 5,
+      "val_WF1": 0.5035551447557599,
+      "val_macro_F1": 0.4750264176465519,
+      "accuracy": 0.5105820105820106,
+      "train_time": 4475.81,
+      "parameter_count": 5992456,
+      "fusion_parameters": 4742144,
+      "epochs_run": 10,
+      "stop_reason": "early stopping at epoch 10: weighted_f1 did not improve for 5 consecutive epochs (patience=5, min_delta=0.0001); best weighted_f1=0.503555 at epoch 5",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "husformer",
+      "seed": 43,
+      "best_epoch": 15,
+      "val_WF1": 0.4886445732944592,
+      "val_macro_F1": 0.46007449568497805,
+      "accuracy": 0.4834656084656085,
+      "train_time": 7322.55,
+      "parameter_count": 5992456,
+      "fusion_parameters": 4742144,
+      "epochs_run": 15,
+      "stop_reason": "completed",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "husformer",
+      "seed": 44,
+      "best_epoch": 13,
+      "val_WF1": 0.48693301300563396,
+      "val_macro_F1": 0.4513918855298515,
+      "accuracy": 0.48214285714285715,
+      "train_time": 5347.71,
+      "parameter_count": 5992456,
+      "fusion_parameters": 4742144,
+      "epochs_run": 15,
+      "stop_reason": "completed",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "concat",
+      "seed": 42,
+      "best_epoch": 11,
+      "val_WF1": 0.4928174296325254,
+      "val_macro_F1": 0.4626400171472717,
+      "accuracy": 0.49603174603174605,
+      "train_time": 485.68,
+      "parameter_count": 1448968,
+      "fusion_parameters": 198656,
+      "epochs_run": 15,
+      "stop_reason": "completed",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "concat",
+      "seed": 43,
+      "best_epoch": 6,
+      "val_WF1": 0.49269073882817577,
+      "val_macro_F1": 0.466220347202645,
+      "accuracy": 0.4861111111111111,
+      "train_time": 332.23,
+      "parameter_count": 1448968,
+      "fusion_parameters": 198656,
+      "epochs_run": 11,
+      "stop_reason": "early stopping at epoch 11: weighted_f1 did not improve for 5 consecutive epochs (patience=5, min_delta=0.0001); best weighted_f1=0.492691 at epoch 6",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "concat",
+      "seed": 44,
+      "best_epoch": 15,
+      "val_WF1": 0.4939575506134529,
+      "val_macro_F1": 0.4631867036098676,
+      "accuracy": 0.49007936507936506,
+      "train_time": 433.08,
+      "parameter_count": 1448968,
+      "fusion_parameters": 198656,
+      "epochs_run": 15,
+      "stop_reason": "completed",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "self_attention",
+      "seed": 42,
+      "best_epoch": 5,
+      "val_WF1": 0.4910937798866062,
+      "val_macro_F1": 0.45438437357107525,
+      "accuracy": 0.47883597883597884,
+      "train_time": 2006.97,
+      "parameter_count": 2830344,
+      "fusion_parameters": 1580032,
+      "epochs_run": 10,
+      "stop_reason": "early stopping at epoch 10: weighted_f1 did not improve for 5 consecutive epochs (patience=5, min_delta=0.0001); best weighted_f1=0.491094 at epoch 5",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "self_attention",
+      "seed": 43,
+      "best_epoch": 4,
+      "val_WF1": 0.4921199346882761,
+      "val_macro_F1": 0.4614309517640312,
+      "accuracy": 0.5072751322751323,
+      "train_time": 1659.92,
+      "parameter_count": 2830344,
+      "fusion_parameters": 1580032,
+      "epochs_run": 9,
+      "stop_reason": "early stopping at epoch 9: weighted_f1 did not improve for 5 consecutive epochs (patience=5, min_delta=0.0001); best weighted_f1=0.492120 at epoch 4",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    },
+    {
+      "variant": "self_attention",
+      "seed": 44,
+      "best_epoch": 6,
+      "val_WF1": 0.4912193072208319,
+      "val_macro_F1": 0.45267995473615863,
+      "accuracy": 0.49933862433862436,
+      "train_time": 2016.85,
+      "parameter_count": 2830344,
+      "fusion_parameters": 1580032,
+      "epochs_run": 11,
+      "stop_reason": "early stopping at epoch 11: weighted_f1 did not improve for 5 consecutive epochs (patience=5, min_delta=0.0001); best weighted_f1=0.491219 at epoch 6",
+      "subset_seed": 42,
+      "train_samples": 1062,
+      "validation_samples": 1512,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "excited",
+        "frustrated"
+      ]
+    }
+  ],
+  "aggregate": {
+    "husformer": {
+      "n_seeds": 3,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "mean_WF1": 0.4930442436852844,
+      "std_WF1": 0.009142846418953122,
+      "min_WF1": 0.48693301300563396,
+      "max_WF1": 0.5035551447557599,
+      "mean_macro_F1": 0.4621642662871272,
+      "std_macro_F1": 0.011955046339142345,
+      "mean_accuracy": 0.4920634920634921,
+      "mean_training_time": 5715.356666666667,
+      "mean_best_epoch": 11.0,
+      "parameter_count": 5992456,
+      "fusion_parameters": 4742144,
+      "std_ddof": 1
+    },
+    "concat": {
+      "n_seeds": 3,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "mean_WF1": 0.49315523969138475,
+      "std_WF1": 0.0006977031974480024,
+      "min_WF1": 0.49269073882817577,
+      "max_WF1": 0.4939575506134529,
+      "mean_macro_F1": 0.4640156893199281,
+      "std_macro_F1": 0.0019287570627131126,
+      "mean_accuracy": 0.49074074074074076,
+      "mean_training_time": 416.99666666666667,
+      "mean_best_epoch": 10.666666666666666,
+      "parameter_count": 1448968,
+      "fusion_parameters": 198656,
+      "std_ddof": 1
+    },
+    "self_attention": {
+      "n_seeds": 3,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "mean_WF1": 0.4914776739319047,
+      "std_WF1": 0.0005597440819611113,
+      "min_WF1": 0.4910937798866062,
+      "max_WF1": 0.4921199346882761,
+      "mean_macro_F1": 0.4561650933570884,
+      "std_macro_F1": 0.004639311313404458,
+      "mean_accuracy": 0.4951499118165785,
+      "mean_training_time": 1894.58,
+      "mean_best_epoch": 5.0,
+      "parameter_count": 2830344,
+      "fusion_parameters": 1580032,
+      "std_ddof": 1
+    }
+  },
+  "paired_vs_reference": {
+    "concat": {
+      "metric": "val_WF1",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "delta_per_seed": {
+        "42": 0.010737715123234515,
+        "43": -0.004046165533716561,
+        "44": -0.007024537607818959
+      },
+      "reference_wins": 1,
+      "n_pairs": 3,
+      "consistent": false,
+      "mean_delta": -0.00011099600610033529,
+      "min_delta": -0.007024537607818959,
+      "max_delta": 0.010737715123234515,
+      "std_delta": 0.009512548287854503
+    },
+    "self_attention": {
+      "metric": "val_WF1",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "delta_per_seed": {
+        "42": 0.012461364869153724,
+        "43": -0.003475361393816878,
+        "44": -0.004286294215197939
+      },
+      "reference_wins": 1,
+      "n_pairs": 3,
+      "consistent": false,
+      "mean_delta": 0.0015665697533796357,
+      "min_delta": -0.004286294215197939,
+      "max_delta": 0.012461364869153724,
+      "std_delta": 0.009443877565450511
+    }
+  },
+  "margin_versus_seed_variance": {
+    "concat": {
+      "mean_margin": -0.00011099600610033529,
+      "reference_std_WF1": 0.009142846418953122,
+      "other_std_WF1": 0.0006977031974480024,
+      "larger_seed_std": 0.009142846418953122,
+      "paired_delta_std": 0.009512548287854503,
+      "margin_exceeds_larger_seed_std": false,
+      "margin_exceeds_paired_std": false,
+      "ranges_overlap": true
+    },
+    "self_attention": {
+      "mean_margin": 0.0015665697533796357,
+      "reference_std_WF1": 0.009142846418953122,
+      "other_std_WF1": 0.0005597440819611113,
+      "larger_seed_std": 0.009142846418953122,
+      "paired_delta_std": 0.009443877565450511,
+      "margin_exceeds_larger_seed_std": false,
+      "margin_exceeds_paired_std": false,
+      "ranges_overlap": true
+    }
+  },
+  "verdict": {
+    "recommended_fusion": "concat",
+    "reason": "highest mean validation weighted F1 across the seeds that ran; husformer did not hold its section-13 lead across seeds",
+    "ranking_by_mean_WF1": [
+      "concat",
+      "husformer",
+      "self_attention"
+    ],
+    "complete": true,
+    "seeds_per_variant": {
+      "husformer": 3,
+      "concat": 3,
+      "self_attention": 3
+    },
+    "statements": [
+      "husformer vs concat: husformer is ahead on 1 of 3 seeds (the ordering flips with the seed); mean margin -0.0001 WF1 [-0.0070, +0.0107].",
+      "    That margin is not larger than the larger across-seed std (0.0091) and not larger than the paired-difference std (0.0095); the two variants' WF1 ranges overlap.",
+      "husformer vs self_attention: husformer is ahead on 1 of 3 seeds (the ordering flips with the seed); mean margin +0.0016 WF1 [-0.0043, +0.0125].",
+      "    That margin is not larger than the larger across-seed std (0.0091) and not larger than the paired-difference std (0.0094); the two variants' WF1 ranges overlap.",
+      "Highest mean validation WF1 across these seeds: concat (0.4932 +/- 0.0007, 1,448,968 parameters, 417 s mean training time).",
+      "Smallest across-seed spread: self_attention (std 0.0006)."
+    ],
+    "caveat": "3 seeds bound the spread; they do not support a claim of statistical significance in either direction."
+  },
+  "outcomes": []
+}

@@ -1,0 +1,46 @@
+{
+  "splits": {
+    "validation": {
+      "selected": 1000,
+      "fingerprint_sha256": "2538c2372d27d41791a5e485370094ccfba5a630444ce22c6a2eca0238a32e63",
+      "seed": 42,
+      "class_counts": {
+        "neutral": 385,
+        "happy": 274,
+        "sad": 115,
+        "angry": 169,
+        "fear": 9,
+        "disgust": 14,
+        "surprise": 34
+      },
+      "datasets": {
+        "MELD": 63,
+        "MSP-Podcast": 937
+      }
+    },
+    "test": {
+      "selected": 1000,
+      "fingerprint_sha256": "f1d5bfff8e280053f8700e53a2f148b616d7bded4cbf93e604a1781377d4e169",
+      "seed": 42,
+      "class_counts": {
+        "neutral": 391,
+        "happy": 267,
+        "sad": 113,
+        "angry": 168,
+        "fear": 9,
+        "disgust": 15,
+        "surprise": 37
+      },
+      "datasets": {
+        "MELD": 121,
+        "MSP-Podcast": 879
+      }
+    }
+  },
+  "selection_method": "seeded_stratified_largest_remainder_v1",
+  "labels_used_for_inclusion": false,
+  "splits_disjoint": true,
+  "experiment_id": "stage2_llm_pilot_v1",
+  "selection_seed": 42,
+  "requested_per_split": 1000
+}

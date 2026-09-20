@@ -1,9 +1,9 @@
 {
     "samples": 22856,
     "emotion_distribution": {
-        "positive": 11264,
+        "happy": 11264,
         "neutral": 4998,
-        "negative": 6594
+        "sad": 6594
     },
     "split_distribution": {
         "train": 16326,

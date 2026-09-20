@@ -1,0 +1,31 @@
+{
+  "policy": "inverse_frequency_from_train",
+  "computed_from": "experiments/physiology/full/metadata/train.parquet",
+  "computed_from_split": "train",
+  "uses_validation_labels": false,
+  "uses_test_labels": false,
+  "task": "wesad_state_3class",
+  "label_column": "state_id",
+  "class_order": [
+    "baseline",
+    "stress",
+    "amusement"
+  ],
+  "class_mapping": {
+    "baseline": 0,
+    "stress": 1,
+    "amusement": 2
+  },
+  "training_distribution": {
+    "baseline": 1337,
+    "stress": 727,
+    "amusement": 373
+  },
+  "classes_absent_from_train": [],
+  "absent_class_weight": null,
+  "weights": [
+    0.6075791716575623,
+    1.1173774003982544,
+    2.177837371826172
+  ]
+}

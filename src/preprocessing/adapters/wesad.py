@@ -13,7 +13,10 @@ import numpy as np
 
 from src.common.models import EmotionRecord
 from src.preprocessing.core.base_adapter import BaseAdapter
-from src.preprocessing.emotion_mapping import WESAD_EMOTIONS
+from src.preprocessing.emotion_mapping import (
+    WESAD_EMOTIONS,
+    WESAD_ANNOTATION_STATES,
+)
 
 
 WESAD_SAMPLING_RATES = {
@@ -63,16 +66,19 @@ class WESADAdapter(BaseAdapter):
 
                 "raw_emotion": label,
 
-                "emotion": WESAD_EMOTIONS.get(
-                    label,
-                    "unknown",
+                "emotion": WESAD_EMOTIONS.get(label),
+
+                "annotation_state": WESAD_ANNOTATION_STATES.get(
+                    label
                 ),
 
                 "segment_start": int(start),
 
-                "segment_end": int(end),
+                "segment_end": int(len(labels)),
 
-                "segment_length": int(end - start),
+                "segment_length": int(
+                    len(labels) - start
+                ),
 
             })
 

@@ -1,0 +1,46 @@
+{
+  "class_order": [
+    "baseline",
+    "stress",
+    "amusement"
+  ],
+  "class_mapping": {
+    "baseline": 0,
+    "stress": 1,
+    "amusement": 2
+  },
+  "validation": [
+    [
+      101,
+      66,
+      57
+    ],
+    [
+      0,
+      120,
+      0
+    ],
+    [
+      4,
+      0,
+      57
+    ]
+  ],
+  "test": [
+    [
+      110,
+      0,
+      0
+    ],
+    [
+      28,
+      0,
+      29
+    ],
+    [
+      29,
+      0,
+      2
+    ]
+  ]
+}

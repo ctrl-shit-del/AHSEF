@@ -7,7 +7,10 @@ from typing import List
 
 from src.common.models import EmotionRecord
 from src.preprocessing.core.base_adapter import BaseAdapter
-from src.preprocessing.emotion_mapping import AFFECTNET_EMOTIONS
+from src.preprocessing.emotion_mapping import (
+    AFFECTNET_EMOTIONS,
+    AFFECTNET_ANNOTATION_STATES,
+)
 
 
 class AffectNetAdapter(BaseAdapter):
@@ -70,6 +73,14 @@ class AffectNetAdapter(BaseAdapter):
                     8,
                 )
 
+                emotion = AFFECTNET_EMOTIONS.get(
+                    emotion_id
+                )
+
+                annotation_state = AFFECTNET_ANNOTATION_STATES.get(
+                    emotion_id
+                )
+
                 meta = annotation.get(
                     "meta-data",
                     {},
@@ -107,10 +118,9 @@ class AffectNetAdapter(BaseAdapter):
 
                         raw_emotion=emotion_id,
 
-                        emotion=AFFECTNET_EMOTIONS.get(
-                            emotion_id,
-                            "unknown",
-                        ),
+                        emotion=emotion,
+
+                        annotation_state=annotation_state,
 
                         image_path=self.relative_path(
                             image_path

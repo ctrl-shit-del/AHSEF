@@ -1,0 +1,491 @@
+{
+  "best_epoch": 1,
+  "best_val_weighted_f1": 0.18678252234359483,
+  "early_stopping": {
+    "best_epoch": 1,
+    "best_value": 0.18678252234359483,
+    "epochs_without_improvement": 1,
+    "min_delta": 0.0001,
+    "min_epochs": 1,
+    "mode": "max",
+    "monitor": "weighted_f1",
+    "monitored_history": [
+      0.18678252234359483,
+      0.14993439796071376
+    ],
+    "patience": 5,
+    "reason": null,
+    "stopped_early": false,
+    "stopped_epoch": null
+  },
+  "epochs_run": 2,
+  "experiment": "iemocap_erc6",
+  "history": [
+    {
+      "epoch": 1,
+      "learning_rate": 9.73465064747553e-05,
+      "seconds": 67.75,
+      "train_arousal": 0.1880599431693554,
+      "train_cls": 1.2439826756715775,
+      "train_total": 1.2439826756715775,
+      "train_valence": 0.18424695320427417,
+      "val_accuracy": 0.25625,
+      "val_arousal_ccc": 0.028256064280867577,
+      "val_arousal_mae": 0.31928807497024536,
+      "val_arousal_pearson": 0.2052300297914058,
+      "val_arousal_rmse": 0.38751888275146484,
+      "val_arousal_support": 160,
+      "val_loss": 0.9665724098682403,
+      "val_loss_arousal": 0.15017089433968067,
+      "val_loss_cls": 0.9665724098682403,
+      "val_loss_valence": 0.33175777196884154,
+      "val_macro_f1": 0.10572658060244951,
+      "val_samples": 160,
+      "val_support": 160,
+      "val_valence_ccc": 0.03180699050426483,
+      "val_valence_mae": 0.5018602609634399,
+      "val_valence_pearson": 0.2952017260211609,
+      "val_valence_rmse": 0.5759841799736023,
+      "val_valence_support": 160,
+      "val_weighted_f1": 0.18678252234359483
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 7.777851165098012e-05,
+      "seconds": 67.92,
+      "train_arousal": 0.1573663003742695,
+      "train_cls": 1.1378626614809035,
+      "train_total": 1.1378626614809035,
+      "train_valence": 0.20155363269150256,
+      "val_accuracy": 0.11875,
+      "val_arousal_ccc": 0.0221543051302433,
+      "val_arousal_mae": 0.3204520642757416,
+      "val_arousal_pearson": 0.1642692661498299,
+      "val_arousal_rmse": 0.3881072402000427,
+      "val_arousal_support": 160,
+      "val_loss": 1.2448286056518554,
+      "val_loss_arousal": 0.15062722153961658,
+      "val_loss_cls": 1.2448286056518554,
+      "val_loss_valence": 0.33543337807059287,
+      "val_macro_f1": 0.09646623681711401,
+      "val_samples": 160,
+      "val_support": 160,
+      "val_valence_ccc": 0.030915766954421997,
+      "val_valence_mae": 0.49257367849349976,
+      "val_valence_pearson": 0.33480918143709437,
+      "val_valence_rmse": 0.5791661143302917,
+      "val_valence_support": 160,
+      "val_weighted_f1": 0.14993439796071376
+    }
+  ],
+  "loss_config": {
+    "class_weights": "balanced",
+    "focal_gamma": 2.0,
+    "huber_delta": 1.0,
+    "label_smoothing": 0.0,
+    "lambda_arousal": 0.0,
+    "lambda_cls": 1.0,
+    "lambda_modality": 0.0,
+    "lambda_valence": 0.0,
+    "regression_loss": "mse"
+  },
+  "model_config": {
+    "attention_dropout": 0.1,
+    "conv_kernel": 3,
+    "dropout": 0.1,
+    "ffn_multiplier": 4,
+    "fusion": "husformer",
+    "input_dims": {
+      "audio": 768,
+      "text": 768,
+      "video": 576
+    },
+    "label_space": "iemocap_erc6",
+    "max_length": 4096,
+    "modalities": [
+      "text"
+    ],
+    "modality_heads": false,
+    "model_dim": 256,
+    "num_classes": 6,
+    "num_heads": 4,
+    "num_layers": 2,
+    "predict_arousal": true,
+    "predict_valence": true,
+    "task": "single_label"
+  },
+  "parameter_counts": {
+    "arousal_head": 33025,
+    "emotion_head": 1542,
+    "fusion": 3161088,
+    "modality_classifiers": 0,
+    "projections": 591360,
+    "total": 3820040,
+    "trainable": 3820040,
+    "valence_head": 33025
+  },
+  "primary_metric": "weighted_f1",
+  "profile": "sanity",
+  "run_record": {
+    "amp": false,
+    "audit": {
+      "checks": [
+        {
+          "detail": "Every sample id appears at most once within its split",
+          "evidence": {},
+          "name": "no_duplicate_sample_ids",
+          "passed": true
+        },
+        {
+          "detail": "No sample id appears in more than one split",
+          "evidence": {},
+          "name": "no_cross_split_sample_ids",
+          "passed": true
+        },
+        {
+          "detail": "No speaker appears in more than one split",
+          "evidence": {
+            "overlaps": {},
+            "speakers_per_split": {
+              "train": [
+                "Session1_F",
+                "Session1_M",
+                "Session2_F",
+                "Session2_M",
+                "Session3_F",
+                "Session3_M"
+              ],
+              "validation": [
+                "Session4_F",
+                "Session4_M"
+              ]
+            },
+            "verifiable": true
+          },
+          "name": "speaker_independence",
+          "passed": true
+        },
+        {
+          "detail": "Every retained row carries a protocol class",
+          "evidence": {},
+          "name": "no_unlabelled_rows",
+          "passed": true
+        },
+        {
+          "detail": "All protocol classes appear in train, validation and test",
+          "evidence": {},
+          "name": "every_class_present_in_every_split",
+          "passed": true
+        },
+        {
+          "detail": "Every declared modality has a populated payload",
+          "evidence": {},
+          "name": "declared_modalities_have_payloads",
+          "passed": true
+        },
+        {
+          "detail": "All regression targets lie in [-1.0, 1.0]",
+          "evidence": {},
+          "name": "regression_targets_in_range",
+          "passed": true
+        },
+        {
+          "detail": "Cached features are partitioned exactly as the manifests are",
+          "evidence": {
+            "overlaps": {},
+            "stray": {}
+          },
+          "name": "feature_cache_split_isolation",
+          "passed": true
+        }
+      ],
+      "class_counts": {
+        "train": {
+          "angry": 606,
+          "excited": 504,
+          "frustrated": 987,
+          "happy": 387,
+          "neutral": 1066,
+          "sad": 696
+        },
+        "validation": {
+          "angry": 327,
+          "excited": 238,
+          "frustrated": 481,
+          "happy": 65,
+          "neutral": 258,
+          "sad": 143
+        }
+      },
+      "counts": {
+        "train": 4246,
+        "validation": 1512
+      },
+      "experiment": "iemocap_erc6",
+      "modality_counts": {
+        "train": {
+          "audio": 4246,
+          "text": 4246,
+          "video": 0
+        },
+        "validation": {
+          "audio": 1512,
+          "text": 1512,
+          "video": 0
+        }
+      },
+      "passed": true,
+      "speakers": {
+        "train": [
+          "Session1_F",
+          "Session1_M",
+          "Session2_F",
+          "Session2_M",
+          "Session3_F",
+          "Session3_M"
+        ],
+        "validation": [
+          "Session4_F",
+          "Session4_M"
+        ]
+      },
+      "split_policy": "iemocap_cross_session"
+    },
+    "batch_size": 8,
+    "class_weights": [
+      0.5838675498962402,
+      1.6018931865692139,
+      0.8924832940101624,
+      1.04123055934906,
+      1.249476671218872,
+      0.6310487985610962
+    ],
+    "data_fraction": 0.1,
+    "dataset": "IEMOCAP",
+    "dataset_counts": {
+      "train": {
+        "modalities": {
+          "text": 425
+        },
+        "samples": 425
+      },
+      "validation": {
+        "modalities": {
+          "text": 1512
+        },
+        "samples": 1512
+      }
+    },
+    "device": "cpu",
+    "epochs": 2,
+    "experiment": "iemocap_erc6",
+    "fusion": "husformer",
+    "git_dirty": true,
+    "git_revision": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+    "hardware": {
+      "cuda_available": false,
+      "cuda_version": null,
+      "device": "cpu",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+      "python": "3.10.10",
+      "torch": "2.12.0+cpu"
+    },
+    "label_protocol": "iemocap_erc6",
+    "learning_rate": 0.0001,
+    "loss_config": {
+      "class_weights": "balanced",
+      "focal_gamma": 2.0,
+      "huber_delta": 1.0,
+      "label_smoothing": 0.0,
+      "lambda_arousal": 0.0,
+      "lambda_cls": 1.0,
+      "lambda_modality": 0.0,
+      "lambda_valence": 0.0,
+      "regression_loss": "mse"
+    },
+    "modalities": [
+      "text"
+    ],
+    "model_config": {
+      "attention_dropout": 0.1,
+      "conv_kernel": 3,
+      "dropout": 0.1,
+      "ffn_multiplier": 4,
+      "fusion": "husformer",
+      "input_dims": {
+        "audio": 768,
+        "text": 768,
+        "video": 576
+      },
+      "label_space": "iemocap_erc6",
+      "max_length": 4096,
+      "modalities": [
+        "text"
+      ],
+      "modality_heads": false,
+      "model_dim": 256,
+      "num_classes": 6,
+      "num_heads": 4,
+      "num_layers": 2,
+      "predict_arousal": true,
+      "predict_valence": true,
+      "task": "single_label"
+    },
+    "optimizer": "adamw",
+    "parameter_counts": {
+      "arousal_head": 33025,
+      "emotion_head": 1542,
+      "fusion": 3161088,
+      "modality_classifiers": 0,
+      "projections": 591360,
+      "total": 3820040,
+      "trainable": 3820040,
+      "valence_head": 33025
+    },
+    "primary_metric": "weighted_f1",
+    "profile": "sanity",
+    "scheduler": "cosine_warmup",
+    "seed": 42,
+    "split_policy": "iemocap_cross_session",
+    "timestamp": "2026-09-10T05:51:45+00:00"
+  },
+  "stop_reason": "completed",
+  "trainer_config": {
+    "amp": false,
+    "batch_size": 8,
+    "data_fraction": 0.1,
+    "dataset": "IEMOCAP",
+    "device": "cpu",
+    "epochs": 2,
+    "eval_batch_size": 16,
+    "evaluate_test": false,
+    "experiment": "iemocap_erc6",
+    "gradient_clip": 1.0,
+    "learning_rate": 0.0001,
+    "log_every": 50,
+    "max_eval_batches": 10,
+    "max_train_batches": 20,
+    "min_epochs": 1,
+    "num_workers": 0,
+    "optimizer": "adamw",
+    "output_root": "results\\hsen",
+    "patience": 5,
+    "profile": "sanity",
+    "resume": false,
+    "scheduler": "cosine_warmup",
+    "seed": 42,
+    "warmup_ratio": 0.1,
+    "weight_decay": 1e-05
+  },
+  "training_seconds": 136.2,
+  "validation": {
+    "accuracy": 0.25625,
+    "arousal_ccc": 0.028256064280867577,
+    "arousal_mae": 0.31928807497024536,
+    "arousal_pearson": 0.2052300297914058,
+    "arousal_rmse": 0.38751888275146484,
+    "arousal_support": 160,
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        0,
+        14,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        14,
+        4
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        22,
+        6
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        27,
+        14
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        39,
+        14
+      ]
+    ],
+    "loss": 0.9665724098682403,
+    "loss_arousal": 0.15017089433968067,
+    "loss_cls": 0.9665724098682403,
+    "loss_valence": 0.33175777196884154,
+    "macro_f1": 0.10572658060244951,
+    "per_class": {
+      "angry": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 28
+      },
+      "excited": {
+        "f1": 0.33962264150943394,
+        "precision": 0.23076923076923078,
+        "recall": 0.6428571428571429,
+        "support": 42
+      },
+      "frustrated": {
+        "f1": 0.29473684210526313,
+        "precision": 0.3333333333333333,
+        "recall": 0.2641509433962264,
+        "support": 53
+      },
+      "happy": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 2
+      },
+      "neutral": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 17
+      },
+      "sad": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 18
+      }
+    },
+    "samples": 160,
+    "support": 160,
+    "valence_ccc": 0.03180699050426483,
+    "valence_mae": 0.5018602609634399,
+    "valence_pearson": 0.2952017260211609,
+    "valence_rmse": 0.5759841799736023,
+    "valence_support": 160,
+    "weighted_f1": 0.18678252234359483
+  }
+}

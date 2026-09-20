@@ -1,0 +1,1583 @@
+{
+  "samples": 482,
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "systems": {
+    "text_only": {
+      "system": "text_only",
+      "samples": 482,
+      "accuracy": 0.5041493773460388,
+      "macro_f1": 0.33450227975845337,
+      "weighted_f1": 0.4823017120361328,
+      "balanced_accuracy": 0.3379948245627539,
+      "macro_precision": 0.3640727996826172,
+      "macro_recall": 0.3379948139190674,
+      "per_class_f1": {
+        "neutral": 0.6277665495872498,
+        "happy": 0.49197858572006226,
+        "sad": 0.20253165066242218,
+        "angry": 0.3724137842655182,
+        "fear": 0.2857142686843872,
+        "disgust": 0.111111119389534,
+        "surprise": 0.25
+      },
+      "support": {
+        "neutral": 198,
+        "happy": 120,
+        "sad": 47,
+        "angry": 92,
+        "fear": 6,
+        "disgust": 8,
+        "surprise": 11
+      },
+      "confusion_matrix": [
+        [
+          156,
+          11,
+          12,
+          12,
+          3,
+          2,
+          2
+        ],
+        [
+          62,
+          46,
+          5,
+          3,
+          0,
+          0,
+          4
+        ],
+        [
+          25,
+          3,
+          8,
+          7,
+          1,
+          2,
+          1
+        ],
+        [
+          46,
+          4,
+          6,
+          27,
+          2,
+          5,
+          2
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          2,
+          1,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "correct": 243,
+      "acquisition": {
+        "audio_acquisition_rate": 0.0,
+        "audio_acquired": 0,
+        "average_modalities_activated": 1.0
+      },
+      "latency": {
+        "text_latency_ms": 3449.7265468379446,
+        "audio_latency_ms": 27.86030400000007,
+        "mean_latency_ms_per_sample": 3449.7265468379446,
+        "total_latency_ms": 1662768.1955758892,
+        "latency_per_correct_prediction_ms": 6842.667471505717,
+        "normalized_latency": 0.9919886101497977,
+        "note": "Latency is the modelled per-sample cost of the policy: the text pass always, plus the audio pass on the samples the policy acquired. The text figure is measured LLM wall clock, not generation time."
+      },
+      "uncertainty": {
+        "mean_before_acquisition": 0.3795526277654388,
+        "mean_before_among_stopped": 0.3795526277654388,
+        "mean_before_among_requested": null,
+        "mean_after_among_requested": null,
+        "mean_reduction_among_requested": null,
+        "note": "Uncertainty reduction is a diagnostic. Stage 1 established it is not a valid acquisition target and it is not used as one here."
+      },
+      "improvement_among_requested": {
+        "requested": 0,
+        "note": "this policy acquired audio for no sample"
+      },
+      "calibration": {
+        "label": "text_only",
+        "samples": 482,
+        "num_bins": 10,
+        "accuracy": 0.504149377593361,
+        "mean_confidence": 0.7450631081206962,
+        "overconfidence": 0.24091373052733522,
+        "ece": 0.24091373052733528,
+        "mce": 0.3170459583271762,
+        "brier": 0.7424068612143396,
+        "nll": 4.324658639910243,
+        "confidence_vs_correctness": {
+          "mean_confidence_when_correct": 0.7836972203960125,
+          "mean_confidence_when_wrong": 0.7057823998240358
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 1,
+            "mean_confidence": 0.3,
+            "accuracy": 0.0,
+            "gap": 0.3
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 20,
+            "mean_confidence": 0.3886030636030636,
+            "accuracy": 0.15,
+            "gap": 0.23860306360306363
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 71,
+            "mean_confidence": 0.4907711437581058,
+            "accuracy": 0.39436619718309857,
+            "gap": 0.09640494657500726
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 58,
+            "mean_confidence": 0.5968577399611882,
+            "accuracy": 0.4482758620689655,
+            "gap": 0.14858187789222266
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 47,
+            "mean_confidence": 0.6829787234042554,
+            "accuracy": 0.5319148936170213,
+            "gap": 0.1510638297872341
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 106,
+            "mean_confidence": 0.7951275139954386,
+            "accuracy": 0.4811320754716981,
+            "gap": 0.31399543852374046
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 134,
+            "mean_confidence": 0.8991355105659822,
+            "accuracy": 0.582089552238806,
+            "gap": 0.3170459583271762
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 45,
+            "mean_confidence": 0.9937373737373737,
+            "accuracy": 0.7111111111111111,
+            "gap": 0.28262626262626256
+          }
+        ],
+        "caveat": "Text-side probabilities are NORMALISED SELF-REPORTED LLM scores, not posteriors (Stage 2 measured their NLL as worse than uniform). These figures measure how well that self-report tracks correctness and must not be read as posterior calibration.",
+        "rows_scored": 482,
+        "rows_without_scores": 0
+      },
+      "relative_to_always_fusion": {
+        "accuracy_retained": 0.9101123643865571,
+        "macro_f1_retained": 0.9777203435599924,
+        "accuracy_delta": -0.04979252815246582,
+        "macro_f1_delta": -0.007622420787811279,
+        "acquisition_rate_delta": -1.0,
+        "latency_saved_fraction": 0.008011389850202333
+      }
+    },
+    "audio_only": {
+      "system": "audio_only",
+      "samples": 482,
+      "accuracy": 0.33195021748542786,
+      "macro_f1": 0.1990279108285904,
+      "weighted_f1": 0.32513749599456787,
+      "balanced_accuracy": 0.23427922597953252,
+      "macro_precision": 0.21339835226535797,
+      "macro_recall": 0.23427923023700714,
+      "per_class_f1": {
+        "neutral": 0.2921348214149475,
+        "happy": 0.3358778655529022,
+        "sad": 0.2628571391105652,
+        "angry": 0.5023255348205566,
+        "fear": 0.0,
+        "disgust": 0.0,
+        "surprise": 0.0
+      },
+      "support": {
+        "neutral": 198,
+        "happy": 120,
+        "sad": 47,
+        "angry": 92,
+        "fear": 6,
+        "disgust": 8,
+        "surprise": 11
+      },
+      "confusion_matrix": [
+        [
+          39,
+          56,
+          71,
+          20,
+          0,
+          8,
+          4
+        ],
+        [
+          10,
+          44,
+          24,
+          39,
+          0,
+          2,
+          1
+        ],
+        [
+          10,
+          9,
+          23,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          20,
+          8,
+          54,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          3,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          6,
+          0,
+          3,
+          0,
+          1,
+          0
+        ]
+      ],
+      "correct": 160,
+      "acquisition": {
+        "audio_acquisition_rate": 1.0,
+        "audio_acquired": 482,
+        "average_modalities_activated": 1.0
+      },
+      "latency": {
+        "text_latency_ms": 3449.7265468379446,
+        "audio_latency_ms": 27.86030400000007,
+        "mean_latency_ms_per_sample": 27.86030400000007,
+        "total_latency_ms": 13428.666528000034,
+        "latency_per_correct_prediction_ms": 83.92916580000022,
+        "normalized_latency": 0.008011389850202295,
+        "note": "Latency is the modelled per-sample cost of the policy: the text pass always, plus the audio pass on the samples the policy acquired. The text figure is measured LLM wall clock, not generation time."
+      },
+      "uncertainty": {
+        "mean_before_acquisition": 0.3795526277654388,
+        "mean_before_among_stopped": null,
+        "mean_before_among_requested": 0.3795526277654388,
+        "mean_after_among_requested": 0.8757923247492314,
+        "mean_reduction_among_requested": -0.4962396969837926,
+        "note": "Uncertainty reduction is a diagnostic. Stage 1 established it is not a valid acquisition target and it is not used as one here."
+      },
+      "improvement_among_requested": {
+        "requested": 482,
+        "fixed_by_audio": 34,
+        "broken_by_audio": 10,
+        "net_improvement": 24,
+        "actual_improvement_rate": 0.07053941908713693,
+        "actual_harm_rate": 0.02074688796680498,
+        "net_improvement_rate": 0.04979253112033195,
+        "precision_of_acquisition": 0.07053941908713693,
+        "note": "'Improvement rate' is the fraction of PAID acquisitions that turned a wrong text answer into a right fused one. It is the number that says whether the router spent well, and it is read only after routing."
+      },
+      "calibration": {
+        "label": "audio_only",
+        "samples": 482,
+        "num_bins": 10,
+        "accuracy": 0.33195020746887965,
+        "mean_confidence": 0.28481112447407575,
+        "overconfidence": -0.047139082994803905,
+        "ece": 0.08229068207817292,
+        "mce": 0.3830738843160044,
+        "brier": 0.7695840555800646,
+        "nll": 1.657270065605347,
+        "confidence_vs_correctness": {
+          "mean_confidence_when_correct": 0.2967662766772844,
+          "mean_confidence_when_wrong": 0.27887067617434474
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 34,
+            "mean_confidence": 0.189248274404751,
+            "accuracy": 0.23529411764705882,
+            "gap": -0.046045843242307816
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 291,
+            "mean_confidence": 0.24303360116040126,
+            "accuracy": 0.3333333333333333,
+            "gap": -0.09029973217293205
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 108,
+            "mean_confidence": 0.34240940556506655,
+            "accuracy": 0.3055555555555556,
+            "gap": 0.03685385000951097
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 37,
+            "mean_confidence": 0.4457113399476957,
+            "accuracy": 0.32432432432432434,
+            "gap": 0.12138701562337134
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 9,
+            "mean_confidence": 0.5332698892135872,
+            "accuracy": 0.7777777777777778,
+            "gap": -0.2445078885641906
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 3,
+            "mean_confidence": 0.6169261156839956,
+            "accuracy": 1.0,
+            "gap": -0.3830738843160044
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          }
+        ],
+        "caveat": "Text-side probabilities are NORMALISED SELF-REPORTED LLM scores, not posteriors (Stage 2 measured their NLL as worse than uniform). These figures measure how well that self-report tracks correctness and must not be read as posterior calibration.",
+        "rows_scored": 482,
+        "rows_without_scores": 0
+      },
+      "relative_to_always_fusion": {
+        "accuracy_retained": 0.599250957890067,
+        "macro_f1_retained": 0.5817408404327602,
+        "accuracy_delta": -0.22199168801307678,
+        "macro_f1_delta": -0.14309678971767426,
+        "acquisition_rate_delta": 0.0,
+        "latency_saved_fraction": 0.9919886101497977
+      }
+    },
+    "always_fusion": {
+      "system": "always_fusion",
+      "samples": 482,
+      "accuracy": 0.5539419054985046,
+      "macro_f1": 0.34212470054626465,
+      "weighted_f1": 0.5267758965492249,
+      "balanced_accuracy": 0.33035885861941744,
+      "macro_precision": 0.38515567779541016,
+      "macro_recall": 0.3303588926792145,
+      "per_class_f1": {
+        "neutral": 0.6773547530174255,
+        "happy": 0.4751380681991577,
+        "sad": 0.26829269528388977,
+        "angry": 0.49689435958862305,
+        "fear": 0.0,
+        "disgust": 0.2666666805744171,
+        "surprise": 0.21052631735801697
+      },
+      "support": {
+        "neutral": 198,
+        "happy": 120,
+        "sad": 47,
+        "angry": 92,
+        "fear": 6,
+        "disgust": 8,
+        "surprise": 11
+      },
+      "confusion_matrix": [
+        [
+          169,
+          7,
+          15,
+          6,
+          0,
+          1,
+          0
+        ],
+        [
+          57,
+          43,
+          4,
+          13,
+          0,
+          0,
+          3
+        ],
+        [
+          27,
+          3,
+          11,
+          5,
+          0,
+          1,
+          0
+        ],
+        [
+          36,
+          6,
+          4,
+          40,
+          1,
+          3,
+          2
+        ],
+        [
+          4,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          0,
+          2,
+          1
+        ],
+        [
+          5,
+          2,
+          0,
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "correct": 267,
+      "acquisition": {
+        "audio_acquisition_rate": 1.0,
+        "audio_acquired": 482,
+        "average_modalities_activated": 2.0
+      },
+      "latency": {
+        "text_latency_ms": 3449.7265468379446,
+        "audio_latency_ms": 27.86030400000007,
+        "mean_latency_ms_per_sample": 3477.586850837945,
+        "total_latency_ms": 1676196.8621038895,
+        "latency_per_correct_prediction_ms": 6277.890869302957,
+        "normalized_latency": 1.0,
+        "note": "Latency is the modelled per-sample cost of the policy: the text pass always, plus the audio pass on the samples the policy acquired. The text figure is measured LLM wall clock, not generation time."
+      },
+      "uncertainty": {
+        "mean_before_acquisition": 0.3795526277654388,
+        "mean_before_among_stopped": null,
+        "mean_before_among_requested": 0.3795526277654388,
+        "mean_after_among_requested": 0.8757923247492314,
+        "mean_reduction_among_requested": -0.4962396969837926,
+        "note": "Uncertainty reduction is a diagnostic. Stage 1 established it is not a valid acquisition target and it is not used as one here."
+      },
+      "improvement_among_requested": {
+        "requested": 482,
+        "fixed_by_audio": 34,
+        "broken_by_audio": 10,
+        "net_improvement": 24,
+        "actual_improvement_rate": 0.07053941908713693,
+        "actual_harm_rate": 0.02074688796680498,
+        "net_improvement_rate": 0.04979253112033195,
+        "precision_of_acquisition": 0.07053941908713693,
+        "note": "'Improvement rate' is the fraction of PAID acquisitions that turned a wrong text answer into a right fused one. It is the number that says whether the router spent well, and it is read only after routing."
+      },
+      "calibration": {
+        "label": "always_fusion",
+        "samples": 482,
+        "num_bins": 10,
+        "accuracy": 0.553941908713693,
+        "mean_confidence": 0.35358486564060343,
+        "overconfidence": -0.20035704307308955,
+        "ece": 0.20035704307308946,
+        "mce": 0.47891085571619896,
+        "brier": 0.6597080428847644,
+        "nll": 1.389223708292818,
+        "confidence_vs_correctness": {
+          "mean_confidence_when_correct": 0.37171920387386703,
+          "mean_confidence_when_wrong": 0.3310645479276667
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 5,
+            "mean_confidence": 0.1919661745188641,
+            "accuracy": 0.2,
+            "gap": -0.008033825481135903
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 112,
+            "mean_confidence": 0.26175489974622407,
+            "accuracy": 0.4017857142857143,
+            "gap": -0.14003081453949023
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 241,
+            "mean_confidence": 0.3541428502675261,
+            "accuracy": 0.5435684647302904,
+            "gap": -0.1894256144627643
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 118,
+            "mean_confidence": 0.4372053627303833,
+            "accuracy": 0.711864406779661,
+            "gap": -0.2746590440492777
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 5,
+            "mean_confidence": 0.521089144283801,
+            "accuracy": 1.0,
+            "gap": -0.47891085571619896
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 1,
+            "mean_confidence": 0.6074201565214162,
+            "accuracy": 1.0,
+            "gap": -0.39257984347858377
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          }
+        ],
+        "caveat": "Text-side probabilities are NORMALISED SELF-REPORTED LLM scores, not posteriors (Stage 2 measured their NLL as worse than uniform). These figures measure how well that self-report tracks correctness and must not be read as posterior calibration.",
+        "rows_scored": 482,
+        "rows_without_scores": 0
+      },
+      "relative_to_always_fusion": {
+        "accuracy_retained": 1.0,
+        "macro_f1_retained": 1.0,
+        "accuracy_delta": 0.0,
+        "macro_f1_delta": 0.0,
+        "acquisition_rate_delta": 0.0,
+        "latency_saved_fraction": 0.0
+      }
+    },
+    "stage2_gate_plus_audio": {
+      "system": "stage2_gate_plus_audio",
+      "samples": 482,
+      "accuracy": 0.5477178692817688,
+      "macro_f1": 0.33770421147346497,
+      "weighted_f1": 0.5196850895881653,
+      "balanced_accuracy": 0.32570047463689533,
+      "macro_precision": 0.38260674476623535,
+      "macro_recall": 0.3257004916667938,
+      "per_class_f1": {
+        "neutral": 0.6719681620597839,
+        "happy": 0.4751380681991577,
+        "sad": 0.26829269528388977,
+        "angry": 0.47133758664131165,
+        "fear": 0.0,
+        "disgust": 0.2666666805744171,
+        "surprise": 0.21052631735801697
+      },
+      "support": {
+        "neutral": 198,
+        "happy": 120,
+        "sad": 47,
+        "angry": 92,
+        "fear": 6,
+        "disgust": 8,
+        "surprise": 11
+      },
+      "confusion_matrix": [
+        [
+          169,
+          7,
+          15,
+          6,
+          0,
+          1,
+          0
+        ],
+        [
+          58,
+          43,
+          4,
+          12,
+          0,
+          0,
+          3
+        ],
+        [
+          27,
+          3,
+          11,
+          5,
+          0,
+          1,
+          0
+        ],
+        [
+          39,
+          6,
+          4,
+          37,
+          1,
+          3,
+          2
+        ],
+        [
+          4,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          0,
+          2,
+          1
+        ],
+        [
+          5,
+          2,
+          0,
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "correct": 264,
+      "acquisition": {
+        "audio_acquisition_rate": 0.6514522821576764,
+        "audio_acquired": 314,
+        "average_modalities_activated": 1.6514522821576763
+      },
+      "latency": {
+        "text_latency_ms": 3449.7265468379446,
+        "audio_latency_ms": 27.86030400000007,
+        "mean_latency_ms_per_sample": 3467.8762054603512,
+        "total_latency_ms": 1671516.3310318892,
+        "latency_per_correct_prediction_ms": 6331.501253908671,
+        "normalized_latency": 0.9972076483509668,
+        "note": "Latency is the modelled per-sample cost of the policy: the text pass always, plus the audio pass on the samples the policy acquired. The text figure is measured LLM wall clock, not generation time."
+      },
+      "uncertainty": {
+        "mean_before_acquisition": 0.3795526277654388,
+        "mean_before_among_stopped": 0.16494577206819933,
+        "mean_before_among_requested": 0.49437413017670073,
+        "mean_after_among_requested": 0.8926223360317075,
+        "mean_reduction_among_requested": -0.3982482058550068,
+        "note": "Uncertainty reduction is a diagnostic. Stage 1 established it is not a valid acquisition target and it is not used as one here."
+      },
+      "improvement_among_requested": {
+        "requested": 314,
+        "fixed_by_audio": 31,
+        "broken_by_audio": 10,
+        "net_improvement": 21,
+        "actual_improvement_rate": 0.09872611464968153,
+        "actual_harm_rate": 0.03184713375796178,
+        "net_improvement_rate": 0.06687898089171974,
+        "precision_of_acquisition": 0.09872611464968153,
+        "note": "'Improvement rate' is the fraction of PAID acquisitions that turned a wrong text answer into a right fused one. It is the number that says whether the router spent well, and it is read only after routing."
+      },
+      "calibration": {
+        "label": "stage2_gate_plus_audio",
+        "samples": 482,
+        "num_bins": 10,
+        "accuracy": 0.5477178423236515,
+        "mean_confidence": 0.5359685270847807,
+        "overconfidence": -0.011749315238870794,
+        "ece": 0.22842226884128483,
+        "mce": 0.4671532089183741,
+        "brier": 0.6934051147428453,
+        "nll": 2.626657159580303,
+        "confidence_vs_correctness": {
+          "mean_confidence_when_correct": 0.5730419845173385,
+          "mean_confidence_when_wrong": 0.4910722300104909
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 5,
+            "mean_confidence": 0.1919661745188641,
+            "accuracy": 0.2,
+            "gap": -0.008033825481135903
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 112,
+            "mean_confidence": 0.26175489974622407,
+            "accuracy": 0.4017857142857143,
+            "gap": -0.14003081453949023
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 154,
+            "mean_confidence": 0.34997019216980235,
+            "accuracy": 0.5584415584415584,
+            "gap": -0.20847136627175605
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 39,
+            "mean_confidence": 0.42925380688705783,
+            "accuracy": 0.6410256410256411,
+            "gap": -0.21177183413858325
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 3,
+            "mean_confidence": 0.5328467910816259,
+            "accuracy": 1.0,
+            "gap": -0.4671532089183741
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 1,
+            "mean_confidence": 0.6074201565214162,
+            "accuracy": 1.0,
+            "gap": -0.39257984347858377
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 2,
+            "mean_confidence": 0.8,
+            "accuracy": 0.5,
+            "gap": 0.30000000000000004
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 121,
+            "mean_confidence": 0.9,
+            "accuracy": 0.5785123966942148,
+            "gap": 0.3214876033057852
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 45,
+            "mean_confidence": 0.9937373737373737,
+            "accuracy": 0.7111111111111111,
+            "gap": 0.28262626262626256
+          }
+        ],
+        "caveat": "Text-side probabilities are NORMALISED SELF-REPORTED LLM scores, not posteriors (Stage 2 measured their NLL as worse than uniform). These figures measure how well that self-report tracks correctness and must not be read as posterior calibration.",
+        "rows_scored": 482,
+        "rows_without_scores": 0
+      },
+      "relative_to_always_fusion": {
+        "accuracy_retained": 0.9887640993487671,
+        "macro_f1_retained": 0.9870793045175003,
+        "accuracy_delta": -0.00622403621673584,
+        "macro_f1_delta": -0.004420489072799683,
+        "acquisition_rate_delta": -0.34854771784232363,
+        "latency_saved_fraction": 0.0027923516490332423
+      }
+    },
+    "ahsef_dynamic": {
+      "system": "ahsef_dynamic",
+      "samples": 482,
+      "accuracy": 0.5165975093841553,
+      "macro_f1": 0.3349767029285431,
+      "weighted_f1": 0.4907130002975464,
+      "balanced_accuracy": 0.3230405343430383,
+      "macro_precision": 0.39104270935058594,
+      "macro_recall": 0.32304051518440247,
+      "per_class_f1": {
+        "neutral": 0.6403162479400635,
+        "happy": 0.4867725372314453,
+        "sad": 0.2409638613462448,
+        "angry": 0.37956205010414124,
+        "fear": 0.222222238779068,
+        "disgust": 0.125,
+        "surprise": 0.25
+      },
+      "support": {
+        "neutral": 198,
+        "happy": 120,
+        "sad": 47,
+        "angry": 92,
+        "fear": 6,
+        "disgust": 8,
+        "surprise": 11
+      },
+      "confusion_matrix": [
+        [
+          162,
+          11,
+          15,
+          6,
+          0,
+          2,
+          2
+        ],
+        [
+          61,
+          46,
+          5,
+          4,
+          0,
+          0,
+          4
+        ],
+        [
+          26,
+          3,
+          10,
+          5,
+          1,
+          1,
+          1
+        ],
+        [
+          48,
+          6,
+          5,
+          26,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          2,
+          1,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "correct": 249,
+      "acquisition": {
+        "audio_acquisition_rate": 0.0954356846473029,
+        "audio_acquired": 46,
+        "average_modalities_activated": 1.095435684647303
+      },
+      "latency": {
+        "text_latency_ms": 3449.7265468379446,
+        "audio_latency_ms": 27.86030400000007,
+        "mean_latency_ms_per_sample": 3452.3854140246667,
+        "total_latency_ms": 1664049.7695598893,
+        "latency_per_correct_prediction_ms": 6682.930801445339,
+        "normalized_latency": 0.9927531826251282,
+        "note": "Latency is the modelled per-sample cost of the policy: the text pass always, plus the audio pass on the samples the policy acquired. The text figure is measured LLM wall clock, not generation time."
+      },
+      "uncertainty": {
+        "mean_before_acquisition": 0.3795526277654388,
+        "mean_before_among_stopped": 0.34366107498467086,
+        "mean_before_among_requested": 0.7197421280353266,
+        "mean_after_among_requested": 0.9353661532017822,
+        "mean_reduction_among_requested": -0.21562402516645565,
+        "note": "Uncertainty reduction is a diagnostic. Stage 1 established it is not a valid acquisition target and it is not used as one here."
+      },
+      "improvement_among_requested": {
+        "requested": 46,
+        "fixed_by_audio": 9,
+        "broken_by_audio": 3,
+        "net_improvement": 6,
+        "actual_improvement_rate": 0.1956521739130435,
+        "actual_harm_rate": 0.06521739130434782,
+        "net_improvement_rate": 0.13043478260869565,
+        "precision_of_acquisition": 0.1956521739130435,
+        "note": "'Improvement rate' is the fraction of PAID acquisitions that turned a wrong text answer into a right fused one. It is the number that says whether the router spent well, and it is read only after routing."
+      },
+      "calibration": {
+        "label": "ahsef_dynamic",
+        "samples": 482,
+        "num_bins": 10,
+        "accuracy": 0.5145228215767634,
+        "mean_confidence": 0.7265253141461134,
+        "overconfidence": 0.21200249256935,
+        "ece": 0.23859020403052317,
+        "mce": 0.3170459583271762,
+        "brier": 0.7393691593113387,
+        "nll": 4.328672382900358,
+        "confidence_vs_correctness": {
+          "mean_confidence_when_correct": 0.7619325864994575,
+          "mean_confidence_when_wrong": 0.6889996579767572
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0,
+            "gap": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 3,
+            "mean_confidence": 0.19121585877125216,
+            "accuracy": 0.0,
+            "gap": 0.19121585877125216
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 31,
+            "mean_confidence": 0.2449148883179753,
+            "accuracy": 0.45161290322580644,
+            "gap": -0.20669801490783113
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 18,
+            "mean_confidence": 0.3708948688641158,
+            "accuracy": 0.3333333333333333,
+            "gap": 0.03756153553078251
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 45,
+            "mean_confidence": 0.4928579358590332,
+            "accuracy": 0.35555555555555557,
+            "gap": 0.13730238030347763
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 54,
+            "mean_confidence": 0.5959003858056512,
+            "accuracy": 0.48148148148148145,
+            "gap": 0.11441890432416973
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 46,
+            "mean_confidence": 0.6847826086956522,
+            "accuracy": 0.5434782608695652,
+            "gap": 0.14130434782608703
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 106,
+            "mean_confidence": 0.7951275139954386,
+            "accuracy": 0.4811320754716981,
+            "gap": 0.31399543852374046
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 134,
+            "mean_confidence": 0.8991355105659822,
+            "accuracy": 0.582089552238806,
+            "gap": 0.3170459583271762
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 45,
+            "mean_confidence": 0.9937373737373737,
+            "accuracy": 0.7111111111111111,
+            "gap": 0.28262626262626256
+          }
+        ],
+        "caveat": "Text-side probabilities are NORMALISED SELF-REPORTED LLM scores, not posteriors (Stage 2 measured their NLL as worse than uniform). These figures measure how well that self-report tracks correctness and must not be read as posterior calibration.",
+        "rows_scored": 482,
+        "rows_without_scores": 0
+      },
+      "relative_to_always_fusion": {
+        "accuracy_retained": 0.9325842732899178,
+        "macro_f1_retained": 0.9791070401923379,
+        "accuracy_delta": -0.037344396114349365,
+        "macro_f1_delta": -0.007147997617721558,
+        "acquisition_rate_delta": -0.9045643153526971,
+        "latency_saved_fraction": 0.007246817374871761
+      }
+    }
+  },
+  "central_result": {
+    "performance_vs_modalities_activated": [
+      {
+        "system": "text_only",
+        "average_modalities_activated": 1.0,
+        "audio_acquisition_rate": 0.0,
+        "mean_latency_ms": 3449.7265468379446,
+        "accuracy": 0.5041493773460388,
+        "macro_f1": 0.33450227975845337,
+        "weighted_f1": 0.4823017120361328
+      },
+      {
+        "system": "audio_only",
+        "average_modalities_activated": 1.0,
+        "audio_acquisition_rate": 1.0,
+        "mean_latency_ms": 27.86030400000007,
+        "accuracy": 0.33195021748542786,
+        "macro_f1": 0.1990279108285904,
+        "weighted_f1": 0.32513749599456787
+      },
+      {
+        "system": "ahsef_dynamic",
+        "average_modalities_activated": 1.095435684647303,
+        "audio_acquisition_rate": 0.0954356846473029,
+        "mean_latency_ms": 3452.3854140246667,
+        "accuracy": 0.5165975093841553,
+        "macro_f1": 0.3349767029285431,
+        "weighted_f1": 0.4907130002975464
+      },
+      {
+        "system": "stage2_gate_plus_audio",
+        "average_modalities_activated": 1.6514522821576763,
+        "audio_acquisition_rate": 0.6514522821576764,
+        "mean_latency_ms": 3467.8762054603512,
+        "accuracy": 0.5477178692817688,
+        "macro_f1": 0.33770421147346497,
+        "weighted_f1": 0.5196850895881653
+      },
+      {
+        "system": "always_fusion",
+        "average_modalities_activated": 2.0,
+        "audio_acquisition_rate": 1.0,
+        "mean_latency_ms": 3477.586850837945,
+        "accuracy": 0.5539419054985046,
+        "macro_f1": 0.34212470054626465,
+        "weighted_f1": 0.5267758965492249
+      }
+    ],
+    "performance_vs_latency": [
+      {
+        "system": "audio_only",
+        "average_modalities_activated": 1.0,
+        "audio_acquisition_rate": 1.0,
+        "mean_latency_ms": 27.86030400000007,
+        "accuracy": 0.33195021748542786,
+        "macro_f1": 0.1990279108285904,
+        "weighted_f1": 0.32513749599456787
+      },
+      {
+        "system": "text_only",
+        "average_modalities_activated": 1.0,
+        "audio_acquisition_rate": 0.0,
+        "mean_latency_ms": 3449.7265468379446,
+        "accuracy": 0.5041493773460388,
+        "macro_f1": 0.33450227975845337,
+        "weighted_f1": 0.4823017120361328
+      },
+      {
+        "system": "ahsef_dynamic",
+        "average_modalities_activated": 1.095435684647303,
+        "audio_acquisition_rate": 0.0954356846473029,
+        "mean_latency_ms": 3452.3854140246667,
+        "accuracy": 0.5165975093841553,
+        "macro_f1": 0.3349767029285431,
+        "weighted_f1": 0.4907130002975464
+      },
+      {
+        "system": "stage2_gate_plus_audio",
+        "average_modalities_activated": 1.6514522821576763,
+        "audio_acquisition_rate": 0.6514522821576764,
+        "mean_latency_ms": 3467.8762054603512,
+        "accuracy": 0.5477178692817688,
+        "macro_f1": 0.33770421147346497,
+        "weighted_f1": 0.5196850895881653
+      },
+      {
+        "system": "always_fusion",
+        "average_modalities_activated": 2.0,
+        "audio_acquisition_rate": 1.0,
+        "mean_latency_ms": 3477.586850837945,
+        "accuracy": 0.5539419054985046,
+        "macro_f1": 0.34212470054626465,
+        "weighted_f1": 0.5267758965492249
+      }
+    ],
+    "reading": "A dynamic policy earns its complexity only if it sits ABOVE the line joining text-only to always-fusion on these axes. Sitting on or below that line means the same performance was available by acquiring at random, or by not routing at all."
+  },
+  "random_acquisition_control": {
+    "acquisition_rate": 0.0954356846473029,
+    "repeats": 200,
+    "seed": 42,
+    "accuracy": {
+      "mean": 0.5088278153538703,
+      "p2.5": 0.5020228505134583,
+      "p97.5": 0.5165975093841553
+    },
+    "macro_f1": {
+      "mean": 0.33684762358665465,
+      "p2.5": 0.31174796670675275,
+      "p97.5": 0.35559799149632454
+    },
+    "purpose": "The control for the central claim: a router must beat acquiring at random at the SAME rate, not merely beat text-only."
+  },
+  "routing": {
+    "samples": 482,
+    "stop": 436,
+    "request_audio": 46,
+    "acquisition_rate": 0.0954356846473029,
+    "audio_acquired": 46,
+    "requested_but_unavailable": 0,
+    "average_modalities_activated": 1.095435684647303,
+    "mean_latency_ms": 3452.385414024667,
+    "stop_reasons": {
+      "no_candidate_above_min_utility": 436,
+      "candidate_pool_exhausted": 46
+    },
+    "uncertainty_before_acquisition": {
+      "all": 0.3795526277654388,
+      "stopped": 0.34366107498467086,
+      "requested": 0.7197421280353266
+    },
+    "uncertainty_after_acquisition": {
+      "requested_and_acquired": 0.9353661532017822,
+      "mean_reduction": -0.21562402516645565
+    },
+    "hsig_gain": {
+      "mean_when_stopped": 0.030756247483333842,
+      "mean_when_requested": 0.10629243358925589
+    }
+  },
+  "split": "test",
+  "experiment_id": "stage3_text_audio_v1",
+  "claim": "AHSEF dynamically determines whether additional audio evidence is worth acquiring after an initial LLM-based text assessment, using a validation-trained expected-gain estimator and a cost/latency-aware utility policy.",
+  "claim_limits": "This is a Text->Audio proof of concept. It is NOT a demonstration that AHSEF selects the best modality among all modalities: the available corpora provide no sample with two simultaneously available candidates, so the candidate set has exactly one member. Physiology is a separate 3-class task and is never fused into the 7-class emotion task.",
+  "hsig_predicted_vs_observed": {
+    "note": "On test the estimator is genuinely out of sample: it was fitted on validation and never saw a test label. These are the honest figures.",
+    "auroc_predicted_gain_vs_y_gain": 0.7408088235294118,
+    "auprc": 0.1546798313146375,
+    "spearman_predicted_vs_observed": 0.11687502114661143,
+    "mean_predicted_gain": 0.0379650951199986,
+    "mean_observed_gain": 0.04979253112033195,
+    "predicted_minus_observed": -0.011827436000333348,
+    "useful_acquisitions_captured": 9,
+    "useful_acquisitions_missed": 25,
+    "recall_of_useful_acquisitions": 0.2647058823529412,
+    "harmful_acquisitions_made": 3,
+    "precision_of_acquisition": 0.1956521739130435
+  },
+  "conditional_performance": {
+    "groups": [
+      {
+        "group": "ALL",
+        "samples": 482,
+        "accuracy": 0.5165975093841553,
+        "macro_f1": 0.3349767029285431,
+        "weighted_f1": 0.4907130002975464
+      },
+      {
+        "group": "STOP",
+        "samples": 436,
+        "accuracy": 0.5183486342430115,
+        "macro_f1": 0.3055098056793213,
+        "weighted_f1": 0.48528242111206055
+      },
+      {
+        "group": "REQUEST",
+        "samples": 46,
+        "accuracy": 0.5,
+        "macro_f1": 0.3345787525177002,
+        "weighted_f1": 0.49706798791885376
+      },
+      {
+        "group": "REQUEST (audio acquired)",
+        "samples": 46,
+        "accuracy": 0.5,
+        "macro_f1": 0.3345787525177002,
+        "weighted_f1": 0.49706798791885376
+      },
+      {
+        "group": "REQUESTED_BUT_UNAVAILABLE",
+        "samples": 0
+      }
+    ],
+    "requested_but_unavailable": 0,
+    "availability_note": "Audio was available for every pooled sample by construction of Phase A, so a non-zero REQUESTED_BUT_UNAVAILABLE count here would indicate a bug in the availability oracle rather than a property of the data. The branch is exercised on real data by the unavailable-audio experiment in the ablation report and by the unit tests."
+  },
+  "oracle_reference": {
+    "text_correct": 243,
+    "fused_correct": 267,
+    "fixed_by_audio": 34,
+    "fixed_fraction": 0.07053941908713693,
+    "fixed_fraction_ci95": [
+      0.05091487792213158,
+      0.09695529159102391
+    ],
+    "broken_by_audio": 10,
+    "broken_fraction": 0.02074688796680498,
+    "broken_fraction_ci95": [
+      0.01130758220778046,
+      0.03776492579965392
+    ],
+    "net_improvement": 24,
+    "net_improvement_rate": 0.04979253112033195,
+    "mean_signed_gain": 0.04979253112033195,
+    "prediction_change_rate": 0.15352697095435686,
+    "agreement_text_audio": 0.1825726141078838
+  },
+  "verdict": {
+    "targeting": {
+      "question": "Did the router acquire on better-than-random samples?",
+      "acquisitions_paid_for": 46,
+      "improvement_rate_among_paid_acquisitions": 0.1956521739130435,
+      "population_base_rate": 0.07053941908713693,
+      "lift_over_base_rate": 2.7736572890025575,
+      "hsig_auroc_out_of_sample": 0.7408088235294118,
+      "answer": "Yes. 9 of 46 paid acquisitions fixed a wrong text answer (19.6%) against a population base rate of 7.1%, a lift of 2.8x. HSIG's out-of-sample AUROC on the locked split is 0.7408, so the estimator fitted on validation does transfer."
+    },
+    "system_level": {
+      "question": "Did that targeting beat acquiring at random at the SAME rate?",
+      "acquisition_rate": 0.0954356846473029,
+      "ahsef_macro_f1": 0.3349767029285431,
+      "random_macro_f1_mean": 0.33684762358665465,
+      "random_macro_f1_ci95": [
+        0.31174796670675275,
+        0.35559799149632454
+      ],
+      "macro_f1_inside_random_interval": true,
+      "ahsef_accuracy": 0.5165975093841553,
+      "random_accuracy_mean": 0.5088278153538703,
+      "random_accuracy_ci95": [
+        0.5020228505134583,
+        0.5165975093841553
+      ],
+      "accuracy_inside_random_interval": true,
+      "answer": "NO, not on macro-F1. AHSEF's macro-F1 of 0.3350 falls INSIDE the 95% interval of random acquisition at the same rate [0.3117, 0.3556] and is below the random mean of 0.3368. The locked test does not establish a system-level macro-F1 advantage for intelligent routing over random routing at the same budget."
+    },
+    "against_the_endpoints": {
+      "vs_text_only": {
+        "accuracy_delta": 0.012448132038116455,
+        "macro_f1_delta": 0.0004744231700897217
+      },
+      "vs_always_fusion": {
+        "accuracy_retained": 0.9325842732899178,
+        "macro_f1_retained": 0.9791070401923379,
+        "accuracy_delta": -0.037344396114349365,
+        "macro_f1_delta": -0.007147997617721558,
+        "acquisition_rate_delta": -0.9045643153526971,
+        "latency_saved_fraction": 0.007246817374871761
+      },
+      "answer": "AHSEF retains 97.9% of always-fusion's macro-F1 and 93.3% of its accuracy while acquiring audio for 9.5% of samples instead of 100%. Against text-only it gains +0.0124 accuracy and +0.0005 macro-F1. Always-fusion remains the best system on both metrics: if audio can be afforded for every sample, acquiring it for every sample is the better policy on this pool."
+    },
+    "validation_to_test_gap": {
+      "note": "On validation the same policy reached macro-F1 0.3536 against a random control mean of 0.3134, clearly outside the control interval. That advantage did not replicate on the locked test. The threshold was selected on validation labels, so the validation figure carries selection optimism that the locked figure does not; the gap between them is the size of that optimism and is reported rather than explained away."
+    }
+  },
+  "frozen_config": {
+    "frozen_at": "2026-08-30T10:35:06",
+    "threshold": 0.09479705498941687,
+    "objective": "macro_f1_acquisition_latency",
+    "hsig_fingerprint_sha256": "96988c45c9dbcd284e84d021b17c1b3368207a0ef9896af46347e8a1b4c4d01d",
+    "fusion": {
+      "method": "weighted_probability",
+      "weights": {
+        "audio": 0.7,
+        "text_llm": 0.3
+      },
+      "weights_normalised": true,
+      "selected_on_split": "validation",
+      "uses_test_labels": false,
+      "selection": {
+        "method": "exhaustive_grid_scan",
+        "objective": "macro_f1",
+        "grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0
+        ],
+        "anchor": "text_llm",
+        "best_weight": 0.3,
+        "best_score": 0.3509645164012909,
+        "pool_size": 509,
+        "scanned": [
+          {
+            "weight_text_llm": 0.05,
+            "macro_f1": 0.2745719850063324
+          },
+          {
+            "weight_text_llm": 0.1,
+            "macro_f1": 0.2931535542011261
+          },
+          {
+            "weight_text_llm": 0.15,
+            "macro_f1": 0.29023098945617676
+          },
+          {
+            "weight_text_llm": 0.2,
+            "macro_f1": 0.3290797173976898
+          },
+          {
+            "weight_text_llm": 0.25,
+            "macro_f1": 0.3299616277217865
+          },
+          {
+            "weight_text_llm": 0.3,
+            "macro_f1": 0.3509645164012909
+          },
+          {
+            "weight_text_llm": 0.35,
+            "macro_f1": 0.3465346395969391
+          },
+          {
+            "weight_text_llm": 0.4,
+            "macro_f1": 0.32341691851615906
+          },
+          {
+            "weight_text_llm": 0.45,
+            "macro_f1": 0.3170594274997711
+          },
+          {
+            "weight_text_llm": 0.5,
+            "macro_f1": 0.3086068332195282
+          },
+          {
+            "weight_text_llm": 0.55,
+            "macro_f1": 0.2981537878513336
+          },
+          {
+            "weight_text_llm": 0.6,
+            "macro_f1": 0.31043678522109985
+          },
+          {
+            "weight_text_llm": 0.65,
+            "macro_f1": 0.31043678522109985
+          },
+          {
+            "weight_text_llm": 0.7,
+            "macro_f1": 0.31125807762145996
+          },
+          {
+            "weight_text_llm": 0.75,
+            "macro_f1": 0.3104425370693207
+          },
+          {
+            "weight_text_llm": 0.8,
+            "macro_f1": 0.30881693959236145
+          },
+          {
+            "weight_text_llm": 0.85,
+            "macro_f1": 0.30881693959236145
+          },
+          {
+            "weight_text_llm": 0.9,
+            "macro_f1": 0.30881693959236145
+          },
+          {
+            "weight_text_llm": 0.95,
+            "macro_f1": 0.30881693959236145
+          }
+        ]
+      }
+    },
+    "lambda_cost": 0.1,
+    "mu_latency": 0.1,
+    "drift_checked": true,
+    "reselected_on_test": false,
+    "hsig_refitted_on_test": false,
+    "fusion_weights_tuned_on_test": false
+  }
+}

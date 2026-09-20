@@ -1,0 +1,966 @@
+{
+  "config": {
+    "batch_size": 16384,
+    "datasets": null,
+    "fraction": 0.25,
+    "holdout_overflow": "drop",
+    "max_strata_in_summary": 512,
+    "minimum_per_stratum": 1,
+    "modality": "audio",
+    "seed": 42,
+    "source": "metadata/standardized/standardized.parquet",
+    "split_policy": "official_aware",
+    "split_ratios": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "stratify_by": [
+      "dataset",
+      "canonical_emotion_id"
+    ],
+    "task": "emotion_7class"
+  },
+  "contributing_datasets": [
+    "RAVDESS",
+    "CREMA-D",
+    "IEMOCAP",
+    "MSP-Podcast"
+  ],
+  "deviations": {
+    "holdout_overflow": "drop",
+    "minimum_per_stratum_adjustments": [
+      {
+        "enforced_minimum": 1,
+        "pool": 2,
+        "proportional": 0,
+        "reason": "proportional share rounded below the configured minimum",
+        "stratum": [
+          "IEMOCAP",
+          5
+        ]
+      }
+    ],
+    "policy": "Strata whose proportional share rounds below 1 are raised to that floor, which can make the realised fraction exceed the requested one. Strata that cannot fill a split quota from unlocked records keep the shortfall rather than moving official holdout records into training.",
+    "quota_exceptions": [],
+    "unplaced_eligible_records": 0,
+    "unplaced_reason": null
+  },
+  "eligibility": {
+    "excluded": {
+      "dataset_not_contributing": 507698,
+      "invalid_or_missing_target": 62881
+    },
+    "modality_rule": {
+      "accepted_sources": [
+        "file"
+      ],
+      "availability_column": "has_audio",
+      "path_column": "audio_path",
+      "source_column": "audio_source"
+    },
+    "scanned_rows": 792336,
+    "task_rule": {
+      "label_column": "canonical_emotion_id",
+      "target_type": "categorical_emotion",
+      "valid_label_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validity_column": "emotion_target_valid"
+    }
+  },
+  "experiment": {
+    "description": "Audio-only modality-filtered emotion_7class representative subset.",
+    "modality": "audio",
+    "output_dir": "experiments/audio/25pct/metadata",
+    "task": "emotion_7class"
+  },
+  "integrity": {
+    "cross_split_sample_ids": 0,
+    "duplicate_sample_ids": 0,
+    "invalid_label_records": 0,
+    "leakage_checks_passed": true,
+    "official_holdout_in_train": 0,
+    "records_outside_contributing_datasets": 0,
+    "records_with_missing_modality_source": 0,
+    "source_path_column": "audio_path",
+    "source_path_examples": [
+      {
+        "audio_path": "RAVDESS/Speech/Actor_01/03-01-01-01-02-02-01.wav",
+        "sample_id": "RAVDESS_speech_03-01-01-01-02-02-01"
+      },
+      {
+        "audio_path": "RAVDESS/Speech/Actor_01/03-01-03-01-01-01-01.wav",
+        "sample_id": "RAVDESS_speech_03-01-03-01-01-01-01"
+      },
+      {
+        "audio_path": "RAVDESS/Speech/Actor_01/03-01-03-02-01-01-01.wav",
+        "sample_id": "RAVDESS_speech_03-01-03-02-01-01-01"
+      }
+    ],
+    "source_paths_rewritten": 0
+  },
+  "pool": {
+    "class_counts": {
+      "0": 82077,
+      "1": 60526,
+      "2": 26961,
+      "3": 38610,
+      "4": 3230,
+      "5": 4209,
+      "6": 6144
+    },
+    "dataset_class_counts": {
+      "CREMA-D|0": 1087,
+      "CREMA-D|1": 1271,
+      "CREMA-D|2": 1271,
+      "CREMA-D|3": 1271,
+      "CREMA-D|4": 1271,
+      "CREMA-D|5": 1271,
+      "IEMOCAP|0": 1708,
+      "IEMOCAP|1": 595,
+      "IEMOCAP|2": 1084,
+      "IEMOCAP|3": 1103,
+      "IEMOCAP|4": 40,
+      "IEMOCAP|5": 2,
+      "IEMOCAP|6": 107,
+      "MSP-Podcast|0": 78718,
+      "MSP-Podcast|1": 58284,
+      "MSP-Podcast|2": 24230,
+      "MSP-Podcast|3": 35860,
+      "MSP-Podcast|4": 1543,
+      "MSP-Podcast|5": 2744,
+      "MSP-Podcast|6": 5845,
+      "RAVDESS|0": 564,
+      "RAVDESS|1": 376,
+      "RAVDESS|2": 376,
+      "RAVDESS|3": 376,
+      "RAVDESS|4": 376,
+      "RAVDESS|5": 192,
+      "RAVDESS|6": 192
+    },
+    "dataset_counts": {
+      "CREMA-D": 7442,
+      "IEMOCAP": 4639,
+      "MSP-Podcast": 207224,
+      "RAVDESS": 2452
+    },
+    "dataset_official_split_counts": {
+      "CREMA-D|__missing__": 7442,
+      "IEMOCAP|__missing__": 4639,
+      "MSP-Podcast|__missing__": 207224,
+      "RAVDESS|__missing__": 2452
+    },
+    "eligible_records": 221757,
+    "official_split_counts": {
+      "__missing__": 221757
+    }
+  },
+  "representativeness": {
+    "class_share_after": {
+      "0": 0.3701118326118326,
+      "1": 0.27294372294372293,
+      "2": 0.12157287157287157,
+      "3": 0.1741161616161616,
+      "4": 0.014556277056277057,
+      "5": 0.018993506493506493,
+      "6": 0.027705627705627706
+    },
+    "class_share_before": {
+      "0": 0.37012134904422406,
+      "1": 0.2729383965331421,
+      "2": 0.1215790256902826,
+      "3": 0.17410949823455404,
+      "4": 0.014565492859300946,
+      "5": 0.018980235122228385,
+      "6": 0.027706002516267807
+    },
+    "dataset_share_after": {
+      "CREMA-D": 0.03358585858585859,
+      "IEMOCAP": 0.02094155844155844,
+      "MSP-Podcast": 0.9344155844155844,
+      "RAVDESS": 0.011056998556998557
+    },
+    "dataset_share_before": {
+      "CREMA-D": 0.03355925630307048,
+      "IEMOCAP": 0.020919294543126035,
+      "MSP-Podcast": 0.9344643010141732,
+      "RAVDESS": 0.011057148139630315
+    },
+    "max_class_share_drift": 1.327137127810768e-05,
+    "max_dataset_share_drift": 4.871659858884936e-05
+  },
+  "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+  "seed": 42,
+  "selection": {
+    "actual_fraction": 0.2500033820803853,
+    "class_counts": {
+      "0": 20519,
+      "1": 15132,
+      "2": 6740,
+      "3": 9653,
+      "4": 807,
+      "5": 1053,
+      "6": 1536
+    },
+    "dataset_class_counts": {
+      "CREMA-D|0": 272,
+      "CREMA-D|1": 318,
+      "CREMA-D|2": 318,
+      "CREMA-D|3": 318,
+      "CREMA-D|4": 318,
+      "CREMA-D|5": 318,
+      "IEMOCAP|0": 427,
+      "IEMOCAP|1": 149,
+      "IEMOCAP|2": 271,
+      "IEMOCAP|3": 276,
+      "IEMOCAP|4": 10,
+      "IEMOCAP|5": 1,
+      "IEMOCAP|6": 27,
+      "MSP-Podcast|0": 19679,
+      "MSP-Podcast|1": 14571,
+      "MSP-Podcast|2": 6057,
+      "MSP-Podcast|3": 8965,
+      "MSP-Podcast|4": 385,
+      "MSP-Podcast|5": 686,
+      "MSP-Podcast|6": 1461,
+      "RAVDESS|0": 141,
+      "RAVDESS|1": 94,
+      "RAVDESS|2": 94,
+      "RAVDESS|3": 94,
+      "RAVDESS|4": 94,
+      "RAVDESS|5": 48,
+      "RAVDESS|6": 48
+    },
+    "dataset_counts": {
+      "CREMA-D": 1862,
+      "IEMOCAP": 1161,
+      "MSP-Podcast": 51804,
+      "RAVDESS": 613
+    },
+    "official_split_counts": {
+      "__missing__": 55440
+    },
+    "plan_digest": "59edf27e7272062bf58bdb237a39024a",
+    "requested_fraction": 0.25,
+    "selected_records": 55440,
+    "target_records": 55439
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "splits": {
+    "actual_ratios": {
+      "test": 0.09996392496392496,
+      "train": 0.7999278499278499,
+      "validation": 0.1001082251082251
+    },
+    "class_counts": {
+      "test": {
+        "0": 2052,
+        "1": 1513,
+        "2": 674,
+        "3": 964,
+        "4": 80,
+        "5": 105,
+        "6": 154
+      },
+      "train": {
+        "0": 16415,
+        "1": 12105,
+        "2": 5391,
+        "3": 7722,
+        "4": 645,
+        "5": 842,
+        "6": 1228
+      },
+      "validation": {
+        "0": 2052,
+        "1": 1514,
+        "2": 675,
+        "3": 967,
+        "4": 82,
+        "5": 106,
+        "6": 154
+      }
+    },
+    "counts": {
+      "test": 5542,
+      "train": 44348,
+      "validation": 5550
+    },
+    "dataset_counts": {
+      "test": {
+        "CREMA-D": 187,
+        "IEMOCAP": 116,
+        "MSP-Podcast": 5179,
+        "RAVDESS": 60
+      },
+      "train": {
+        "CREMA-D": 1488,
+        "IEMOCAP": 928,
+        "MSP-Podcast": 41443,
+        "RAVDESS": 489
+      },
+      "validation": {
+        "CREMA-D": 187,
+        "IEMOCAP": 117,
+        "MSP-Podcast": 5182,
+        "RAVDESS": 64
+      }
+    },
+    "official_split_counts": {
+      "test": {
+        "__missing__": 5542
+      },
+      "train": {
+        "__missing__": 44348
+      },
+      "validation": {
+        "__missing__": 5550
+      }
+    },
+    "ratios": {
+      "test": 0.1,
+      "train": 0.8,
+      "validation": 0.1
+    },
+    "sample_id_digests": {
+      "test": "9ccb4e058e7553d178c23931fcb0d1cf",
+      "train": "c9d642c110d380880c260fb7e079c0c1",
+      "validation": "b34082607b4ede6faa838523de5140f2"
+    }
+  },
+  "strata": [
+    {
+      "assigned": {
+        "test": 27,
+        "train": 218,
+        "validation": 27
+      },
+      "pool": 1087,
+      "pool_by_lock_group": {
+        "free": 1087,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 27,
+        "train": 218,
+        "validation": 27
+      },
+      "selected": 272,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "CREMA-D"
+      }
+    },
+    {
+      "assigned": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "pool": 1271,
+      "pool_by_lock_group": {
+        "free": 1271,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "selected": 318,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "CREMA-D"
+      }
+    },
+    {
+      "assigned": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "pool": 1271,
+      "pool_by_lock_group": {
+        "free": 1271,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "selected": 318,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "CREMA-D"
+      }
+    },
+    {
+      "assigned": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "pool": 1271,
+      "pool_by_lock_group": {
+        "free": 1271,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "selected": 318,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "CREMA-D"
+      }
+    },
+    {
+      "assigned": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "pool": 1271,
+      "pool_by_lock_group": {
+        "free": 1271,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "selected": 318,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "CREMA-D"
+      }
+    },
+    {
+      "assigned": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "pool": 1271,
+      "pool_by_lock_group": {
+        "free": 1271,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 32,
+        "train": 254,
+        "validation": 32
+      },
+      "selected": 318,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "CREMA-D"
+      }
+    },
+    {
+      "assigned": {
+        "test": 43,
+        "train": 341,
+        "validation": 43
+      },
+      "pool": 1708,
+      "pool_by_lock_group": {
+        "free": 1708,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 43,
+        "train": 341,
+        "validation": 43
+      },
+      "selected": 427,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 15,
+        "train": 119,
+        "validation": 15
+      },
+      "pool": 595,
+      "pool_by_lock_group": {
+        "free": 595,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 15,
+        "train": 119,
+        "validation": 15
+      },
+      "selected": 149,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 27,
+        "train": 217,
+        "validation": 27
+      },
+      "pool": 1084,
+      "pool_by_lock_group": {
+        "free": 1084,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 27,
+        "train": 217,
+        "validation": 27
+      },
+      "selected": 271,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 27,
+        "train": 221,
+        "validation": 28
+      },
+      "pool": 1103,
+      "pool_by_lock_group": {
+        "free": 1103,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 27,
+        "train": 221,
+        "validation": 28
+      },
+      "selected": 276,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 1,
+        "train": 8,
+        "validation": 1
+      },
+      "pool": 40,
+      "pool_by_lock_group": {
+        "free": 40,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 1,
+        "train": 8,
+        "validation": 1
+      },
+      "selected": 10,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 0,
+        "train": 1,
+        "validation": 0
+      },
+      "pool": 2,
+      "pool_by_lock_group": {
+        "free": 2,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 0,
+        "train": 1,
+        "validation": 0
+      },
+      "selected": 1,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 3,
+        "train": 21,
+        "validation": 3
+      },
+      "pool": 107,
+      "pool_by_lock_group": {
+        "free": 107,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 3,
+        "train": 21,
+        "validation": 3
+      },
+      "selected": 27,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "IEMOCAP"
+      }
+    },
+    {
+      "assigned": {
+        "test": 1968,
+        "train": 15743,
+        "validation": 1968
+      },
+      "pool": 78718,
+      "pool_by_lock_group": {
+        "free": 78718,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 1968,
+        "train": 15743,
+        "validation": 1968
+      },
+      "selected": 19679,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 1457,
+        "train": 11657,
+        "validation": 1457
+      },
+      "pool": 58284,
+      "pool_by_lock_group": {
+        "free": 58284,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 1457,
+        "train": 11657,
+        "validation": 1457
+      },
+      "selected": 14571,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 606,
+        "train": 4845,
+        "validation": 606
+      },
+      "pool": 24230,
+      "pool_by_lock_group": {
+        "free": 24230,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 606,
+        "train": 4845,
+        "validation": 606
+      },
+      "selected": 6057,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 896,
+        "train": 7172,
+        "validation": 897
+      },
+      "pool": 35860,
+      "pool_by_lock_group": {
+        "free": 35860,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 896,
+        "train": 7172,
+        "validation": 897
+      },
+      "selected": 8965,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 38,
+        "train": 308,
+        "validation": 39
+      },
+      "pool": 1543,
+      "pool_by_lock_group": {
+        "free": 1543,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 38,
+        "train": 308,
+        "validation": 39
+      },
+      "selected": 385,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 68,
+        "train": 549,
+        "validation": 69
+      },
+      "pool": 2744,
+      "pool_by_lock_group": {
+        "free": 2744,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 68,
+        "train": 549,
+        "validation": 69
+      },
+      "selected": 686,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 146,
+        "train": 1169,
+        "validation": 146
+      },
+      "pool": 5845,
+      "pool_by_lock_group": {
+        "free": 5845,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 146,
+        "train": 1169,
+        "validation": 146
+      },
+      "selected": 1461,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 14,
+        "train": 113,
+        "validation": 14
+      },
+      "pool": 564,
+      "pool_by_lock_group": {
+        "free": 564,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 14,
+        "train": 113,
+        "validation": 14
+      },
+      "selected": 141,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "RAVDESS"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "pool": 376,
+      "pool_by_lock_group": {
+        "free": 376,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "selected": 94,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "RAVDESS"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "pool": 376,
+      "pool_by_lock_group": {
+        "free": 376,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "selected": 94,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "RAVDESS"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "pool": 376,
+      "pool_by_lock_group": {
+        "free": 376,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "selected": 94,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "RAVDESS"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "pool": 376,
+      "pool_by_lock_group": {
+        "free": 376,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 9,
+        "train": 75,
+        "validation": 10
+      },
+      "selected": 94,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "RAVDESS"
+      }
+    },
+    {
+      "assigned": {
+        "test": 5,
+        "train": 38,
+        "validation": 5
+      },
+      "pool": 192,
+      "pool_by_lock_group": {
+        "free": 192,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 5,
+        "train": 38,
+        "validation": 5
+      },
+      "selected": 48,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "RAVDESS"
+      }
+    },
+    {
+      "assigned": {
+        "test": 5,
+        "train": 38,
+        "validation": 5
+      },
+      "pool": 192,
+      "pool_by_lock_group": {
+        "free": 192,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 5,
+        "train": 38,
+        "validation": 5
+      },
+      "selected": 48,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "RAVDESS"
+      }
+    }
+  ],
+  "strata_omitted": 0,
+  "stratification_fields": [
+    "dataset",
+    "canonical_emotion_id"
+  ]
+}

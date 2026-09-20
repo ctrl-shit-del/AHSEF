@@ -1,0 +1,2154 @@
+{
+  "phase": "A -- class-wise modality analysis",
+  "experiment_id": "classwise_modality_analysis_v1",
+  "split": "validation",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "emotion_modalities": [
+    "audio",
+    "text",
+    "image",
+    "video"
+  ],
+  "modality_profiles": {
+    "profiles": {
+      "audio": {
+        "modality": "audio",
+        "split": "validation",
+        "task": "emotion_7class",
+        "class_order": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "disgust",
+          "surprise"
+        ],
+        "samples": 5550,
+        "excluded_unusable": 0,
+        "datasets": {
+          "CREMA-D": 187,
+          "IEMOCAP": 117,
+          "MSP-Podcast": 5182,
+          "RAVDESS": 64
+        },
+        "accuracy": 0.3490090072154999,
+        "macro_f1": 0.2624451816082001,
+        "weighted_f1": 0.33269214630126953,
+        "balanced_accuracy": 0.3001136830342667,
+        "per_class": {
+          "neutral": {
+            "support": 2052,
+            "precision": 0.5045180916786194,
+            "recall": 0.16325536370277405,
+            "f1": 0.24668629467487335
+          },
+          "happy": {
+            "support": 1514,
+            "precision": 0.39056047797203064,
+            "recall": 0.43725231289863586,
+            "f1": 0.4125896096229553
+          },
+          "sad": {
+            "support": 675,
+            "precision": 0.23055554926395416,
+            "recall": 0.4918518662452698,
+            "f1": 0.31394800543785095
+          },
+          "angry": {
+            "support": 967,
+            "precision": 0.4104423522949219,
+            "recall": 0.5853154063224792,
+            "f1": 0.48252344131469727
+          },
+          "fear": {
+            "support": 82,
+            "precision": 0.26923078298568726,
+            "recall": 0.17073170840740204,
+            "f1": 0.20895521342754364
+          },
+          "disgust": {
+            "support": 106,
+            "precision": 0.09917355328798294,
+            "recall": 0.22641509771347046,
+            "f1": 0.13793103396892548
+          },
+          "surprise": {
+            "support": 154,
+            "precision": 0.05128205195069313,
+            "recall": 0.025974025949835777,
+            "f1": 0.03448275849223137
+          }
+        },
+        "confusion_matrix": [
+          [
+            335,
+            545,
+            764,
+            285,
+            7,
+            83,
+            33
+          ],
+          [
+            145,
+            662,
+            218,
+            399,
+            4,
+            60,
+            26
+          ],
+          [
+            96,
+            141,
+            332,
+            67,
+            16,
+            22,
+            1
+          ],
+          [
+            55,
+            233,
+            66,
+            566,
+            2,
+            33,
+            12
+          ],
+          [
+            4,
+            17,
+            20,
+            8,
+            14,
+            18,
+            1
+          ],
+          [
+            8,
+            28,
+            15,
+            21,
+            9,
+            24,
+            1
+          ],
+          [
+            21,
+            69,
+            25,
+            33,
+            0,
+            2,
+            4
+          ]
+        ],
+        "comparable_across_modalities": false,
+        "note": "These per-class figures come from this modality's OWN evaluation split. The five baselines were sampled independently from different corpora, so a per-class score here is not comparable with the same class's score under another modality -- that comparison would measure the corpora, not the modalities. Head-to-head class comparison lives in the aligned-pair section, which is the only place this project has shared samples.",
+        "provenance": {
+          "experiment": "audio_25pct",
+          "iteration": "2",
+          "checkpoint_sha256": "bd317985860ad9c1b53e5e998288ef85a360a2f28e35b7e0028fa386fc94cb06",
+          "model": {
+            "class": "AudioEmotionBaseline",
+            "parameters": 35335,
+            "num_classes": 7
+          }
+        }
+      },
+      "text": {
+        "modality": "text",
+        "split": "validation",
+        "task": "emotion_7class",
+        "class_order": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "disgust",
+          "surprise"
+        ],
+        "samples": 22109,
+        "excluded_unusable": 0,
+        "datasets": {
+          "MELD": 1387,
+          "MSP-Podcast": 20722
+        },
+        "accuracy": 0.3821520507335663,
+        "macro_f1": 0.27336013317108154,
+        "weighted_f1": 0.4070555865764618,
+        "balanced_accuracy": 0.32231631875038147,
+        "per_class": {
+          "neutral": {
+            "support": 8516,
+            "precision": 0.550285279750824,
+            "recall": 0.36237668991088867,
+            "f1": 0.43698668479919434
+          },
+          "happy": {
+            "support": 6059,
+            "precision": 0.5097729563713074,
+            "recall": 0.42614293098449707,
+            "f1": 0.4642215073108673
+          },
+          "sad": {
+            "support": 2534,
+            "precision": 0.27415645122528076,
+            "recall": 0.2821625769138336,
+            "f1": 0.27810192108154297
+          },
+          "angry": {
+            "support": 3747,
+            "precision": 0.39474284648895264,
+            "recall": 0.46090206503868103,
+            "f1": 0.42526471614837646
+          },
+          "fear": {
+            "support": 194,
+            "precision": 0.03302225470542908,
+            "recall": 0.23711340129375458,
+            "f1": 0.05797101929783821
+          },
+          "disgust": {
+            "support": 311,
+            "precision": 0.04649042710661888,
+            "recall": 0.1639871448278427,
+            "f1": 0.07244317978620529
+          },
+          "surprise": {
+            "support": 748,
+            "precision": 0.12328068912029266,
+            "recall": 0.3235294222831726,
+            "f1": 0.17853188514709473
+          }
+        },
+        "confusion_matrix": [
+          [
+            3086,
+            1600,
+            963,
+            1202,
+            576,
+            379,
+            710
+          ],
+          [
+            1216,
+            2582,
+            445,
+            766,
+            277,
+            209,
+            564
+          ],
+          [
+            575,
+            277,
+            715,
+            469,
+            216,
+            147,
+            135
+          ],
+          [
+            522,
+            431,
+            367,
+            1727,
+            195,
+            248,
+            257
+          ],
+          [
+            40,
+            22,
+            22,
+            21,
+            46,
+            13,
+            30
+          ],
+          [
+            45,
+            32,
+            41,
+            99,
+            18,
+            51,
+            25
+          ],
+          [
+            124,
+            121,
+            55,
+            91,
+            65,
+            50,
+            242
+          ]
+        ],
+        "comparable_across_modalities": false,
+        "note": "These per-class figures come from this modality's OWN evaluation split. The five baselines were sampled independently from different corpora, so a per-class score here is not comparable with the same class's score under another modality -- that comparison would measure the corpora, not the modalities. Head-to-head class comparison lives in the aligned-pair section, which is the only place this project has shared samples.",
+        "provenance": {
+          "experiment": "text_full",
+          "iteration": "1",
+          "checkpoint_sha256": "3dab6b9be6f4a3524754a2e137ed8cabb531f65a50cef7262bd219f7099dd313",
+          "model": {
+            "class": "TextEmotionBaseline",
+            "parameters": 4229639,
+            "num_classes": 7
+          }
+        }
+      },
+      "image": {
+        "modality": "image",
+        "split": "validation",
+        "task": "emotion_7class",
+        "class_order": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "disgust",
+          "surprise"
+        ],
+        "samples": 8459,
+        "excluded_unusable": 0,
+        "datasets": {
+          "AffectNet+": 7187,
+          "FERPlus": 887,
+          "RAF-DB": 385
+        },
+        "accuracy": 0.5189738869667053,
+        "macro_f1": 0.3677932322025299,
+        "weighted_f1": 0.5396472811698914,
+        "balanced_accuracy": 0.391663847225053,
+        "per_class": {
+          "neutral": {
+            "support": 2043,
+            "precision": 0.5027876496315002,
+            "recall": 0.48556044697761536,
+            "f1": 0.4940239191055298
+          },
+          "happy": {
+            "support": 3528,
+            "precision": 0.8415575623512268,
+            "recall": 0.7106009125709534,
+            "f1": 0.770554780960083
+          },
+          "sad": {
+            "support": 945,
+            "precision": 0.3212045133113861,
+            "recall": 0.2708994746208191,
+            "f1": 0.2939150333404541
+          },
+          "angry": {
+            "support": 982,
+            "precision": 0.3715277910232544,
+            "recall": 0.3268839120864868,
+            "f1": 0.3477790057659149
+          },
+          "fear": {
+            "support": 293,
+            "precision": 0.23429951071739197,
+            "recall": 0.3310580253601074,
+            "f1": 0.2743988633155823
+          },
+          "disgust": {
+            "support": 241,
+            "precision": 0.12396693974733353,
+            "recall": 0.2489626556634903,
+            "f1": 0.16551722586154938
+          },
+          "surprise": {
+            "support": 427,
+            "precision": 0.16561181843280792,
+            "recall": 0.36768150329589844,
+            "f1": 0.22836364805698395
+          }
+        },
+        "confusion_matrix": [
+          [
+            992,
+            213,
+            161,
+            205,
+            85,
+            106,
+            281
+          ],
+          [
+            396,
+            2507,
+            183,
+            101,
+            33,
+            97,
+            211
+          ],
+          [
+            227,
+            87,
+            256,
+            121,
+            62,
+            83,
+            109
+          ],
+          [
+            204,
+            70,
+            109,
+            321,
+            76,
+            107,
+            95
+          ],
+          [
+            29,
+            22,
+            22,
+            35,
+            97,
+            13,
+            75
+          ],
+          [
+            28,
+            24,
+            35,
+            53,
+            21,
+            60,
+            20
+          ],
+          [
+            97,
+            56,
+            31,
+            28,
+            40,
+            18,
+            157
+          ]
+        ],
+        "comparable_across_modalities": false,
+        "note": "These per-class figures come from this modality's OWN evaluation split. The five baselines were sampled independently from different corpora, so a per-class score here is not comparable with the same class's score under another modality -- that comparison would measure the corpora, not the modalities. Head-to-head class comparison lives in the aligned-pair section, which is the only place this project has shared samples.",
+        "provenance": {
+          "experiment": "image_25pct",
+          "iteration": "1",
+          "checkpoint_sha256": "5dacbddda81b9ad23cd619fa5071837851e2f598174fb7ae8da9ba0c90c3cfa2",
+          "model": {
+            "class": "ImageEmotionBaseline",
+            "parameters": 1772039,
+            "image_size": 48,
+            "hidden_dim": 256,
+            "num_classes": 7
+          }
+        }
+      },
+      "video": {
+        "modality": "video",
+        "split": "validation",
+        "task": "emotion_7class",
+        "class_order": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "disgust",
+          "surprise"
+        ],
+        "samples": 343,
+        "excluded_unusable": 0,
+        "datasets": {
+          "MELD": 343
+        },
+        "accuracy": 0.32944607734680176,
+        "macro_f1": 0.12229364365339279,
+        "weighted_f1": 0.28351426124572754,
+        "balanced_accuracy": 0.13647471155439103,
+        "per_class": {
+          "neutral": {
+            "support": 161,
+            "precision": 0.4330357015132904,
+            "recall": 0.6024844646453857,
+            "f1": 0.5038960576057434
+          },
+          "happy": {
+            "support": 58,
+            "precision": 0.11999999731779099,
+            "recall": 0.1034482792019844,
+            "f1": 0.1111111119389534
+          },
+          "sad": {
+            "support": 25,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "angry": {
+            "support": 40,
+            "precision": 0.19565217196941376,
+            "recall": 0.22499999403953552,
+            "f1": 0.20930232107639313
+          },
+          "fear": {
+            "support": 9,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "disgust": {
+            "support": 9,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "surprise": {
+            "support": 41,
+            "precision": 0.04545454680919647,
+            "recall": 0.024390242993831635,
+            "f1": 0.0317460298538208
+          }
+        },
+        "confusion_matrix": [
+          [
+            97,
+            30,
+            0,
+            23,
+            0,
+            0,
+            11
+          ],
+          [
+            43,
+            6,
+            0,
+            6,
+            0,
+            0,
+            3
+          ],
+          [
+            17,
+            6,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            25,
+            0,
+            0,
+            9,
+            0,
+            1,
+            5
+          ],
+          [
+            6,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            4,
+            1,
+            0,
+            3,
+            0,
+            0,
+            1
+          ],
+          [
+            32,
+            6,
+            0,
+            2,
+            0,
+            0,
+            1
+          ]
+        ],
+        "comparable_across_modalities": false,
+        "note": "These per-class figures come from this modality's OWN evaluation split. The five baselines were sampled independently from different corpora, so a per-class score here is not comparable with the same class's score under another modality -- that comparison would measure the corpora, not the modalities. Head-to-head class comparison lives in the aligned-pair section, which is the only place this project has shared samples.",
+        "provenance": {
+          "experiment": "video_25pct",
+          "iteration": "2",
+          "checkpoint_sha256": "b5a3e990315be1ed162d072ff2bc3edca670fec4c82f5cf71c0b9030cac0177b",
+          "model": {
+            "class": "VideoEmotionBaseline",
+            "parameters": 1772039,
+            "num_classes": 7,
+            "num_frames": 8,
+            "frame_size": 48,
+            "hidden_dim": 256,
+            "temporal": "mean",
+            "pooling": "masked mean over frames"
+          }
+        }
+      },
+      "physiology": {
+        "modality": "physiology",
+        "split": "validation",
+        "task": "wesad_state_3class",
+        "class_order": [
+          "baseline",
+          "stress",
+          "amusement"
+        ],
+        "samples": 405,
+        "excluded_unusable": 0,
+        "datasets": {
+          "WESAD": 405
+        },
+        "accuracy": 0.7037037014961243,
+        "macro_f1": 0.7229375839233398,
+        "weighted_f1": 0.6952294707298279,
+        "balanced_accuracy": 0.7935938735802969,
+        "per_class": {
+          "baseline": {
+            "support": 224,
+            "precision": 0.982300877571106,
+            "recall": 0.4955357015132904,
+            "f1": 0.6587536931037903
+          },
+          "stress": {
+            "support": 120,
+            "precision": 0.5504587292671204,
+            "recall": 1.0,
+            "f1": 0.7100592255592346
+          },
+          "amusement": {
+            "support": 61,
+            "precision": 0.7297297120094299,
+            "recall": 0.8852459192276001,
+            "f1": 0.7999999523162842
+          }
+        },
+        "confusion_matrix": [
+          [
+            111,
+            93,
+            20
+          ],
+          [
+            0,
+            120,
+            0
+          ],
+          [
+            2,
+            5,
+            54
+          ]
+        ],
+        "comparable_across_modalities": false,
+        "note": "These per-class figures come from this modality's OWN evaluation split. The five baselines were sampled independently from different corpora, so a per-class score here is not comparable with the same class's score under another modality -- that comparison would measure the corpora, not the modalities. Head-to-head class comparison lives in the aligned-pair section, which is the only place this project has shared samples.",
+        "provenance": {
+          "experiment": "physiology_full",
+          "iteration": "2",
+          "checkpoint_sha256": "bab28e8fa1e73d2a0ceb9428b7ea14f803db0107339cbfef222f1df6c7d60784",
+          "model": {
+            "class": "PhysiologyStateBaseline",
+            "parameters": 7939,
+            "num_classes": 3,
+            "feature_dim": 56,
+            "hidden_dim": 128,
+            "input": "per-channel window statistics, standardised with train-fitted scaling"
+          }
+        }
+      }
+    },
+    "tasks": {
+      "emotion_7class": [
+        "audio",
+        "image",
+        "text",
+        "video"
+      ],
+      "wesad_state_3class": [
+        "physiology"
+      ]
+    },
+    "comparable_across_modalities": false,
+    "why_not": "These per-class figures come from this modality's OWN evaluation split. The five baselines were sampled independently from different corpora, so a per-class score here is not comparable with the same class's score under another modality -- that comparison would measure the corpora, not the modalities. Head-to-head class comparison lives in the aligned-pair section, which is the only place this project has shared samples.",
+    "separate_label_spaces": {
+      "emotion_7class": [
+        "audio",
+        "image",
+        "text",
+        "video"
+      ],
+      "wesad_state_3class": [
+        "physiology"
+      ]
+    }
+  },
+  "aligned_comparisons": {
+    "audio+text": {
+      "left": "audio",
+      "right": "text",
+      "split": "validation",
+      "samples": 509,
+      "aligned": true,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "overall": {
+        "left": {
+          "accuracy": 0.37721022963523865,
+          "macro_f1": 0.2383199781179428,
+          "weighted_f1": 0.3642321228981018
+        },
+        "right": {
+          "accuracy": 0.38113948702812195,
+          "macro_f1": 0.25688987970352173,
+          "weighted_f1": 0.40561404824256897
+        },
+        "outcome": {
+          "both_correct": 78,
+          "left_correct_right_wrong": 114,
+          "right_correct_left_wrong": 116,
+          "both_wrong": 201,
+          "samples": 509,
+          "both_correct_rate": 0.15324165029469547,
+          "left_only_rate": 0.22396856581532418,
+          "right_only_rate": 0.22789783889980353,
+          "both_wrong_rate": 0.3948919449901768
+        },
+        "disagreement_rate": 0.7347740667976425,
+        "agreement_rate": 0.26522593320235754,
+        "correction_opportunity_for_left": 116,
+        "correction_opportunity_for_right": 114,
+        "ceiling_if_either_were_trusted": 0.6051080550098232
+      },
+      "per_class": {
+        "neutral": {
+          "support": 172,
+          "left_f1": 0.29600000381469727,
+          "right_f1": 0.4221453368663788,
+          "left_recall": 0.21511627733707428,
+          "right_recall": 0.35465115308761597,
+          "f1_difference": -0.12614533305168152,
+          "outcome": {
+            "both_correct": 14,
+            "left_correct_right_wrong": 23,
+            "right_correct_left_wrong": 47,
+            "both_wrong": 88,
+            "samples": 172,
+            "both_correct_rate": 0.08139534883720931,
+            "left_only_rate": 0.13372093023255813,
+            "right_only_rate": 0.27325581395348836,
+            "both_wrong_rate": 0.5116279069767442
+          },
+          "correction_opportunity_for_left": 47,
+          "correction_opportunity_for_right": 23,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.12614533305168152,
+            "reason": "F1 0.2960 vs 0.4221 on 172 shared samples"
+          }
+        },
+        "happy": {
+          "support": 151,
+          "left_f1": 0.4369230568408966,
+          "right_f1": 0.4521072804927826,
+          "left_recall": 0.4701986610889435,
+          "right_recall": 0.3907284736633301,
+          "f1_difference": -0.015184223651885986,
+          "outcome": {
+            "both_correct": 25,
+            "left_correct_right_wrong": 46,
+            "right_correct_left_wrong": 34,
+            "both_wrong": 46,
+            "samples": 151,
+            "both_correct_rate": 0.16556291390728478,
+            "left_only_rate": 0.304635761589404,
+            "right_only_rate": 0.2251655629139073,
+            "both_wrong_rate": 0.304635761589404
+          },
+          "correction_opportunity_for_left": 34,
+          "correction_opportunity_for_right": 46,
+          "stronger": {
+            "winner": null,
+            "reason": "F1 differs by only -0.0152; treated as a tie"
+          }
+        },
+        "sad": {
+          "support": 63,
+          "left_f1": 0.2921348512172699,
+          "right_f1": 0.2698412835597992,
+          "left_recall": 0.4126984179019928,
+          "right_recall": 0.2698412835597992,
+          "f1_difference": 0.022293567657470703,
+          "outcome": {
+            "both_correct": 8,
+            "left_correct_right_wrong": 18,
+            "right_correct_left_wrong": 9,
+            "both_wrong": 28,
+            "samples": 63,
+            "both_correct_rate": 0.12698412698412698,
+            "left_only_rate": 0.2857142857142857,
+            "right_only_rate": 0.14285714285714285,
+            "both_wrong_rate": 0.4444444444444444
+          },
+          "correction_opportunity_for_left": 9,
+          "correction_opportunity_for_right": 18,
+          "stronger": {
+            "winner": "audio",
+            "margin": 0.022293567657470703,
+            "reason": "F1 0.2921 vs 0.2698 on 63 shared samples"
+          }
+        },
+        "angry": {
+          "support": 95,
+          "left_f1": 0.5181818604469299,
+          "right_f1": 0.4976958632469177,
+          "left_recall": 0.6000000238418579,
+          "right_recall": 0.5684210658073425,
+          "f1_difference": 0.020485997200012207,
+          "outcome": {
+            "both_correct": 31,
+            "left_correct_right_wrong": 26,
+            "right_correct_left_wrong": 23,
+            "both_wrong": 15,
+            "samples": 95,
+            "both_correct_rate": 0.3263157894736842,
+            "left_only_rate": 0.2736842105263158,
+            "right_only_rate": 0.24210526315789474,
+            "both_wrong_rate": 0.15789473684210525
+          },
+          "correction_opportunity_for_left": 23,
+          "correction_opportunity_for_right": 26,
+          "stronger": {
+            "winner": "audio",
+            "margin": 0.020485997200012207,
+            "reason": "F1 0.5182 vs 0.4977 on 95 shared samples"
+          }
+        },
+        "fear": {
+          "support": 6,
+          "left_f1": 0.0,
+          "right_f1": 0.0625000074505806,
+          "left_recall": 0.0,
+          "right_recall": 0.1666666716337204,
+          "f1_difference": -0.0625000074505806,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 5,
+            "samples": 6,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.16666666666666666,
+            "both_wrong_rate": 0.8333333333333334
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 6 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "disgust": {
+          "support": 7,
+          "left_f1": 0.125,
+          "right_f1": 0.06060606613755226,
+          "left_recall": 0.1428571492433548,
+          "right_recall": 0.1428571492433548,
+          "f1_difference": 0.06439393386244774,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 1,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 5,
+            "samples": 7,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.14285714285714285,
+            "right_only_rate": 0.14285714285714285,
+            "both_wrong_rate": 0.7142857142857143
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 1,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 7 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "surprise": {
+          "support": 15,
+          "left_f1": 0.0,
+          "right_f1": 0.03333333507180214,
+          "left_recall": 0.0,
+          "right_recall": 0.06666667014360428,
+          "f1_difference": -0.03333333507180214,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 14,
+            "samples": 15,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.06666666666666667,
+            "both_wrong_rate": 0.9333333333333333
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 15 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        }
+      },
+      "reading": "'Correction opportunity for X' counts samples where X is wrong and the other modality is right -- the only samples an acquisition could rescue. 'Ceiling if either were trusted' is the accuracy of an oracle that always picked the correct one of the two; it bounds what any routing policy over this pair can reach and is NOT achievable by a real router."
+    },
+    "text+video": {
+      "left": "text",
+      "right": "video",
+      "split": "validation",
+      "samples": 343,
+      "aligned": true,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "overall": {
+        "left": {
+          "accuracy": 0.3381924331188202,
+          "macro_f1": 0.25522318482398987,
+          "weighted_f1": 0.35106897354125977
+        },
+        "right": {
+          "accuracy": 0.32944607734680176,
+          "macro_f1": 0.12229364365339279,
+          "weighted_f1": 0.28351426124572754
+        },
+        "outcome": {
+          "both_correct": 31,
+          "left_correct_right_wrong": 85,
+          "right_correct_left_wrong": 82,
+          "both_wrong": 145,
+          "samples": 343,
+          "both_correct_rate": 0.09037900874635568,
+          "left_only_rate": 0.2478134110787172,
+          "right_only_rate": 0.239067055393586,
+          "both_wrong_rate": 0.4227405247813411
+        },
+        "disagreement_rate": 0.8338192419825073,
+        "agreement_rate": 0.1661807580174927,
+        "correction_opportunity_for_left": 82,
+        "correction_opportunity_for_right": 85,
+        "ceiling_if_either_were_trusted": 0.577259475218659
+      },
+      "per_class": {
+        "neutral": {
+          "support": 161,
+          "left_f1": 0.40366971492767334,
+          "right_f1": 0.5038960576057434,
+          "left_recall": 0.2732919156551361,
+          "right_recall": 0.6024844646453857,
+          "f1_difference": -0.10022634267807007,
+          "outcome": {
+            "both_correct": 27,
+            "left_correct_right_wrong": 17,
+            "right_correct_left_wrong": 70,
+            "both_wrong": 47,
+            "samples": 161,
+            "both_correct_rate": 0.16770186335403728,
+            "left_only_rate": 0.10559006211180125,
+            "right_only_rate": 0.43478260869565216,
+            "both_wrong_rate": 0.2919254658385093
+          },
+          "correction_opportunity_for_left": 70,
+          "correction_opportunity_for_right": 17,
+          "stronger": {
+            "winner": "video",
+            "margin": 0.10022634267807007,
+            "reason": "F1 0.4037 vs 0.5039 on 161 shared samples"
+          }
+        },
+        "happy": {
+          "support": 58,
+          "left_f1": 0.30188679695129395,
+          "right_f1": 0.1111111119389534,
+          "left_recall": 0.27586206793785095,
+          "right_recall": 0.1034482792019844,
+          "f1_difference": 0.19077568501234055,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 16,
+            "right_correct_left_wrong": 6,
+            "both_wrong": 36,
+            "samples": 58,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.27586206896551724,
+            "right_only_rate": 0.10344827586206896,
+            "both_wrong_rate": 0.6206896551724138
+          },
+          "correction_opportunity_for_left": 6,
+          "correction_opportunity_for_right": 16,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.19077568501234055,
+            "reason": "F1 0.3019 vs 0.1111 on 58 shared samples"
+          }
+        },
+        "sad": {
+          "support": 25,
+          "left_f1": 0.1538461595773697,
+          "right_f1": 0.0,
+          "left_recall": 0.11999999731779099,
+          "right_recall": 0.0,
+          "f1_difference": 0.1538461595773697,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 3,
+            "right_correct_left_wrong": 0,
+            "both_wrong": 22,
+            "samples": 25,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.12,
+            "right_only_rate": 0.0,
+            "both_wrong_rate": 0.88
+          },
+          "correction_opportunity_for_left": 0,
+          "correction_opportunity_for_right": 3,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.1538461595773697,
+            "reason": "F1 0.1538 vs 0.0000 on 25 shared samples"
+          }
+        },
+        "angry": {
+          "support": 40,
+          "left_f1": 0.33766233921051025,
+          "right_f1": 0.20930232107639313,
+          "left_recall": 0.32499998807907104,
+          "right_recall": 0.22499999403953552,
+          "f1_difference": 0.12836001813411713,
+          "outcome": {
+            "both_correct": 3,
+            "left_correct_right_wrong": 10,
+            "right_correct_left_wrong": 6,
+            "both_wrong": 21,
+            "samples": 40,
+            "both_correct_rate": 0.075,
+            "left_only_rate": 0.25,
+            "right_only_rate": 0.15,
+            "both_wrong_rate": 0.525
+          },
+          "correction_opportunity_for_left": 6,
+          "correction_opportunity_for_right": 10,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.12836001813411713,
+            "reason": "F1 0.3377 vs 0.2093 on 40 shared samples"
+          }
+        },
+        "fear": {
+          "support": 9,
+          "left_f1": 0.11267604678869247,
+          "right_f1": 0.0,
+          "left_recall": 0.4444444477558136,
+          "right_recall": 0.0,
+          "f1_difference": 0.11267604678869247,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 4,
+            "right_correct_left_wrong": 0,
+            "both_wrong": 5,
+            "samples": 9,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.4444444444444444,
+            "right_only_rate": 0.0,
+            "both_wrong_rate": 0.5555555555555556
+          },
+          "correction_opportunity_for_left": 0,
+          "correction_opportunity_for_right": 4,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 9 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "disgust": {
+          "support": 9,
+          "left_f1": 0.0,
+          "right_f1": 0.0,
+          "left_recall": 0.0,
+          "right_recall": 0.0,
+          "f1_difference": 0.0,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 0,
+            "both_wrong": 9,
+            "samples": 9,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.0,
+            "both_wrong_rate": 1.0
+          },
+          "correction_opportunity_for_left": 0,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 9 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "surprise": {
+          "support": 41,
+          "left_f1": 0.4768211543560028,
+          "right_f1": 0.0317460298538208,
+          "left_recall": 0.8780487775802612,
+          "right_recall": 0.024390242993831635,
+          "f1_difference": 0.445075124502182,
+          "outcome": {
+            "both_correct": 1,
+            "left_correct_right_wrong": 35,
+            "right_correct_left_wrong": 0,
+            "both_wrong": 5,
+            "samples": 41,
+            "both_correct_rate": 0.024390243902439025,
+            "left_only_rate": 0.8536585365853658,
+            "right_only_rate": 0.0,
+            "both_wrong_rate": 0.12195121951219512
+          },
+          "correction_opportunity_for_left": 0,
+          "correction_opportunity_for_right": 35,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.445075124502182,
+            "reason": "F1 0.4768 vs 0.0317 on 41 shared samples"
+          }
+        }
+      },
+      "reading": "'Correction opportunity for X' counts samples where X is wrong and the other modality is right -- the only samples an acquisition could rescue. 'Ceiling if either were trusted' is the accuracy of an oracle that always picked the correct one of the two; it bounds what any routing policy over this pair can reach and is NOT achievable by a real router."
+    },
+    "audio+text_llm": {
+      "left": "audio",
+      "right": "text_llm",
+      "split": "validation",
+      "samples": 509,
+      "aligned": true,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "overall": {
+        "left": {
+          "accuracy": 0.37721022963523865,
+          "macro_f1": 0.2383199781179428,
+          "weighted_f1": 0.3642321228981018
+        },
+        "right": {
+          "accuracy": 0.4715127646923065,
+          "macro_f1": 0.30881693959236145,
+          "weighted_f1": 0.4398183226585388
+        },
+        "outcome": {
+          "both_correct": 72,
+          "left_correct_right_wrong": 120,
+          "right_correct_left_wrong": 168,
+          "both_wrong": 149,
+          "samples": 509,
+          "both_correct_rate": 0.14145383104125736,
+          "left_only_rate": 0.2357563850687623,
+          "right_only_rate": 0.3300589390962672,
+          "both_wrong_rate": 0.29273084479371314
+        },
+        "disagreement_rate": 0.7976424361493124,
+        "agreement_rate": 0.20235756385068762,
+        "correction_opportunity_for_left": 168,
+        "correction_opportunity_for_right": 120,
+        "ceiling_if_either_were_trusted": 0.7072691552062869
+      },
+      "per_class": {
+        "neutral": {
+          "support": 172,
+          "left_f1": 0.29600000381469727,
+          "right_f1": 0.5959183573722839,
+          "left_recall": 0.21511627733707428,
+          "right_recall": 0.8488371968269348,
+          "f1_difference": -0.29991835355758667,
+          "outcome": {
+            "both_correct": 33,
+            "left_correct_right_wrong": 4,
+            "right_correct_left_wrong": 113,
+            "both_wrong": 22,
+            "samples": 172,
+            "both_correct_rate": 0.19186046511627908,
+            "left_only_rate": 0.023255813953488372,
+            "right_only_rate": 0.6569767441860465,
+            "both_wrong_rate": 0.12790697674418605
+          },
+          "correction_opportunity_for_left": 113,
+          "correction_opportunity_for_right": 4,
+          "stronger": {
+            "winner": "text_llm",
+            "margin": 0.29991835355758667,
+            "reason": "F1 0.2960 vs 0.5959 on 172 shared samples"
+          }
+        },
+        "happy": {
+          "support": 151,
+          "left_f1": 0.4369230568408966,
+          "right_f1": 0.42790696024894714,
+          "left_recall": 0.4701986610889435,
+          "right_recall": 0.30463576316833496,
+          "f1_difference": 0.009016096591949463,
+          "outcome": {
+            "both_correct": 18,
+            "left_correct_right_wrong": 53,
+            "right_correct_left_wrong": 28,
+            "both_wrong": 52,
+            "samples": 151,
+            "both_correct_rate": 0.11920529801324503,
+            "left_only_rate": 0.3509933774834437,
+            "right_only_rate": 0.18543046357615894,
+            "both_wrong_rate": 0.3443708609271523
+          },
+          "correction_opportunity_for_left": 28,
+          "correction_opportunity_for_right": 53,
+          "stronger": {
+            "winner": null,
+            "reason": "F1 differs by only +0.0090; treated as a tie"
+          }
+        },
+        "sad": {
+          "support": 63,
+          "left_f1": 0.2921348512172699,
+          "right_f1": 0.1538461595773697,
+          "left_recall": 0.4126984179019928,
+          "right_recall": 0.1111111119389534,
+          "f1_difference": 0.1382886916399002,
+          "outcome": {
+            "both_correct": 2,
+            "left_correct_right_wrong": 24,
+            "right_correct_left_wrong": 5,
+            "both_wrong": 32,
+            "samples": 63,
+            "both_correct_rate": 0.031746031746031744,
+            "left_only_rate": 0.38095238095238093,
+            "right_only_rate": 0.07936507936507936,
+            "both_wrong_rate": 0.5079365079365079
+          },
+          "correction_opportunity_for_left": 5,
+          "correction_opportunity_for_right": 24,
+          "stronger": {
+            "winner": "audio",
+            "margin": 0.1382886916399002,
+            "reason": "F1 0.2921 vs 0.1538 on 63 shared samples"
+          }
+        },
+        "angry": {
+          "support": 95,
+          "left_f1": 0.5181818604469299,
+          "right_f1": 0.45283016562461853,
+          "left_recall": 0.6000000238418579,
+          "right_recall": 0.378947377204895,
+          "f1_difference": 0.0653516948223114,
+          "outcome": {
+            "both_correct": 18,
+            "left_correct_right_wrong": 39,
+            "right_correct_left_wrong": 18,
+            "both_wrong": 20,
+            "samples": 95,
+            "both_correct_rate": 0.18947368421052632,
+            "left_only_rate": 0.4105263157894737,
+            "right_only_rate": 0.18947368421052632,
+            "both_wrong_rate": 0.21052631578947367
+          },
+          "correction_opportunity_for_left": 18,
+          "correction_opportunity_for_right": 39,
+          "stronger": {
+            "winner": "audio",
+            "margin": 0.0653516948223114,
+            "reason": "F1 0.5182 vs 0.4528 on 95 shared samples"
+          }
+        },
+        "fear": {
+          "support": 6,
+          "left_f1": 0.0,
+          "right_f1": 0.2666666507720947,
+          "left_recall": 0.0,
+          "right_recall": 0.3333333432674408,
+          "f1_difference": -0.2666666507720947,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 2,
+            "both_wrong": 4,
+            "samples": 6,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.3333333333333333,
+            "both_wrong_rate": 0.6666666666666666
+          },
+          "correction_opportunity_for_left": 2,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 6 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "disgust": {
+          "support": 7,
+          "left_f1": 0.125,
+          "right_f1": 0.190476194024086,
+          "left_recall": 0.1428571492433548,
+          "right_recall": 0.2857142984867096,
+          "f1_difference": -0.065476194024086,
+          "outcome": {
+            "both_correct": 1,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 5,
+            "samples": 7,
+            "both_correct_rate": 0.14285714285714285,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.14285714285714285,
+            "both_wrong_rate": 0.7142857142857143
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 7 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "surprise": {
+          "support": 15,
+          "left_f1": 0.0,
+          "right_f1": 0.07407408207654953,
+          "left_recall": 0.0,
+          "right_recall": 0.06666667014360428,
+          "f1_difference": -0.07407408207654953,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 14,
+            "samples": 15,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.06666666666666667,
+            "both_wrong_rate": 0.9333333333333333
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 15 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        }
+      },
+      "reading": "'Correction opportunity for X' counts samples where X is wrong and the other modality is right -- the only samples an acquisition could rescue. 'Ceiling if either were trusted' is the accuracy of an oracle that always picked the correct one of the two; it bounds what any routing policy over this pair can reach and is NOT achievable by a real router."
+    },
+    "text+text_llm": {
+      "left": "text",
+      "right": "text_llm",
+      "split": "validation",
+      "samples": 509,
+      "aligned": true,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "overall": {
+        "left": {
+          "accuracy": 0.38113948702812195,
+          "macro_f1": 0.25688987970352173,
+          "weighted_f1": 0.40561404824256897
+        },
+        "right": {
+          "accuracy": 0.4715127646923065,
+          "macro_f1": 0.30881693959236145,
+          "weighted_f1": 0.4398183226585388
+        },
+        "outcome": {
+          "both_correct": 127,
+          "left_correct_right_wrong": 67,
+          "right_correct_left_wrong": 113,
+          "both_wrong": 202,
+          "samples": 509,
+          "both_correct_rate": 0.24950884086444008,
+          "left_only_rate": 0.13163064833005894,
+          "right_only_rate": 0.2220039292730845,
+          "both_wrong_rate": 0.3968565815324165
+        },
+        "disagreement_rate": 0.593320235756385,
+        "agreement_rate": 0.4066797642436149,
+        "correction_opportunity_for_left": 113,
+        "correction_opportunity_for_right": 67,
+        "ceiling_if_either_were_trusted": 0.6031434184675835
+      },
+      "per_class": {
+        "neutral": {
+          "support": 172,
+          "left_f1": 0.4221453368663788,
+          "right_f1": 0.5959183573722839,
+          "left_recall": 0.35465115308761597,
+          "right_recall": 0.8488371968269348,
+          "f1_difference": -0.17377302050590515,
+          "outcome": {
+            "both_correct": 56,
+            "left_correct_right_wrong": 5,
+            "right_correct_left_wrong": 90,
+            "both_wrong": 21,
+            "samples": 172,
+            "both_correct_rate": 0.32558139534883723,
+            "left_only_rate": 0.029069767441860465,
+            "right_only_rate": 0.5232558139534884,
+            "both_wrong_rate": 0.12209302325581395
+          },
+          "correction_opportunity_for_left": 90,
+          "correction_opportunity_for_right": 5,
+          "stronger": {
+            "winner": "text_llm",
+            "margin": 0.17377302050590515,
+            "reason": "F1 0.4221 vs 0.5959 on 172 shared samples"
+          }
+        },
+        "happy": {
+          "support": 151,
+          "left_f1": 0.4521072804927826,
+          "right_f1": 0.42790696024894714,
+          "left_recall": 0.3907284736633301,
+          "right_recall": 0.30463576316833496,
+          "f1_difference": 0.02420032024383545,
+          "outcome": {
+            "both_correct": 35,
+            "left_correct_right_wrong": 24,
+            "right_correct_left_wrong": 11,
+            "both_wrong": 81,
+            "samples": 151,
+            "both_correct_rate": 0.23178807947019867,
+            "left_only_rate": 0.15894039735099338,
+            "right_only_rate": 0.0728476821192053,
+            "both_wrong_rate": 0.5364238410596026
+          },
+          "correction_opportunity_for_left": 11,
+          "correction_opportunity_for_right": 24,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.02420032024383545,
+            "reason": "F1 0.4521 vs 0.4279 on 151 shared samples"
+          }
+        },
+        "sad": {
+          "support": 63,
+          "left_f1": 0.2698412835597992,
+          "right_f1": 0.1538461595773697,
+          "left_recall": 0.2698412835597992,
+          "right_recall": 0.1111111119389534,
+          "f1_difference": 0.1159951239824295,
+          "outcome": {
+            "both_correct": 6,
+            "left_correct_right_wrong": 11,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 45,
+            "samples": 63,
+            "both_correct_rate": 0.09523809523809523,
+            "left_only_rate": 0.1746031746031746,
+            "right_only_rate": 0.015873015873015872,
+            "both_wrong_rate": 0.7142857142857143
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 11,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.1159951239824295,
+            "reason": "F1 0.2698 vs 0.1538 on 63 shared samples"
+          }
+        },
+        "angry": {
+          "support": 95,
+          "left_f1": 0.4976958632469177,
+          "right_f1": 0.45283016562461853,
+          "left_recall": 0.5684210658073425,
+          "right_recall": 0.378947377204895,
+          "f1_difference": 0.044865697622299194,
+          "outcome": {
+            "both_correct": 29,
+            "left_correct_right_wrong": 25,
+            "right_correct_left_wrong": 7,
+            "both_wrong": 34,
+            "samples": 95,
+            "both_correct_rate": 0.30526315789473685,
+            "left_only_rate": 0.2631578947368421,
+            "right_only_rate": 0.07368421052631578,
+            "both_wrong_rate": 0.35789473684210527
+          },
+          "correction_opportunity_for_left": 7,
+          "correction_opportunity_for_right": 25,
+          "stronger": {
+            "winner": "text",
+            "margin": 0.044865697622299194,
+            "reason": "F1 0.4977 vs 0.4528 on 95 shared samples"
+          }
+        },
+        "fear": {
+          "support": 6,
+          "left_f1": 0.0625000074505806,
+          "right_f1": 0.2666666507720947,
+          "left_recall": 0.1666666716337204,
+          "right_recall": 0.3333333432674408,
+          "f1_difference": -0.20416664332151413,
+          "outcome": {
+            "both_correct": 1,
+            "left_correct_right_wrong": 0,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 4,
+            "samples": 6,
+            "both_correct_rate": 0.16666666666666666,
+            "left_only_rate": 0.0,
+            "right_only_rate": 0.16666666666666666,
+            "both_wrong_rate": 0.6666666666666666
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 0,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 6 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "disgust": {
+          "support": 7,
+          "left_f1": 0.06060606613755226,
+          "right_f1": 0.190476194024086,
+          "left_recall": 0.1428571492433548,
+          "right_recall": 0.2857142984867096,
+          "f1_difference": -0.12987012788653374,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 1,
+            "right_correct_left_wrong": 2,
+            "both_wrong": 4,
+            "samples": 7,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.14285714285714285,
+            "right_only_rate": 0.2857142857142857,
+            "both_wrong_rate": 0.5714285714285714
+          },
+          "correction_opportunity_for_left": 2,
+          "correction_opportunity_for_right": 1,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 7 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        },
+        "surprise": {
+          "support": 15,
+          "left_f1": 0.03333333507180214,
+          "right_f1": 0.07407408207654953,
+          "left_recall": 0.06666667014360428,
+          "right_recall": 0.06666667014360428,
+          "f1_difference": -0.04074074700474739,
+          "outcome": {
+            "both_correct": 0,
+            "left_correct_right_wrong": 1,
+            "right_correct_left_wrong": 1,
+            "both_wrong": 13,
+            "samples": 15,
+            "both_correct_rate": 0.0,
+            "left_only_rate": 0.06666666666666667,
+            "right_only_rate": 0.06666666666666667,
+            "both_wrong_rate": 0.8666666666666667
+          },
+          "correction_opportunity_for_left": 1,
+          "correction_opportunity_for_right": 1,
+          "stronger": {
+            "winner": null,
+            "reason": "support is 15 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared"
+          }
+        }
+      },
+      "reading": "'Correction opportunity for X' counts samples where X is wrong and the other modality is right -- the only samples an acquisition could rescue. 'Ceiling if either were trusted' is the accuracy of an oracle that always picked the correct one of the two; it bounds what any routing policy over this pair can reach and is NOT achievable by a real router."
+    }
+  },
+  "specialization": {
+    "per_class": {
+      "neutral": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 172,
+            "winner": "text",
+            "reason": "F1 0.2960 vs 0.4221 on 172 shared samples",
+            "left": "audio",
+            "left_f1": 0.29600000381469727,
+            "right": "text",
+            "right_f1": 0.4221453368663788
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 161,
+            "winner": "video",
+            "reason": "F1 0.4037 vs 0.5039 on 161 shared samples",
+            "left": "text",
+            "left_f1": 0.40366971492767334,
+            "right": "video",
+            "right_f1": 0.5038960576057434
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 172,
+            "winner": "text_llm",
+            "reason": "F1 0.2960 vs 0.5959 on 172 shared samples",
+            "left": "audio",
+            "left_f1": 0.29600000381469727,
+            "right": "text_llm",
+            "right_f1": 0.5959183573722839
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 172,
+            "winner": "text_llm",
+            "reason": "F1 0.4221 vs 0.5959 on 172 shared samples",
+            "left": "text",
+            "left_f1": 0.4221453368663788,
+            "right": "text_llm",
+            "right_f1": 0.5959183573722839
+          }
+        ],
+        "comparisons_with_a_winner": 4,
+        "win_edges": [
+          "text > audio",
+          "video > text",
+          "text_llm > audio",
+          "text_llm > text"
+        ],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [
+          "text_llm",
+          "video"
+        ],
+        "verdict": null,
+        "reason": "several modalities are undefeated (text_llm, video); the aligned pairs do not rank them against each other (text > audio; video > text; text_llm > audio; text_llm > text)"
+      },
+      "happy": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 151,
+            "winner": null,
+            "reason": "F1 differs by only -0.0152; treated as a tie",
+            "left": "audio",
+            "left_f1": 0.4369230568408966,
+            "right": "text",
+            "right_f1": 0.4521072804927826
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 58,
+            "winner": "text",
+            "reason": "F1 0.3019 vs 0.1111 on 58 shared samples",
+            "left": "text",
+            "left_f1": 0.30188679695129395,
+            "right": "video",
+            "right_f1": 0.1111111119389534
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 151,
+            "winner": null,
+            "reason": "F1 differs by only +0.0090; treated as a tie",
+            "left": "audio",
+            "left_f1": 0.4369230568408966,
+            "right": "text_llm",
+            "right_f1": 0.42790696024894714
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 151,
+            "winner": "text",
+            "reason": "F1 0.4521 vs 0.4279 on 151 shared samples",
+            "left": "text",
+            "left_f1": 0.4521072804927826,
+            "right": "text_llm",
+            "right_f1": 0.42790696024894714
+          }
+        ],
+        "comparisons_with_a_winner": 2,
+        "win_edges": [
+          "text > video",
+          "text > text_llm"
+        ],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [
+          "text"
+        ],
+        "verdict": "text",
+        "reason": "text wins at least one aligned comparison for this class and loses none (text > video; text > text_llm)"
+      },
+      "sad": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 63,
+            "winner": "audio",
+            "reason": "F1 0.2921 vs 0.2698 on 63 shared samples",
+            "left": "audio",
+            "left_f1": 0.2921348512172699,
+            "right": "text",
+            "right_f1": 0.2698412835597992
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 25,
+            "winner": "text",
+            "reason": "F1 0.1538 vs 0.0000 on 25 shared samples",
+            "left": "text",
+            "left_f1": 0.1538461595773697,
+            "right": "video",
+            "right_f1": 0.0
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 63,
+            "winner": "audio",
+            "reason": "F1 0.2921 vs 0.1538 on 63 shared samples",
+            "left": "audio",
+            "left_f1": 0.2921348512172699,
+            "right": "text_llm",
+            "right_f1": 0.1538461595773697
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 63,
+            "winner": "text",
+            "reason": "F1 0.2698 vs 0.1538 on 63 shared samples",
+            "left": "text",
+            "left_f1": 0.2698412835597992,
+            "right": "text_llm",
+            "right_f1": 0.1538461595773697
+          }
+        ],
+        "comparisons_with_a_winner": 4,
+        "win_edges": [
+          "audio > text",
+          "text > video",
+          "audio > text_llm",
+          "text > text_llm"
+        ],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [
+          "audio"
+        ],
+        "verdict": "audio",
+        "reason": "audio wins at least one aligned comparison for this class and loses none (audio > text; text > video; audio > text_llm; text > text_llm)"
+      },
+      "angry": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 95,
+            "winner": "audio",
+            "reason": "F1 0.5182 vs 0.4977 on 95 shared samples",
+            "left": "audio",
+            "left_f1": 0.5181818604469299,
+            "right": "text",
+            "right_f1": 0.4976958632469177
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 40,
+            "winner": "text",
+            "reason": "F1 0.3377 vs 0.2093 on 40 shared samples",
+            "left": "text",
+            "left_f1": 0.33766233921051025,
+            "right": "video",
+            "right_f1": 0.20930232107639313
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 95,
+            "winner": "audio",
+            "reason": "F1 0.5182 vs 0.4528 on 95 shared samples",
+            "left": "audio",
+            "left_f1": 0.5181818604469299,
+            "right": "text_llm",
+            "right_f1": 0.45283016562461853
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 95,
+            "winner": "text",
+            "reason": "F1 0.4977 vs 0.4528 on 95 shared samples",
+            "left": "text",
+            "left_f1": 0.4976958632469177,
+            "right": "text_llm",
+            "right_f1": 0.45283016562461853
+          }
+        ],
+        "comparisons_with_a_winner": 4,
+        "win_edges": [
+          "audio > text",
+          "text > video",
+          "audio > text_llm",
+          "text > text_llm"
+        ],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [
+          "audio"
+        ],
+        "verdict": "audio",
+        "reason": "audio wins at least one aligned comparison for this class and loses none (audio > text; text > video; audio > text_llm; text > text_llm)"
+      },
+      "fear": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 6,
+            "winner": null,
+            "reason": "support is 6 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "audio",
+            "left_f1": 0.0,
+            "right": "text",
+            "right_f1": 0.0625000074505806
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 9,
+            "winner": null,
+            "reason": "support is 9 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "text",
+            "left_f1": 0.11267604678869247,
+            "right": "video",
+            "right_f1": 0.0
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 6,
+            "winner": null,
+            "reason": "support is 6 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "audio",
+            "left_f1": 0.0,
+            "right": "text_llm",
+            "right_f1": 0.2666666507720947
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 6,
+            "winner": null,
+            "reason": "support is 6 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "text",
+            "left_f1": 0.0625000074505806,
+            "right": "text_llm",
+            "right_f1": 0.2666666507720947
+          }
+        ],
+        "comparisons_with_a_winner": 0,
+        "win_edges": [],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [],
+        "verdict": null,
+        "reason": "no aligned comparison has usable support for this class"
+      },
+      "disgust": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 7,
+            "winner": null,
+            "reason": "support is 7 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "audio",
+            "left_f1": 0.125,
+            "right": "text",
+            "right_f1": 0.06060606613755226
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 9,
+            "winner": null,
+            "reason": "support is 9 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "text",
+            "left_f1": 0.0,
+            "right": "video",
+            "right_f1": 0.0
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 7,
+            "winner": null,
+            "reason": "support is 7 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "audio",
+            "left_f1": 0.125,
+            "right": "text_llm",
+            "right_f1": 0.190476194024086
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 7,
+            "winner": null,
+            "reason": "support is 7 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "text",
+            "left_f1": 0.06060606613755226,
+            "right": "text_llm",
+            "right_f1": 0.190476194024086
+          }
+        ],
+        "comparisons_with_a_winner": 0,
+        "win_edges": [],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [],
+        "verdict": null,
+        "reason": "no aligned comparison has usable support for this class"
+      },
+      "surprise": {
+        "evidence": [
+          {
+            "pair": "audio+text",
+            "split": "validation",
+            "support": 15,
+            "winner": null,
+            "reason": "support is 15 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "audio",
+            "left_f1": 0.0,
+            "right": "text",
+            "right_f1": 0.03333333507180214
+          },
+          {
+            "pair": "text+video",
+            "split": "validation",
+            "support": 41,
+            "winner": "text",
+            "reason": "F1 0.4768 vs 0.0317 on 41 shared samples",
+            "left": "text",
+            "left_f1": 0.4768211543560028,
+            "right": "video",
+            "right_f1": 0.0317460298538208
+          },
+          {
+            "pair": "audio+text_llm",
+            "split": "validation",
+            "support": 15,
+            "winner": null,
+            "reason": "support is 15 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "audio",
+            "left_f1": 0.0,
+            "right": "text_llm",
+            "right_f1": 0.07407408207654953
+          },
+          {
+            "pair": "text+text_llm",
+            "split": "validation",
+            "support": 15,
+            "winner": null,
+            "reason": "support is 15 (< 20); a single sample moves F1 by more than the observed gap, so no winner is declared",
+            "left": "text",
+            "left_f1": 0.03333333507180214,
+            "right": "text_llm",
+            "right_f1": 0.07407408207654953
+          }
+        ],
+        "comparisons_with_a_winner": 1,
+        "win_edges": [
+          "text > video"
+        ],
+        "participants": [
+          "audio",
+          "text",
+          "text_llm",
+          "video"
+        ],
+        "undefeated": [
+          "text"
+        ],
+        "verdict": "text",
+        "reason": "text wins at least one aligned comparison for this class and loses none (text > video)"
+      }
+    },
+    "classes_with_a_verdict": [
+      "happy",
+      "sad",
+      "angry",
+      "surprise"
+    ],
+    "classes_without_a_verdict": [
+      "neutral",
+      "fear",
+      "disgust"
+    ],
+    "evidence_rule": "Each aligned pair contributes at most one directed 'A beats B' edge per class, and only when the class has at least 20 shared samples in that pool and the F1 gap exceeds 0.02. The verdict is the unique modality that wins at least one comparison and loses none. Edges from different pairs form a partial order, not a vote: 'text > video' and 'text_llm > text' are a consistent chain, not a contradiction. Classes with no edges, several undefeated modalities, or a cycle are reported as undecided.",
+    "coverage_caveat": "This project has exactly two aligned pairs (audio+text, text+video), so image and physiology appear in NO head-to-head comparison. Nothing here says anything about image's class-wise strength relative to the others, and the per-modality profiles must not be read as if it did."
+  },
+  "complementarity": {
+    "pairs": {
+      "audio+text": {
+        "split": "validation",
+        "samples": 509,
+        "left": "audio",
+        "right": "text",
+        "left_accuracy": 0.37721022963523865,
+        "right_accuracy": 0.38113948702812195,
+        "best_single_accuracy": 0.38113948702812195,
+        "oracle_either_accuracy": 0.6051080550098232,
+        "headroom_over_best_single": 0.22396856798170128,
+        "disagreement_rate": 0.7347740667976425,
+        "correction_opportunity_for_left": 116,
+        "correction_opportunity_for_right": 114,
+        "both_wrong_rate": 0.3948919449901768
+      },
+      "text+video": {
+        "split": "validation",
+        "samples": 343,
+        "left": "text",
+        "right": "video",
+        "left_accuracy": 0.3381924331188202,
+        "right_accuracy": 0.32944607734680176,
+        "best_single_accuracy": 0.3381924331188202,
+        "oracle_either_accuracy": 0.577259475218659,
+        "headroom_over_best_single": 0.23906704209983876,
+        "disagreement_rate": 0.8338192419825073,
+        "correction_opportunity_for_left": 82,
+        "correction_opportunity_for_right": 85,
+        "both_wrong_rate": 0.4227405247813411
+      },
+      "audio+text_llm": {
+        "split": "validation",
+        "samples": 509,
+        "left": "audio",
+        "right": "text_llm",
+        "left_accuracy": 0.37721022963523865,
+        "right_accuracy": 0.4715127646923065,
+        "best_single_accuracy": 0.4715127646923065,
+        "oracle_either_accuracy": 0.7072691552062869,
+        "headroom_over_best_single": 0.23575639051398034,
+        "disagreement_rate": 0.7976424361493124,
+        "correction_opportunity_for_left": 168,
+        "correction_opportunity_for_right": 120,
+        "both_wrong_rate": 0.29273084479371314
+      },
+      "text+text_llm": {
+        "split": "validation",
+        "samples": 509,
+        "left": "text",
+        "right": "text_llm",
+        "left_accuracy": 0.38113948702812195,
+        "right_accuracy": 0.4715127646923065,
+        "best_single_accuracy": 0.4715127646923065,
+        "oracle_either_accuracy": 0.6031434184675835,
+        "headroom_over_best_single": 0.13163065377527694,
+        "disagreement_rate": 0.593320235756385,
+        "correction_opportunity_for_left": 113,
+        "correction_opportunity_for_right": 67,
+        "both_wrong_rate": 0.3968565815324165
+      }
+    },
+    "reading": "'Headroom over best single' is how much accuracy an oracle that always trusted the right modality would add over simply always using the better one. It is the ceiling on what routing over this pair can buy. 'Both wrong' is the fraction no amount of routing between these two can fix, and it bounds the pair from the other side."
+  },
+  "integrity": {
+    "reads_only": true,
+    "models_loaded": 0,
+    "checkpoints_touched": 0,
+    "feeds_model_selection": false,
+    "feeds_threshold_selection": false,
+    "feeds_hsig_training": false,
+    "note": "A descriptive analysis of already-frozen exports. Reading the test split here does not open it for tuning: nothing this command produces is consumed by a fitted estimator, a threshold, or a routing decision."
+  },
+  "created_at": "2026-08-30T12:04:01",
+  "git_commit": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]"
+  }
+}

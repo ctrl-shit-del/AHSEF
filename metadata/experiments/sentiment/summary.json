@@ -1,0 +1,50 @@
+{
+  "batch_size": 16384,
+  "canonical_label_mapping": {
+    "angry": 3,
+    "disgust": 5,
+    "fear": 4,
+    "happy": 1,
+    "neutral": 0,
+    "sad": 2,
+    "surprise": 6
+  },
+  "config": {
+    "held_out_session": "Session5",
+    "name": "sentiment",
+    "seed": 42,
+    "split_policy": "official_only",
+    "validation_session": null
+  },
+  "counts": {
+    "test": 4659,
+    "train": 16326,
+    "validation": 1871
+  },
+  "dataset_by_split": {
+    "test": {
+      "CMU-MOSEI": 4659
+    },
+    "train": {
+      "CMU-MOSEI": 16326
+    },
+    "validation": {
+      "CMU-MOSEI": 1871
+    }
+  },
+  "excluded_by_policy": 0,
+  "label_by_split": {
+    "test": {},
+    "train": {},
+    "validation": {}
+  },
+  "modality_availability": {
+    "has_audio": 22856,
+    "has_image": 0,
+    "has_physiology": 0,
+    "has_text": 22856,
+    "has_video": 22856
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "target_definition": "sentiment_score"
+}

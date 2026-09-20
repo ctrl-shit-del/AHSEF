@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-08-31T10:47:28",
+  "protocol_version": "ahsef.milestone.phase_de.v1",
+  "digests": {
+    "experiments\\ahsef\\stage1": {
+      "present": true,
+      "files": 89,
+      "sha256": "6f091b8a07796abc92d273ccbc293975d2521e0ce27bf774cbc51d06ed24180c"
+    },
+    "experiments\\ahsef\\stage2_llm": {
+      "present": true,
+      "files": 17,
+      "sha256": "005f1e63c97604948d2bd7e0992a7fb2dbaaad38c72982bc55794889ad94c91c"
+    },
+    "experiments\\ahsef\\stage3_text_audio": {
+      "present": true,
+      "files": 35,
+      "sha256": "55792450af36aa431e4d0bc3efa78591a6684d77db13da5155c84b19314dd56e"
+    },
+    "experiments\\audio_strong": {
+      "present": true,
+      "files": 77,
+      "sha256": "a59c8ddd5a135cc1d7a96bd50295383946556760c9cd61d6116befa1b64f79ea"
+    }
+  }
+}

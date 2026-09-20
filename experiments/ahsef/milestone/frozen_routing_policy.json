@@ -1,0 +1,230 @@
+{
+  "experiment_id": "ahsef_50pct_milestone_v1",
+  "protocol_version": "ahsef.milestone.phase_de.v1",
+  "frozen_at": "2026-08-31T10:55:05",
+  "selected_target": "uncertainty_only",
+  "selection_rule": {
+    "primary_criterion": "mean validation macro-F1 over the low-budget operating region ['5%', '10%', '15%', '20%', '25%'], using out-of-fold scores",
+    "admissibility_gate": "the policy must exceed the matched-budget random control's 97.5th percentile macro-F1 at at least one interior budget",
+    "tie_break_1": "within 0.005 macro-F1, the simpler signal wins; a fitted target must clear uncertainty_only by more than that margin to be selected over it",
+    "tie_break_2": "higher retained fraction of the always-fusion macro-F1 gain at 10%",
+    "tie_break_3": "alphabetical target name, so the rule is total",
+    "metric": "macro_f1",
+    "why_not_accuracy": "Stage 2 measured that accuracy-shaped gating on this corpus buys neutral and loses macro-F1. Selecting on accuracy would reproduce that.",
+    "declared": "before any Phase D estimator was fitted or scored",
+    "uses_test_labels": false,
+    "uses_test_split": false
+  },
+  "selection_outcome": "TARGET SELECTED",
+  "parsimony_applied": true,
+  "routing_rule": {
+    "score": "the frozen Stage 2/3 routing uncertainty (normalised score entropy of the Gemma response), used directly",
+    "requires_estimator": false,
+    "estimator_fingerprint": null,
+    "estimator_artefact": null,
+    "decision": "acquire audio on the top-k samples by score",
+    "tie_break": "index order, so the acquired set is deterministic",
+    "k": "budget x pool size, rounded to nearest"
+  },
+  "acquisition_budget": {
+    "selected": 0.1,
+    "rule": "smallest budget meeting every MATERIAL_ROUTING_SUCCESS condition",
+    "grid": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "fusion": {
+    "method": "weighted_probability",
+    "weights": {
+      "audio": 0.6,
+      "text_llm": 0.4
+    },
+    "weights_normalised": true,
+    "selected_on_split": "validation",
+    "uses_test_labels": false,
+    "selection": {
+      "method": "exhaustive_grid_scan",
+      "objective": "macro_f1",
+      "grid": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "anchor": "text_llm",
+      "best_weight": 0.4,
+      "best_score": 0.4085569381713867,
+      "pool_size": 509,
+      "scanned": [
+        {
+          "weight_text_llm": 0.05,
+          "macro_f1": 0.3312579095363617
+        },
+        {
+          "weight_text_llm": 0.1,
+          "macro_f1": 0.33059436082839966
+        },
+        {
+          "weight_text_llm": 0.15,
+          "macro_f1": 0.34130722284317017
+        },
+        {
+          "weight_text_llm": 0.2,
+          "macro_f1": 0.3457390367984772
+        },
+        {
+          "weight_text_llm": 0.25,
+          "macro_f1": 0.34470605850219727
+        },
+        {
+          "weight_text_llm": 0.3,
+          "macro_f1": 0.3580116629600525
+        },
+        {
+          "weight_text_llm": 0.35,
+          "macro_f1": 0.3889220058917999
+        },
+        {
+          "weight_text_llm": 0.4,
+          "macro_f1": 0.4085569381713867
+        },
+        {
+          "weight_text_llm": 0.45,
+          "macro_f1": 0.3988488018512726
+        },
+        {
+          "weight_text_llm": 0.5,
+          "macro_f1": 0.3833385407924652
+        },
+        {
+          "weight_text_llm": 0.55,
+          "macro_f1": 0.3715357780456543
+        },
+        {
+          "weight_text_llm": 0.6,
+          "macro_f1": 0.36389192938804626
+        },
+        {
+          "weight_text_llm": 0.65,
+          "macro_f1": 0.3351914882659912
+        },
+        {
+          "weight_text_llm": 0.7,
+          "macro_f1": 0.325965017080307
+        },
+        {
+          "weight_text_llm": 0.75,
+          "macro_f1": 0.3119020164012909
+        },
+        {
+          "weight_text_llm": 0.8,
+          "macro_f1": 0.3096728026866913
+        },
+        {
+          "weight_text_llm": 0.85,
+          "macro_f1": 0.30977317690849304
+        },
+        {
+          "weight_text_llm": 0.9,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.95,
+          "macro_f1": 0.30881693959236145
+        }
+      ],
+      "reused_from": "experiments\\ahsef\\analysis\\audio_expert\\phase_c_aligned.json"
+    }
+  },
+  "experts": {
+    "text": "gemma4:31b-cloud, Stage 2 frozen prompt and decoding",
+    "audio": "audio_strong -- frozen WAV2VEC2_BASE + LayerWeightedProbe"
+  },
+  "costs": {
+    "text_llm": {
+      "latency_ms_per_sample": 3449.7265468379446,
+      "compute_units_per_sample": 22399500000000.0
+    },
+    "audio_strong": {
+      "latency_ms_per_sample": 289.0644272660753,
+      "compute_units_per_sample": 6042191899648.0,
+      "encoder_ms_per_sample": 288.88308016697573,
+      "head_ms_per_sample": 0.18134709909956967,
+      "encoder_parameters": 94370944,
+      "head_parameters": 266003,
+      "includes_encoder": true,
+      "includes_head": true
+    },
+    "audio_strong_share_of_text_latency": 0.08379343212900013,
+    "policy": {
+      "measured_on": "the Phase B-1 validation pass, not on the Phase D/E pool",
+      "re_measurement": "prohibited -- Phase E reads costs, it does not time anything",
+      "audio_strong_components": "frozen WAV2VEC2_BASE encoder (dominant) plus the trainable LayerWeightedProbe head",
+      "why_not_the_cached_head_latency": "The probe reads features the encoder already produced. At deployment the encoder runs per request, so charging only the head would understate the price of acquiring audio by roughly three orders of magnitude and would make every budget on the curve look free.",
+      "compute_units": "parameters x input_elements, the multiply-accumulate-order proxy used throughout this project. It is a proxy and is labelled as one.",
+      "text_llm_latency": "measured end-to-end wall clock from the Stage 3 pass, including queueing and cloud scheduling -- not generation time, which Stage 2 measured at roughly a fifth of it."
+    },
+    "sources": {
+      "audio_strong_latency": "experiments\\ahsef\\analysis\\audio_expert\\phase_b1_comparison.json",
+      "audio_strong_geometry": "experiments\\audio_strong\\features\\validation\\extraction_provenance.json",
+      "text_llm": "experiments\\ahsef\\stage3_text_audio\\frozen_config.json",
+      "encoder": "WAV2VEC2_BASE",
+      "encoder_input_elements": 64000,
+      "head_input_elements": 9216
+    },
+    "frozen": true,
+    "re_measured_on_evaluation_pool": false
+  },
+  "seeds": {
+    "estimator_seed": 42,
+    "random_control_seed": 42
+  },
+  "validation_performance": {
+    "budget": 0.1,
+    "acquired": 51,
+    "acquisition_rate": 0.10019646365422397,
+    "macro_f1": 0.36031046509742737,
+    "accuracy": 0.4990176856517792,
+    "weighted_f1": 0.47050583362579346
+  },
+  "material_routing_success": true,
+  "fingerprints": {
+    "pool": "e3ff7bdd4fbd34d609e80bc899c91349a8298064e958ee72362064503c99c605",
+    "cost_configuration": "e3534119a7c9ba50928f981b16a094b11ed074a3749466b64101bda96bb4e69a",
+    "targets": {
+      "binary_correction": "98cc54743ff4796bebf0b052fbb6caf130304de0809f3795f8e2870b900d55c3",
+      "signed_gain": "c1542ec4cd599d224c97e18fdfa0e777cf666d24d028e77a25f5651875337fd2",
+      "class_balanced_gain": "dedfd27706ddcbf48f401c6432c81d904ef47ced3d16a8e9913a655890ad09ef",
+      "macro_f1_marginal": "f68a9140f6d3417358ceed6fe4f28471173ddf396c59924f8fe732b8b271b612",
+      "uncertainty_reduction": "c5153e6fd1fd3d12d9fdb656c35ed2f4a434ec0a495ded9f3e12f375b8a25bd7"
+    }
+  },
+  "uses_test_labels": false,
+  "test_partition_opened": false,
+  "lock_note": "Everything the locked Phase F evaluation depends on is fixed here. Reselecting the target, refitting the estimator, moving the budget or retuning a fusion weight after this point invalidates the evaluation, and Phase F must verify this file before opening the test split."
+}

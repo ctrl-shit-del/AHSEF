@@ -1,0 +1,83 @@
+{
+  "schema": "ahsef.predictions.v1",
+  "modality": "audio_strong",
+  "split": "validation",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "samples": 5550,
+  "predictions_path": "experiments\\ahsef\\analysis\\audio_expert\\audio_strong__validation.parquet",
+  "experiment": "audio_strong_full",
+  "iteration": "1",
+  "task": "emotion_7class",
+  "class_order_source": "run_summary.class_order",
+  "task_limitation": null,
+  "metadata_dir": "experiments\\audio_strong\\full\\metadata",
+  "manifest": "experiments\\audio_strong\\full\\metadata\\validation.parquet",
+  "checkpoint": "experiments\\audio_strong\\full\\iteration_1\\checkpoints\\best.pt",
+  "checkpoint_sha256": "306c3f745709d73ff566e0b2d37ca498f7937142035c8b9ccf9ed97944c9f56d",
+  "checkpoint_unchanged": true,
+  "baseline_best_epoch": 5,
+  "baseline_best_val_macro_f1": 0.38311317563056946,
+  "baseline_seed": 42,
+  "baseline_run_seed": null,
+  "model": {
+    "class": "LayerWeightedProbe",
+    "parameters": 266003,
+    "num_classes": 7,
+    "num_layers": 12,
+    "feature_dim": 768,
+    "hidden_dim": 256,
+    "dropout": 0.2,
+    "trainable_parameters": 266003,
+    "pooling": "learned softmax weighting over encoder layers",
+    "encoder_frozen": true,
+    "encoder_trained_by_this_project": false,
+    "front_end": {
+      "schema": "ahsef.audio.wav2vec2_layer_means.v1",
+      "bundle": "WAV2VEC2_BASE",
+      "sample_rate": 16000,
+      "max_seconds": 4.0,
+      "normalize_waveform": false,
+      "batch_size": 16,
+      "pooling": "mean over valid (unpadded) time frames, per transformer layer",
+      "frozen_encoder": true,
+      "storage_dtype": "float16",
+      "feature_cache": "experiments\\audio_strong\\features",
+      "cache_fingerprint": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+      "cached_train_samples": 18715
+    }
+  },
+  "device": "cpu",
+  "temperature": 1.0,
+  "temperature_applied": false,
+  "uncertainty_definition": {
+    "confidence": "max_c p_c",
+    "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+    "entropy_base": "natural logarithm (nats)",
+    "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+    "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+    "calibrated": false,
+    "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+  },
+  "latency": {
+    "measured": true,
+    "wall_seconds": 1.0493,
+    "mean_latency_ms": 0.18134709909956967,
+    "mean_inference_ms": 0.016449207206925814,
+    "mean_feature_ms": 0.16489789189264384,
+    "note": "Wall-clock on this host, batch time divided evenly across the batch. Comparable across modalities only within one export run."
+  },
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.12.0+cpu"
+  },
+  "exported_at": "2026-08-30T15:13:58",
+  "uses_labels_for_prediction": false
+}

@@ -1,0 +1,824 @@
+{
+  "samples": 482,
+  "anchor_only": {
+    "name": "audio (pool)",
+    "modality": "audio",
+    "split": "test",
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "metrics": {
+      "accuracy": 0.33195021748542786,
+      "macro_precision": 0.21339835226535797,
+      "macro_recall": 0.23427923023700714,
+      "macro_f1": 0.1990279108285904,
+      "weighted_f1": 0.32513749599456787,
+      "per_class_precision": [
+        0.5652173757553101,
+        0.30985915660858154,
+        0.1796875,
+        0.4390243887901306,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_class_recall": [
+        0.19696970283985138,
+        0.36666667461395264,
+        0.4893617033958435,
+        0.5869565010070801,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_class_f1": [
+        0.2921348214149475,
+        0.3358778655529022,
+        0.2628571391105652,
+        0.5023255348205566,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support": [
+        198,
+        120,
+        47,
+        92,
+        6,
+        8,
+        11
+      ],
+      "confusion_matrix": [
+        [
+          39,
+          56,
+          71,
+          20,
+          0,
+          8,
+          4
+        ],
+        [
+          10,
+          44,
+          24,
+          39,
+          0,
+          2,
+          1
+        ],
+        [
+          10,
+          9,
+          23,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          20,
+          8,
+          54,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          3,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          6,
+          0,
+          3,
+          0,
+          1,
+          0
+        ]
+      ],
+      "samples": 482,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "per_class": {
+        "neutral": {
+          "precision": 0.5652173757553101,
+          "recall": 0.19696970283985138,
+          "f1": 0.2921348214149475,
+          "support": 198
+        },
+        "happy": {
+          "precision": 0.30985915660858154,
+          "recall": 0.36666667461395264,
+          "f1": 0.3358778655529022,
+          "support": 120
+        },
+        "sad": {
+          "precision": 0.1796875,
+          "recall": 0.4893617033958435,
+          "f1": 0.2628571391105652,
+          "support": 47
+        },
+        "angry": {
+          "precision": 0.4390243887901306,
+          "recall": 0.5869565010070801,
+          "f1": 0.5023255348205566,
+          "support": 92
+        },
+        "fear": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6
+        },
+        "disgust": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8
+        },
+        "surprise": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        }
+      }
+    },
+    "uncertainty": {
+      "samples": 482,
+      "mean_normalized_entropy": 0.9161104663050232,
+      "median_normalized_entropy": 0.9404366298532735,
+      "std_normalized_entropy": 0.06826742629720842,
+      "mean_predictive_entropy": 1.78266865403874,
+      "mean_confidence": 0.28481112447407575,
+      "mean_margin": 0.0771995454348821,
+      "mean_uncertainty_when_correct": 0.9107617180129257,
+      "mean_uncertainty_when_wrong": 0.9187682294315311,
+      "uncertainty_separation": 0.008006511418605422,
+      "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+    },
+    "cost": {
+      "mean_latency_ms": 29.5733608532162,
+      "median_latency_ms": 29.39114374999008,
+      "total_latency_ms": 14254.359931250208,
+      "mean_inference_ms": 0.14224825596470467,
+      "mean_feature_ms": 29.43111259725149
+    },
+    "provenance": {
+      "experiment": "audio_25pct",
+      "iteration": "2",
+      "checkpoint_sha256": "bd317985860ad9c1b53e5e998288ef85a360a2f28e35b7e0028fa386fc94cb06",
+      "temperature": 1.0,
+      "manifest": "experiments\\audio\\25pct\\metadata\\test.parquet"
+    }
+  },
+  "candidate_only": {
+    "name": "text (pool)",
+    "modality": "text",
+    "split": "test",
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "metrics": {
+      "accuracy": 0.39834025502204895,
+      "macro_precision": 0.27976617217063904,
+      "macro_recall": 0.33823341131210327,
+      "macro_f1": 0.28516650199890137,
+      "weighted_f1": 0.4151005446910858,
+      "per_class_precision": [
+        0.5593220591545105,
+        0.4957983195781708,
+        0.2631579041481018,
+        0.4144144058227539,
+        0.0555555559694767,
+        0.1034482792019844,
+        0.06666667014360428
+      ],
+      "per_class_recall": [
+        0.3333333432674408,
+        0.49166667461395264,
+        0.3191489279270172,
+        0.5,
+        0.1666666716337204,
+        0.375,
+        0.1818181872367859
+      ],
+      "per_class_f1": [
+        0.41772153973579407,
+        0.4937238395214081,
+        0.2884615361690521,
+        0.4532019793987274,
+        0.0833333358168602,
+        0.1621621698141098,
+        0.09756097942590714
+      ],
+      "support": [
+        198,
+        120,
+        47,
+        92,
+        6,
+        8,
+        11
+      ],
+      "confusion_matrix": [
+        [
+          66,
+          40,
+          24,
+          36,
+          5,
+          12,
+          15
+        ],
+        [
+          19,
+          59,
+          5,
+          19,
+          2,
+          9,
+          7
+        ],
+        [
+          13,
+          7,
+          15,
+          7,
+          3,
+          0,
+          2
+        ],
+        [
+          15,
+          9,
+          9,
+          46,
+          6,
+          4,
+          3
+        ],
+        [
+          1,
+          1,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          2,
+          1,
+          1,
+          0,
+          3,
+          1
+        ],
+        [
+          4,
+          1,
+          3,
+          0,
+          1,
+          0,
+          2
+        ]
+      ],
+      "samples": 482,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "per_class": {
+        "neutral": {
+          "precision": 0.5593220591545105,
+          "recall": 0.3333333432674408,
+          "f1": 0.41772153973579407,
+          "support": 198
+        },
+        "happy": {
+          "precision": 0.4957983195781708,
+          "recall": 0.49166667461395264,
+          "f1": 0.4937238395214081,
+          "support": 120
+        },
+        "sad": {
+          "precision": 0.2631579041481018,
+          "recall": 0.3191489279270172,
+          "f1": 0.2884615361690521,
+          "support": 47
+        },
+        "angry": {
+          "precision": 0.4144144058227539,
+          "recall": 0.5,
+          "f1": 0.4532019793987274,
+          "support": 92
+        },
+        "fear": {
+          "precision": 0.0555555559694767,
+          "recall": 0.1666666716337204,
+          "f1": 0.0833333358168602,
+          "support": 6
+        },
+        "disgust": {
+          "precision": 0.1034482792019844,
+          "recall": 0.375,
+          "f1": 0.1621621698141098,
+          "support": 8
+        },
+        "surprise": {
+          "precision": 0.06666667014360428,
+          "recall": 0.1818181872367859,
+          "f1": 0.09756097942590714,
+          "support": 11
+        }
+      }
+    },
+    "uncertainty": {
+      "samples": 482,
+      "mean_normalized_entropy": 0.7951371861148456,
+      "median_normalized_entropy": 0.8326876620087431,
+      "std_normalized_entropy": 0.14892190309827957,
+      "mean_predictive_entropy": 1.5472655203521615,
+      "mean_confidence": 0.40806396277419044,
+      "mean_margin": 0.198662580518244,
+      "mean_uncertainty_when_correct": 0.7590103504161817,
+      "mean_uncertainty_when_wrong": 0.8190556428532714,
+      "uncertainty_separation": 0.06004529243708967,
+      "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+    },
+    "cost": {
+      "mean_latency_ms": 20.042359012854753,
+      "median_latency_ms": 18.918046874993877,
+      "total_latency_ms": 9660.41704419599,
+      "mean_inference_ms": 0.02826391541905188,
+      "mean_feature_ms": 20.0140950974357
+    },
+    "provenance": {
+      "experiment": "text_full",
+      "iteration": "1",
+      "checkpoint_sha256": "3dab6b9be6f4a3524754a2e137ed8cabb531f65a50cef7262bd219f7099dd313",
+      "temperature": 1.0,
+      "manifest": "experiments\\text\\full\\metadata\\test.parquet"
+    }
+  },
+  "fused": {
+    "name": "audio+text",
+    "modality": "audio+text",
+    "split": "test",
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "metrics": {
+      "accuracy": 0.4128630757331848,
+      "macro_precision": 0.3200106620788574,
+      "macro_recall": 0.35705357789993286,
+      "macro_f1": 0.3192315101623535,
+      "weighted_f1": 0.41414403915405273,
+      "per_class_precision": [
+        0.6292135119438171,
+        0.4444444477558136,
+        0.16129031777381897,
+        0.4661654233932495,
+        0.1428571492433548,
+        0.2142857164144516,
+        0.1818181872367859
+      ],
+      "per_class_recall": [
+        0.28282827138900757,
+        0.5,
+        0.3191489279270172,
+        0.6739130616188049,
+        0.1666666716337204,
+        0.375,
+        0.1818181872367859
+      ],
+      "per_class_f1": [
+        0.39024388790130615,
+        0.4705882668495178,
+        0.2142857164144516,
+        0.551111102104187,
+        0.1538461595773697,
+        0.27272725105285645,
+        0.1818181872367859
+      ],
+      "support": [
+        198,
+        120,
+        47,
+        92,
+        6,
+        8,
+        11
+      ],
+      "confusion_matrix": [
+        [
+          56,
+          49,
+          57,
+          24,
+          1,
+          5,
+          6
+        ],
+        [
+          11,
+          60,
+          13,
+          31,
+          1,
+          3,
+          1
+        ],
+        [
+          11,
+          8,
+          15,
+          9,
+          3,
+          0,
+          1
+        ],
+        [
+          7,
+          11,
+          7,
+          62,
+          1,
+          3,
+          1
+        ],
+        [
+          1,
+          2,
+          0,
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          3,
+          0,
+          3,
+          0
+        ],
+        [
+          2,
+          4,
+          1,
+          2,
+          0,
+          0,
+          2
+        ]
+      ],
+      "samples": 482,
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "per_class": {
+        "neutral": {
+          "precision": 0.6292135119438171,
+          "recall": 0.28282827138900757,
+          "f1": 0.39024388790130615,
+          "support": 198
+        },
+        "happy": {
+          "precision": 0.4444444477558136,
+          "recall": 0.5,
+          "f1": 0.4705882668495178,
+          "support": 120
+        },
+        "sad": {
+          "precision": 0.16129031777381897,
+          "recall": 0.3191489279270172,
+          "f1": 0.2142857164144516,
+          "support": 47
+        },
+        "angry": {
+          "precision": 0.4661654233932495,
+          "recall": 0.6739130616188049,
+          "f1": 0.551111102104187,
+          "support": 92
+        },
+        "fear": {
+          "precision": 0.1428571492433548,
+          "recall": 0.1666666716337204,
+          "f1": 0.1538461595773697,
+          "support": 6
+        },
+        "disgust": {
+          "precision": 0.2142857164144516,
+          "recall": 0.375,
+          "f1": 0.27272725105285645,
+          "support": 8
+        },
+        "surprise": {
+          "precision": 0.1818181872367859,
+          "recall": 0.1818181872367859,
+          "f1": 0.1818181872367859,
+          "support": 11
+        }
+      }
+    },
+    "uncertainty": {
+      "samples": 482,
+      "mean_normalized_entropy": 0.9235447245240704,
+      "median_normalized_entropy": 0.9355823212549197,
+      "std_normalized_entropy": 0.04810985466638401,
+      "mean_predictive_entropy": 1.797135052557882,
+      "mean_confidence": 0.2875065895936304,
+      "mean_margin": 0.08777590094846885,
+      "mean_uncertainty_when_correct": 0.912622496055722,
+      "mean_uncertainty_when_wrong": 0.9312250194541104,
+      "uncertainty_separation": 0.018602523398388415,
+      "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+    },
+    "cost": {
+      "mean_latency_ms": 49.615719866070954,
+      "median_latency_ms": 48.3802859375011,
+      "total_latency_ms": 23914.7769754462,
+      "mean_inference_ms": 0.17051217138375654,
+      "mean_feature_ms": 49.44520769468719
+    },
+    "provenance": {
+      "kind": "fused",
+      "component_modalities": [
+        "audio",
+        "text"
+      ],
+      "fusion": {
+        "method": "weighted_probability",
+        "weights": {
+          "audio": 0.65,
+          "text": 0.35
+        },
+        "weights_normalised": true,
+        "selected_on_split": "validation",
+        "uses_test_labels": false,
+        "selection": {
+          "method": "exhaustive_grid_scan",
+          "objective": "macro_f1",
+          "grid": [
+            0.0,
+            0.05,
+            0.1,
+            0.15,
+            0.2,
+            0.25,
+            0.3,
+            0.35,
+            0.4,
+            0.45,
+            0.5,
+            0.55,
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1.0
+          ],
+          "anchor": "audio",
+          "best_weight": 0.65,
+          "best_score": 0.32151827216148376,
+          "pool_size": 509,
+          "scanned": [
+            {
+              "weight_audio": 0.05,
+              "macro_f1": 0.2580668032169342
+            },
+            {
+              "weight_audio": 0.1,
+              "macro_f1": 0.2629217207431793
+            },
+            {
+              "weight_audio": 0.15,
+              "macro_f1": 0.26613306999206543
+            },
+            {
+              "weight_audio": 0.2,
+              "macro_f1": 0.2682989537715912
+            },
+            {
+              "weight_audio": 0.25,
+              "macro_f1": 0.2794284224510193
+            },
+            {
+              "weight_audio": 0.3,
+              "macro_f1": 0.28738218545913696
+            },
+            {
+              "weight_audio": 0.35,
+              "macro_f1": 0.29435721039772034
+            },
+            {
+              "weight_audio": 0.4,
+              "macro_f1": 0.28628429770469666
+            },
+            {
+              "weight_audio": 0.45,
+              "macro_f1": 0.28956541419029236
+            },
+            {
+              "weight_audio": 0.5,
+              "macro_f1": 0.30417850613594055
+            },
+            {
+              "weight_audio": 0.55,
+              "macro_f1": 0.3098711371421814
+            },
+            {
+              "weight_audio": 0.6,
+              "macro_f1": 0.3154853880405426
+            },
+            {
+              "weight_audio": 0.65,
+              "macro_f1": 0.32151827216148376
+            },
+            {
+              "weight_audio": 0.7,
+              "macro_f1": 0.30768653750419617
+            },
+            {
+              "weight_audio": 0.75,
+              "macro_f1": 0.2914590537548065
+            },
+            {
+              "weight_audio": 0.8,
+              "macro_f1": 0.28476813435554504
+            },
+            {
+              "weight_audio": 0.85,
+              "macro_f1": 0.2721188962459564
+            },
+            {
+              "weight_audio": 0.9,
+              "macro_f1": 0.2642979323863983
+            },
+            {
+              "weight_audio": 0.95,
+              "macro_f1": 0.2528996169567108
+            }
+          ]
+        }
+      },
+      "pool_size": 482
+    }
+  },
+  "agreement": {
+    "samples": 482,
+    "left": "audio",
+    "right": "text",
+    "prediction_agreement_rate": 0.2531120479106903,
+    "both_correct": 72,
+    "only_left_correct": 88,
+    "only_right_correct": 120,
+    "both_wrong": 202,
+    "complementarity_headroom": 0.24896265560165975,
+    "headroom_note": "complementarity_headroom is the fraction of samples the anchor gets wrong and the candidate gets right. It is the ceiling on what any fusion of these two frozen models could recover on this pool."
+  },
+  "delta_uncertainty": {
+    "samples": 482,
+    "active_modalities": [
+      "audio"
+    ],
+    "candidate_modality": [
+      "text"
+    ],
+    "mean_uncertainty_before": 0.9161104663050232,
+    "mean_uncertainty_after": 0.9235447245240704,
+    "mean_delta_uncertainty": -0.007434258219047323,
+    "median_delta_uncertainty": -0.0021617158115868063,
+    "std_delta_uncertainty": 0.05132847681237332,
+    "min_delta_uncertainty": -0.1836577301909671,
+    "max_delta_uncertainty": 0.13451583775912934,
+    "positive_delta_rate": 0.470954356846473,
+    "prediction_change_rate": 0.43775933609958506,
+    "outcome": {
+      "correct_before": 160,
+      "correct_after": 199,
+      "fixed_by_candidate": 86,
+      "broken_by_candidate": 47,
+      "net_corrections": 39,
+      "note": "Diagnostic only; correctness is read after routing, never during it."
+    },
+    "normalized_latency": 0.049495282434002516,
+    "normalized_cost": 0.0027625890340219708,
+    "mean_measured_marginal_latency_ms": 20.042359012854753
+  },
+  "delta_uncertainty_by_band": [
+    {
+      "lower": 0.0,
+      "upper": 0.6,
+      "samples": 0,
+      "mean_delta_uncertainty": null,
+      "positive_delta_rate": null,
+      "accuracy_before": null,
+      "accuracy_after": null
+    },
+    {
+      "lower": 0.6,
+      "upper": 0.8,
+      "samples": 38,
+      "mean_delta_uncertainty": -0.10130931499648892,
+      "positive_delta_rate": 0.02631578947368421,
+      "accuracy_before": 0.47368421052631576,
+      "accuracy_after": 0.5
+    },
+    {
+      "lower": 0.8,
+      "upper": 0.9,
+      "samples": 108,
+      "mean_delta_uncertainty": -0.0368711150890832,
+      "positive_delta_rate": 0.1574074074074074,
+      "accuracy_before": 0.28703703703703703,
+      "accuracy_after": 0.3611111111111111
+    },
+    {
+      "lower": 0.9,
+      "upper": 0.95,
+      "samples": 145,
+      "mean_delta_uncertainty": -0.0013534203094360566,
+      "positive_delta_rate": 0.42758620689655175,
+      "accuracy_before": 0.3448275862068966,
+      "accuracy_after": 0.41379310344827586
+    },
+    {
+      "lower": 0.95,
+      "upper": 1.0,
+      "samples": 191,
+      "mean_delta_uncertainty": 0.023271036035471118,
+      "positive_delta_rate": 0.7696335078534031,
+      "accuracy_before": 0.3193717277486911,
+      "accuracy_after": 0.42408376963350786
+    }
+  ],
+  "artefacts": {
+    "fused_predictions": "experiments\\ahsef\\stage1\\fusion\\audio+text\\test_predictions.parquet",
+    "delta_uncertainty": "experiments\\ahsef\\stage1\\fusion\\audio+text\\test_delta_uncertainty.parquet"
+  }
+}

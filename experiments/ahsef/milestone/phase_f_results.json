@@ -1,0 +1,2388 @@
+{
+  "experiment_id": "ahsef_50pct_milestone_v1",
+  "protocol_version": "ahsef.milestone.phase_f.v1",
+  "phase": "F -- locked test evaluation",
+  "split": "test",
+  "lock_checks": {
+    "protocol": "ahsef.milestone.phase_f.v1",
+    "conditions_declared": [
+      "1_frozen_policy_exists",
+      "2_frozen_policy_fingerprint_recorded",
+      "3_validation_configuration_frozen",
+      "4_no_prior_test_label_use",
+      "5_validation_and_test_disjoint",
+      "6_test_manifest_matches_lock",
+      "7_alignment_valid",
+      "8_no_contaminated_ids",
+      "9_model_fingerprints_match",
+      "10_cost_configuration_matches"
+    ],
+    "conditions_run": [
+      "1_frozen_policy_exists",
+      "2_frozen_policy_fingerprint_recorded",
+      "3_validation_configuration_frozen",
+      "4_no_prior_test_label_use",
+      "5_validation_and_test_disjoint",
+      "6_test_manifest_matches_lock",
+      "7_alignment_valid",
+      "8_no_contaminated_ids",
+      "9_model_fingerprints_match",
+      "10_cost_configuration_matches"
+    ],
+    "checks": [
+      {
+        "condition": "1_frozen_policy_exists",
+        "passed": true,
+        "detail": {
+          "path": "experiments\\ahsef\\milestone\\frozen_routing_policy.json",
+          "exists": true
+        },
+        "why_it_matters": "Without a frozen policy on disk there is nothing to evaluate, and any policy assembled here would have been chosen after the test split existed."
+      },
+      {
+        "condition": "2_frozen_policy_fingerprint_recorded",
+        "passed": true,
+        "detail": {
+          "sha256": "b2f8ced01204940599092f0db46c0965ebbae0b7e4ff1b38303ae94fa2cb6f37",
+          "frozen_at": "2026-08-31T10:55:05",
+          "protocol_version": "ahsef.milestone.phase_de.v1"
+        },
+        "why_it_matters": "The fingerprint is what lets a reader confirm that the policy evaluated here is the policy that was frozen, rather than one edited afterwards."
+      },
+      {
+        "condition": "3_validation_configuration_frozen",
+        "passed": true,
+        "detail": {
+          "selected_target": "uncertainty_only",
+          "budget": 0.1,
+          "fusion_weights": {
+            "audio": 0.6,
+            "text_llm": 0.4
+          },
+          "phase_de_selected_target": "uncertainty_only",
+          "phase_de_budget": 0.1,
+          "phase_de_fusion_weights": {
+            "audio": 0.6,
+            "text_llm": 0.4
+          }
+        },
+        "why_it_matters": "The frozen policy and the Phase D/E record must describe the same policy. If they disagree, one of them was edited and neither can be trusted."
+      },
+      {
+        "condition": "4_no_prior_test_label_use",
+        "passed": true,
+        "detail": {
+          "declarations": {
+            "policy.uses_test_labels": false,
+            "policy.test_partition_opened": false,
+            "policy.selection_rule.uses_test_labels": false,
+            "policy.selection_rule.uses_test_split": false,
+            "policy.fusion.uses_test_labels": false,
+            "phase_de.test_partition_opened": false,
+            "phase_de.test_labels_used": false,
+            "phase_de.thresholds_tuned_on_test": false,
+            "phase_d.test_partition_opened": false,
+            "stage3.uses_test_labels": false,
+            "text_llm.uses_labels_for_prediction": false,
+            "audio_strong.uses_labels_for_prediction": false
+          },
+          "decisions_covered": [
+            "target selection",
+            "threshold selection",
+            "budget selection",
+            "fusion-weight selection",
+            "model selection",
+            "prompt selection",
+            "uncertainty selection"
+          ]
+        },
+        "why_it_matters": "Every one of these was recorded by the phase that made the decision, at the time it made it. A flag written now would prove nothing."
+      },
+      {
+        "condition": "5_validation_and_test_disjoint",
+        "passed": true,
+        "detail": {
+          "validation_pool_size": 509,
+          "test_pool_size": 482,
+          "overlapping_ids": 0,
+          "examples": [],
+          "validation_fingerprint": "e3ff7bdd4fbd34d609e80bc899c91349a8298064e958ee72362064503c99c605",
+          "test_fingerprint": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838"
+        },
+        "why_it_matters": "A sample in both pools would have contributed to the policy that is now being evaluated on it."
+      },
+      {
+        "condition": "6_test_manifest_matches_lock",
+        "passed": true,
+        "detail": {
+          "audio_manifest_test_fingerprint": "cec265feb59a46f8da346ef96b48e622fef6235ca8f09c3ba425a51100ede94a",
+          "audio_manifest_test_samples": 5542,
+          "aligned_pool_fingerprint": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+          "stage3_recorded_pool_fingerprint": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+          "aligned_pool_size": 482,
+          "stage3_recorded_pool_size": 482
+        },
+        "why_it_matters": "The pool must be the one whose fingerprint was recorded before the policy was frozen, not one re-derived now from a manifest that may have moved."
+      },
+      {
+        "condition": "7_alignment_valid",
+        "passed": true,
+        "detail": {
+          "modalities": [
+            "audio",
+            "text"
+          ],
+          "task": "emotion_7class",
+          "size": 482,
+          "unique_ids": 482,
+          "labels_used_for_inclusion": false,
+          "pool_rule": "ids present in the SAME split of both the audio and the text experiment manifest. Ids shared across DIFFERENT splits are excluded and counted, because one model trained on them."
+        },
+        "why_it_matters": "The pool must contain each id once, must carry both modalities, and must not have used a label to decide membership."
+      },
+      {
+        "condition": "8_no_contaminated_ids",
+        "passed": true,
+        "detail": {
+          "validation_test_overlap": 0,
+          "recorded_cross_split_check": "not recorded by the pool",
+          "pool_excludes_cross_split_ids": true
+        },
+        "why_it_matters": "A sample that appears in another split's training manifest was seen by a model that is now being tested on it."
+      },
+      {
+        "condition": "9_model_fingerprints_match",
+        "passed": true,
+        "detail": {
+          "text_model": "gemma4:31b-cloud",
+          "text_prompt_sha256": "a6e8e7d02edb101f68b7886ec603871f31f6d9ce09fe37c01e47d20eb3e7ba7b",
+          "text_prompt_version": "v2_explicit_json",
+          "text_uncertainty_policy": "score_entropy",
+          "audio_experiment": "audio_strong_full",
+          "audio_iteration": "1",
+          "audio_probe_checkpoint_sha256": "306c3f745709d73ff566e0b2d37ca498f7937142035c8b9ccf9ed97944c9f56d",
+          "audio_checkpoint_unchanged": true,
+          "wav2vec2_config_fingerprint": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+          "wav2vec2_bundle": "WAV2VEC2_BASE",
+          "encoder_frozen": true,
+          "frozen_policy_experts": {
+            "text": "gemma4:31b-cloud, Stage 2 frozen prompt and decoding",
+            "audio": "audio_strong -- frozen WAV2VEC2_BASE + LayerWeightedProbe"
+          }
+        },
+        "why_it_matters": "The evaluated experts must be the ones the policy was frozen around. A different probe checkpoint or a different prompt is a different system."
+      },
+      {
+        "condition": "10_cost_configuration_matches",
+        "passed": true,
+        "detail": {
+          "policy_audio_ms": 289.0644272660753,
+          "loaded_audio_ms": 289.0644272660753,
+          "policy_text_ms": 3449.7265468379446,
+          "loaded_text_ms": 3449.7265468379446,
+          "cost_fingerprint": "e3534119a7c9ba50928f981b16a094b11ed074a3749466b64101bda96bb4e69a",
+          "includes_encoder": true,
+          "re_measured_on_evaluation_pool": false
+        },
+        "why_it_matters": "Re-pricing audio from test behaviour would make the reported saving a function of this run's host load rather than of the policy."
+      }
+    ],
+    "failed": [],
+    "all_passed": true,
+    "frozen_policy_sha256": "b2f8ced01204940599092f0db46c0965ebbae0b7e4ff1b38303ae94fa2cb6f37",
+    "frozen_policy": {
+      "experiment_id": "ahsef_50pct_milestone_v1",
+      "protocol_version": "ahsef.milestone.phase_de.v1",
+      "frozen_at": "2026-08-31T10:55:05",
+      "selected_target": "uncertainty_only",
+      "selection_rule": {
+        "primary_criterion": "mean validation macro-F1 over the low-budget operating region ['5%', '10%', '15%', '20%', '25%'], using out-of-fold scores",
+        "admissibility_gate": "the policy must exceed the matched-budget random control's 97.5th percentile macro-F1 at at least one interior budget",
+        "tie_break_1": "within 0.005 macro-F1, the simpler signal wins; a fitted target must clear uncertainty_only by more than that margin to be selected over it",
+        "tie_break_2": "higher retained fraction of the always-fusion macro-F1 gain at 10%",
+        "tie_break_3": "alphabetical target name, so the rule is total",
+        "metric": "macro_f1",
+        "why_not_accuracy": "Stage 2 measured that accuracy-shaped gating on this corpus buys neutral and loses macro-F1. Selecting on accuracy would reproduce that.",
+        "declared": "before any Phase D estimator was fitted or scored",
+        "uses_test_labels": false,
+        "uses_test_split": false
+      },
+      "selection_outcome": "TARGET SELECTED",
+      "parsimony_applied": true,
+      "routing_rule": {
+        "score": "the frozen Stage 2/3 routing uncertainty (normalised score entropy of the Gemma response), used directly",
+        "requires_estimator": false,
+        "estimator_fingerprint": null,
+        "estimator_artefact": null,
+        "decision": "acquire audio on the top-k samples by score",
+        "tie_break": "index order, so the acquired set is deterministic",
+        "k": "budget x pool size, rounded to nearest"
+      },
+      "acquisition_budget": {
+        "selected": 0.1,
+        "rule": "smallest budget meeting every MATERIAL_ROUTING_SUCCESS condition",
+        "grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "fusion": {
+        "method": "weighted_probability",
+        "weights": {
+          "audio": 0.6,
+          "text_llm": 0.4
+        },
+        "weights_normalised": true,
+        "selected_on_split": "validation",
+        "uses_test_labels": false,
+        "selection": {
+          "method": "exhaustive_grid_scan",
+          "objective": "macro_f1",
+          "grid": [
+            0.0,
+            0.05,
+            0.1,
+            0.15,
+            0.2,
+            0.25,
+            0.3,
+            0.35,
+            0.4,
+            0.45,
+            0.5,
+            0.55,
+            0.6,
+            0.65,
+            0.7,
+            0.75,
+            0.8,
+            0.85,
+            0.9,
+            0.95,
+            1.0
+          ],
+          "anchor": "text_llm",
+          "best_weight": 0.4,
+          "best_score": 0.4085569381713867,
+          "pool_size": 509,
+          "scanned": [
+            {
+              "weight_text_llm": 0.05,
+              "macro_f1": 0.3312579095363617
+            },
+            {
+              "weight_text_llm": 0.1,
+              "macro_f1": 0.33059436082839966
+            },
+            {
+              "weight_text_llm": 0.15,
+              "macro_f1": 0.34130722284317017
+            },
+            {
+              "weight_text_llm": 0.2,
+              "macro_f1": 0.3457390367984772
+            },
+            {
+              "weight_text_llm": 0.25,
+              "macro_f1": 0.34470605850219727
+            },
+            {
+              "weight_text_llm": 0.3,
+              "macro_f1": 0.3580116629600525
+            },
+            {
+              "weight_text_llm": 0.35,
+              "macro_f1": 0.3889220058917999
+            },
+            {
+              "weight_text_llm": 0.4,
+              "macro_f1": 0.4085569381713867
+            },
+            {
+              "weight_text_llm": 0.45,
+              "macro_f1": 0.3988488018512726
+            },
+            {
+              "weight_text_llm": 0.5,
+              "macro_f1": 0.3833385407924652
+            },
+            {
+              "weight_text_llm": 0.55,
+              "macro_f1": 0.3715357780456543
+            },
+            {
+              "weight_text_llm": 0.6,
+              "macro_f1": 0.36389192938804626
+            },
+            {
+              "weight_text_llm": 0.65,
+              "macro_f1": 0.3351914882659912
+            },
+            {
+              "weight_text_llm": 0.7,
+              "macro_f1": 0.325965017080307
+            },
+            {
+              "weight_text_llm": 0.75,
+              "macro_f1": 0.3119020164012909
+            },
+            {
+              "weight_text_llm": 0.8,
+              "macro_f1": 0.3096728026866913
+            },
+            {
+              "weight_text_llm": 0.85,
+              "macro_f1": 0.30977317690849304
+            },
+            {
+              "weight_text_llm": 0.9,
+              "macro_f1": 0.30881693959236145
+            },
+            {
+              "weight_text_llm": 0.95,
+              "macro_f1": 0.30881693959236145
+            }
+          ],
+          "reused_from": "experiments\\ahsef\\analysis\\audio_expert\\phase_c_aligned.json"
+        }
+      },
+      "experts": {
+        "text": "gemma4:31b-cloud, Stage 2 frozen prompt and decoding",
+        "audio": "audio_strong -- frozen WAV2VEC2_BASE + LayerWeightedProbe"
+      },
+      "costs": {
+        "text_llm": {
+          "latency_ms_per_sample": 3449.7265468379446,
+          "compute_units_per_sample": 22399500000000.0
+        },
+        "audio_strong": {
+          "latency_ms_per_sample": 289.0644272660753,
+          "compute_units_per_sample": 6042191899648.0,
+          "encoder_ms_per_sample": 288.88308016697573,
+          "head_ms_per_sample": 0.18134709909956967,
+          "encoder_parameters": 94370944,
+          "head_parameters": 266003,
+          "includes_encoder": true,
+          "includes_head": true
+        },
+        "audio_strong_share_of_text_latency": 0.08379343212900013,
+        "policy": {
+          "measured_on": "the Phase B-1 validation pass, not on the Phase D/E pool",
+          "re_measurement": "prohibited -- Phase E reads costs, it does not time anything",
+          "audio_strong_components": "frozen WAV2VEC2_BASE encoder (dominant) plus the trainable LayerWeightedProbe head",
+          "why_not_the_cached_head_latency": "The probe reads features the encoder already produced. At deployment the encoder runs per request, so charging only the head would understate the price of acquiring audio by roughly three orders of magnitude and would make every budget on the curve look free.",
+          "compute_units": "parameters x input_elements, the multiply-accumulate-order proxy used throughout this project. It is a proxy and is labelled as one.",
+          "text_llm_latency": "measured end-to-end wall clock from the Stage 3 pass, including queueing and cloud scheduling -- not generation time, which Stage 2 measured at roughly a fifth of it."
+        },
+        "sources": {
+          "audio_strong_latency": "experiments\\ahsef\\analysis\\audio_expert\\phase_b1_comparison.json",
+          "audio_strong_geometry": "experiments\\audio_strong\\features\\validation\\extraction_provenance.json",
+          "text_llm": "experiments\\ahsef\\stage3_text_audio\\frozen_config.json",
+          "encoder": "WAV2VEC2_BASE",
+          "encoder_input_elements": 64000,
+          "head_input_elements": 9216
+        },
+        "frozen": true,
+        "re_measured_on_evaluation_pool": false
+      },
+      "seeds": {
+        "estimator_seed": 42,
+        "random_control_seed": 42
+      },
+      "validation_performance": {
+        "budget": 0.1,
+        "acquired": 51,
+        "acquisition_rate": 0.10019646365422397,
+        "macro_f1": 0.36031046509742737,
+        "accuracy": 0.4990176856517792,
+        "weighted_f1": 0.47050583362579346
+      },
+      "material_routing_success": true,
+      "fingerprints": {
+        "pool": "e3ff7bdd4fbd34d609e80bc899c91349a8298064e958ee72362064503c99c605",
+        "cost_configuration": "e3534119a7c9ba50928f981b16a094b11ed074a3749466b64101bda96bb4e69a",
+        "targets": {
+          "binary_correction": "98cc54743ff4796bebf0b052fbb6caf130304de0809f3795f8e2870b900d55c3",
+          "signed_gain": "c1542ec4cd599d224c97e18fdfa0e777cf666d24d028e77a25f5651875337fd2",
+          "class_balanced_gain": "dedfd27706ddcbf48f401c6432c81d904ef47ced3d16a8e9913a655890ad09ef",
+          "macro_f1_marginal": "f68a9140f6d3417358ceed6fe4f28471173ddf396c59924f8fe732b8b271b612",
+          "uncertainty_reduction": "c5153e6fd1fd3d12d9fdb656c35ed2f4a434ec0a495ded9f3e12f375b8a25bd7"
+        }
+      },
+      "uses_test_labels": false,
+      "test_partition_opened": false,
+      "lock_note": "Everything the locked Phase F evaluation depends on is fixed here. Reselecting the target, refitting the estimator, moving the budget or retuning a fusion weight after this point invalidates the evaluation, and Phase F must verify this file before opening the test split."
+    },
+    "checked_at": "2026-08-31T12:33:45",
+    "rule": "If any condition fails, Phase F stops and reports which one. Nothing is repaired, substituted or worked around.",
+    "metadata_sources": {
+      "audio_meta": "experiments\\ahsef\\analysis\\audio_expert\\audio_strong__test.json",
+      "extraction_provenance": "experiments\\audio_strong\\features\\test\\extraction_provenance.json",
+      "test_pool": "experiments\\ahsef\\stage3_text_audio\\alignment\\pool_test.json"
+    },
+    "test_payload_read": false,
+    "test_labels_read": false
+  },
+  "test_dataset": {
+    "locked_pool_size": 482,
+    "locked_pool_fingerprint": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+    "evaluated_samples": 482,
+    "evaluated_fingerprint": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838",
+    "excluded": {
+      "no_usable_gemma_evidence": 0,
+      "no_cached_audio_features": 0
+    },
+    "excluded_ids": {},
+    "datasets": {
+      "MSP-Podcast": 482
+    },
+    "class_distribution": {
+      "neutral": 198,
+      "happy": 120,
+      "sad": 47,
+      "angry": 92,
+      "fear": 6,
+      "disgust": 8,
+      "surprise": 11
+    },
+    "resampled": false,
+    "rebalanced": false,
+    "manifest_changed": false,
+    "ordering": "the recorded pool order, preserved verbatim"
+  },
+  "frozen_policy_applied": {
+    "sha256": "b2f8ced01204940599092f0db46c0965ebbae0b7e4ff1b38303ae94fa2cb6f37",
+    "selected_target": "uncertainty_only",
+    "routing_rule": {
+      "score": "the frozen Stage 2/3 routing uncertainty (normalised score entropy of the Gemma response), used directly",
+      "requires_estimator": false,
+      "estimator_fingerprint": null,
+      "estimator_artefact": null,
+      "decision": "acquire audio on the top-k samples by score",
+      "tie_break": "index order, so the acquired set is deterministic",
+      "k": "budget x pool size, rounded to nearest"
+    },
+    "budget": 0.1,
+    "fusion": {
+      "method": "weighted_probability",
+      "weights": {
+        "audio": 0.6,
+        "text_llm": 0.4
+      },
+      "weights_normalised": true,
+      "selected_on_split": "validation",
+      "uses_test_labels": false,
+      "selection": {
+        "method": "exhaustive_grid_scan",
+        "objective": "macro_f1",
+        "grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0
+        ],
+        "anchor": "text_llm",
+        "best_weight": 0.4,
+        "best_score": 0.4085569381713867,
+        "pool_size": 509,
+        "scanned": [
+          {
+            "weight_text_llm": 0.05,
+            "macro_f1": 0.3312579095363617
+          },
+          {
+            "weight_text_llm": 0.1,
+            "macro_f1": 0.33059436082839966
+          },
+          {
+            "weight_text_llm": 0.15,
+            "macro_f1": 0.34130722284317017
+          },
+          {
+            "weight_text_llm": 0.2,
+            "macro_f1": 0.3457390367984772
+          },
+          {
+            "weight_text_llm": 0.25,
+            "macro_f1": 0.34470605850219727
+          },
+          {
+            "weight_text_llm": 0.3,
+            "macro_f1": 0.3580116629600525
+          },
+          {
+            "weight_text_llm": 0.35,
+            "macro_f1": 0.3889220058917999
+          },
+          {
+            "weight_text_llm": 0.4,
+            "macro_f1": 0.4085569381713867
+          },
+          {
+            "weight_text_llm": 0.45,
+            "macro_f1": 0.3988488018512726
+          },
+          {
+            "weight_text_llm": 0.5,
+            "macro_f1": 0.3833385407924652
+          },
+          {
+            "weight_text_llm": 0.55,
+            "macro_f1": 0.3715357780456543
+          },
+          {
+            "weight_text_llm": 0.6,
+            "macro_f1": 0.36389192938804626
+          },
+          {
+            "weight_text_llm": 0.65,
+            "macro_f1": 0.3351914882659912
+          },
+          {
+            "weight_text_llm": 0.7,
+            "macro_f1": 0.325965017080307
+          },
+          {
+            "weight_text_llm": 0.75,
+            "macro_f1": 0.3119020164012909
+          },
+          {
+            "weight_text_llm": 0.8,
+            "macro_f1": 0.3096728026866913
+          },
+          {
+            "weight_text_llm": 0.85,
+            "macro_f1": 0.30977317690849304
+          },
+          {
+            "weight_text_llm": 0.9,
+            "macro_f1": 0.30881693959236145
+          },
+          {
+            "weight_text_llm": 0.95,
+            "macro_f1": 0.30881693959236145
+          }
+        ],
+        "reused_from": "experiments\\ahsef\\analysis\\audio_expert\\phase_c_aligned.json",
+        "applied_by": "phase_f_without_reselection"
+      }
+    },
+    "seed": 42,
+    "modified_by_phase_f": false
+  },
+  "systems": {
+    "A_text_only": {
+      "system": "A. Gemma text only",
+      "samples": 482,
+      "accuracy": 0.5041493773460388,
+      "macro_f1": 0.33450227975845337,
+      "weighted_f1": 0.4823017120361328,
+      "macro_precision": 0.3640727996826172,
+      "macro_recall": 0.3379948139190674,
+      "balanced_accuracy": 0.3379948245627539,
+      "per_class": {
+        "neutral": {
+          "support": 198,
+          "precision": 0.52173912525177,
+          "recall": 0.7878788113594055,
+          "f1": 0.6277665495872498
+        },
+        "happy": {
+          "support": 120,
+          "precision": 0.6865671873092651,
+          "recall": 0.38333332538604736,
+          "f1": 0.49197858572006226
+        },
+        "sad": {
+          "support": 47,
+          "precision": 0.25,
+          "recall": 0.1702127605676651,
+          "f1": 0.20253165066242218
+        },
+        "angry": {
+          "support": 92,
+          "precision": 0.5094339847564697,
+          "recall": 0.29347825050354004,
+          "f1": 0.3724137842655182
+        },
+        "fear": {
+          "support": 6,
+          "precision": 0.25,
+          "recall": 0.3333333432674408,
+          "f1": 0.2857142686843872
+        },
+        "disgust": {
+          "support": 8,
+          "precision": 0.10000000149011612,
+          "recall": 0.125,
+          "f1": 0.111111119389534
+        },
+        "surprise": {
+          "support": 11,
+          "precision": 0.23076923191547394,
+          "recall": 0.27272728085517883,
+          "f1": 0.25
+        }
+      },
+      "per_class_f1": {
+        "neutral": 0.6277665495872498,
+        "happy": 0.49197858572006226,
+        "sad": 0.20253165066242218,
+        "angry": 0.3724137842655182,
+        "fear": 0.2857142686843872,
+        "disgust": 0.111111119389534,
+        "surprise": 0.25
+      },
+      "confusion_matrix": [
+        [
+          156,
+          11,
+          12,
+          12,
+          3,
+          2,
+          2
+        ],
+        [
+          62,
+          46,
+          5,
+          3,
+          0,
+          0,
+          4
+        ],
+        [
+          25,
+          3,
+          8,
+          7,
+          1,
+          2,
+          1
+        ],
+        [
+          46,
+          4,
+          6,
+          27,
+          2,
+          5,
+          2
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          2,
+          1,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "B_audio_strong_only": {
+      "system": "B. Audio strong only",
+      "samples": 482,
+      "accuracy": 0.5082987546920776,
+      "macro_f1": 0.3344879448413849,
+      "weighted_f1": 0.5403178334236145,
+      "macro_precision": 0.361025869846344,
+      "macro_recall": 0.3705311119556427,
+      "balanced_accuracy": 0.37053113750049044,
+      "per_class": {
+        "neutral": {
+          "support": 198,
+          "precision": 0.6741573214530945,
+          "recall": 0.6060606241226196,
+          "f1": 0.6382979154586792
+        },
+        "happy": {
+          "support": 120,
+          "precision": 0.6666666865348816,
+          "recall": 0.3166666626930237,
+          "f1": 0.42937853932380676
+        },
+        "sad": {
+          "support": 47,
+          "precision": 0.3541666567325592,
+          "recall": 0.3617021143436432,
+          "f1": 0.3578947186470032
+        },
+        "angry": {
+          "support": 92,
+          "precision": 0.6881720423698425,
+          "recall": 0.695652186870575,
+          "f1": 0.6918919086456299
+        },
+        "fear": {
+          "support": 6,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "disgust": {
+          "support": 8,
+          "precision": 0.095238097012043,
+          "recall": 0.25,
+          "f1": 0.13793103396892548
+        },
+        "surprise": {
+          "support": 11,
+          "precision": 0.04878048598766327,
+          "recall": 0.3636363744735718,
+          "f1": 0.08602149784564972
+        }
+      },
+      "per_class_f1": {
+        "neutral": 0.6382979154586792,
+        "happy": 0.42937853932380676,
+        "sad": 0.3578947186470032,
+        "angry": 0.6918919086456299,
+        "fear": 0.0,
+        "disgust": 0.13793103396892548,
+        "surprise": 0.08602149784564972
+      },
+      "confusion_matrix": [
+        [
+          120,
+          10,
+          20,
+          9,
+          3,
+          10,
+          26
+        ],
+        [
+          25,
+          38,
+          7,
+          15,
+          0,
+          2,
+          33
+        ],
+        [
+          19,
+          3,
+          17,
+          4,
+          0,
+          0,
+          4
+        ],
+        [
+          9,
+          3,
+          2,
+          64,
+          0,
+          4,
+          10
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          3
+        ],
+        [
+          2,
+          1,
+          0,
+          1,
+          0,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          1,
+          0,
+          0,
+          2,
+          4
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "C_always_fusion": {
+      "system": "C. Always fusion",
+      "samples": 482,
+      "accuracy": 0.6058091521263123,
+      "macro_f1": 0.4166727662086487,
+      "weighted_f1": 0.5847951769828796,
+      "macro_precision": 0.47746142745018005,
+      "macro_recall": 0.40820762515068054,
+      "balanced_accuracy": 0.40820762302194324,
+      "per_class": {
+        "neutral": {
+          "support": 198,
+          "precision": 0.5925925970077515,
+          "recall": 0.8888888955116272,
+          "f1": 0.7111110687255859
+        },
+        "happy": {
+          "support": 120,
+          "precision": 0.8166666626930237,
+          "recall": 0.40833333134651184,
+          "f1": 0.5444444417953491
+        },
+        "sad": {
+          "support": 47,
+          "precision": 0.3913043439388275,
+          "recall": 0.19148936867713928,
+          "f1": 0.2571428716182709
+        },
+        "angry": {
+          "support": 92,
+          "precision": 0.7083333134651184,
+          "recall": 0.554347813129425,
+          "f1": 0.6219512224197388
+        },
+        "fear": {
+          "support": 6,
+          "precision": 0.3333333432674408,
+          "recall": 0.1666666716337204,
+          "f1": 0.222222238779068
+        },
+        "disgust": {
+          "support": 8,
+          "precision": 0.3333333432674408,
+          "recall": 0.375,
+          "f1": 0.3529411554336548
+        },
+        "surprise": {
+          "support": 11,
+          "precision": 0.1666666716337204,
+          "recall": 0.27272728085517883,
+          "f1": 0.2068965584039688
+        }
+      },
+      "per_class_f1": {
+        "neutral": 0.7111110687255859,
+        "happy": 0.5444444417953491,
+        "sad": 0.2571428716182709,
+        "angry": 0.6219512224197388,
+        "fear": 0.222222238779068,
+        "disgust": 0.3529411554336548,
+        "surprise": 0.2068965584039688
+      },
+      "confusion_matrix": [
+        [
+          176,
+          4,
+          9,
+          5,
+          1,
+          1,
+          2
+        ],
+        [
+          56,
+          49,
+          2,
+          6,
+          0,
+          0,
+          7
+        ],
+        [
+          26,
+          3,
+          9,
+          7,
+          1,
+          0,
+          1
+        ],
+        [
+          30,
+          2,
+          2,
+          51,
+          0,
+          3,
+          4
+        ],
+        [
+          2,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          0,
+          3,
+          1
+        ],
+        [
+          5,
+          2,
+          0,
+          0,
+          0,
+          1,
+          3
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "D_random_at_budget": {
+      "system": "D. Random acquisition @10%",
+      "samples": 482,
+      "accuracy": 0.5145228505134583,
+      "macro_f1": 0.33991387486457825,
+      "weighted_f1": 0.49139243364334106,
+      "macro_precision": 0.372525155544281,
+      "macro_recall": 0.3424336314201355,
+      "balanced_accuracy": 0.3424336165189743,
+      "per_class": {
+        "neutral": {
+          "support": 198,
+          "precision": 0.5298013091087341,
+          "recall": 0.808080792427063,
+          "f1": 0.6399999856948853
+        },
+        "happy": {
+          "support": 120,
+          "precision": 0.7076923251152039,
+          "recall": 0.38333332538604736,
+          "f1": 0.4972973167896271
+        },
+        "sad": {
+          "support": 47,
+          "precision": 0.25,
+          "recall": 0.1702127605676651,
+          "f1": 0.20253165066242218
+        },
+        "angry": {
+          "support": 92,
+          "precision": 0.5283018946647644,
+          "recall": 0.30434781312942505,
+          "f1": 0.38620686531066895
+        },
+        "fear": {
+          "support": 6,
+          "precision": 0.25,
+          "recall": 0.3333333432674408,
+          "f1": 0.2857142686843872
+        },
+        "disgust": {
+          "support": 8,
+          "precision": 0.1111111119389534,
+          "recall": 0.125,
+          "f1": 0.11764706671237946
+        },
+        "surprise": {
+          "support": 11,
+          "precision": 0.23076923191547394,
+          "recall": 0.27272728085517883,
+          "f1": 0.25
+        }
+      },
+      "per_class_f1": {
+        "neutral": 0.6399999856948853,
+        "happy": 0.4972973167896271,
+        "sad": 0.20253165066242218,
+        "angry": 0.38620686531066895,
+        "fear": 0.2857142686843872,
+        "disgust": 0.11764706671237946,
+        "surprise": 0.25
+      },
+      "confusion_matrix": [
+        [
+          160,
+          10,
+          12,
+          10,
+          3,
+          2,
+          1
+        ],
+        [
+          61,
+          46,
+          5,
+          4,
+          0,
+          0,
+          4
+        ],
+        [
+          25,
+          3,
+          8,
+          7,
+          1,
+          2,
+          1
+        ],
+        [
+          46,
+          3,
+          6,
+          28,
+          2,
+          4,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          2,
+          1,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "E_ahsef_at_budget": {
+      "system": "E. AHSEF dynamic @10%",
+      "samples": 482,
+      "accuracy": 0.5207468867301941,
+      "macro_f1": 0.34497252106666565,
+      "weighted_f1": 0.49506089091300964,
+      "macro_precision": 0.3930337131023407,
+      "macro_recall": 0.3342883288860321,
+      "balanced_accuracy": 0.3342883118561336,
+      "per_class": {
+        "neutral": {
+          "support": 198,
+          "precision": 0.5275080800056458,
+          "recall": 0.8232323527336121,
+          "f1": 0.6429980397224426
+        },
+        "happy": {
+          "support": 120,
+          "precision": 0.6811594367027283,
+          "recall": 0.3916666805744171,
+          "f1": 0.49735453724861145
+        },
+        "sad": {
+          "support": 47,
+          "precision": 0.29032257199287415,
+          "recall": 0.19148936867713928,
+          "f1": 0.23076923191547394
+        },
+        "angry": {
+          "support": 92,
+          "precision": 0.5744680762290955,
+          "recall": 0.29347825050354004,
+          "f1": 0.3884891867637634
+        },
+        "fear": {
+          "support": 6,
+          "precision": 0.4000000059604645,
+          "recall": 0.3333333432674408,
+          "f1": 0.3636363744735718
+        },
+        "disgust": {
+          "support": 8,
+          "precision": 0.1111111119389534,
+          "recall": 0.125,
+          "f1": 0.11764706671237946
+        },
+        "surprise": {
+          "support": 11,
+          "precision": 0.1666666716337204,
+          "recall": 0.1818181872367859,
+          "f1": 0.17391303181648254
+        }
+      },
+      "per_class_f1": {
+        "neutral": 0.6429980397224426,
+        "happy": 0.49735453724861145,
+        "sad": 0.23076923191547394,
+        "angry": 0.3884891867637634,
+        "fear": 0.3636363744735718,
+        "disgust": 0.11764706671237946,
+        "surprise": 0.17391303181648254
+      },
+      "confusion_matrix": [
+        [
+          163,
+          11,
+          12,
+          7,
+          1,
+          2,
+          2
+        ],
+        [
+          61,
+          47,
+          5,
+          3,
+          0,
+          0,
+          4
+        ],
+        [
+          25,
+          4,
+          9,
+          6,
+          1,
+          1,
+          1
+        ],
+        [
+          50,
+          4,
+          4,
+          27,
+          1,
+          4,
+          2
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          3,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          2,
+          1,
+          0,
+          0,
+          1,
+          2
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "F_oracle_at_budget": {
+      "system": "F. Oracle @10% -- ANALYSIS ONLY, LABEL-AWARE UPPER BOUND",
+      "samples": 482,
+      "accuracy": 0.6037344336509705,
+      "macro_f1": 0.45150208473205566,
+      "weighted_f1": 0.5847650766372681,
+      "macro_precision": 0.4910289943218231,
+      "macro_recall": 0.45282459259033203,
+      "balanced_accuracy": 0.4528246053627559,
+      "per_class": {
+        "neutral": {
+          "support": 198,
+          "precision": 0.5844594836235046,
+          "recall": 0.8737373948097229,
+          "f1": 0.7004048824310303
+        },
+        "happy": {
+          "support": 120,
+          "precision": 0.7910447716712952,
+          "recall": 0.4416666626930237,
+          "f1": 0.5668449401855469
+        },
+        "sad": {
+          "support": 47,
+          "precision": 0.375,
+          "recall": 0.19148936867713928,
+          "f1": 0.2535211741924286
+        },
+        "angry": {
+          "support": 92,
+          "precision": 0.71875,
+          "recall": 0.5,
+          "f1": 0.5897436141967773
+        },
+        "fear": {
+          "support": 6,
+          "precision": 0.3333333432674408,
+          "recall": 0.3333333432674408,
+          "f1": 0.3333333432674408
+        },
+        "disgust": {
+          "support": 8,
+          "precision": 0.25,
+          "recall": 0.375,
+          "f1": 0.30000001192092896
+        },
+        "surprise": {
+          "support": 11,
+          "precision": 0.38461539149284363,
+          "recall": 0.4545454680919647,
+          "f1": 0.4166666567325592
+        }
+      },
+      "per_class_f1": {
+        "neutral": 0.7004048824310303,
+        "happy": 0.5668449401855469,
+        "sad": 0.2535211741924286,
+        "angry": 0.5897436141967773,
+        "fear": 0.3333333432674408,
+        "disgust": 0.30000001192092896,
+        "surprise": 0.4166666567325592
+      },
+      "confusion_matrix": [
+        [
+          173,
+          6,
+          8,
+          7,
+          2,
+          2,
+          0
+        ],
+        [
+          58,
+          53,
+          3,
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          25,
+          3,
+          9,
+          6,
+          1,
+          2,
+          1
+        ],
+        [
+          31,
+          3,
+          4,
+          46,
+          1,
+          5,
+          2
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          2,
+          0,
+          3,
+          1
+        ],
+        [
+          5,
+          1,
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ],
+      "label_aware": true,
+      "marking": "ANALYSIS ONLY -- LABEL-AWARE UPPER BOUND. Computed after the AHSEF and random acquisition sets were already fixed. It influenced no decision."
+    }
+  },
+  "comparisons": {
+    "ahsef_vs_text_only": {
+      "comparison": "AHSEF vs text-only",
+      "delta_macro_f1": 0.01047024130821228,
+      "delta_accuracy": 0.016597509384155273,
+      "delta_weighted_f1": 0.012759178876876831,
+      "relative_macro_f1_gain": 0.031300956501022714
+    },
+    "ahsef_vs_random": {
+      "comparison": "AHSEF vs random @10%",
+      "delta_macro_f1": 0.005058646202087402,
+      "delta_accuracy": 0.00622403621673584,
+      "delta_weighted_f1": 0.003668457269668579,
+      "relative_macro_f1_gain": 0.014882140966157288
+    },
+    "ahsef_vs_always_fusion": {
+      "comparison": "AHSEF vs always-fusion",
+      "delta_macro_f1": -0.07170024514198303,
+      "delta_accuracy": -0.08506226539611816,
+      "delta_weighted_f1": -0.08973428606987,
+      "relative_macro_f1_gain": -0.17207806930698027
+    },
+    "ahsef_vs_oracle": {
+      "comparison": "AHSEF vs oracle @10% (label-aware ceiling)",
+      "delta_macro_f1": -0.10652956366539001,
+      "delta_accuracy": -0.08298754692077637,
+      "delta_weighted_f1": -0.08970418572425842,
+      "relative_macro_f1_gain": -0.23594478800382523
+    }
+  },
+  "retained_fusion_gain": {
+    "fusion_gain": 0.08217048645019531,
+    "ahsef_gain": 0.01047024130821228,
+    "retained_gain": 0.1274209483298902,
+    "definition": "retained_gain = (MacroF1(AHSEF) - MacroF1(text_only)) / (MacroF1(always_fusion) - MacroF1(text_only))",
+    "note": null
+  },
+  "routing": {
+    "E_ahsef_at_budget": {
+      "policy": "ahsef",
+      "frozen_budget": 0.1,
+      "eligible_samples": 482,
+      "acquisition_count": 48,
+      "acquisition_rate": 0.0995850622406639,
+      "budget_respected": true,
+      "text_only_samples": 434,
+      "text_plus_audio_samples": 48,
+      "average_modalities_per_sample": 1.099585062240664,
+      "uncertainty": {
+        "all": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "acquired": {
+          "samples": 48,
+          "mean": 0.7172328034658001,
+          "std": 0.03940062347780332,
+          "min": 0.6577149651308424,
+          "p25": 0.6985094873598758,
+          "median": 0.6985094873598758,
+          "p75": 0.7300583780777854,
+          "max": 0.838064956584636
+        },
+        "not_acquired": {
+          "samples": 434,
+          "mean": 0.34220551155894724,
+          "std": 0.17489464080250847,
+          "min": 0.0,
+          "p25": 0.23691054989448257,
+          "median": 0.3283974133956851,
+          "p75": 0.48478517509506247,
+          "max": 0.6577149651308424
+        },
+        "separation": 0.37502729190685286
+      },
+      "top_k_ranking_fingerprint": "2c2358c1f84927d8da11a4a4fd3e5a166c868888e4574b156109f097717a03b1"
+    },
+    "D_random_at_budget": {
+      "policy": "random",
+      "frozen_budget": 0.1,
+      "eligible_samples": 482,
+      "acquisition_count": 48,
+      "acquisition_rate": 0.0995850622406639,
+      "budget_respected": true,
+      "text_only_samples": 434,
+      "text_plus_audio_samples": 48,
+      "average_modalities_per_sample": 1.099585062240664,
+      "uncertainty": {
+        "all": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "acquired": {
+          "samples": 48,
+          "mean": 0.4063282355060607,
+          "std": 0.19298215087609943,
+          "min": 0.0,
+          "p25": 0.2422536577011029,
+          "median": 0.4051507935825033,
+          "p75": 0.5367487059419447,
+          "max": 0.8270874753469162
+        },
+        "not_acquired": {
+          "samples": 434,
+          "mean": 0.3765912702273055,
+          "std": 0.20139268448129508,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "separation": 0.02973696527875519
+      },
+      "seed": 42,
+      "independent_of_test_labels": true,
+      "top_k_ranking_fingerprint": "58323ee788b70d8b12a224b50abfb4b087eb6ea26f6a07e4625f4ac5983a5e4b"
+    },
+    "C_always_fusion": {
+      "policy": "always_fusion",
+      "frozen_budget": 1.0,
+      "eligible_samples": 482,
+      "acquisition_count": 482,
+      "acquisition_rate": 1.0,
+      "budget_respected": true,
+      "text_only_samples": 0,
+      "text_plus_audio_samples": 482,
+      "average_modalities_per_sample": 2.0,
+      "uncertainty": {
+        "all": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "acquired": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "not_acquired": null,
+        "separation": null
+      }
+    },
+    "A_text_only": {
+      "policy": "text_only",
+      "frozen_budget": 0.0,
+      "eligible_samples": 482,
+      "acquisition_count": 0,
+      "acquisition_rate": 0.0,
+      "budget_respected": true,
+      "text_only_samples": 482,
+      "text_plus_audio_samples": 0,
+      "average_modalities_per_sample": 1.0,
+      "uncertainty": {
+        "all": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "acquired": null,
+        "not_acquired": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "separation": null
+      }
+    },
+    "F_oracle_at_budget": {
+      "policy": "oracle",
+      "frozen_budget": 0.1,
+      "eligible_samples": 482,
+      "acquisition_count": 48,
+      "acquisition_rate": 0.0995850622406639,
+      "budget_respected": true,
+      "text_only_samples": 434,
+      "text_plus_audio_samples": 48,
+      "average_modalities_per_sample": 1.099585062240664,
+      "uncertainty": {
+        "all": {
+          "samples": 482,
+          "mean": 0.3795526277654388,
+          "std": 0.20076850235542365,
+          "min": 0.0,
+          "p25": 0.2386915858300227,
+          "median": 0.36401813210648737,
+          "p75": 0.5595838923363728,
+          "max": 0.838064956584636
+        },
+        "acquired": {
+          "samples": 48,
+          "mean": 0.4886768057766931,
+          "std": 0.1629033004367498,
+          "min": 0.13624688451575698,
+          "p25": 0.4120532250333339,
+          "median": 0.4847851750950626,
+          "p75": 0.6003784145654063,
+          "max": 0.779638462648207
+        },
+        "not_acquired": {
+          "samples": 434,
+          "mean": 0.36748359425267335,
+          "std": 0.20091866987815413,
+          "min": 0.0,
+          "p25": 0.2369105498944826,
+          "median": 0.3547012117013186,
+          "p75": 0.5265815781492866,
+          "max": 0.838064956584636
+        },
+        "separation": 0.12119321152401974
+      },
+      "label_aware": true
+    }
+  },
+  "acquisition_quality": {
+    "E_ahsef_at_budget": {
+      "policy": "ahsef",
+      "acquisitions": 48,
+      "text_wrong_audio_fixes": 11,
+      "text_correct_audio_breaks": 3,
+      "both_correct": 14,
+      "both_wrong": 20,
+      "net_corrections": 8,
+      "unnecessary_acquisitions": 26,
+      "correction_precision": 0.22916666666666666,
+      "harm_rate": 0.0625,
+      "net_correction_rate": 0.16666666666666666,
+      "useful_acquisition_rate": 0.22916666666666666,
+      "definition_source": "src.ahsef.milestone.budget.score_at_budget (Phase D/E)"
+    },
+    "D_random_at_budget": {
+      "policy": "random",
+      "acquisitions": 48,
+      "text_wrong_audio_fixes": 8,
+      "text_correct_audio_breaks": 3,
+      "both_correct": 22,
+      "both_wrong": 15,
+      "net_corrections": 5,
+      "unnecessary_acquisitions": 36,
+      "correction_precision": 0.16666666666666666,
+      "harm_rate": 0.0625,
+      "net_correction_rate": 0.10416666666666667,
+      "useful_acquisition_rate": 0.16666666666666666,
+      "definition_source": "src.ahsef.milestone.budget.score_at_budget (Phase D/E)"
+    },
+    "C_always_fusion": {
+      "policy": "always_fusion",
+      "acquisitions": 482,
+      "text_wrong_audio_fixes": 66,
+      "text_correct_audio_breaks": 17,
+      "both_correct": 226,
+      "both_wrong": 173,
+      "net_corrections": 49,
+      "unnecessary_acquisitions": 376,
+      "correction_precision": 0.13692946058091288,
+      "harm_rate": 0.035269709543568464,
+      "net_correction_rate": 0.1016597510373444,
+      "useful_acquisition_rate": 0.13692946058091288,
+      "definition_source": "src.ahsef.milestone.budget.score_at_budget (Phase D/E)"
+    }
+  },
+  "uncertainty_transfer": {
+    "auroc_identifying_incorrect_text": 0.6344422060368132,
+    "spearman_uncertainty_vs_error": 0.2331667704226809,
+    "distribution": {
+      "samples": 482,
+      "mean": 0.3795526277654388,
+      "std": 0.20076850235542365,
+      "min": 0.0,
+      "p25": 0.2386915858300227,
+      "median": 0.36401813210648737,
+      "p75": 0.5595838923363728,
+      "max": 0.838064956584636
+    },
+    "accuracy_by_uncertainty_bin": [
+      {
+        "lower": 0.0,
+        "upper": 0.23691054989448257,
+        "samples": 93,
+        "text_accuracy": 0.6021505376344086,
+        "mean_uncertainty": 0.10200780263480756
+      },
+      {
+        "lower": 0.23691054989448257,
+        "upper": 0.3283974133956851,
+        "samples": 88,
+        "text_accuracy": 0.625,
+        "mean_uncertainty": 0.2459612868410148
+      },
+      {
+        "lower": 0.3283974133956851,
+        "upper": 0.42674493710031447,
+        "samples": 100,
+        "text_accuracy": 0.58,
+        "mean_uncertainty": 0.36415224774834004
+      },
+      {
+        "lower": 0.42674493710031447,
+        "upper": 0.559583892336373,
+        "samples": 99,
+        "text_accuracy": 0.46464646464646464,
+        "mean_uncertainty": 0.4877620737082673
+      },
+      {
+        "lower": 0.559583892336373,
+        "upper": 0.838064956584636,
+        "samples": 102,
+        "text_accuracy": 0.27450980392156865,
+        "mean_uncertainty": 0.6579350747445356
+      }
+    ],
+    "monotone_decreasing_accuracy": false,
+    "recalibrated_on_test": false,
+    "threshold_selected_on_test": false,
+    "anything_fitted_on_test": false,
+    "note": "AUROC above 0.5 means high uncertainty marks samples the text expert gets wrong -- the property the whole routing policy rests on. This is a measurement of the frozen quantity, not a re-selection of it."
+  },
+  "per_class_routing_analysis": {
+    "per_class": {
+      "neutral": {
+        "support": 198,
+        "text_only_f1": 0.6277665495872498,
+        "audio_only_f1": 0.6382979154586792,
+        "always_fusion_f1": 0.7111110687255859,
+        "random_f1": 0.6399999856948853,
+        "ahsef_f1": 0.6429980397224426,
+        "delta_ahsef_vs_text_only": 0.015231490135192871
+      },
+      "happy": {
+        "support": 120,
+        "text_only_f1": 0.49197858572006226,
+        "audio_only_f1": 0.42937853932380676,
+        "always_fusion_f1": 0.5444444417953491,
+        "random_f1": 0.4972973167896271,
+        "ahsef_f1": 0.49735453724861145,
+        "delta_ahsef_vs_text_only": 0.005375951528549194
+      },
+      "sad": {
+        "support": 47,
+        "text_only_f1": 0.20253165066242218,
+        "audio_only_f1": 0.3578947186470032,
+        "always_fusion_f1": 0.2571428716182709,
+        "random_f1": 0.20253165066242218,
+        "ahsef_f1": 0.23076923191547394,
+        "delta_ahsef_vs_text_only": 0.028237581253051758
+      },
+      "angry": {
+        "support": 92,
+        "text_only_f1": 0.3724137842655182,
+        "audio_only_f1": 0.6918919086456299,
+        "always_fusion_f1": 0.6219512224197388,
+        "random_f1": 0.38620686531066895,
+        "ahsef_f1": 0.3884891867637634,
+        "delta_ahsef_vs_text_only": 0.01607540249824524
+      },
+      "fear": {
+        "support": 6,
+        "text_only_f1": 0.2857142686843872,
+        "audio_only_f1": 0.0,
+        "always_fusion_f1": 0.222222238779068,
+        "random_f1": 0.2857142686843872,
+        "ahsef_f1": 0.3636363744735718,
+        "delta_ahsef_vs_text_only": 0.07792210578918457
+      },
+      "disgust": {
+        "support": 8,
+        "text_only_f1": 0.111111119389534,
+        "audio_only_f1": 0.13793103396892548,
+        "always_fusion_f1": 0.3529411554336548,
+        "random_f1": 0.11764706671237946,
+        "ahsef_f1": 0.11764706671237946,
+        "delta_ahsef_vs_text_only": 0.006535947322845459
+      },
+      "surprise": {
+        "support": 11,
+        "text_only_f1": 0.25,
+        "audio_only_f1": 0.08602149784564972,
+        "always_fusion_f1": 0.2068965584039688,
+        "random_f1": 0.25,
+        "ahsef_f1": 0.17391303181648254,
+        "delta_ahsef_vs_text_only": -0.07608696818351746
+      }
+    },
+    "majority_classes": [
+      "neutral",
+      "happy"
+    ],
+    "minority_f1_aggregate": {
+      "definition": "summed F1 over classes outside the two largest, src.ahsef.milestone.selection.minority_f1_mass",
+      "text_only": 1.2217708230018616,
+      "ahsef": 1.2744548916816711,
+      "delta": 0.05268406867980957
+    },
+    "neutral_share_of_total_f1_delta": 0.2078206611351812,
+    "improvement_concentrated_in_neutral": false
+  },
+  "cost": {
+    "configuration": {
+      "text_llm": {
+        "latency_ms_per_sample": 3449.7265468379446,
+        "compute_units_per_sample": 22399500000000.0
+      },
+      "audio_strong": {
+        "latency_ms_per_sample": 289.0644272660753,
+        "compute_units_per_sample": 6042191899648.0,
+        "encoder_ms_per_sample": 288.88308016697573,
+        "head_ms_per_sample": 0.18134709909956967,
+        "encoder_parameters": 94370944,
+        "head_parameters": 266003,
+        "includes_encoder": true,
+        "includes_head": true
+      },
+      "audio_strong_share_of_text_latency": 0.08379343212900013,
+      "policy": {
+        "measured_on": "the Phase B-1 validation pass, not on the Phase D/E pool",
+        "re_measurement": "prohibited -- Phase E reads costs, it does not time anything",
+        "audio_strong_components": "frozen WAV2VEC2_BASE encoder (dominant) plus the trainable LayerWeightedProbe head",
+        "why_not_the_cached_head_latency": "The probe reads features the encoder already produced. At deployment the encoder runs per request, so charging only the head would understate the price of acquiring audio by roughly three orders of magnitude and would make every budget on the curve look free.",
+        "compute_units": "parameters x input_elements, the multiply-accumulate-order proxy used throughout this project. It is a proxy and is labelled as one.",
+        "text_llm_latency": "measured end-to-end wall clock from the Stage 3 pass, including queueing and cloud scheduling -- not generation time, which Stage 2 measured at roughly a fifth of it."
+      },
+      "sources": {
+        "audio_strong_latency": "experiments\\ahsef\\analysis\\audio_expert\\phase_b1_comparison.json",
+        "audio_strong_geometry": "experiments\\audio_strong\\features\\validation\\extraction_provenance.json",
+        "text_llm": "experiments\\ahsef\\stage3_text_audio\\frozen_config.json",
+        "encoder": "WAV2VEC2_BASE",
+        "encoder_input_elements": 64000,
+        "head_input_elements": 9216
+      },
+      "frozen": true,
+      "re_measured_on_evaluation_pool": false
+    },
+    "re_estimated_from_test_behaviour": false,
+    "per_sample_latency_ms": {
+      "text_only": 3449.7265468379446,
+      "audio_strong_only": 289.0644272660753,
+      "always_fusion": 3738.79097410402,
+      "ahsef_expected": 3478.5130458187987,
+      "random_expected": 3478.5130458187987
+    },
+    "average_modalities_per_sample": {
+      "text_only": 1.0,
+      "always_fusion": 2.0,
+      "ahsef": 1.099585062240664
+    },
+    "saving_versus_always_fusion": {
+      "latency_ms_per_sample": 260.2779282852213,
+      "audio_activations_avoided": 434,
+      "audio_compute_avoided_fraction": 0.9004149377593361,
+      "total_audio_seconds_saved_over_pool": 125.45396143347668
+    },
+    "monetary_cost": "not reported. No price was measured for the Ollama cloud endpoint and inventing one would put a fabricated number beside measured ones."
+  },
+  "statistics": {
+    "ahsef_vs_text_only": {
+      "macro_f1": {
+        "metric": "macro_f1",
+        "point_estimate": 0.01047024130821228,
+        "ci95": [
+          -0.022712089866399766,
+          0.038771823048591614
+        ],
+        "resamples": 2000,
+        "excludes_zero": false,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      },
+      "accuracy": {
+        "metric": "accuracy",
+        "point_estimate": 0.016597509384155273,
+        "ci95": [
+          0.002074688673019409,
+          0.03319501876831055
+        ],
+        "resamples": 2000,
+        "excludes_zero": true,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      },
+      "weighted_f1": {
+        "metric": "weighted_f1",
+        "point_estimate": 0.012759178876876831,
+        "ci95": [
+          -0.0018477089703083037,
+          0.02827283740043636
+        ],
+        "resamples": 2000,
+        "excludes_zero": false,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      }
+    },
+    "ahsef_vs_random": {
+      "macro_f1": {
+        "metric": "macro_f1",
+        "point_estimate": 0.005058646202087402,
+        "ci95": [
+          -0.028348320722579954,
+          0.03436912223696707
+        ],
+        "resamples": 2000,
+        "excludes_zero": false,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      },
+      "accuracy": {
+        "metric": "accuracy",
+        "point_estimate": 0.00622403621673584,
+        "ci95": [
+          -0.012448132038116455,
+          0.02489626407623291
+        ],
+        "resamples": 2000,
+        "excludes_zero": false,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      },
+      "weighted_f1": {
+        "metric": "weighted_f1",
+        "point_estimate": 0.003668457269668579,
+        "ci95": [
+          -0.014578545093536377,
+          0.02263068258762359
+        ],
+        "resamples": 2000,
+        "excludes_zero": false,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      }
+    },
+    "ahsef_vs_always_fusion": {
+      "macro_f1": {
+        "metric": "macro_f1",
+        "point_estimate": -0.07170024514198303,
+        "ci95": [
+          -0.14020347148180007,
+          0.0027396418154239308
+        ],
+        "resamples": 2000,
+        "excludes_zero": false,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      },
+      "accuracy": {
+        "metric": "accuracy",
+        "point_estimate": -0.08506226539611816,
+        "ci95": [
+          -0.11825728416442871,
+          -0.05186724662780762
+        ],
+        "resamples": 2000,
+        "excludes_zero": true,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      },
+      "weighted_f1": {
+        "metric": "weighted_f1",
+        "point_estimate": -0.08973428606987,
+        "ci95": [
+          -0.12706988379359246,
+          -0.05372573584318161
+        ],
+        "resamples": 2000,
+        "excludes_zero": true,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      }
+    },
+    "always_fusion_vs_text_only": {
+      "macro_f1": {
+        "metric": "macro_f1",
+        "point_estimate": 0.08217048645019531,
+        "ci95": [
+          0.005504545569419861,
+          0.15693290531635284
+        ],
+        "resamples": 2000,
+        "excludes_zero": true,
+        "paired": true,
+        "seed": 42,
+        "method": "paired percentile bootstrap over sample indices; both systems are rescored on the identical resample. Convention matches src.ahsef.stage3.hsig_quality."
+      }
+    },
+    "method": "paired percentile bootstrap over sample indices, 2000 resamples, seed from the frozen policy. Both systems are rescored on the same resample because they predict on identical samples."
+  },
+  "verdict": {
+    "rule": {
+      "A_GENERALIZES": "AHSEF beats matched random acquisition on macro-F1 at the frozen budget, retains a meaningful fraction of the fusion gain, and its improvement is distributed across classes rather than confined to neutral",
+      "B_PARTIAL": "AHSEF offers a useful cost/performance trade-off but either does not clearly beat matched random or loses most of the fusion benefit",
+      "C_DOES_NOT_GENERALIZE": "AHSEF does not outperform matched random acquisition, or offers no meaningful advantage over text-only",
+      "primary_metric": "macro_f1",
+      "accuracy_is_not_the_criterion": "Stage 2 measured that accuracy-shaped judgements on this corpus reward majority-class behaviour. Accuracy is reported beside macro-F1, never instead of it.",
+      "meaningful_fusion_gain_retained": 0.5
+    },
+    "criterion_1_beats_matched_random": {
+      "met": true,
+      "ahsef_macro_f1": 0.34497252106666565,
+      "random_macro_f1": 0.33991387486457825,
+      "delta": 0.005058646202087402,
+      "paired_ci95": [
+        -0.028348320722579954,
+        0.03436912223696707
+      ],
+      "ci_excludes_zero": false
+    },
+    "criterion_2_retains_meaningful_fusion_gain": {
+      "met": false,
+      "retained_gain": 0.1274209483298902,
+      "required": 0.5,
+      "fusion_gain": 0.08217048645019531
+    },
+    "criterion_3_substantially_fewer_modalities": {
+      "met": true,
+      "ahsef_acquisitions": 48,
+      "always_fusion_acquisitions": 482,
+      "average_modalities_per_sample": 1.099585062240664
+    },
+    "criterion_4_not_only_neutral": {
+      "met": true,
+      "majority_classes": [
+        "neutral",
+        "happy"
+      ],
+      "minority_f1_mass_text_only": 1.2217708230018616,
+      "minority_f1_mass_ahsef": 1.2744548916816711,
+      "delta": 0.05268406867980957,
+      "definition_source": "src.ahsef.milestone.selection.minority_f1_mass"
+    },
+    "criterion_5_beats_text_only": {
+      "met": true,
+      "delta_macro_f1": 0.01047024130821228
+    },
+    "verdict": "B. PARTIAL GENERALIZATION",
+    "policy_changed_after_seeing_test": false
+  },
+  "leakage_audit": {
+    "test_labels_used_for_policy_selection": false,
+    "test_labels_used_for_threshold_selection": false,
+    "test_labels_used_for_budget_selection": false,
+    "test_labels_used_for_model_selection": false,
+    "test_labels_used_for_prompt_selection": false,
+    "test_labels_used_for_fusion_selection": false,
+    "test_labels_used_for_uncertainty_selection": false,
+    "only_oracle_uses_test_labels": true,
+    "oracle_marking": "ANALYSIS ONLY -- LABEL-AWARE UPPER BOUND",
+    "oracle_computed_after_acquisition_sets_were_fixed": true,
+    "policy_modified_after_seeing_test_results": false,
+    "enforced_by": "the frozen policy is loaded from disk and applied; this driver has no code path that selects a target, a threshold, a budget, a weight or a model, and lock condition 4 checks the declarations every earlier phase recorded at the time it made its decisions"
+  },
+  "reproducibility": {
+    "protocol_version": "ahsef.milestone.phase_f.v1",
+    "frozen_policy_fingerprint": "b2f8ced01204940599092f0db46c0965ebbae0b7e4ff1b38303ae94fa2cb6f37",
+    "test_manifest_fingerprint": "cec265feb59a46f8da346ef96b48e622fef6235ca8f09c3ba425a51100ede94a",
+    "alignment_fingerprint": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+    "evaluated_pool_fingerprint": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838",
+    "text_model_fingerprint": {
+      "model": "gemma4:31b-cloud",
+      "provider": "replay",
+      "transcript": "experiments\\ahsef\\stage3_text_audio\\transcripts\\transcript_test.jsonl",
+      "deterministic": true
+    },
+    "prompt_fingerprint": {
+      "version": "v2_explicit_json",
+      "sha256": "a6e8e7d02edb101f68b7886ec603871f31f6d9ce09fe37c01e47d20eb3e7ba7b"
+    },
+    "generation_configuration": {
+      "repeats": 1,
+      "budget": {
+        "calls": 482,
+        "max_calls": null,
+        "estimated_cost_usd": 0.0,
+        "max_cost_usd": null,
+        "unpriced_calls": 482,
+        "cost_is_complete": false,
+        "usage": {
+          "input_tokens": 330276,
+          "output_tokens": 71633,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 0
+        },
+        "cost_basis": "provider list price per million tokens, applied to measured token counts; not an energy measurement"
+      },
+      "temperature": "gemma4:31b-cloud, Stage 2 frozen prompt and decoding",
+      "uncertainty_policy": "score_entropy"
+    },
+    "audio_model_fingerprint": {
+      "experiment": "audio_strong_full",
+      "iteration": "1",
+      "probe_checkpoint_sha256": "306c3f745709d73ff566e0b2d37ca498f7937142035c8b9ccf9ed97944c9f56d",
+      "model": "LayerWeightedProbe"
+    },
+    "wav2vec2_checkpoint_fingerprint": {
+      "bundle": "WAV2VEC2_BASE",
+      "config_fingerprint_sha256": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+      "parameters": 94370944,
+      "frozen": true,
+      "trained_by_this_project": false
+    },
+    "fusion_configuration": {
+      "method": "weighted_probability",
+      "weights": {
+        "audio": 0.6,
+        "text_llm": 0.4
+      },
+      "weights_normalised": true,
+      "selected_on_split": "validation",
+      "uses_test_labels": false,
+      "selection": {
+        "method": "exhaustive_grid_scan",
+        "objective": "macro_f1",
+        "grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0
+        ],
+        "anchor": "text_llm",
+        "best_weight": 0.4,
+        "best_score": 0.4085569381713867,
+        "pool_size": 509,
+        "scanned": [
+          {
+            "weight_text_llm": 0.05,
+            "macro_f1": 0.3312579095363617
+          },
+          {
+            "weight_text_llm": 0.1,
+            "macro_f1": 0.33059436082839966
+          },
+          {
+            "weight_text_llm": 0.15,
+            "macro_f1": 0.34130722284317017
+          },
+          {
+            "weight_text_llm": 0.2,
+            "macro_f1": 0.3457390367984772
+          },
+          {
+            "weight_text_llm": 0.25,
+            "macro_f1": 0.34470605850219727
+          },
+          {
+            "weight_text_llm": 0.3,
+            "macro_f1": 0.3580116629600525
+          },
+          {
+            "weight_text_llm": 0.35,
+            "macro_f1": 0.3889220058917999
+          },
+          {
+            "weight_text_llm": 0.4,
+            "macro_f1": 0.4085569381713867
+          },
+          {
+            "weight_text_llm": 0.45,
+            "macro_f1": 0.3988488018512726
+          },
+          {
+            "weight_text_llm": 0.5,
+            "macro_f1": 0.3833385407924652
+          },
+          {
+            "weight_text_llm": 0.55,
+            "macro_f1": 0.3715357780456543
+          },
+          {
+            "weight_text_llm": 0.6,
+            "macro_f1": 0.36389192938804626
+          },
+          {
+            "weight_text_llm": 0.65,
+            "macro_f1": 0.3351914882659912
+          },
+          {
+            "weight_text_llm": 0.7,
+            "macro_f1": 0.325965017080307
+          },
+          {
+            "weight_text_llm": 0.75,
+            "macro_f1": 0.3119020164012909
+          },
+          {
+            "weight_text_llm": 0.8,
+            "macro_f1": 0.3096728026866913
+          },
+          {
+            "weight_text_llm": 0.85,
+            "macro_f1": 0.30977317690849304
+          },
+          {
+            "weight_text_llm": 0.9,
+            "macro_f1": 0.30881693959236145
+          },
+          {
+            "weight_text_llm": 0.95,
+            "macro_f1": 0.30881693959236145
+          }
+        ],
+        "reused_from": "experiments\\ahsef\\analysis\\audio_expert\\phase_c_aligned.json",
+        "applied_by": "phase_f_without_reselection"
+      }
+    },
+    "uncertainty_configuration": {
+      "policy": "score_entropy",
+      "column": "normalized_entropy",
+      "recalibrated_on_test": false
+    },
+    "budget": 0.1,
+    "seed": 42,
+    "cost_configuration": {
+      "text_llm": {
+        "latency_ms_per_sample": 3449.7265468379446,
+        "compute_units_per_sample": 22399500000000.0
+      },
+      "audio_strong": {
+        "latency_ms_per_sample": 289.0644272660753,
+        "compute_units_per_sample": 6042191899648.0,
+        "encoder_ms_per_sample": 288.88308016697573,
+        "head_ms_per_sample": 0.18134709909956967,
+        "encoder_parameters": 94370944,
+        "head_parameters": 266003,
+        "includes_encoder": true,
+        "includes_head": true
+      },
+      "audio_strong_share_of_text_latency": 0.08379343212900013,
+      "policy": {
+        "measured_on": "the Phase B-1 validation pass, not on the Phase D/E pool",
+        "re_measurement": "prohibited -- Phase E reads costs, it does not time anything",
+        "audio_strong_components": "frozen WAV2VEC2_BASE encoder (dominant) plus the trainable LayerWeightedProbe head",
+        "why_not_the_cached_head_latency": "The probe reads features the encoder already produced. At deployment the encoder runs per request, so charging only the head would understate the price of acquiring audio by roughly three orders of magnitude and would make every budget on the curve look free.",
+        "compute_units": "parameters x input_elements, the multiply-accumulate-order proxy used throughout this project. It is a proxy and is labelled as one.",
+        "text_llm_latency": "measured end-to-end wall clock from the Stage 3 pass, including queueing and cloud scheduling -- not generation time, which Stage 2 measured at roughly a fifth of it."
+      },
+      "sources": {
+        "audio_strong_latency": "experiments\\ahsef\\analysis\\audio_expert\\phase_b1_comparison.json",
+        "audio_strong_geometry": "experiments\\audio_strong\\features\\validation\\extraction_provenance.json",
+        "text_llm": "experiments\\ahsef\\stage3_text_audio\\frozen_config.json",
+        "encoder": "WAV2VEC2_BASE",
+        "encoder_input_elements": 64000,
+        "head_input_elements": 9216
+      },
+      "frozen": true,
+      "re_measured_on_evaluation_pool": false
+    },
+    "cost_fingerprint": "e3534119a7c9ba50928f981b16a094b11ed074a3749466b64101bda96bb4e69a",
+    "model_fingerprints": {
+      "text_llm": {
+        "modality": "text_llm",
+        "split": "test",
+        "samples": 482,
+        "pool_sha256": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838",
+        "predicted_class_sha256": "2e2be0ca4f09c8ee6d38fa7c080c24b28e2ee018d642846b3c23928c243387ce",
+        "true_class_sha256": "4786a1268a068328735795d9a0f382d9c5a3db2874633e97d53b1a71de354e64",
+        "experiment": null,
+        "iteration": null,
+        "checkpoint_sha256": null,
+        "model": null
+      },
+      "audio_strong": {
+        "modality": "audio_strong",
+        "split": "test",
+        "samples": 482,
+        "pool_sha256": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838",
+        "predicted_class_sha256": "fcbcc858383ecc53c21c575391088a3acd880fd3d6afe526bbcc8c306fbf146a",
+        "true_class_sha256": "4786a1268a068328735795d9a0f382d9c5a3db2874633e97d53b1a71de354e64",
+        "experiment": "audio_strong_full",
+        "iteration": "1",
+        "checkpoint_sha256": "306c3f745709d73ff566e0b2d37ca498f7937142035c8b9ccf9ed97944c9f56d",
+        "model": "LayerWeightedProbe"
+      },
+      "text_llm+audio_strong": {
+        "modality": "audio+text_llm",
+        "split": "test",
+        "samples": 482,
+        "pool_sha256": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838",
+        "predicted_class_sha256": "487f91ebe69204620b5b78762bad3e9b607d7878b80285a6667dcbeb3f060f39",
+        "true_class_sha256": "4786a1268a068328735795d9a0f382d9c5a3db2874633e97d53b1a71de354e64",
+        "experiment": null,
+        "iteration": null,
+        "checkpoint_sha256": null,
+        "model": null
+      }
+    },
+    "sample_counts": {
+      "locked_pool": 482,
+      "evaluated": 482
+    },
+    "stored_artefacts": {
+      "routing_trace": "experiments\\ahsef\\milestone\\phase_f_routing_trace.jsonl",
+      "predictions": "experiments\\ahsef\\milestone\\phase_f_predictions.parquet"
+    },
+    "replay": "Every input is a stored artefact. Re-running --stage evaluate reproduces every number offline: the Gemma responses are replayed from the Stage 3 transcript and the audio probe reads cached features. No API call is made.",
+    "software": {
+      "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3"
+    },
+    "git": {
+      "available": true,
+      "commit": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+      "branch": "main",
+      "dirty": true
+    },
+    "timestamp": "2026-08-31T12:34:03"
+  },
+  "created_at": "2026-08-31T12:34:03"
+}

@@ -1,0 +1,362 @@
+{
+  "base_dir": "experiments/physiology/full",
+  "best_epochs": {
+    "1": 1,
+    "2": 4,
+    "debug": 2
+  },
+  "best_iteration": {
+    "best_epoch": 4,
+    "best_val_macro_f1": 0.7229375839233398,
+    "checkpoints": {
+      "best": "experiments/physiology/full/iteration_2/checkpoints/best.pt",
+      "last": "experiments/physiology/full/iteration_2/checkpoints/last.pt",
+      "reload_verified": true
+    },
+    "iteration": "2",
+    "test_accuracy": 0.5707070827484131,
+    "test_macro_f1": 0.287962943315506,
+    "test_weighted_f1": 0.4531705975532532
+  },
+  "class_names": [
+    "baseline",
+    "stress",
+    "amusement"
+  ],
+  "comparable_iterations": [
+    "1",
+    "2"
+  ],
+  "comparison": {
+    "best_val_macro_f1": {
+      "max": 0.7229375839233398,
+      "mean": 0.7030894458293915,
+      "min": 0.6832413077354431,
+      "n": 2,
+      "stdev": 0.02806950608031585,
+      "values": [
+        0.6832413077354431,
+        0.7229375839233398
+      ]
+    },
+    "test_accuracy": {
+      "max": 0.5707070827484131,
+      "mean": 0.5681818127632141,
+      "min": 0.5656565427780151,
+      "n": 2,
+      "stdev": 0.003571271061722095,
+      "values": [
+        0.5656565427780151,
+        0.5707070827484131
+      ]
+    },
+    "test_loss": {
+      "max": 1.6591730081673823,
+      "mean": 1.339035265373461,
+      "min": 1.0188975225795398,
+      "n": 2,
+      "stdev": 0.452743137686673,
+      "values": [
+        1.0188975225795398,
+        1.6591730081673823
+      ]
+    },
+    "test_macro_f1": {
+      "max": 0.287962943315506,
+      "mean": 0.2871048003435135,
+      "min": 0.286246657371521,
+      "n": 2,
+      "stdev": 0.0012135974294469381,
+      "values": [
+        0.286246657371521,
+        0.287962943315506
+      ]
+    },
+    "test_weighted_f1": {
+      "max": 0.4531705975532532,
+      "mean": 0.4522535353899002,
+      "min": 0.45133647322654724,
+      "n": 2,
+      "stdev": 0.0012969217489529757,
+      "values": [
+        0.45133647322654724,
+        0.4531705975532532
+      ]
+    }
+  },
+  "dataset_counts": {
+    "WESAD": 3040
+  },
+  "dataset_fraction": 1.0,
+  "datasets_used": [
+    "WESAD"
+  ],
+  "durations_seconds": {
+    "1": 2.949,
+    "2": 3.695,
+    "debug": 0.658
+  },
+  "experiment": "physiology_full",
+  "fraction": 1.0,
+  "fraction_label": "full",
+  "iteration_count": 3,
+  "iteration_seeds": {
+    "1": 42,
+    "2": 43,
+    "debug": 42
+  },
+  "iterations": [
+    {
+      "best_epoch": 1,
+      "best_val_macro_f1": 0.6832413077354431,
+      "checkpoints": {
+        "best": "experiments/physiology/full/iteration_1/checkpoints/best.pt",
+        "last": "experiments/physiology/full/iteration_1/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/physiology/full/iteration_1/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 1,
+        "best_value": 0.6832413077354431,
+        "epochs_without_improvement": 2,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.6832413077354431,
+          0.6795125007629395,
+          0.6244349479675293
+        ],
+        "patience": 2,
+        "reason": "early stopping at epoch 3: val_macro_f1 degraded for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.683241 at epoch 1",
+        "stopped_early": true,
+        "stopped_epoch": 3
+      },
+      "epochs_completed": 3,
+      "epochs_configured": 5,
+      "iteration": "1",
+      "log_file": "experiments/physiology/full/iteration_1/logs/training.log",
+      "modality": "physiology",
+      "model": {
+        "class": "PhysiologyStateBaseline",
+        "feature_dim": 56,
+        "hidden_dim": 128,
+        "input": "per-channel window statistics, standardised with train-fitted scaling",
+        "num_classes": 3,
+        "parameters": 7939
+      },
+      "results_dir": "experiments/physiology/full/iteration_1/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 198,
+        "train": 2437,
+        "validation": 405
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 3: val_macro_f1 degraded for 2 consecutive epochs (patience=2, min_delta=0.0001); best val_macro_f1=0.683241 at epoch 1",
+      "task": "wesad_state_3class",
+      "test_accuracy": 0.5656565427780151,
+      "test_loss": 1.0188975225795398,
+      "test_macro_f1": 0.286246657371521,
+      "test_per_class_f1": [
+        0.7942238450050354,
+        0.0,
+        0.06451612710952759
+      ],
+      "test_weighted_f1": 0.45133647322654724,
+      "total_seconds": 2.949,
+      "training_seconds": 2.002,
+      "validation_accuracy": 0.6864197254180908,
+      "validation_macro_f1": 0.6832413077354431,
+      "validation_weighted_f1": 0.6700906157493591
+    },
+    {
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.7229375839233398,
+      "checkpoints": {
+        "best": "experiments/physiology/full/iteration_2/checkpoints/best.pt",
+        "last": "experiments/physiology/full/iteration_2/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/physiology/full/iteration_2/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 4,
+        "best_value": 0.7229375839233398,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.6984913349151611,
+          0.7154000401496887,
+          0.7124755382537842,
+          0.7229375839233398,
+          0.7073734402656555
+        ],
+        "patience": 2,
+        "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.722938 at epoch 4",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "2",
+      "log_file": "experiments/physiology/full/iteration_2/logs/training.log",
+      "modality": "physiology",
+      "model": {
+        "class": "PhysiologyStateBaseline",
+        "feature_dim": 56,
+        "hidden_dim": 128,
+        "input": "per-channel window statistics, standardised with train-fitted scaling",
+        "num_classes": 3,
+        "parameters": 7939
+      },
+      "results_dir": "experiments/physiology/full/iteration_2/results",
+      "run_seed": 43,
+      "samples": {
+        "test": 198,
+        "train": 2437,
+        "validation": 405
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.722938 at epoch 4",
+      "task": "wesad_state_3class",
+      "test_accuracy": 0.5707070827484131,
+      "test_loss": 1.6591730081673823,
+      "test_macro_f1": 0.287962943315506,
+      "test_per_class_f1": [
+        0.7638888955116272,
+        0.09999999403953552,
+        0.0
+      ],
+      "test_weighted_f1": 0.4531705975532532,
+      "total_seconds": 3.695,
+      "training_seconds": 2.794,
+      "validation_accuracy": 0.7037037014961243,
+      "validation_macro_f1": 0.7229375839233398,
+      "validation_weighted_f1": 0.6952294707298279
+    },
+    {
+      "best_epoch": 2,
+      "best_val_macro_f1": 0.7098039984703064,
+      "checkpoints": {
+        "best": "experiments/physiology/full/iteration_debug/checkpoints/best.pt",
+        "last": "experiments/physiology/full/iteration_debug/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/physiology/full/iteration_debug/config.json",
+      "debug": true,
+      "early_stopping": {
+        "best_epoch": 2,
+        "best_value": 0.7098039984703064,
+        "epochs_without_improvement": 0,
+        "min_delta": 0.0001,
+        "min_epochs": 1,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.5492823123931885,
+          0.7098039984703064
+        ],
+        "patience": 1,
+        "reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.709804 at epoch 2",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 2,
+      "epochs_configured": 2,
+      "iteration": "debug",
+      "log_file": "experiments/physiology/full/iteration_debug/logs/training.log",
+      "modality": "physiology",
+      "model": {
+        "class": "PhysiologyStateBaseline",
+        "feature_dim": 56,
+        "hidden_dim": 128,
+        "input": "per-channel window statistics, standardised with train-fitted scaling",
+        "num_classes": 3,
+        "parameters": 7939
+      },
+      "results_dir": "experiments/physiology/full/iteration_debug/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 128,
+        "train": 256,
+        "validation": 128
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.709804 at epoch 2",
+      "task": "wesad_state_3class",
+      "test_accuracy": 0.546875,
+      "test_loss": 0.9913514405488968,
+      "test_macro_f1": 0.25782689452171326,
+      "test_per_class_f1": [
+        0.7734806537628174,
+        0.0,
+        0.0
+      ],
+      "test_weighted_f1": 0.42299723625183105,
+      "total_seconds": 0.658,
+      "training_seconds": 0.088,
+      "validation_accuracy": 0.75,
+      "validation_macro_f1": 0.7098039984703064,
+      "validation_weighted_f1": 0.7673407196998596
+    }
+  ],
+  "metadata_dir": "experiments/physiology/full/metadata",
+  "modality": "physiology",
+  "note": "Iterations are independent repeated runs. Test predictions are never averaged across iterations; each iteration's artefacts stand alone.",
+  "sampling_summary": {
+    "actual_fraction": 1.0,
+    "actual_split_ratios": {
+      "test": 0.06513157894736842,
+      "train": 0.8016447368421052,
+      "validation": 0.13322368421052633
+    },
+    "contributing_datasets": [
+      "WESAD"
+    ],
+    "eligible_records": 3040,
+    "integrity": {
+      "cross_split_sample_ids": 0,
+      "duplicate_sample_ids": 0,
+      "invalid_label_records": 0,
+      "leakage_checks_passed": true,
+      "official_holdout_in_train": 0,
+      "records_outside_contributing_datasets": 0,
+      "records_with_missing_modality_source": 0,
+      "source_path_column": "physiology_path",
+      "source_paths_rewritten": 0,
+      "subjects_in_multiple_splits": 0
+    },
+    "path": "experiments/physiology/full/metadata/sampling_summary.json",
+    "requested_fraction": 1.0,
+    "sampling_method": "fixed 60s windows at a 10s stride over the chest channels, keeping only label-homogeneous windows, split subject-wise 0.8/0.1/0.1 with a seeded subject shuffle",
+    "seed": 42,
+    "selected_records": 3040,
+    "split_counts": {
+      "test": 198,
+      "train": 2437,
+      "validation": 405
+    },
+    "stratification_fields": [
+      "subject"
+    ]
+  },
+  "selection_metric": "validation macro_f1 (higher is better)",
+  "split_counts": {
+    "test": 198,
+    "train": 2437,
+    "validation": 405
+  },
+  "task": "wesad_state_3class",
+  "task_limitation": "WESAD carries physiological-state annotations, not categorical emotion: every WESAD record in the standardized metadata has target_type='physiological_state' and canonical_emotion_valid=False. Forcing the 7-class emotion taxonomy onto it would fabricate labels, so the physiology baseline reports this task instead.",
+  "validation_report": {
+    "failures": [],
+    "passed": true,
+    "path": "experiments/physiology/full/metadata/validation_report.json"
+  }
+}

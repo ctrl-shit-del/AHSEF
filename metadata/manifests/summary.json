@@ -1,0 +1,34 @@
+{
+    "source": "metadata/standardized/standardized.parquet",
+    "input_rows": 527631,
+    "tasks": {
+        "emotion": 366462,
+        "vad": 335278,
+        "sentiment": 22856
+    },
+    "emotion_distribution": {
+        "happy": 145672,
+        "neutral": 91497,
+        "angry": 43598,
+        "sad": 41517,
+        "surprise": 18973,
+        "fear": 13772,
+        "disgust": 11433
+    },
+    "emotion_dataset_distribution": {
+        "AffectNet+": 287401,
+        "FERPlus": 35481,
+        "RAF-DB": 15339,
+        "MELD": 13708,
+        "CREMA-D": 7442,
+        "IEMOCAP": 4639,
+        "RAVDESS": 2452
+    },
+    "vad_dataset_distribution": {
+        "AffectNet+": 325239,
+        "IEMOCAP": 10039
+    },
+    "sentiment_dataset_distribution": {
+        "CMU-MOSEI": 22856
+    }
+}

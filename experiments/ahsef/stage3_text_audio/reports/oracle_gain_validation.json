@@ -1,0 +1,638 @@
+{
+  "phase": "C -- oracle acquisition value",
+  "split": "validation",
+  "samples": 509,
+  "coverage": {
+    "pooled_samples": 509,
+    "usable_text_evidence": 509,
+    "excluded_no_text_evidence": 0,
+    "status_counts": {
+      "ok": 509
+    },
+    "rule": "A sample the LLM refused, abstained on, or answered unmappably has no initial evidence state. It is excluded from the routing experiment and counted here, never assigned a filler prediction."
+  },
+  "fusion": {
+    "method": "weighted_probability",
+    "weights": {
+      "audio": 0.7,
+      "text_llm": 0.3
+    },
+    "weights_normalised": true,
+    "selected_on_split": "validation",
+    "uses_test_labels": false,
+    "selection": {
+      "method": "exhaustive_grid_scan",
+      "objective": "macro_f1",
+      "grid": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "anchor": "text_llm",
+      "best_weight": 0.3,
+      "best_score": 0.3509645164012909,
+      "pool_size": 509,
+      "scanned": [
+        {
+          "weight_text_llm": 0.05,
+          "macro_f1": 0.2745719850063324
+        },
+        {
+          "weight_text_llm": 0.1,
+          "macro_f1": 0.2931535542011261
+        },
+        {
+          "weight_text_llm": 0.15,
+          "macro_f1": 0.29023098945617676
+        },
+        {
+          "weight_text_llm": 0.2,
+          "macro_f1": 0.3290797173976898
+        },
+        {
+          "weight_text_llm": 0.25,
+          "macro_f1": 0.3299616277217865
+        },
+        {
+          "weight_text_llm": 0.3,
+          "macro_f1": 0.3509645164012909
+        },
+        {
+          "weight_text_llm": 0.35,
+          "macro_f1": 0.3465346395969391
+        },
+        {
+          "weight_text_llm": 0.4,
+          "macro_f1": 0.32341691851615906
+        },
+        {
+          "weight_text_llm": 0.45,
+          "macro_f1": 0.3170594274997711
+        },
+        {
+          "weight_text_llm": 0.5,
+          "macro_f1": 0.3086068332195282
+        },
+        {
+          "weight_text_llm": 0.55,
+          "macro_f1": 0.2981537878513336
+        },
+        {
+          "weight_text_llm": 0.6,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.65,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.7,
+          "macro_f1": 0.31125807762145996
+        },
+        {
+          "weight_text_llm": 0.75,
+          "macro_f1": 0.3104425370693207
+        },
+        {
+          "weight_text_llm": 0.8,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.85,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.9,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.95,
+          "macro_f1": 0.30881693959236145
+        }
+      ]
+    }
+  },
+  "systems": {
+    "text_llm": {
+      "samples": 509,
+      "accuracy": 0.4715127646923065,
+      "macro_f1": 0.30881693959236145,
+      "weighted_f1": 0.4398183226585388,
+      "balanced_accuracy": 0.332749394433839,
+      "per_class_f1": {
+        "neutral": 0.5959183573722839,
+        "happy": 0.42790696024894714,
+        "sad": 0.1538461595773697,
+        "angry": 0.45283016562461853,
+        "fear": 0.2666666507720947,
+        "disgust": 0.190476194024086,
+        "surprise": 0.07407408207654953
+      },
+      "support": {
+        "neutral": 172,
+        "happy": 151,
+        "sad": 63,
+        "angry": 95,
+        "fear": 6,
+        "disgust": 7,
+        "surprise": 15
+      },
+      "confusion_matrix": [
+        [
+          146,
+          9,
+          7,
+          7,
+          1,
+          1,
+          1
+        ],
+        [
+          80,
+          46,
+          5,
+          11,
+          0,
+          4,
+          5
+        ],
+        [
+          38,
+          2,
+          7,
+          7,
+          2,
+          2,
+          5
+        ],
+        [
+          41,
+          3,
+          9,
+          36,
+          2,
+          4,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          2,
+          1,
+          2,
+          0
+        ],
+        [
+          8,
+          4,
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    "audio": {
+      "samples": 509,
+      "accuracy": 0.37721022963523865,
+      "macro_f1": 0.2383199781179428,
+      "weighted_f1": 0.3642321228981018,
+      "balanced_accuracy": 0.26298150420188904,
+      "per_class_f1": {
+        "neutral": 0.29600000381469727,
+        "happy": 0.4369230568408966,
+        "sad": 0.2921348512172699,
+        "angry": 0.5181818604469299,
+        "fear": 0.0,
+        "disgust": 0.125,
+        "surprise": 0.0
+      },
+      "support": {
+        "neutral": 172,
+        "happy": 151,
+        "sad": 63,
+        "angry": 95,
+        "fear": 6,
+        "disgust": 7,
+        "surprise": 15
+      },
+      "confusion_matrix": [
+        [
+          37,
+          46,
+          62,
+          22,
+          0,
+          3,
+          2
+        ],
+        [
+          18,
+          71,
+          20,
+          37,
+          1,
+          2,
+          2
+        ],
+        [
+          14,
+          15,
+          26,
+          6,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          25,
+          6,
+          57,
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          4,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          3,
+          11,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "text_llm+audio": {
+      "samples": 509,
+      "accuracy": 0.5127701163291931,
+      "macro_f1": 0.3509645164012909,
+      "weighted_f1": 0.48027077317237854,
+      "balanced_accuracy": 0.34273158333131243,
+      "per_class_f1": {
+        "neutral": 0.6137787103652954,
+        "happy": 0.44954127073287964,
+        "sad": 0.239130437374115,
+        "angry": 0.5376344323158264,
+        "fear": 0.25,
+        "disgust": 0.2666666805744171,
+        "surprise": 0.10000000149011612
+      },
+      "support": {
+        "neutral": 172,
+        "happy": 151,
+        "sad": 63,
+        "angry": 95,
+        "fear": 6,
+        "disgust": 7,
+        "surprise": 15
+      },
+      "confusion_matrix": [
+        [
+          147,
+          7,
+          10,
+          8,
+          0,
+          0,
+          0
+        ],
+        [
+          73,
+          49,
+          1,
+          23,
+          0,
+          3,
+          2
+        ],
+        [
+          42,
+          3,
+          11,
+          4,
+          0,
+          1,
+          2
+        ],
+        [
+          32,
+          4,
+          7,
+          50,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          3,
+          0,
+          2,
+          0
+        ],
+        [
+          8,
+          4,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "acquisition_outcome": {
+    "text_correct": 240,
+    "fused_correct": 261,
+    "fixed_by_audio": 34,
+    "fixed_fraction": 0.06679764243614932,
+    "fixed_fraction_ci95": [
+      0.04819175802296921,
+      0.09189336504412798
+    ],
+    "broken_by_audio": 13,
+    "broken_fraction": 0.025540275049115914,
+    "broken_fraction_ci95": [
+      0.014985551386103075,
+      0.043202916735003344
+    ],
+    "net_improvement": 21,
+    "net_improvement_rate": 0.0412573673870334,
+    "mean_signed_gain": 0.0412573673870334,
+    "prediction_change_rate": 0.14931237721021612,
+    "agreement_text_audio": 0.20235756385068762
+  },
+  "per_class_improvement": {
+    "neutral": {
+      "samples": 172,
+      "text_accuracy": 0.8488372093023255,
+      "fused_accuracy": 0.8546511627906976,
+      "fixed_by_audio": 4,
+      "broken_by_audio": 3,
+      "net": 1
+    },
+    "happy": {
+      "samples": 151,
+      "text_accuracy": 0.304635761589404,
+      "fused_accuracy": 0.32450331125827814,
+      "fixed_by_audio": 5,
+      "broken_by_audio": 2,
+      "net": 3
+    },
+    "sad": {
+      "samples": 63,
+      "text_accuracy": 0.1111111111111111,
+      "fused_accuracy": 0.1746031746031746,
+      "fixed_by_audio": 5,
+      "broken_by_audio": 1,
+      "net": 4
+    },
+    "angry": {
+      "samples": 95,
+      "text_accuracy": 0.37894736842105264,
+      "fused_accuracy": 0.5263157894736842,
+      "fixed_by_audio": 20,
+      "broken_by_audio": 6,
+      "net": 14
+    },
+    "fear": {
+      "samples": 6,
+      "text_accuracy": 0.3333333333333333,
+      "fused_accuracy": 0.16666666666666666,
+      "fixed_by_audio": 0,
+      "broken_by_audio": 1,
+      "net": -1
+    },
+    "disgust": {
+      "samples": 7,
+      "text_accuracy": 0.2857142857142857,
+      "fused_accuracy": 0.2857142857142857,
+      "fixed_by_audio": 0,
+      "broken_by_audio": 0,
+      "net": 0
+    },
+    "surprise": {
+      "samples": 15,
+      "text_accuracy": 0.06666666666666667,
+      "fused_accuracy": 0.06666666666666667,
+      "fixed_by_audio": 0,
+      "broken_by_audio": 0,
+      "net": 0
+    }
+  },
+  "target": {
+    "target": "expected_decision_improvement",
+    "formula": "gain(m | A) = P(correct | A u {m}) - P(correct | A)",
+    "estimated_on": "validation only",
+    "rejected_target": "delta_uncertainty = U(A) - U(A u {m})",
+    "why_rejected": "Stage 1 measured it directly: the sign depends on which modality is the anchor and on the fusion rule, in five of six configurations it was negative while accuracy rose 8-10 points, and its largest per-sample correlation with actual decision improvement was 0.143. See docs/ahsef_stage1.md section 8.2 and experiments/ahsef/stage1/reports/gain_diagnostics_validation.json.",
+    "per_sample_realisation": "signed_gain = fused_correct - text_correct, in {-1, 0, +1}",
+    "binary_event": "y_gain = 1 when audio fixed a wrong text prediction",
+    "estimator_target": "expected_decision_improvement"
+  },
+  "delta_uncertainty_diagnostic": {
+    "mean": -0.48585515576884525,
+    "correlation_with_signed_gain": 0.15514075759257992,
+    "status": "REJECTED as an HSIG target by Stage 1; reported as a diagnostic only",
+    "why_rejected": "Stage 1 measured it directly: the sign depends on which modality is the anchor and on the fusion rule, in five of six configurations it was negative while accuracy rose 8-10 points, and its largest per-sample correlation with actual decision improvement was 0.143. See docs/ahsef_stage1.md section 8.2 and experiments/ahsef/stage1/reports/gain_diagnostics_validation.json."
+  },
+  "uncertainty": {
+    "mean_text_uncertainty": 0.3956145375642518,
+    "mean_fused_uncertainty": 0.881469693333097,
+    "mean_text_uncertainty_when_audio_helps": 0.5624983065222897,
+    "mean_text_uncertainty_when_audio_harms": 0.5265085920481677
+  },
+  "labels_used": "Ground truth is read here and only here. This table is built after acquisition and is never consulted by a routing decision.",
+  "experiment_id": "stage3_text_audio_v1",
+  "pool_fingerprint_sha256": "c4715026f4d164b6e0c2ecd9bae0aa2f050ea114535331f317ee9c9af1cee23c",
+  "regression": {
+    "frozen_stage1_text_baseline_same_samples": {
+      "samples": 509,
+      "accuracy": 0.38113948702812195,
+      "macro_f1": 0.25688987970352173,
+      "weighted_f1": 0.40561404824256897,
+      "macro_precision": 0.2670486867427826,
+      "macro_recall": 0.2799760699272156,
+      "per_class": {
+        "neutral": {
+          "precision": 0.5213675498962402,
+          "recall": 0.35465115308761597,
+          "f1": 0.4221453368663788,
+          "support": 172
+        },
+        "happy": {
+          "precision": 0.5363636612892151,
+          "recall": 0.3907284736633301,
+          "f1": 0.4521072804927826,
+          "support": 151
+        },
+        "sad": {
+          "precision": 0.2698412835597992,
+          "recall": 0.2698412835597992,
+          "f1": 0.2698412835597992,
+          "support": 63
+        },
+        "angry": {
+          "precision": 0.44262295961380005,
+          "recall": 0.5684210658073425,
+          "f1": 0.4976958632469177,
+          "support": 95
+        },
+        "fear": {
+          "precision": 0.03846153989434242,
+          "recall": 0.1666666716337204,
+          "f1": 0.0625000074505806,
+          "support": 6
+        },
+        "disgust": {
+          "precision": 0.03846153989434242,
+          "recall": 0.1428571492433548,
+          "f1": 0.06060606613755226,
+          "support": 7
+        },
+        "surprise": {
+          "precision": 0.02222222276031971,
+          "recall": 0.06666667014360428,
+          "f1": 0.03333333507180214,
+          "support": 15
+        }
+      },
+      "confusion_matrix": [
+        [
+          61,
+          30,
+          22,
+          23,
+          11,
+          8,
+          17
+        ],
+        [
+          22,
+          59,
+          12,
+          29,
+          7,
+          4,
+          18
+        ],
+        [
+          17,
+          6,
+          17,
+          9,
+          5,
+          4,
+          5
+        ],
+        [
+          12,
+          9,
+          8,
+          54,
+          2,
+          6,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          2,
+          0,
+          1,
+          0
+        ],
+        [
+          4,
+          3,
+          2,
+          3,
+          0,
+          2,
+          1
+        ]
+      ],
+      "class_order": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry",
+        "fear",
+        "disgust",
+        "surprise"
+      ]
+    },
+    "note": "The Stage 1 text baseline on exactly these samples, so the LLM's contribution is measured against the model it replaces."
+  }
+}

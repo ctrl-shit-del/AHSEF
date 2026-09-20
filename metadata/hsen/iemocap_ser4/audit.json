@@ -1,0 +1,137 @@
+{
+  "checks": [
+    {
+      "detail": "Every sample id appears at most once within its split",
+      "evidence": {},
+      "name": "no_duplicate_sample_ids",
+      "passed": true
+    },
+    {
+      "detail": "No sample id appears in more than one split",
+      "evidence": {},
+      "name": "no_cross_split_sample_ids",
+      "passed": true
+    },
+    {
+      "detail": "No speaker appears in more than one split",
+      "evidence": {
+        "overlaps": {},
+        "speakers_per_split": {
+          "test": [
+            "Session5_F",
+            "Session5_M"
+          ],
+          "train": [
+            "Session1_F",
+            "Session1_M",
+            "Session2_F",
+            "Session2_M",
+            "Session3_F",
+            "Session3_M"
+          ],
+          "validation": [
+            "Session4_F",
+            "Session4_M"
+          ]
+        },
+        "verifiable": true
+      },
+      "name": "speaker_independence",
+      "passed": true
+    },
+    {
+      "detail": "Every retained row carries a protocol class",
+      "evidence": {},
+      "name": "no_unlabelled_rows",
+      "passed": true
+    },
+    {
+      "detail": "All protocol classes appear in train, validation and test",
+      "evidence": {},
+      "name": "every_class_present_in_every_split",
+      "passed": true
+    },
+    {
+      "detail": "Every declared modality has a populated payload",
+      "evidence": {},
+      "name": "declared_modalities_have_payloads",
+      "passed": true
+    },
+    {
+      "detail": "All regression targets lie in [-1.0, 1.0]",
+      "evidence": {},
+      "name": "regression_targets_in_range",
+      "passed": true
+    },
+    {
+      "detail": "No feature cache built yet; nothing to check",
+      "evidence": {
+        "cache_root": "experiments\\hsen\\iemocap_ser4\\features"
+      },
+      "name": "feature_cache_split_isolation",
+      "passed": true
+    }
+  ],
+  "class_counts": {
+    "test": {
+      "angry": 170,
+      "happy": 442,
+      "neutral": 384,
+      "sad": 245
+    },
+    "train": {
+      "angry": 606,
+      "happy": 891,
+      "neutral": 1066,
+      "sad": 696
+    },
+    "validation": {
+      "angry": 327,
+      "happy": 303,
+      "neutral": 258,
+      "sad": 143
+    }
+  },
+  "counts": {
+    "test": 1241,
+    "train": 3259,
+    "validation": 1031
+  },
+  "experiment": "iemocap_ser4",
+  "modality_counts": {
+    "test": {
+      "audio": 1241,
+      "text": 1241,
+      "video": 0
+    },
+    "train": {
+      "audio": 3259,
+      "text": 3259,
+      "video": 0
+    },
+    "validation": {
+      "audio": 1031,
+      "text": 1031,
+      "video": 0
+    }
+  },
+  "passed": true,
+  "speakers": {
+    "test": [
+      "Session5_F",
+      "Session5_M"
+    ],
+    "train": [
+      "Session1_F",
+      "Session1_M",
+      "Session2_F",
+      "Session2_M",
+      "Session3_F",
+      "Session3_M"
+    ],
+    "validation": [
+      "Session4_F",
+      "Session4_M"
+    ]
+  }
+}

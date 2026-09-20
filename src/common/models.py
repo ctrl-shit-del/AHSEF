@@ -13,6 +13,7 @@ class EmotionRecord:
 
     raw_emotion: Optional[Any] = None
     emotion: Optional[str] = None
+    annotation_state: Optional[str] = None
 
     valence: Optional[float] = None
     arousal: Optional[float] = None

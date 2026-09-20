@@ -1,0 +1,52 @@
+# PROFILE B -- 25% of the training data, CPU, FP32.  Rapid experimentation.
+#
+#   python scripts/train_hsen_cpu25.py --config src/hsen/configs/hsen_cpu_25.yaml
+#
+# The model and loss blocks below are IDENTICAL to hsen_full_cuda.yaml, and that
+# is the point: section 23 requires the CPU profile to train the same
+# architecture with the same objective and the same evaluation. Only the
+# compute and data blocks differ. If you change a model value here, change it
+# there too, or the fast profile stops predicting the slow one.
+
+data:
+  dataset: iemocap
+  data_fraction: 0.25           # training split only; validation and test stay whole
+  modalities: audio+text        # video is deferred; IEMOCAP has no video cache
+
+compute:
+  device: cpu
+  amp: false                    # meaningless on CPU; the script refuses it anyway
+  num_workers: 0                # worker processes cost more than they save here
+  batch_size: 8
+  eval_batch_size: 16
+
+model:
+  # ---- identical to hsen_full_cuda.yaml ----
+  fusion: concat                # Phase 15: tied with Husformer on mean WF1, 13x more stable across seeds
+  model_dim: 256
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  attention_dropout: 0.1
+
+schedule:
+  epochs: 15                    # shorter budget; a preview, not a final result
+  lr: 0.0001
+  weight_decay: 0.00001
+  optimizer: adamw
+  scheduler: cosine_warmup
+  warmup_ratio: 0.1
+  gradient_clip: 1.0
+  patience: 4
+  min_epochs: 3
+  seed: 42
+
+loss:
+  # ---- identical to hsen_full_cuda.yaml ----
+  lambda_cls: 1.0
+  lambda_valence: 0.0
+  lambda_arousal: 0.0
+  focal_gamma: 2.0
+  class_weights: balanced
+  regression_loss: mse
+  label_smoothing: 0.0

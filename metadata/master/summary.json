@@ -1,6 +1,6 @@
 {
-    "num_datasets": 9,
-    "total_samples": 527631,
+    "num_datasets": 10,
+    "total_samples": 792336,
     "dataset_distribution": {
         "AffectNet+": 420299,
         "CMU-MOSEI": 22856,
@@ -8,12 +8,14 @@
         "FERPlus": 35481,
         "IEMOCAP": 10039,
         "MELD": 13708,
+        "MSP-Podcast": 264705,
         "RAF-DB": 15339,
         "RAVDESS": 2452,
         "WESAD": 15
     },
     "modality_distribution": {
-        "audio": 19933,
+        "audio": 19941,
+        "audio,text": 264697,
         "audio,video,text": 22856,
         "image": 471119,
         "physiology": 15,
@@ -21,23 +23,18 @@
         "video,text": 13707
     },
     "emotion_distribution": {
-        "angry": 43598,
+        "angry": 79458,
         "calm": 376,
-        "contempt": 4250,
-        "disgust": 11433,
+        "contempt": 9835,
+        "disgust": 14177,
         "excited": 1041,
-        "fear": 13772,
+        "fear": 15315,
         "frustrated": 1849,
-        "happy": 145672,
-        "negative": 6594,
-        "neutral": 96119,
-        "non_face": 82915,
-        "none": 33588,
-        "other": 2510,
-        "positive": 11264,
-        "sad": 41517,
-        "surprise": 18973,
-        "uncertain": 12145
+        "happy": 215220,
+        "neutral": 174837,
+        "other": 3722,
+        "sad": 72341,
+        "surprise": 24818
     },
     "datasets": {
         "AffectNet+": {
@@ -52,11 +49,8 @@
                 "fear": 6878,
                 "happy": 134915,
                 "neutral": 75374,
-                "non_face": 82915,
-                "none": 33588,
                 "sad": 25959,
-                "surprise": 14590,
-                "uncertain": 12145
+                "surprise": 14590
             },
             "splits": {
                 "train": 414799,
@@ -69,9 +63,9 @@
                 "audio,video,text": 22856
             },
             "emotions": {
-                "negative": 6594,
+                "happy": 11264,
                 "neutral": 4998,
-                "positive": 11264
+                "sad": 6594
             },
             "splits": {
                 "test": 4659,
@@ -127,7 +121,7 @@
                 "frustrated": 1849,
                 "happy": 595,
                 "neutral": 1708,
-                "other": 2510,
+                "other": 3,
                 "sad": 1084,
                 "surprise": 107
             },
@@ -158,6 +152,30 @@
                 "test": 2610,
                 "train": 9989,
                 "validation": 1109
+            }
+        },
+        "MSP-Podcast": {
+            "samples": 264705,
+            "modalities": {
+                "audio": 8,
+                "audio,text": 264697
+            },
+            "emotions": {
+                "angry": 35860,
+                "contempt": 5585,
+                "disgust": 2744,
+                "fear": 1543,
+                "happy": 58284,
+                "neutral": 78718,
+                "other": 3719,
+                "sad": 24230,
+                "surprise": 5845
+            },
+            "splits": {
+                "Development": 34399,
+                "Test1": 46294,
+                "Test2": 14822,
+                "Train": 169190
             }
         },
         "RAF-DB": {

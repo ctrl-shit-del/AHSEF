@@ -1,0 +1,65 @@
+{
+    "configuration": {
+        "batch_size": 8,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "epochs": 5,
+        "device": "cpu"
+    },
+    "best_epoch": 2,
+    "best_validation_mae": 0.5544337609257454,
+    "history": [
+        {
+            "epoch": 1,
+            "train_loss": 0.7329539391488231,
+            "train_mae": 0.6440817893047884,
+            "train_rmse": 0.8143477380209919,
+            "validation_loss": 0.5677781794220209,
+            "validation_mae": 0.5566144672851278,
+            "validation_rmse": 0.7049464867878508
+        },
+        {
+            "epoch": 2,
+            "train_loss": 0.6237025290612626,
+            "train_mae": 0.5899730921339195,
+            "train_rmse": 0.7506464492392692,
+            "validation_loss": 0.559442690326872,
+            "validation_mae": 0.5544337609257454,
+            "validation_rmse": 0.7007162413297139
+        },
+        {
+            "epoch": 3,
+            "train_loss": 0.5907981259267392,
+            "train_mae": 0.574191215866515,
+            "train_rmse": 0.7315885348723346,
+            "validation_loss": 0.5822938927091085,
+            "validation_mae": 0.5635907122085237,
+            "validation_rmse": 0.7110461873194176
+        },
+        {
+            "epoch": 4,
+            "train_loss": 0.5603142692572869,
+            "train_mae": 0.560048708271478,
+            "train_rmse": 0.7109032551058946,
+            "validation_loss": 0.6029323640669513,
+            "validation_mae": 0.5866707879253942,
+            "validation_rmse": 0.731109082842409
+        },
+        {
+            "epoch": 5,
+            "train_loss": 0.5343394520738615,
+            "train_mae": 0.5471712943277833,
+            "train_rmse": 0.6946479885215635,
+            "validation_loss": 0.5800762733237611,
+            "validation_mae": 0.5572161377749891,
+            "validation_rmse": 0.7026531979539415
+        }
+    ],
+    "test": {
+        "mse": 0.5934522747993469,
+        "mae": 0.5787180066108704,
+        "rmse": 0.7703585365265624,
+        "loss": 0.5934521822899702,
+        "samples": 4659
+    }
+}

@@ -1,0 +1,111 @@
+{
+  "split": "test",
+  "anchor": null,
+  "pairs": [
+    {
+      "name": "audio+text",
+      "samples": 482,
+      "mean_delta_uncertainty": -0.007434258219047323,
+      "positive_delta_rate": 0.470954356846473,
+      "accuracy_before": 0.33195020746887965,
+      "accuracy_after": 0.41286307053941906,
+      "accuracy_gain": 0.08091286307053941,
+      "fixed": 86,
+      "broken": 47,
+      "correlation_delta_vs_improvement": 0.08836185564136635,
+      "mean_delta_when_fixed": 0.010617935172052907,
+      "mean_delta_when_broken": 0.0014561247065432985,
+      "sign_agrees_with_accuracy_gain": false
+    },
+    {
+      "name": "audio+text__log_opinion_pool",
+      "samples": 482,
+      "mean_delta_uncertainty": 0.01270301085888211,
+      "positive_delta_rate": 0.5643153526970954,
+      "accuracy_before": 0.33195020746887965,
+      "accuracy_after": 0.43983402489626555,
+      "accuracy_gain": 0.1078838174273859,
+      "fixed": 107,
+      "broken": 55,
+      "correlation_delta_vs_improvement": 0.021431896790359773,
+      "mean_delta_when_fixed": 0.016393254868337,
+      "mean_delta_when_broken": 0.011784310957623898,
+      "sign_agrees_with_accuracy_gain": true
+    },
+    {
+      "name": "text+audio",
+      "samples": 482,
+      "mean_delta_uncertainty": -0.12840753840922478,
+      "positive_delta_rate": 0.1016597510373444,
+      "accuracy_before": 0.3983402489626556,
+      "accuracy_after": 0.41286307053941906,
+      "accuracy_gain": 0.01452282157676349,
+      "fixed": 49,
+      "broken": 42,
+      "correlation_delta_vs_improvement": 0.001325400036838428,
+      "mean_delta_when_fixed": -0.06744836477495551,
+      "mean_delta_when_broken": -0.0581670714752739,
+      "sign_agrees_with_accuracy_gain": false
+    },
+    {
+      "name": "text+audio__log_opinion_pool",
+      "samples": 482,
+      "mean_delta_uncertainty": -0.10827026933129535,
+      "positive_delta_rate": 0.10995850622406639,
+      "accuracy_before": 0.3983402489626556,
+      "accuracy_after": 0.43983402489626555,
+      "accuracy_gain": 0.04149377593360998,
+      "fixed": 54,
+      "broken": 34,
+      "correlation_delta_vs_improvement": 0.03705154012312814,
+      "mean_delta_when_fixed": -0.06859820129292221,
+      "mean_delta_when_broken": -0.07046527232865106,
+      "sign_agrees_with_accuracy_gain": false
+    },
+    {
+      "name": "text+video",
+      "samples": 343,
+      "mean_delta_uncertainty": -0.21819682897457293,
+      "positive_delta_rate": 0.0,
+      "accuracy_before": 0.3119533527696793,
+      "accuracy_after": 0.4198250728862974,
+      "accuracy_gain": 0.10787172011661811,
+      "fixed": 55,
+      "broken": 18,
+      "correlation_delta_vs_improvement": 0.1312081086001802,
+      "mean_delta_when_fixed": -0.13803729362900286,
+      "mean_delta_when_broken": -0.1528646408392985,
+      "sign_agrees_with_accuracy_gain": false
+    },
+    {
+      "name": "text+video__log_opinion_pool",
+      "samples": 343,
+      "mean_delta_uncertainty": -0.1980964237548657,
+      "positive_delta_rate": 0.0,
+      "accuracy_before": 0.3119533527696793,
+      "accuracy_after": 0.3935860058309038,
+      "accuracy_gain": 0.08163265306122452,
+      "fixed": 40,
+      "broken": 12,
+      "correlation_delta_vs_improvement": 0.09271256098866328,
+      "mean_delta_when_fixed": -0.13938327266646383,
+      "mean_delta_when_broken": -0.14875573824333166,
+      "sign_agrees_with_accuracy_gain": false
+    }
+  ],
+  "candidate_rankings": {},
+  "verdict": {
+    "max_abs_correlation_with_improvement": 0.1312081086001802,
+    "pairs_where_delta_sign_contradicts_accuracy_gain": [
+      "audio+text",
+      "text+audio",
+      "text+audio__log_opinion_pool",
+      "text+video",
+      "text+video__log_opinion_pool"
+    ],
+    "delta_uncertainty_is_a_usable_hsig_target": false,
+    "recommendation": "Do not train HSIG to predict dU. Its sign depends on which model is the anchor and on the fusion rule, and it carries little per-sample information about whether the acquisition improved the decision. Use an improvement-linked target estimated on validation instead -- for example the change in the probability assigned to the eventually predicted class, or a validation-fitted estimate of P(correct after) - P(correct before)."
+  },
+  "definition": "dU(m | A) = U(A) - U(A u {m}), U = normalised predictive entropy",
+  "note": "Post-hoc analysis; reads labels. No routing decision consults it."
+}

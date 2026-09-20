@@ -45,6 +45,8 @@ class MetadataSerializer:
 
                 "emotion": sample.emotion,
 
+                "annotation_state": sample.annotation_state,
+
                 "split": sample.split,
 
                 "modalities": ",".join(sample.modalities),

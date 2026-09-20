@@ -1,0 +1,383 @@
+{
+  "run": "stage1",
+  "created_at": "2026-08-29T10:08:51",
+  "updated_at": "2026-08-29T10:17:21",
+  "git": {
+    "available": true,
+    "commit": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+    "branch": "main",
+    "dirty": true,
+    "changed_files": 33
+  },
+  "environment": {
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.12.0+cpu",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "cuda_available": false
+  },
+  "safety": {
+    "frozen_baselines_modified": false,
+    "test_labels_used_for_fitting": false,
+    "test_labels_used_for_threshold_selection": false,
+    "calibration_fitted_on": "validation",
+    "fusion_weights_selected_on": "validation",
+    "note": "Test data is opened for evaluation only, after every parameter in the policy has been fixed on train/validation."
+  },
+  "stages": {
+    "pairwise_fusion": {
+      "completed_at": "2026-08-29T10:17:21",
+      "policy": {
+        "seed": 42,
+        "uncertainty_definition": "normalized_predictive_entropy",
+        "calibration_method": "temperature_scaling",
+        "calibration_fit_split": "validation",
+        "calibration_ece_bins": 15,
+        "apply_calibration": false,
+        "fusion_method": "log_opinion_pool",
+        "fusion_weight_selection_split": "validation",
+        "fusion_weight_objective": "macro_f1",
+        "cost_normalization": "max",
+        "uncertainty_threshold": 0.85,
+        "threshold_selection_split": "validation",
+        "lambda_cost": 0.1,
+        "mu_latency": 0.1,
+        "max_modalities": 2,
+        "min_information_gain": 0.0,
+        "min_utility_improvement": 0.0,
+        "notes": {
+          "stage": "stage 1 -- HSIG, UGAPR, and the dynamic router are not implemented",
+          "lambda_mu": "recorded for reproducibility; no routing decision uses them yet"
+        },
+        "uncertainty_definition_detail": {
+          "confidence": "max_c p_c",
+          "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+          "entropy_base": "natural logarithm (nats)",
+          "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+          "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+          "calibrated": false,
+          "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+        }
+      },
+      "baselines": {
+        "audio": {
+          "experiment": "audio_25pct",
+          "iteration": "2",
+          "checkpoint_sha256": "bd317985860ad9c1b53e5e998288ef85a360a2f28e35b7e0028fa386fc94cb06"
+        },
+        "text": {
+          "experiment": "text_full",
+          "iteration": "1",
+          "checkpoint_sha256": "3dab6b9be6f4a3524754a2e137ed8cabb531f65a50cef7262bd219f7099dd313"
+        },
+        "image": {
+          "experiment": "image_25pct",
+          "iteration": "1",
+          "checkpoint_sha256": "5dacbddda81b9ad23cd619fa5071837851e2f598174fb7ae8da9ba0c90c3cfa2"
+        },
+        "video": {
+          "experiment": "video_25pct",
+          "iteration": "2",
+          "checkpoint_sha256": "b5a3e990315be1ed162d072ff2bc3edca670fec4c82f5cf71c0b9030cac0177b"
+        },
+        "physiology": {
+          "experiment": "physiology_full",
+          "iteration": "2",
+          "checkpoint_sha256": "bab28e8fa1e73d2a0ceb9428b7ea14f803db0107339cbfef222f1df6c7d60784"
+        }
+      },
+      "fused_pairs": [
+        "audio+text"
+      ],
+      "refused_pairs": {
+        "audio+image": "Modalities ['audio', 'image'] share only 0 co-split validation samples (minimum 30). These baselines were sampled from different corpora; fusing them would join unrelated records.",
+        "audio+video": "Modalities ['audio', 'video'] share only 0 co-split validation samples (minimum 30). These baselines were sampled from different corpora; fusing them would join unrelated records.",
+        "audio+physiology": "Modalities ['audio', 'physiology'] share only 0 co-split validation samples (minimum 30). These baselines were sampled from different corpora; fusing them would join unrelated records."
+      }
+    },
+    "export_predictions": {
+      "completed_at": "2026-08-29T10:15:42",
+      "policy": {
+        "seed": 42,
+        "uncertainty_definition": "normalized_predictive_entropy",
+        "calibration_method": "temperature_scaling",
+        "calibration_fit_split": "validation",
+        "calibration_ece_bins": 15,
+        "apply_calibration": false,
+        "fusion_method": "weighted_probability",
+        "fusion_weight_selection_split": "validation",
+        "fusion_weight_objective": "macro_f1",
+        "cost_normalization": "max",
+        "uncertainty_threshold": 0.85,
+        "threshold_selection_split": "validation",
+        "lambda_cost": 0.1,
+        "mu_latency": 0.1,
+        "max_modalities": 2,
+        "min_information_gain": 0.0,
+        "min_utility_improvement": 0.0,
+        "notes": {},
+        "uncertainty_definition_detail": {
+          "confidence": "max_c p_c",
+          "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+          "entropy_base": "natural logarithm (nats)",
+          "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+          "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+          "calibrated": false,
+          "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+        }
+      },
+      "baselines": {
+        "image": {
+          "experiment": "image_25pct",
+          "iteration": "1",
+          "task": null,
+          "class_order": [
+            "neutral",
+            "happy",
+            "sad",
+            "angry",
+            "fear",
+            "disgust",
+            "surprise"
+          ],
+          "checkpoint": "experiments\\image\\25pct\\iteration_1\\checkpoints\\best.pt",
+          "checkpoint_sha256": "5dacbddda81b9ad23cd619fa5071837851e2f598174fb7ae8da9ba0c90c3cfa2",
+          "splits": {
+            "validation": {
+              "samples": 8459,
+              "path": "experiments\\ahsef\\stage1\\predictions\\image__validation.parquet",
+              "mean_latency_ms": 17.848611514364404,
+              "compute_units": 12248333568.0
+            },
+            "test": {
+              "samples": 8454,
+              "path": "experiments\\ahsef\\stage1\\predictions\\image__test.parquet",
+              "mean_latency_ms": 17.70415962857743,
+              "compute_units": 12248333568.0
+            }
+          }
+        },
+        "video": {
+          "experiment": "video_25pct",
+          "iteration": "2",
+          "task": "emotion_7class",
+          "class_order": [
+            "neutral",
+            "happy",
+            "sad",
+            "angry",
+            "fear",
+            "disgust",
+            "surprise"
+          ],
+          "checkpoint": "experiments\\video\\25pct\\iteration_2\\checkpoints\\best.pt",
+          "checkpoint_sha256": "b5a3e990315be1ed162d072ff2bc3edca670fec4c82f5cf71c0b9030cac0177b",
+          "splits": {
+            "validation": {
+              "samples": 343,
+              "path": "experiments\\ahsef\\stage1\\predictions\\video__validation.parquet",
+              "mean_latency_ms": 410.96862915451806,
+              "compute_units": 97986668544.0
+            },
+            "test": {
+              "samples": 343,
+              "path": "experiments\\ahsef\\stage1\\predictions\\video__test.parquet",
+              "mean_latency_ms": 356.6959699708462,
+              "compute_units": 97986668544.0
+            }
+          }
+        },
+        "physiology": {
+          "experiment": "physiology_full",
+          "iteration": "2",
+          "task": "wesad_state_3class",
+          "class_order": [
+            "baseline",
+            "stress",
+            "amusement"
+          ],
+          "checkpoint": "experiments\\physiology\\full\\iteration_2\\checkpoints\\best.pt",
+          "checkpoint_sha256": "bab28e8fa1e73d2a0ceb9428b7ea14f803db0107339cbfef222f1df6c7d60784",
+          "splits": {
+            "validation": {
+              "samples": 405,
+              "path": "experiments\\ahsef\\stage1\\predictions\\physiology__validation.parquet",
+              "mean_latency_ms": 0.13038049382772937,
+              "compute_units": 444584.0
+            },
+            "test": {
+              "samples": 198,
+              "path": "experiments\\ahsef\\stage1\\predictions\\physiology__test.parquet",
+              "mean_latency_ms": 0.13420454545648497,
+              "compute_units": 444584.0
+            }
+          }
+        }
+      },
+      "splits_exported": [
+        "validation",
+        "test"
+      ],
+      "device": "cpu",
+      "failures": {},
+      "command": "python -m src.ahsef.cli.export_predictions --run stage1 --modalities image video physiology --splits validation test"
+    },
+    "calibration": {
+      "completed_at": "2026-08-29T10:16:04",
+      "policy": {
+        "seed": 42,
+        "uncertainty_definition": "normalized_predictive_entropy",
+        "calibration_method": "temperature_scaling",
+        "calibration_fit_split": "validation",
+        "calibration_ece_bins": 15,
+        "apply_calibration": false,
+        "fusion_method": "weighted_probability",
+        "fusion_weight_selection_split": "validation",
+        "fusion_weight_objective": "macro_f1",
+        "cost_normalization": "max",
+        "uncertainty_threshold": 0.85,
+        "threshold_selection_split": "validation",
+        "lambda_cost": 0.1,
+        "mu_latency": 0.1,
+        "max_modalities": 2,
+        "min_information_gain": 0.0,
+        "min_utility_improvement": 0.0,
+        "notes": {},
+        "uncertainty_definition_detail": {
+          "confidence": "max_c p_c",
+          "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+          "entropy_base": "natural logarithm (nats)",
+          "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+          "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+          "calibrated": false,
+          "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+        }
+      },
+      "baselines": {
+        "audio": {
+          "temperature": 0.674360523936611,
+          "recommended": "temperature_scaled"
+        },
+        "image": {
+          "temperature": 0.938186099650985,
+          "recommended": "temperature_scaled"
+        },
+        "physiology": {
+          "temperature": 4.064442583541419,
+          "recommended": "raw"
+        },
+        "text": {
+          "temperature": 1.0661968691931942,
+          "recommended": "temperature_scaled"
+        },
+        "video": {
+          "temperature": 0.2986755818398078,
+          "recommended": "temperature_scaled"
+        }
+      },
+      "summary": [
+        {
+          "modality": "audio",
+          "split": "validation",
+          "accuracy": 0.349009009009009,
+          "mean_confidence": 0.2845850802716742,
+          "ece": 0.07860278225916764,
+          "temperature": 0.674360523936611,
+          "ece_calibrated": 0.07732266200428348,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "audio",
+          "split": "test",
+          "accuracy": 0.346084446048358,
+          "mean_confidence": 0.28351173632783677,
+          "ece": 0.07798016706244171,
+          "temperature": 0.674360523936611,
+          "ece_calibrated": 0.07500611332559547,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "image",
+          "split": "validation",
+          "accuracy": 0.518973873980376,
+          "mean_confidence": 0.4837065891809039,
+          "ece": 0.03556298708742212,
+          "temperature": 0.938186099650985,
+          "ece_calibrated": 0.021431441655406797,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "image",
+          "split": "test",
+          "accuracy": 0.518689377809321,
+          "mean_confidence": 0.47842169523091693,
+          "ece": 0.040511007965979944,
+          "temperature": 0.938186099650985,
+          "ece_calibrated": 0.023787466135919196,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "physiology",
+          "split": "validation",
+          "accuracy": 0.7037037037037037,
+          "mean_confidence": 0.8246498171055217,
+          "ece": 0.13408429444771455,
+          "temperature": 4.064442583541419,
+          "ece_calibrated": 0.1908104588354837,
+          "recommended": "raw"
+        },
+        {
+          "modality": "physiology",
+          "split": "test",
+          "accuracy": 0.5707070707070707,
+          "mean_confidence": 0.8767684594779713,
+          "ece": 0.3060613887709006,
+          "temperature": 4.064442583541419,
+          "ece_calibrated": 0.3160586921128249,
+          "recommended": "raw"
+        },
+        {
+          "modality": "text",
+          "split": "validation",
+          "accuracy": 0.3821520647700032,
+          "mean_confidence": 0.41017108675655467,
+          "ece": 0.028749516928573297,
+          "temperature": 1.0661968691931942,
+          "ece_calibrated": 0.019005060464445323,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "text",
+          "split": "test",
+          "accuracy": 0.37593759375937597,
+          "mean_confidence": 0.41474405573256007,
+          "ece": 0.04014477040536428,
+          "temperature": 1.0661968691931942,
+          "ece_calibrated": 0.029167819175951307,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "video",
+          "split": "validation",
+          "accuracy": 0.3294460641399417,
+          "mean_confidence": 0.1919203276371759,
+          "ece": 0.13908902619520025,
+          "temperature": 0.2986755818398078,
+          "ece_calibrated": 0.07950819359342935,
+          "recommended": "temperature_scaled"
+        },
+        {
+          "modality": "video",
+          "split": "test",
+          "accuracy": 0.33527696793002915,
+          "mean_confidence": 0.19196709703007336,
+          "ece": 0.14887458958494823,
+          "temperature": 0.2986755818398078,
+          "ece_calibrated": 0.0793124208722413,
+          "recommended": "temperature_scaled"
+        }
+      ]
+    }
+  }
+}

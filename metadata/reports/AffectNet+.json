@@ -3,9 +3,7 @@
     "emotion_distribution": {
         "happy": 134915,
         "neutral": 75374,
-        "none": 33588,
-        "uncertain": 12145,
-        "non_face": 82915,
+        "null": 128648,
         "angry": 25382,
         "surprise": 14590,
         "fear": 6878,

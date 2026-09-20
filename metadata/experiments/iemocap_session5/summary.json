@@ -1,0 +1,72 @@
+{
+  "batch_size": 16384,
+  "canonical_label_mapping": {
+    "angry": 3,
+    "disgust": 5,
+    "fear": 4,
+    "happy": 1,
+    "neutral": 0,
+    "sad": 2,
+    "surprise": 6
+  },
+  "config": {
+    "held_out_session": "Session5",
+    "name": "iemocap_session5",
+    "seed": 42,
+    "split_policy": "iemocap_cross_session",
+    "validation_session": "Session4"
+  },
+  "counts": {
+    "test": 970,
+    "train": 2850,
+    "validation": 819
+  },
+  "dataset_by_split": {
+    "test": {
+      "IEMOCAP": 970
+    },
+    "train": {
+      "IEMOCAP": 2850
+    },
+    "validation": {
+      "IEMOCAP": 819
+    }
+  },
+  "excluded_by_policy": 0,
+  "label_by_split": {
+    "test": {
+      "angry": 170,
+      "fear": 10,
+      "happy": 143,
+      "neutral": 384,
+      "sad": 245,
+      "surprise": 18
+    },
+    "train": {
+      "angry": 606,
+      "disgust": 2,
+      "fear": 23,
+      "happy": 387,
+      "neutral": 1066,
+      "sad": 696,
+      "surprise": 70
+    },
+    "validation": {
+      "angry": 327,
+      "fear": 7,
+      "happy": 65,
+      "neutral": 258,
+      "sad": 143,
+      "surprise": 19
+    }
+  },
+  "modality_availability": {
+    "has_audio": 4639,
+    "has_image": 0,
+    "has_physiology": 0,
+    "has_text": 0,
+    "has_video": 0
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "target_definition": "canonical_emotion_id"
+}

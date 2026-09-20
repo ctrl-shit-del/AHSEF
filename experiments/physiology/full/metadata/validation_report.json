@@ -1,0 +1,234 @@
+{
+  "checks": [
+    {
+      "check": "train_partition_exists",
+      "detail": "experiments/physiology/full/metadata/train.parquet",
+      "passed": true
+    },
+    {
+      "check": "validation_partition_exists",
+      "detail": "experiments/physiology/full/metadata/validation.parquet",
+      "passed": true
+    },
+    {
+      "check": "test_partition_exists",
+      "detail": "experiments/physiology/full/metadata/test.parquet",
+      "passed": true
+    },
+    {
+      "check": "no_duplicate_sample_ids_within_split",
+      "detail": {
+        "test": 0,
+        "train": 0,
+        "validation": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "no_sample_id_across_splits",
+      "detail": {
+        "cross_split_sample_ids": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "experiment_split_column_matches_partition",
+      "detail": {
+        "mismatched_rows": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "dataset_identity_preserved",
+      "detail": {
+        "contributing_datasets": [
+          "WESAD"
+        ],
+        "records_outside_contributing_datasets": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "subjects_are_disjoint_across_splits",
+      "detail": {
+        "subjects_in_multiple_splits": [],
+        "subjects_per_split": {
+          "test": [
+            "S4"
+          ],
+          "train": [
+            "S10",
+            "S11",
+            "S13",
+            "S14",
+            "S15",
+            "S17",
+            "S2",
+            "S3",
+            "S5",
+            "S6",
+            "S8",
+            "S9"
+          ],
+          "validation": [
+            "S16",
+            "S7"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "state_labels_valid",
+      "detail": {
+        "invalid_label_records": 0,
+        "label_space": "wesad_state_3class",
+        "valid_ids": [
+          0,
+          1,
+          2
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "state_names_match_declared_class_order",
+      "detail": {
+        "class_order": [
+          "baseline",
+          "stress",
+          "amusement"
+        ],
+        "mismatched_rows": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "every_class_is_represented",
+      "detail": {
+        "expected": [
+          0,
+          1,
+          2
+        ],
+        "present": [
+          0,
+          1,
+          2
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "feature_width_is_consistent",
+      "detail": {
+        "expected": 56,
+        "observed_widths": [
+          56
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "split_ratios_within_subject_granularity_tolerance",
+      "detail": {
+        "actual": {
+          "test": 0.06513157894736842,
+          "train": 0.8016447368421052,
+          "validation": 0.13322368421052633
+        },
+        "expected": {
+          "test": 0.1,
+          "train": 0.8,
+          "validation": 0.1
+        },
+        "note": "Whole subjects are indivisible; deviation is expected and recorded.",
+        "tolerance": 0.25
+      },
+      "passed": true
+    },
+    {
+      "check": "counts_match_sampling_summary",
+      "detail": {
+        "observed": {
+          "test": 198,
+          "train": 2437,
+          "validation": 405
+        },
+        "recorded": {
+          "test": 198,
+          "train": 2437,
+          "validation": 405
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "sample_id_digests_match_sampling_summary",
+      "detail": {
+        "observed": {
+          "test": "9d5fe2b02d2506532cb34c73fbf1895a",
+          "train": "a506e9382e33b5e4cbf6a7d49f1e2e94",
+          "validation": "5d9bb6b800fe282ee5bb6bc5f218e3a0"
+        },
+        "recorded": {
+          "test": "9d5fe2b02d2506532cb34c73fbf1895a",
+          "train": "a506e9382e33b5e4cbf6a7d49f1e2e94",
+          "validation": "5d9bb6b800fe282ee5bb6bc5f218e3a0"
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "full_pool_is_used",
+      "detail": {
+        "actual_fraction": 1.0
+      },
+      "passed": true
+    },
+    {
+      "check": "deviations_are_documented",
+      "detail": {
+        "subject_split_rounding": {
+          "note": "Whole subjects are indivisible, so realised split ratios deviate from the requested ones; validation and test are guaranteed at least one subject each.",
+          "requested_ratios": {
+            "test": 0.1,
+            "train": 0.8,
+            "validation": 0.1
+          },
+          "subject_counts": {
+            "test": 1,
+            "train": 12,
+            "validation": 2
+          },
+          "subjects": 15
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "source_recordings_exist",
+      "detail": {
+        "checked": 15,
+        "datasets_root": "/run/media/mystic/Vengeance/capstone/datasets",
+        "missing": [],
+        "of_total": 15
+      },
+      "passed": true
+    }
+  ],
+  "counts": {
+    "subjects": 15,
+    "test": 198,
+    "total": 3040,
+    "train": 2437,
+    "validation": 405
+  },
+  "failures": [],
+  "metadata_dir": "experiments/physiology/full/metadata",
+  "notes": [
+    "WESAD carries no canonical emotion target; the declared label space is wesad_state_3class (baseline, stress, amusement).",
+    "Determinism replan is not applicable to the physiology window builder; the recorded sample_id digests already pin the selection."
+  ],
+  "passed": true
+}

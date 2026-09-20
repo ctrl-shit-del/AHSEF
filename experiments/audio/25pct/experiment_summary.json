@@ -1,0 +1,436 @@
+{
+  "base_dir": "experiments/audio/25pct",
+  "best_epochs": {
+    "1": 4,
+    "2": 4,
+    "debug": 2
+  },
+  "best_iteration": {
+    "best_epoch": 4,
+    "best_val_macro_f1": 0.2624451816082001,
+    "checkpoints": {
+      "best": "experiments/audio/25pct/iteration_2/checkpoints/best.pt",
+      "last": "experiments/audio/25pct/iteration_2/checkpoints/last.pt",
+      "reload_verified": true
+    },
+    "iteration": "2",
+    "test_accuracy": 0.34608444571495056,
+    "test_macro_f1": 0.24682514369487762,
+    "test_weighted_f1": 0.3343420922756195
+  },
+  "class_names": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "comparable_iterations": [
+    "1",
+    "2"
+  ],
+  "comparison": {
+    "best_val_macro_f1": {
+      "max": 0.2624451816082001,
+      "mean": 0.25354913622140884,
+      "min": 0.24465309083461761,
+      "n": 2,
+      "stdev": 0.012580908037486762,
+      "values": [
+        0.24465309083461761,
+        0.2624451816082001
+      ]
+    },
+    "test_accuracy": {
+      "max": 0.34608444571495056,
+      "mean": 0.342746302485466,
+      "min": 0.33940815925598145,
+      "n": 2,
+      "stdev": 0.004720847428280985,
+      "values": [
+        0.33940815925598145,
+        0.34608444571495056
+      ]
+    },
+    "test_loss": {
+      "max": 1.7322259721064215,
+      "mean": 1.7317980244804143,
+      "min": 1.7313700768544071,
+      "n": 2,
+      "stdev": 0.0006052093366847154,
+      "values": [
+        1.7313700768544071,
+        1.7322259721064215
+      ]
+    },
+    "test_macro_f1": {
+      "max": 0.2487005889415741,
+      "mean": 0.24776286631822586,
+      "min": 0.24682514369487762,
+      "n": 2,
+      "stdev": 0.001326140051683153,
+      "values": [
+        0.2487005889415741,
+        0.24682514369487762
+      ]
+    },
+    "test_weighted_f1": {
+      "max": 0.3343420922756195,
+      "mean": 0.3326239436864853,
+      "min": 0.3309057950973511,
+      "n": 2,
+      "stdev": 0.002429829036925807,
+      "values": [
+        0.3309057950973511,
+        0.3343420922756195
+      ]
+    }
+  },
+  "dataset_counts": {
+    "CREMA-D": 1862,
+    "IEMOCAP": 1161,
+    "MSP-Podcast": 51804,
+    "RAVDESS": 613
+  },
+  "dataset_fraction": 0.2500033820803853,
+  "datasets_used": [
+    "CREMA-D",
+    "IEMOCAP",
+    "MSP-Podcast",
+    "RAVDESS"
+  ],
+  "durations_seconds": {
+    "1": 556.345,
+    "2": 557.36,
+    "debug": 4.359
+  },
+  "experiment": "audio_25pct",
+  "fraction": 0.25,
+  "fraction_label": "25pct",
+  "iteration_count": 3,
+  "iteration_seeds": {
+    "1": 42,
+    "2": 43,
+    "debug": 42
+  },
+  "iterations": [
+    {
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.24465309083461761,
+      "checkpoints": {
+        "best": "experiments/audio/25pct/iteration_1/checkpoints/best.pt",
+        "last": "experiments/audio/25pct/iteration_1/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/audio/25pct/iteration_1/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 4,
+        "best_value": 0.24465309083461761,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.179976224899292,
+          0.20794488489627838,
+          0.23894314467906952,
+          0.24465309083461761,
+          0.20984207093715668
+        ],
+        "patience": 2,
+        "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.244653 at epoch 4",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "1",
+      "log_file": "experiments/audio/25pct/iteration_1/logs/training.log",
+      "modality": "audio",
+      "model": {
+        "class": "AudioEmotionBaseline",
+        "front_end": {
+          "f_max": null,
+          "f_min": 20.0,
+          "hop_length": 160,
+          "log_offset": 1e-06,
+          "n_fft": 400,
+          "n_mels": 64,
+          "sample_rate": 16000
+        },
+        "hidden_dim": 256,
+        "max_frames": 401,
+        "max_seconds": 4.0,
+        "n_mels": 64,
+        "num_classes": 7,
+        "parameters": 35335,
+        "pooling": "masked mean and standard deviation over time"
+      },
+      "results_dir": "experiments/audio/25pct/iteration_1/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 5542,
+        "train": 44348,
+        "validation": 5550
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.244653 at epoch 4",
+      "task": "emotion_7class",
+      "test_accuracy": 0.33940815925598145,
+      "test_loss": 1.7313700768544071,
+      "test_macro_f1": 0.2487005889415741,
+      "test_per_class_f1": [
+        0.25153595209121704,
+        0.4207492768764496,
+        0.3011363744735718,
+        0.46521738171577454,
+        0.13138684630393982,
+        0.145454540848732,
+        0.025423727929592133
+      ],
+      "test_weighted_f1": 0.3309057950973511,
+      "total_seconds": 556.345,
+      "training_seconds": 530.652,
+      "validation_accuracy": 0.3313513398170471,
+      "validation_macro_f1": 0.24465309083461761,
+      "validation_weighted_f1": 0.3155951201915741
+    },
+    {
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.2624451816082001,
+      "checkpoints": {
+        "best": "experiments/audio/25pct/iteration_2/checkpoints/best.pt",
+        "last": "experiments/audio/25pct/iteration_2/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/audio/25pct/iteration_2/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 4,
+        "best_value": 0.2624451816082001,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.2177221029996872,
+          0.25598588585853577,
+          0.17003296315670013,
+          0.2624451816082001,
+          0.22347679734230042
+        ],
+        "patience": 2,
+        "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.262445 at epoch 4",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "2",
+      "log_file": "experiments/audio/25pct/iteration_2/logs/training.log",
+      "modality": "audio",
+      "model": {
+        "class": "AudioEmotionBaseline",
+        "front_end": {
+          "f_max": null,
+          "f_min": 20.0,
+          "hop_length": 160,
+          "log_offset": 1e-06,
+          "n_fft": 400,
+          "n_mels": 64,
+          "sample_rate": 16000
+        },
+        "hidden_dim": 256,
+        "max_frames": 401,
+        "max_seconds": 4.0,
+        "n_mels": 64,
+        "num_classes": 7,
+        "parameters": 35335,
+        "pooling": "masked mean and standard deviation over time"
+      },
+      "results_dir": "experiments/audio/25pct/iteration_2/results",
+      "run_seed": 43,
+      "samples": {
+        "test": 5542,
+        "train": 44348,
+        "validation": 5550
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.262445 at epoch 4",
+      "task": "emotion_7class",
+      "test_accuracy": 0.34608444571495056,
+      "test_loss": 1.7322259721064215,
+      "test_macro_f1": 0.24682514369487762,
+      "test_per_class_f1": [
+        0.2718023359775543,
+        0.4011317193508148,
+        0.2985212504863739,
+        0.4741641581058502,
+        0.079365074634552,
+        0.1551724225282669,
+        0.0476190522313118
+      ],
+      "test_weighted_f1": 0.3343420922756195,
+      "total_seconds": 557.36,
+      "training_seconds": 525.726,
+      "validation_accuracy": 0.3490090072154999,
+      "validation_macro_f1": 0.2624451816082001,
+      "validation_weighted_f1": 0.33269214630126953
+    },
+    {
+      "best_epoch": 2,
+      "best_val_macro_f1": 0.10616351664066315,
+      "checkpoints": {
+        "best": "experiments/audio/25pct/iteration_debug/checkpoints/best.pt",
+        "last": "experiments/audio/25pct/iteration_debug/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/audio/25pct/iteration_debug/config.json",
+      "debug": true,
+      "early_stopping": {
+        "best_epoch": 2,
+        "best_value": 0.10616351664066315,
+        "epochs_without_improvement": 0,
+        "min_delta": 0.0001,
+        "min_epochs": 1,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.0771537646651268,
+          0.10616351664066315
+        ],
+        "patience": 1,
+        "reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.106164 at epoch 2",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 2,
+      "epochs_configured": 2,
+      "iteration": "debug",
+      "log_file": "experiments/audio/25pct/iteration_debug/logs/training.log",
+      "modality": "audio",
+      "model": {
+        "class": "AudioEmotionBaseline",
+        "front_end": {
+          "f_max": null,
+          "f_min": 20.0,
+          "hop_length": 160,
+          "log_offset": 1e-06,
+          "n_fft": 400,
+          "n_mels": 64,
+          "sample_rate": 16000
+        },
+        "hidden_dim": 256,
+        "max_frames": 401,
+        "max_seconds": 4.0,
+        "n_mels": 64,
+        "num_classes": 7,
+        "parameters": 35335,
+        "pooling": "masked mean and standard deviation over time"
+      },
+      "results_dir": "experiments/audio/25pct/iteration_debug/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 128,
+        "train": 256,
+        "validation": 128
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.106164 at epoch 2",
+      "task": "emotion_7class",
+      "test_accuracy": 0.4296875,
+      "test_loss": 1.8654281347990036,
+      "test_macro_f1": 0.10596414655447006,
+      "test_per_class_f1": [
+        0.612716794013977,
+        0.0,
+        0.0,
+        0.12903225421905518,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "test_weighted_f1": 0.28167539834976196,
+      "total_seconds": 4.359,
+      "training_seconds": 2.951,
+      "validation_accuracy": 0.3359375,
+      "validation_macro_f1": 0.10616351664066315,
+      "validation_weighted_f1": 0.19116352498531342
+    }
+  ],
+  "metadata_dir": "experiments/audio/25pct/metadata",
+  "modality": "audio",
+  "note": "Iterations are independent repeated runs. Test predictions are never averaged across iterations; each iteration's artefacts stand alone.",
+  "sampling_summary": {
+    "actual_fraction": 0.2500033820803853,
+    "actual_split_ratios": {
+      "test": 0.09996392496392496,
+      "train": 0.7999278499278499,
+      "validation": 0.1001082251082251
+    },
+    "contributing_datasets": [
+      "RAVDESS",
+      "CREMA-D",
+      "IEMOCAP",
+      "MSP-Podcast"
+    ],
+    "eligible_records": 221757,
+    "integrity": {
+      "cross_split_sample_ids": 0,
+      "duplicate_sample_ids": 0,
+      "invalid_label_records": 0,
+      "leakage_checks_passed": true,
+      "official_holdout_in_train": 0,
+      "records_outside_contributing_datasets": 0,
+      "records_with_missing_modality_source": 0,
+      "source_path_column": "audio_path",
+      "source_path_examples": [
+        {
+          "audio_path": "RAVDESS/Speech/Actor_01/03-01-01-01-02-02-01.wav",
+          "sample_id": "RAVDESS_speech_03-01-01-01-02-02-01"
+        },
+        {
+          "audio_path": "RAVDESS/Speech/Actor_01/03-01-03-01-01-01-01.wav",
+          "sample_id": "RAVDESS_speech_03-01-03-01-01-01-01"
+        },
+        {
+          "audio_path": "RAVDESS/Speech/Actor_01/03-01-03-02-01-01-01.wav",
+          "sample_id": "RAVDESS_speech_03-01-03-02-01-01-01"
+        }
+      ],
+      "source_paths_rewritten": 0
+    },
+    "path": "experiments/audio/25pct/metadata/sampling_summary.json",
+    "requested_fraction": 0.25,
+    "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+    "seed": 42,
+    "selected_records": 55440,
+    "split_counts": {
+      "test": 5542,
+      "train": 44348,
+      "validation": 5550
+    },
+    "stratification_fields": [
+      "dataset",
+      "canonical_emotion_id"
+    ]
+  },
+  "selection_metric": "validation macro_f1 (higher is better)",
+  "split_counts": {
+    "test": 5542,
+    "train": 44348,
+    "validation": 5550
+  },
+  "task": "emotion_7class",
+  "task_limitation": null,
+  "validation_report": {
+    "failures": [],
+    "passed": true,
+    "path": "experiments/audio/25pct/metadata/validation_report.json"
+  }
+}

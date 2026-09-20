@@ -1,0 +1,114 @@
+{
+  "checks": [
+    {
+      "detail": "Every sample id appears at most once within its split",
+      "evidence": {},
+      "name": "no_duplicate_sample_ids",
+      "passed": true
+    },
+    {
+      "detail": "No sample id appears in more than one split",
+      "evidence": {},
+      "name": "no_cross_split_sample_ids",
+      "passed": true
+    },
+    {
+      "detail": "speaker_id is present but unpopulated; speaker independence is asserted by the split protocol and cannot be verified from the manifest",
+      "evidence": {
+        "verifiable": false
+      },
+      "name": "speaker_independence",
+      "passed": true
+    },
+    {
+      "detail": "Every retained row carries a protocol class",
+      "evidence": {},
+      "name": "no_unlabelled_rows",
+      "passed": true
+    },
+    {
+      "detail": "All protocol classes appear in train, validation and test",
+      "evidence": {},
+      "name": "every_class_present_in_every_split",
+      "passed": true
+    },
+    {
+      "detail": "Every declared modality has a populated payload",
+      "evidence": {},
+      "name": "declared_modalities_have_payloads",
+      "passed": true
+    },
+    {
+      "detail": "All regression targets lie in [-1.0, 1.0]",
+      "evidence": {},
+      "name": "regression_targets_in_range",
+      "passed": true
+    },
+    {
+      "detail": "No feature cache built yet; nothing to check",
+      "evidence": {
+        "cache_root": "experiments\\hsen\\mosei_sentiment\\features"
+      },
+      "name": "feature_cache_split_isolation",
+      "passed": true
+    }
+  ],
+  "class_counts": {
+    "test": {
+      "highly_negative": 70,
+      "highly_positive": 41,
+      "negative": 399,
+      "neutral": 1927,
+      "positive": 440,
+      "weakly_negative": 554,
+      "weakly_positive": 1228
+    },
+    "train": {
+      "highly_negative": 311,
+      "highly_positive": 207,
+      "negative": 1305,
+      "neutral": 6798,
+      "positive": 1549,
+      "weakly_negative": 2039,
+      "weakly_positive": 4117
+    },
+    "validation": {
+      "highly_negative": 24,
+      "highly_positive": 19,
+      "negative": 110,
+      "neutral": 835,
+      "positive": 169,
+      "weakly_negative": 244,
+      "weakly_positive": 470
+    }
+  },
+  "counts": {
+    "test": 4659,
+    "train": 16326,
+    "validation": 1871
+  },
+  "experiment": "mosei_sentiment",
+  "modality_counts": {
+    "test": {
+      "audio": 4659,
+      "text": 4659,
+      "video": 4659
+    },
+    "train": {
+      "audio": 16326,
+      "text": 16326,
+      "video": 16326
+    },
+    "validation": {
+      "audio": 1871,
+      "text": 1871,
+      "video": 1871
+    }
+  },
+  "passed": true,
+  "speakers": {
+    "test": [],
+    "train": [],
+    "validation": []
+  }
+}

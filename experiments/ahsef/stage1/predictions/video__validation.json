@@ -1,0 +1,66 @@
+{
+  "schema": "ahsef.predictions.v1",
+  "modality": "video",
+  "split": "validation",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "samples": 343,
+  "predictions_path": "experiments\\ahsef\\stage1\\predictions\\video__validation.parquet",
+  "experiment": "video_25pct",
+  "iteration": "2",
+  "task": "emotion_7class",
+  "class_order_source": "run_summary.class_order",
+  "task_limitation": null,
+  "metadata_dir": "experiments/video/25pct/metadata",
+  "manifest": "experiments\\video\\25pct\\metadata\\validation.parquet",
+  "checkpoint": "experiments\\video\\25pct\\iteration_2\\checkpoints\\best.pt",
+  "checkpoint_sha256": "b5a3e990315be1ed162d072ff2bc3edca670fec4c82f5cf71c0b9030cac0177b",
+  "checkpoint_unchanged": true,
+  "baseline_best_epoch": 3,
+  "baseline_best_val_macro_f1": 0.12229364365339279,
+  "baseline_seed": 42,
+  "baseline_run_seed": 43,
+  "model": {
+    "class": "VideoEmotionBaseline",
+    "parameters": 1772039,
+    "num_classes": 7,
+    "num_frames": 8,
+    "frame_size": 48,
+    "hidden_dim": 256,
+    "temporal": "mean",
+    "pooling": "masked mean over frames"
+  },
+  "device": "cpu",
+  "temperature": 1.0,
+  "temperature_applied": false,
+  "uncertainty_definition": {
+    "confidence": "max_c p_c",
+    "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+    "entropy_base": "natural logarithm (nats)",
+    "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+    "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+    "calibrated": false,
+    "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+  },
+  "latency": {
+    "measured": true,
+    "wall_seconds": 140.9704,
+    "mean_latency_ms": 410.96862915451806,
+    "mean_inference_ms": 0.38966297375848125,
+    "mean_feature_ms": 410.5789661807595,
+    "note": "Wall-clock on this host, batch time divided evenly across the batch. Comparable across modalities only within one export run."
+  },
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.12.0+cpu"
+  },
+  "exported_at": "2026-08-29T10:13:39",
+  "uses_labels_for_prediction": false
+}

@@ -1,0 +1,1195 @@
+{
+  "phase": "D -- HSIG",
+  "experiment_id": "stage3_text_audio_v1",
+  "split": "validation",
+  "samples": 509,
+  "target": {
+    "split": "validation",
+    "samples": 509,
+    "text_correct": 240,
+    "fused_correct": 261,
+    "y_gain_positives": 34,
+    "y_gain_rate": 0.06679764243614932,
+    "y_harm_positives": 13,
+    "y_harm_rate": 0.025540275049115914,
+    "mean_signed_gain": 0.0412573673870334,
+    "class_imbalance_note": "AUPRC is reported alongside AUROC because the positive event is a minority; on an imbalanced target AUROC alone flatters a model that would be useless at the operating point.",
+    "target": "expected_decision_improvement",
+    "formula": "gain(m | A) = P(correct | A u {m}) - P(correct | A)",
+    "estimated_on": "validation only",
+    "rejected_target": "delta_uncertainty = U(A) - U(A u {m})",
+    "why_rejected": "Stage 1 measured it directly: the sign depends on which modality is the anchor and on the fusion rule, in five of six configurations it was negative while accuracy rose 8-10 points, and its largest per-sample correlation with actual decision improvement was 0.143. See docs/ahsef_stage1.md section 8.2 and experiments/ahsef/stage1/reports/gain_diagnostics_validation.json."
+  },
+  "features": {
+    "feature_set": "uncertainty_only",
+    "features": [
+      "uncertainty"
+    ],
+    "definition": {
+      "uncertainty": "routing uncertainty under the frozen policy (score_entropy -> llm_normalized_score_entropy), in [0, 1]",
+      "score_top1": "largest normalised self-reported class score",
+      "score_top2": "second largest normalised self-reported class score",
+      "score_margin": "score_top1 - score_top2",
+      "score_entropy": "Shannon entropy of the normalised score vector, in nats",
+      "score_mass_top2": "score_top1 + score_top2, how concentrated the answer is",
+      "active_score_classes": "number of classes given a non-zero score",
+      "llm_confidence": "the model's own self-reported confidence (NOT a posterior)",
+      "llm_ambiguity": "the model's own self-reported ambiguity",
+      "llm_evidence_strength": "the model's own self-reported evidence strength",
+      "predicted_is_<class>": "indicator that the LLM currently predicts <class>",
+      "note": "Every feature is computable at inference time from the LLM response alone. None is derived from a label, from the audio model, or from the fused outcome."
+    },
+    "label_free": true,
+    "label_bearing_columns_denied": [
+      "audio_correct",
+      "audio_prediction",
+      "canonical_emotion",
+      "canonical_emotion_id",
+      "correct",
+      "emotion",
+      "fused_correct",
+      "fused_prediction",
+      "label",
+      "raw_emotion",
+      "signed_gain",
+      "text_correct",
+      "true_class",
+      "true_label",
+      "y",
+      "y_gain",
+      "y_harm"
+    ],
+    "imputation": "none -- an incomplete row receives no estimate"
+  },
+  "missing_features": {
+    "feature_set": "uncertainty_only",
+    "features": [
+      "uncertainty"
+    ],
+    "rows": 509,
+    "complete_rows": 509,
+    "incomplete_rows": 0,
+    "missing_per_feature": {
+      "uncertainty": 0
+    },
+    "policy": "Incomplete rows receive no gain estimate. Nothing is imputed."
+  },
+  "variants": {
+    "paired_logistic__uncertainty_only": {
+      "estimator": "paired_logistic__uncertainty_only",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.7555108359133127,
+        "auroc_ci95": [
+          0.6585793226488169,
+          0.8386774808125186
+        ],
+        "auprc": 0.21591193614426835,
+        "auprc_ci95": [
+          0.11918828457907862,
+          0.35680192988806464
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.28466191066997515,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.12576168285312556,
+        "pearson_r": 0.12657705015033488,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.04089514171344782,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": -0.00036222567358558746,
+        "mae": 0.1281620620016062,
+        "rmse": 0.2986423629368505,
+        "bins": [
+          {
+            "lower": -0.05316141896729343,
+            "upper": -0.004972075692030842,
+            "samples": 47,
+            "mean_predicted_gain": -0.02742378276369459,
+            "mean_observed_gain": 0.0,
+            "residual": -0.02742378276369459
+          },
+          {
+            "lower": -0.004972075692030842,
+            "upper": 0.005709553961392994,
+            "samples": 55,
+            "mean_predicted_gain": 0.001288545973699142,
+            "mean_observed_gain": 0.03636363636363636,
+            "residual": -0.03507509038993722
+          },
+          {
+            "lower": 0.005709553961392994,
+            "upper": 0.012426723442879763,
+            "samples": 51,
+            "mean_predicted_gain": 0.00884297585025132,
+            "mean_observed_gain": 0.0,
+            "residual": 0.00884297585025132
+          },
+          {
+            "lower": 0.012426723442879763,
+            "upper": 0.026582431120787064,
+            "samples": 48,
+            "mean_predicted_gain": 0.019657870778786852,
+            "mean_observed_gain": 0.0,
+            "residual": 0.019657870778786852
+          },
+          {
+            "lower": 0.026582431120787064,
+            "upper": 0.04130616631291473,
+            "samples": 53,
+            "mean_predicted_gain": 0.031943464492718655,
+            "mean_observed_gain": 0.018867924528301886,
+            "residual": 0.01307553996441677
+          },
+          {
+            "lower": 0.04130616631291473,
+            "upper": 0.050279520340039685,
+            "samples": 45,
+            "mean_predicted_gain": 0.04565265052928522,
+            "mean_observed_gain": 0.044444444444444446,
+            "residual": 0.0012082060848407766
+          },
+          {
+            "lower": 0.050279520340039685,
+            "upper": 0.06387448822587372,
+            "samples": 56,
+            "mean_predicted_gain": 0.05721014026513054,
+            "mean_observed_gain": 0.0,
+            "residual": 0.05721014026513054
+          },
+          {
+            "lower": 0.06387448822587372,
+            "upper": 0.07644191435733222,
+            "samples": 47,
+            "mean_predicted_gain": 0.07105799138079874,
+            "mean_observed_gain": 0.02127659574468085,
+            "residual": 0.04978139563611789
+          },
+          {
+            "lower": 0.07644191435733222,
+            "upper": 0.09618751539040865,
+            "samples": 54,
+            "mean_predicted_gain": 0.08601909969200572,
+            "mean_observed_gain": 0.1111111111111111,
+            "residual": -0.025092011419105387
+          },
+          {
+            "lower": 0.09618751539040865,
+            "upper": 0.13940509882303403,
+            "samples": 53,
+            "mean_predicted_gain": 0.10760769061689547,
+            "mean_observed_gain": 0.16981132075471697,
+            "residual": -0.0622036301378215
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.04089514171344782,
+        "std": 0.03998472442410334,
+        "min": -0.05316141896729343,
+        "max": 0.13940509882303403,
+        "fraction_positive": 0.8526522593320236
+      }
+    },
+    "fix_logistic__uncertainty_only": {
+      "estimator": "fix_logistic__uncertainty_only",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.7564396284829721,
+        "auroc_ci95": [
+          0.6615296976997385,
+          0.8393327437106919
+        ],
+        "auprc": 0.21482905894732301,
+        "auprc_ci95": [
+          0.11896258235171295,
+          0.35795927586102005
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.296681141439206,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.12977217787468587,
+        "pearson_r": 0.15445851135403374,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.06677529560891476,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": 0.02551792822188136,
+        "mae": 0.14224664810360693,
+        "rmse": 0.29886756132309883,
+        "bins": [
+          {
+            "lower": 0.005984533692566374,
+            "upper": 0.016003941886885427,
+            "samples": 47,
+            "mean_predicted_gain": 0.010142393671224204,
+            "mean_observed_gain": 0.0,
+            "residual": 0.010142393671224204
+          },
+          {
+            "lower": 0.016003941886885427,
+            "upper": 0.020916263112005444,
+            "samples": 48,
+            "mean_predicted_gain": 0.018250437383338612,
+            "mean_observed_gain": 0.041666666666666664,
+            "residual": -0.023416229283328052
+          },
+          {
+            "lower": 0.020916263112005444,
+            "upper": 0.023182368252850385,
+            "samples": 53,
+            "mean_predicted_gain": 0.021706525891846178,
+            "mean_observed_gain": 0.0,
+            "residual": 0.021706525891846178
+          },
+          {
+            "lower": 0.023182368252850385,
+            "upper": 0.03381974075052804,
+            "samples": 53,
+            "mean_predicted_gain": 0.027608133877936505,
+            "mean_observed_gain": 0.0,
+            "residual": 0.027608133877936505
+          },
+          {
+            "lower": 0.03381974075052804,
+            "upper": 0.044670562511167924,
+            "samples": 53,
+            "mean_predicted_gain": 0.03757444971325899,
+            "mean_observed_gain": 0.018867924528301886,
+            "residual": 0.018706525184957103
+          },
+          {
+            "lower": 0.044670562511167924,
+            "upper": 0.05684978511804581,
+            "samples": 51,
+            "mean_predicted_gain": 0.0513546816365028,
+            "mean_observed_gain": 0.0392156862745098,
+            "residual": 0.012138995361992998
+          },
+          {
+            "lower": 0.05684978511804581,
+            "upper": 0.0731810392259662,
+            "samples": 49,
+            "mean_predicted_gain": 0.06848912510665064,
+            "mean_observed_gain": 0.0,
+            "residual": 0.06848912510665064
+          },
+          {
+            "lower": 0.0731810392259662,
+            "upper": 0.10048532876281081,
+            "samples": 48,
+            "mean_predicted_gain": 0.09229213817009992,
+            "mean_observed_gain": 0.0,
+            "residual": 0.09229213817009992
+          },
+          {
+            "lower": 0.10048532876281081,
+            "upper": 0.1559035418404198,
+            "samples": 56,
+            "mean_predicted_gain": 0.12710977511081598,
+            "mean_observed_gain": 0.17857142857142858,
+            "residual": -0.0514616534606126
+          },
+          {
+            "lower": 0.1559035418404198,
+            "upper": 0.3229364790834112,
+            "samples": 51,
+            "mean_predicted_gain": 0.20603065163393325,
+            "mean_observed_gain": 0.11764705882352941,
+            "residual": 0.08838359281040384
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.06677529560891476,
+        "std": 0.060545269605772604,
+        "min": 0.005984533692566374,
+        "max": 0.3229364790834112,
+        "fraction_positive": 1.0
+      }
+    },
+    "paired_logistic__evidence_only": {
+      "estimator": "paired_logistic__evidence_only",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.719938080495356,
+        "auroc_ci95": [
+          0.6246571303480173,
+          0.8080205287769937
+        ],
+        "auprc": 0.16887358081180426,
+        "auprc_ci95": [
+          0.09481553139564729,
+          0.2866076460112118
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.25922766749379655,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.09286060919257269,
+        "pearson_r": 0.09186296609922352,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.04030492760978068,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": -0.0009524397772527201,
+        "mae": 0.1280946830459733,
+        "rmse": 0.3002382355871099,
+        "bins": [
+          {
+            "lower": -0.041788910626521236,
+            "upper": -0.01156784471380039,
+            "samples": 51,
+            "mean_predicted_gain": -0.023453666055647783,
+            "mean_observed_gain": 0.0392156862745098,
+            "residual": -0.06266935233015758
+          },
+          {
+            "lower": -0.01156784471380039,
+            "upper": 0.004776415429311983,
+            "samples": 51,
+            "mean_predicted_gain": -0.003620301858569887,
+            "mean_observed_gain": 0.0196078431372549,
+            "residual": -0.02322814499582479
+          },
+          {
+            "lower": 0.004776415429311983,
+            "upper": 0.011752622190679074,
+            "samples": 50,
+            "mean_predicted_gain": 0.008453847139314661,
+            "mean_observed_gain": 0.0,
+            "residual": 0.008453847139314661
+          },
+          {
+            "lower": 0.011752622190679074,
+            "upper": 0.021095786345377343,
+            "samples": 51,
+            "mean_predicted_gain": 0.01641029893225066,
+            "mean_observed_gain": 0.0,
+            "residual": 0.01641029893225066
+          },
+          {
+            "lower": 0.021095786345377343,
+            "upper": 0.030989488579946656,
+            "samples": 51,
+            "mean_predicted_gain": 0.026657433052144353,
+            "mean_observed_gain": 0.0,
+            "residual": 0.026657433052144353
+          },
+          {
+            "lower": 0.030989488579946656,
+            "upper": 0.04236937560195342,
+            "samples": 50,
+            "mean_predicted_gain": 0.03546395589981494,
+            "mean_observed_gain": 0.06,
+            "residual": -0.024536044100185055
+          },
+          {
+            "lower": 0.04236937560195342,
+            "upper": 0.06282256894920764,
+            "samples": 52,
+            "mean_predicted_gain": 0.05388475301514987,
+            "mean_observed_gain": 0.09615384615384616,
+            "residual": -0.04226909313869629
+          },
+          {
+            "lower": 0.06282256894920764,
+            "upper": 0.0780391185670794,
+            "samples": 50,
+            "mean_predicted_gain": 0.0700419630908191,
+            "mean_observed_gain": -0.04,
+            "residual": 0.1100419630908191
+          },
+          {
+            "lower": 0.0780391185670794,
+            "upper": 0.10874805190492318,
+            "samples": 52,
+            "mean_predicted_gain": 0.0919743210060974,
+            "mean_observed_gain": 0.15384615384615385,
+            "residual": -0.06187183284005646
+          },
+          {
+            "lower": 0.10874805190492318,
+            "upper": 0.1782478012151839,
+            "samples": 51,
+            "mean_predicted_gain": 0.1258209025528829,
+            "mean_observed_gain": 0.0784313725490196,
+            "residual": 0.047389530003863284
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.04030492760978068,
+        "std": 0.044124242075014794,
+        "min": -0.041788910626521236,
+        "max": 0.1782478012151839,
+        "fraction_positive": 0.8349705304518664
+      }
+    },
+    "fix_logistic__evidence_only": {
+      "estimator": "fix_logistic__evidence_only",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.7235294117647059,
+        "auroc_ci95": [
+          0.6223157451046124,
+          0.8142778930382665
+        ],
+        "auprc": 0.1708148033423773,
+        "auprc_ci95": [
+          0.09915210851696726,
+          0.2866144656459497
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.3062189826302729,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.10851572893504333,
+        "pearson_r": 0.11352634523984666,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.06695486198305685,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": 0.025697494596023437,
+        "mae": 0.14294527138927365,
+        "rmse": 0.30214876486432435,
+        "bins": [
+          {
+            "lower": 0.0014560932000117145,
+            "upper": 0.011417081774204044,
+            "samples": 51,
+            "mean_predicted_gain": 0.00788911645017151,
+            "mean_observed_gain": 0.058823529411764705,
+            "residual": -0.05093441296159319
+          },
+          {
+            "lower": 0.011417081774204044,
+            "upper": 0.017676225404780366,
+            "samples": 50,
+            "mean_predicted_gain": 0.014936556690204005,
+            "mean_observed_gain": -0.02,
+            "residual": 0.034936556690204006
+          },
+          {
+            "lower": 0.017676225404780366,
+            "upper": 0.021637504241309787,
+            "samples": 52,
+            "mean_predicted_gain": 0.019248764488832042,
+            "mean_observed_gain": 0.0,
+            "residual": 0.019248764488832042
+          },
+          {
+            "lower": 0.021637504241309787,
+            "upper": 0.029126383902285932,
+            "samples": 49,
+            "mean_predicted_gain": 0.0258055764507412,
+            "mean_observed_gain": 0.02040816326530612,
+            "residual": 0.005397413185435081
+          },
+          {
+            "lower": 0.029126383902285932,
+            "upper": 0.03981944916581204,
+            "samples": 52,
+            "mean_predicted_gain": 0.03373164043624041,
+            "mean_observed_gain": 0.038461538461538464,
+            "residual": -0.004729898025298052
+          },
+          {
+            "lower": 0.03981944916581204,
+            "upper": 0.05630861603051502,
+            "samples": 50,
+            "mean_predicted_gain": 0.04649451424481403,
+            "mean_observed_gain": 0.0,
+            "residual": 0.04649451424481403
+          },
+          {
+            "lower": 0.05630861603051502,
+            "upper": 0.08291320706858789,
+            "samples": 52,
+            "mean_predicted_gain": 0.07176974660210006,
+            "mean_observed_gain": 0.038461538461538464,
+            "residual": 0.033308208140561596
+          },
+          {
+            "lower": 0.08291320706858789,
+            "upper": 0.1134142449388605,
+            "samples": 51,
+            "mean_predicted_gain": 0.09573568901463422,
+            "mean_observed_gain": 0.0196078431372549,
+            "residual": 0.07612784587737932
+          },
+          {
+            "lower": 0.1134142449388605,
+            "upper": 0.1630397200499685,
+            "samples": 51,
+            "mean_predicted_gain": 0.13109530918835602,
+            "mean_observed_gain": 0.13725490196078433,
+            "residual": -0.006159592772428307
+          },
+          {
+            "lower": 0.1630397200499685,
+            "upper": 0.5248132087485824,
+            "samples": 51,
+            "mean_predicted_gain": 0.2212992986238135,
+            "mean_observed_gain": 0.11764705882352941,
+            "residual": 0.1036522398002841
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.06695486198305685,
+        "std": 0.06832329219644429,
+        "min": 0.0014560932000117145,
+        "max": 0.5248132087485824,
+        "fraction_positive": 1.0
+      }
+    },
+    "paired_logistic__evidence_plus_class": {
+      "estimator": "paired_logistic__evidence_plus_class",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.6694427244582043,
+        "auroc_ci95": [
+          0.5429827747948065,
+          0.7903323104246442
+        ],
+        "auprc": 0.165050514813479,
+        "auprc_ci95": [
+          0.09625145563884265,
+          0.2594193233072894
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.5382289081885856,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.13365765586004133,
+        "pearson_r": 0.14768723505110548,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.03864086795326258,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": -0.002616499433770814,
+        "mae": 0.1353923539060999,
+        "rmse": 0.30258897701002246,
+        "bins": [
+          {
+            "lower": -0.1479949143681974,
+            "upper": -0.03769245008951598,
+            "samples": 51,
+            "mean_predicted_gain": -0.06907310676119077,
+            "mean_observed_gain": 0.0196078431372549,
+            "residual": -0.08868094989844567
+          },
+          {
+            "lower": -0.03769245008951598,
+            "upper": -0.020095546517962415,
+            "samples": 48,
+            "mean_predicted_gain": -0.028698163093641278,
+            "mean_observed_gain": 0.0,
+            "residual": -0.028698163093641278
+          },
+          {
+            "lower": -0.020095546517962415,
+            "upper": -0.0046860554963497275,
+            "samples": 54,
+            "mean_predicted_gain": -0.011435870853033705,
+            "mean_observed_gain": 0.037037037037037035,
+            "residual": -0.04847290789007074
+          },
+          {
+            "lower": -0.0046860554963497275,
+            "upper": 0.00576283247997611,
+            "samples": 50,
+            "mean_predicted_gain": -7.87223154632033e-05,
+            "mean_observed_gain": 0.0,
+            "residual": -7.87223154632033e-05
+          },
+          {
+            "lower": 0.00576283247997611,
+            "upper": 0.015901467590343055,
+            "samples": 51,
+            "mean_predicted_gain": 0.009439640695230582,
+            "mean_observed_gain": 0.0196078431372549,
+            "residual": -0.01016820244202432
+          },
+          {
+            "lower": 0.015901467590343055,
+            "upper": 0.028169823353594487,
+            "samples": 51,
+            "mean_predicted_gain": 0.022455282687930945,
+            "mean_observed_gain": -0.0392156862745098,
+            "residual": 0.061670968962440745
+          },
+          {
+            "lower": 0.028169823353594487,
+            "upper": 0.03889655529198978,
+            "samples": 51,
+            "mean_predicted_gain": 0.03443683564779066,
+            "mean_observed_gain": 0.0392156862745098,
+            "residual": -0.004778850626719143
+          },
+          {
+            "lower": 0.03889655529198978,
+            "upper": 0.06033354886245485,
+            "samples": 51,
+            "mean_predicted_gain": 0.04775006933855344,
+            "mean_observed_gain": 0.0392156862745098,
+            "residual": 0.008534383064043638
+          },
+          {
+            "lower": 0.06033354886245485,
+            "upper": 0.16132151127267377,
+            "samples": 51,
+            "mean_predicted_gain": 0.09453106976618354,
+            "mean_observed_gain": 0.0784313725490196,
+            "residual": 0.016099697217163936
+          },
+          {
+            "lower": 0.16132151127267377,
+            "upper": 0.5646481815230023,
+            "samples": 51,
+            "mean_predicted_gain": 0.2853070078126078,
+            "mean_observed_gain": 0.21568627450980393,
+            "residual": 0.06962073330280388
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.03864086795326258,
+        "std": 0.0982620019328586,
+        "min": -0.1479949143681974,
+        "max": 0.5646481815230023,
+        "fraction_positive": 0.6483300589390962
+      }
+    },
+    "fix_logistic__evidence_plus_class": {
+      "estimator": "fix_logistic__evidence_plus_class",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.6912383900928792,
+        "auroc_ci95": [
+          0.5738320683355999,
+          0.8054011712425106
+        ],
+        "auprc": 0.18554060601455052,
+        "auprc_ci95": [
+          0.10838509744370806,
+          0.29388694777934044
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.37228598014888337,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.10341064028082951,
+        "pearson_r": 0.13948471128995227,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.06729264710191196,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": 0.026035279714878557,
+        "mae": 0.1384271058595788,
+        "rmse": 0.30611768731880085,
+        "bins": [
+          {
+            "lower": 0.0018918215886279037,
+            "upper": 0.010491764729525312,
+            "samples": 51,
+            "mean_predicted_gain": 0.006053886321832447,
+            "mean_observed_gain": 0.058823529411764705,
+            "residual": -0.05276964308993226
+          },
+          {
+            "lower": 0.010491764729525312,
+            "upper": 0.015350467096523615,
+            "samples": 51,
+            "mean_predicted_gain": 0.012904073841147452,
+            "mean_observed_gain": 0.058823529411764705,
+            "residual": -0.04591945557061725
+          },
+          {
+            "lower": 0.015350467096523615,
+            "upper": 0.0188297036074742,
+            "samples": 51,
+            "mean_predicted_gain": 0.017479808872332036,
+            "mean_observed_gain": -0.0392156862745098,
+            "residual": 0.05669549514684184
+          },
+          {
+            "lower": 0.0188297036074742,
+            "upper": 0.023499579262330567,
+            "samples": 50,
+            "mean_predicted_gain": 0.020863072524228067,
+            "mean_observed_gain": 0.0,
+            "residual": 0.020863072524228067
+          },
+          {
+            "lower": 0.023499579262330567,
+            "upper": 0.03138717637145693,
+            "samples": 50,
+            "mean_predicted_gain": 0.02783182719819809,
+            "mean_observed_gain": 0.04,
+            "residual": -0.012168172801801911
+          },
+          {
+            "lower": 0.03138717637145693,
+            "upper": 0.03730330396637316,
+            "samples": 52,
+            "mean_predicted_gain": 0.03395559544397865,
+            "mean_observed_gain": 0.019230769230769232,
+            "residual": 0.014724826213209419
+          },
+          {
+            "lower": 0.03730330396637316,
+            "upper": 0.0474453684033941,
+            "samples": 51,
+            "mean_predicted_gain": 0.04246934633863625,
+            "mean_observed_gain": 0.0,
+            "residual": 0.04246934633863625
+          },
+          {
+            "lower": 0.0474453684033941,
+            "upper": 0.06688888465808741,
+            "samples": 51,
+            "mean_predicted_gain": 0.05539008404622937,
+            "mean_observed_gain": -0.0392156862745098,
+            "residual": 0.09460577032073916
+          },
+          {
+            "lower": 0.06688888465808741,
+            "upper": 0.18479745180478002,
+            "samples": 51,
+            "mean_predicted_gain": 0.11345310609226167,
+            "mean_observed_gain": 0.0784313725490196,
+            "residual": 0.03502173354324206
+          },
+          {
+            "lower": 0.18479745180478002,
+            "upper": 0.7292477370084526,
+            "samples": 51,
+            "mean_predicted_gain": 0.34149521263785476,
+            "mean_observed_gain": 0.23529411764705882,
+            "residual": 0.10620109499079594
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.06729264710191196,
+        "std": 0.1064744439955244,
+        "min": 0.0018918215886279037,
+        "max": 0.7292477370084526,
+        "fraction_positive": 1.0
+      }
+    },
+    "prior_constant": {
+      "estimator": "prior_constant",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.5,
+        "auroc_ci95": [
+          0.5,
+          0.5
+        ],
+        "auprc": 0.052553903323526156,
+        "auprc_ci95": [
+          0.04654637321171061,
+          0.12485510089196238
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.5,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": null,
+        "pearson_r": null,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.04125736738703341,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": 1.0469686676229374e-17,
+        "mae": 0.1280834951231468,
+        "rmse": 0.30105771393797004,
+        "bins": [],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.04125736738703341,
+        "std": 6.938893903907228e-18,
+        "min": 0.0412573673870334,
+        "max": 0.0412573673870334,
+        "fraction_positive": 1.0
+      }
+    },
+    "shallow_forest_reference": {
+      "estimator": "shallow_forest_reference",
+      "samples_scored": 509,
+      "samples_unscored": 0,
+      "identifying_useful_acquisitions": {
+        "positive_event": "y_gain -- audio fixed a wrong text prediction",
+        "positives": 34,
+        "base_rate": 0.06679764243614932,
+        "auroc": 0.6424767801857585,
+        "auroc_ci95": [
+          0.5124394366532581,
+          0.7677517053500174
+        ],
+        "auprc": 0.17086888412881485,
+        "auprc_ci95": [
+          0.09266315543290639,
+          0.30440342598780395
+        ],
+        "auprc_baseline_is_base_rate": 0.06679764243614932,
+        "imbalance_note": "AUPRC is compared against the base rate, not against 0.5. An AUPRC at or below the base rate means the estimator adds nothing at the operating point regardless of its AUROC."
+      },
+      "avoiding_harmful_acquisitions": {
+        "positive_event": "y_harm -- audio broke a correct text prediction",
+        "positives": 13,
+        "base_rate": 0.025540275049115914,
+        "auroc_low_gain_predicts_harm": 0.26186414392059554,
+        "note": "Reported as 1 - AUROC because a *useful* estimator should give harmful acquisitions a LOW predicted gain. Values above 0.5 mean it does."
+      },
+      "predicted_vs_observed": {
+        "spearman_rho": 0.037342937625205616,
+        "pearson_r": 0.07655073024213782,
+        "target": "signed_gain = fused_correct - text_correct"
+      },
+      "calibration": {
+        "mean_predicted_gain": 0.04007828153310967,
+        "mean_observed_gain": 0.0412573673870334,
+        "bias": -0.0011790858539237276,
+        "mae": 0.1271986231819235,
+        "rmse": 0.3019976982198899,
+        "bins": [
+          {
+            "lower": -0.07767632611096986,
+            "upper": -0.010417501673795515,
+            "samples": 48,
+            "mean_predicted_gain": -0.028348168371867103,
+            "mean_observed_gain": 0.08333333333333333,
+            "residual": -0.11168150170520043
+          },
+          {
+            "lower": -0.010417501673795515,
+            "upper": 0.0008408400777397917,
+            "samples": 54,
+            "mean_predicted_gain": -0.0037739866383264503,
+            "mean_observed_gain": 0.05555555555555555,
+            "residual": -0.059329542193882
+          },
+          {
+            "lower": 0.0008408400777397917,
+            "upper": 0.007285249012190634,
+            "samples": 51,
+            "mean_predicted_gain": 0.003510826982164455,
+            "mean_observed_gain": 0.0196078431372549,
+            "residual": -0.016097016155090446
+          },
+          {
+            "lower": 0.007285249012190634,
+            "upper": 0.014145074910690092,
+            "samples": 51,
+            "mean_predicted_gain": 0.010890390940261176,
+            "mean_observed_gain": 0.0,
+            "residual": 0.010890390940261176
+          },
+          {
+            "lower": 0.014145074910690092,
+            "upper": 0.02067464384716139,
+            "samples": 47,
+            "mean_predicted_gain": 0.017189121947741068,
+            "mean_observed_gain": 0.02127659574468085,
+            "residual": -0.004087473796939783
+          },
+          {
+            "lower": 0.02067464384716139,
+            "upper": 0.028617059930909263,
+            "samples": 54,
+            "mean_predicted_gain": 0.024448377960914543,
+            "mean_observed_gain": 0.0,
+            "residual": 0.024448377960914543
+          },
+          {
+            "lower": 0.028617059930909263,
+            "upper": 0.04855348313566468,
+            "samples": 51,
+            "mean_predicted_gain": 0.03681155091944509,
+            "mean_observed_gain": 0.0,
+            "residual": 0.03681155091944509
+          },
+          {
+            "lower": 0.04855348313566468,
+            "upper": 0.08393852068910591,
+            "samples": 51,
+            "mean_predicted_gain": 0.06710920284582565,
+            "mean_observed_gain": 0.0392156862745098,
+            "residual": 0.02789351657131585
+          },
+          {
+            "lower": 0.08393852068910591,
+            "upper": 0.12688268496245914,
+            "samples": 51,
+            "mean_predicted_gain": 0.10576950156343998,
+            "mean_observed_gain": 0.0392156862745098,
+            "residual": 0.06655381528893017
+          },
+          {
+            "lower": 0.12688268496245914,
+            "upper": 0.24580629922578695,
+            "samples": 51,
+            "mean_predicted_gain": 0.16485463496923336,
+            "mean_observed_gain": 0.1568627450980392,
+            "residual": 0.007991889871194147
+          }
+        ],
+        "note": "Bins are quantiles of the predicted gain, so each holds a comparable number of samples. A monotone mean_observed_gain across bins is the property routing depends on; the residual column says whether the magnitude is also usable once a cost penalty is subtracted."
+      },
+      "distribution": {
+        "mean": 0.04007828153310967,
+        "std": 0.05616112615860178,
+        "min": -0.07767632611096986,
+        "max": 0.24580629922578695,
+        "fraction_positive": 0.8133595284872298
+      }
+    }
+  },
+  "comparison": {
+    "ranked_by_auroc": [
+      "fix_logistic__uncertainty_only",
+      "paired_logistic__uncertainty_only",
+      "fix_logistic__evidence_only",
+      "paired_logistic__evidence_only",
+      "fix_logistic__evidence_plus_class",
+      "paired_logistic__evidence_plus_class",
+      "shallow_forest_reference",
+      "prior_constant"
+    ],
+    "references": [
+      "prior_constant",
+      "shallow_forest_reference",
+      "paired_logistic__uncertainty_only",
+      "fix_logistic__uncertainty_only"
+    ],
+    "verdict": {
+      "best_candidate": "fix_logistic__evidence_only",
+      "best_candidate_auroc": 0.7235294117647059,
+      "best_reference": "fix_logistic__uncertainty_only",
+      "best_reference_auroc": 0.7564396284829721,
+      "candidate_beats_reference_point_estimate": false,
+      "candidate_ci95_excludes_reference": false,
+      "statement": "fix_logistic__evidence_only reaches AUROC 0.7235 against fix_logistic__uncertainty_only's 0.7564; the 95% bootstrap interval of the candidate CONTAINS the reference value, so this pool cannot establish that the learned estimator beats the simple reference. The routing result must be read with that in mind."
+    },
+    "criterion": "AUROC of the out-of-fold predicted gain against y_gain",
+    "question": "Does a richer evidence model beat Stage 2's uncertainty signal alone? The uncertainty-only variants are references for THIS question. They remain eligible to be frozen, and are frozen if they predict the gain best."
+  },
+  "selection_rule": {
+    "primary": "highest out-of-fold AUROC against y_gain on validation",
+    "tie_break": "among variants whose AUROC falls inside the bootstrap 95% interval of the best -- that is, variants this pool cannot distinguish -- prefer 'paired_logistic'.",
+    "why_paired_wins_ties": "UGAPR computes J = gain - lambda*C - mu*L, so the gain has to be in the units the target is defined in: a DIFFERENCE of probabilities of being correct. paired_logistic emits exactly that. fix_logistic emits P(audio fixes a wrong answer), which lives in [0, 1], is a different quantity, and cannot express harm at all -- subtracting a cost from it would be a category error dressed as a utility. The preference is therefore a property of the estimator's output, not of its score on this pool.",
+    "best_by_auroc": "fix_logistic__uncertainty_only",
+    "best_auroc": 0.7564396284829721,
+    "indistinguishable_from_best": [
+      "fix_logistic__evidence_only",
+      "fix_logistic__evidence_plus_class",
+      "fix_logistic__uncertainty_only",
+      "paired_logistic__evidence_only",
+      "paired_logistic__evidence_plus_class",
+      "paired_logistic__uncertainty_only"
+    ],
+    "selected": "paired_logistic__uncertainty_only",
+    "selected_auroc": 0.7555108359133127,
+    "auroc_conceded_to_the_tie_break": 0.0009287925696593868
+  },
+  "selected": {
+    "variant": "paired_logistic__uncertainty_only",
+    "estimator_type": "paired_logistic",
+    "feature_set": "uncertainty_only",
+    "fingerprint_sha256": "96988c45c9dbcd284e84d021b17c1b3368207a0ef9896af46347e8a1b4c4d01d"
+  },
+  "feature_importance": {
+    "text_correct": {
+      "coefficients": {
+        "uncertainty": -0.29381525089566674
+      },
+      "ranked_by_absolute_weight": [
+        "uncertainty"
+      ],
+      "intercept": -0.11659880572904387
+    },
+    "fused_correct": {
+      "coefficients": {
+        "uncertainty": -0.12886963465498028
+      },
+      "ranked_by_absolute_weight": [
+        "uncertainty"
+      ],
+      "intercept": 0.051276444912943156
+    },
+    "gain_direction": {
+      "coefficients": {
+        "uncertainty": 0.16494561624068646
+      },
+      "ranked_by_absolute_weight": [
+        "uncertainty"
+      ],
+      "note": "The difference of the two components' weights. A positive entry means that raising the feature raises the predicted gain -- this is what actually drives the acquisition decision."
+    },
+    "interpretation": "Inputs are standardised before fitting, so a coefficient is the change in log-odds per standard deviation of that feature and the magnitudes are directly comparable."
+  },
+  "class_rule_audit": {
+    "uses_class_features": false,
+    "per_predicted_class": {
+      "neutral": {
+        "samples": 318,
+        "mean_predicted_gain": 0.021470641804722572,
+        "std_predicted_gain": 0.03398791351658346,
+        "min": -0.05316141896729343,
+        "max": 0.1241990789318706
+      },
+      "happy": {
+        "samples": 64,
+        "mean_predicted_gain": 0.051486807935681056,
+        "std_predicted_gain": 0.018777019834884782,
+        "min": -0.008024444796324803,
+        "max": 0.0968195452335402
+      },
+      "sad": {
+        "samples": 28,
+        "mean_predicted_gain": 0.07567217042409151,
+        "std_predicted_gain": 0.020873165007457374,
+        "min": 0.026582431120787064,
+        "max": 0.13940509882303403
+      },
+      "angry": {
+        "samples": 64,
+        "mean_predicted_gain": 0.08252250469579364,
+        "std_predicted_gain": 0.020212446597403767,
+        "min": 0.030854990322618625,
+        "max": 0.13450835455585325
+      },
+      "fear": {
+        "samples": 9,
+        "mean_predicted_gain": 0.09845254599873887,
+        "std_predicted_gain": 0.0222007461777718,
+        "min": 0.05721657625080123,
+        "max": 0.13460293280250407
+      },
+      "disgust": {
+        "samples": 14,
+        "mean_predicted_gain": 0.08793580320235102,
+        "std_predicted_gain": 0.014629443268864138,
+        "min": 0.06002661853724467,
+        "max": 0.11159402934128976
+      },
+      "surprise": {
+        "samples": 12,
+        "mean_predicted_gain": 0.097947674927721,
+        "std_predicted_gain": 0.022917500435504664,
+        "min": 0.05749165432236675,
+        "max": 0.13845280741151583
+      }
+    },
+    "mean_within_class_std": 0.021942604976924285,
+    "between_class_std": 0.025929381950912572,
+    "within_to_between_ratio": 0.8462448128715242,
+    "verdict": "The estimator's feature set contains no class indicator, so it cannot be a class lookup as a matter of construction: it never sees the predicted class. Any between-class variation below is an image of how uncertainty itself differs across the classes the LLM predicts, not a rule keyed on the class.",
+    "why_this_matters": "Stage 3 forbids a hard-coded 'if class X then acquire' rule. A learned model that reduces to that rule is the same thing, so it is measured rather than assumed away."
+  },
+  "honesty": {
+    "all_quality_is_out_of_fold": true,
+    "folds": 5,
+    "seed": 42,
+    "pool_size": 509,
+    "caveat": "The estimator is fitted on 509 validation samples with 1 feature and 34 positive events. Bootstrap intervals are reported for every headline statistic because a point estimate at this size would invite a conclusion the data cannot carry."
+  }
+}

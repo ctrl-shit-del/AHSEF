@@ -1,0 +1,25 @@
+{
+    "samples": 264705,
+    "emotion_distribution": {
+        "neutral": 78718,
+        "happy": 58284,
+        "null": 48177,
+        "other": 3719,
+        "surprise": 5845,
+        "sad": 24230,
+        "fear": 1543,
+        "contempt": 5585,
+        "disgust": 2744,
+        "angry": 35860
+    },
+    "split_distribution": {
+        "Test1": 46294,
+        "Train": 169190,
+        "Development": 34399,
+        "Test2": 14822
+    },
+    "modalities": {
+        "audio": 264705,
+        "text": 264697
+    }
+}

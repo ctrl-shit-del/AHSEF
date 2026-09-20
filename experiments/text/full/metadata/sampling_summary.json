@@ -1,0 +1,803 @@
+{
+  "config": {
+    "batch_size": 16384,
+    "datasets": null,
+    "fraction": 1.0,
+    "holdout_overflow": "absorb",
+    "max_strata_in_summary": 512,
+    "minimum_per_stratum": 1,
+    "modality": "text",
+    "seed": 42,
+    "source": "metadata/standardized/standardized.parquet",
+    "split_policy": "official_aware",
+    "split_ratios": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "stratify_by": [
+      "dataset",
+      "canonical_emotion_id"
+    ],
+    "task": "emotion_7class"
+  },
+  "contributing_datasets": [
+    "MELD",
+    "CMU-MOSEI",
+    "MSP-Podcast"
+  ],
+  "deviations": {
+    "holdout_overflow": "absorb",
+    "minimum_per_stratum_adjustments": [],
+    "policy": "Strata whose proportional share rounds below 1 are raised to that floor, which can make the realised fraction exceed the requested one. Strata that cannot fill a split quota from unlocked records keep the shortfall rather than moving official holdout records into training.",
+    "quota_exceptions": [
+      {
+        "assigned": {
+          "test": 1256,
+          "train": 4536,
+          "validation": 644
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 4710,
+          "locked_test": 1256,
+          "locked_validation": 470
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 643,
+          "train": 5149,
+          "validation": 644
+        },
+        "selected": 6436,
+        "stratum": {
+          "canonical_emotion_id": 0,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      },
+      {
+        "assigned": {
+          "test": 402,
+          "train": 1675,
+          "validation": 231
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 1743,
+          "locked_test": 402,
+          "locked_validation": 163
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 231,
+          "train": 1846,
+          "validation": 231
+        },
+        "selected": 2308,
+        "stratum": {
+          "canonical_emotion_id": 1,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      },
+      {
+        "assigned": {
+          "test": 208,
+          "train": 683,
+          "validation": 111
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 683,
+          "locked_test": 208,
+          "locked_validation": 111
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 100,
+          "train": 802,
+          "validation": 100
+        },
+        "selected": 1002,
+        "stratum": {
+          "canonical_emotion_id": 2,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      },
+      {
+        "assigned": {
+          "test": 345,
+          "train": 1101,
+          "validation": 161
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 1109,
+          "locked_test": 345,
+          "locked_validation": 153
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 161,
+          "train": 1285,
+          "validation": 161
+        },
+        "selected": 1607,
+        "stratum": {
+          "canonical_emotion_id": 3,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      },
+      {
+        "assigned": {
+          "test": 50,
+          "train": 268,
+          "validation": 40
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 268,
+          "locked_test": 50,
+          "locked_validation": 40
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 36,
+          "train": 286,
+          "validation": 36
+        },
+        "selected": 358,
+        "stratum": {
+          "canonical_emotion_id": 4,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      },
+      {
+        "assigned": {
+          "test": 68,
+          "train": 257,
+          "validation": 36
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 271,
+          "locked_test": 68,
+          "locked_validation": 22
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 36,
+          "train": 289,
+          "validation": 36
+        },
+        "selected": 361,
+        "stratum": {
+          "canonical_emotion_id": 5,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      },
+      {
+        "assigned": {
+          "test": 281,
+          "train": 1191,
+          "validation": 164
+        },
+        "holdout_overflow": "absorb",
+        "pool_by_lock_group": {
+          "free": 1205,
+          "locked_test": 281,
+          "locked_validation": 150
+        },
+        "reason": "official holdout records absorbed into the splits they may occupy",
+        "requested": {
+          "test": 163,
+          "train": 1309,
+          "validation": 164
+        },
+        "selected": 1636,
+        "stratum": {
+          "canonical_emotion_id": 6,
+          "dataset": "MELD"
+        },
+        "unplaced": 0
+      }
+    ],
+    "unplaced_eligible_records": 0,
+    "unplaced_reason": null
+  },
+  "eligibility": {
+    "excluded": {
+      "dataset_not_contributing": 491067,
+      "invalid_or_missing_target": 80337,
+      "modality_unavailable": 8
+    },
+    "modality_rule": {
+      "accepted_sources": [
+        "metadata",
+        "file"
+      ],
+      "availability_column": "has_text",
+      "path_column": "text_path",
+      "source_column": "text_source"
+    },
+    "scanned_rows": 792336,
+    "task_rule": {
+      "label_column": "canonical_emotion_id",
+      "target_type": "categorical_emotion",
+      "valid_label_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validity_column": "emotion_target_valid"
+    }
+  },
+  "experiment": {
+    "description": "Text-only modality-filtered emotion_7class representative subset.",
+    "modality": "text",
+    "output_dir": "experiments/text/full/metadata",
+    "task": "emotion_7class"
+  },
+  "integrity": {
+    "cross_split_sample_ids": 0,
+    "duplicate_sample_ids": 0,
+    "invalid_label_records": 0,
+    "leakage_checks_passed": true,
+    "official_holdout_in_train": 0,
+    "records_outside_contributing_datasets": 0,
+    "records_with_missing_modality_source": 0,
+    "source_path_column": "text_path",
+    "source_path_examples": [
+      {
+        "sample_id": "MSP-Podcast_MSP-PODCAST_0001_0008",
+        "text_path": "MSP-Podcast/Transcripts/Transcripts/MSP-PODCAST_0001_0008.txt"
+      },
+      {
+        "sample_id": "MSP-Podcast_MSP-PODCAST_0001_0009",
+        "text_path": "MSP-Podcast/Transcripts/Transcripts/MSP-PODCAST_0001_0009.txt"
+      },
+      {
+        "sample_id": "MSP-Podcast_MSP-PODCAST_0001_0011",
+        "text_path": "MSP-Podcast/Transcripts/Transcripts/MSP-PODCAST_0001_0011.txt"
+      }
+    ],
+    "source_paths_rewritten": 0
+  },
+  "pool": {
+    "class_counts": {
+      "0": 85154,
+      "1": 60586,
+      "2": 25232,
+      "3": 37467,
+      "4": 1901,
+      "5": 3105,
+      "6": 7479
+    },
+    "dataset_class_counts": {
+      "MELD|0": 6436,
+      "MELD|1": 2308,
+      "MELD|2": 1002,
+      "MELD|3": 1607,
+      "MELD|4": 358,
+      "MELD|5": 361,
+      "MELD|6": 1636,
+      "MSP-Podcast|0": 78718,
+      "MSP-Podcast|1": 58278,
+      "MSP-Podcast|2": 24230,
+      "MSP-Podcast|3": 35860,
+      "MSP-Podcast|4": 1543,
+      "MSP-Podcast|5": 2744,
+      "MSP-Podcast|6": 5843
+    },
+    "dataset_counts": {
+      "MELD": 13708,
+      "MSP-Podcast": 207216
+    },
+    "dataset_official_split_counts": {
+      "MELD|test": 2610,
+      "MELD|train": 9989,
+      "MELD|validation": 1109,
+      "MSP-Podcast|__missing__": 207216
+    },
+    "eligible_records": 220924,
+    "official_split_counts": {
+      "__missing__": 207216,
+      "test": 2610,
+      "train": 9989,
+      "validation": 1109
+    }
+  },
+  "representativeness": {
+    "class_share_after": {
+      "0": 0.38544476833662256,
+      "1": 0.2742391048505368,
+      "2": 0.11421122195868262,
+      "3": 0.16959225797106697,
+      "4": 0.008604769060853506,
+      "5": 0.014054607014176821,
+      "6": 0.03385327080806069
+    },
+    "class_share_before": {
+      "0": 0.38544476833662256,
+      "1": 0.2742391048505368,
+      "2": 0.11421122195868262,
+      "3": 0.16959225797106697,
+      "4": 0.008604769060853506,
+      "5": 0.014054607014176821,
+      "6": 0.03385327080806069
+    },
+    "dataset_share_after": {
+      "MELD": 0.06204848726258804,
+      "MSP-Podcast": 0.937951512737412
+    },
+    "dataset_share_before": {
+      "MELD": 0.06204848726258804,
+      "MSP-Podcast": 0.937951512737412
+    },
+    "max_class_share_drift": 0.0,
+    "max_dataset_share_drift": 0.0
+  },
+  "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+  "seed": 42,
+  "selection": {
+    "actual_fraction": 1.0,
+    "class_counts": {
+      "0": 85154,
+      "1": 60586,
+      "2": 25232,
+      "3": 37467,
+      "4": 1901,
+      "5": 3105,
+      "6": 7479
+    },
+    "dataset_class_counts": {
+      "MELD|0": 6436,
+      "MELD|1": 2308,
+      "MELD|2": 1002,
+      "MELD|3": 1607,
+      "MELD|4": 358,
+      "MELD|5": 361,
+      "MELD|6": 1636,
+      "MSP-Podcast|0": 78718,
+      "MSP-Podcast|1": 58278,
+      "MSP-Podcast|2": 24230,
+      "MSP-Podcast|3": 35860,
+      "MSP-Podcast|4": 1543,
+      "MSP-Podcast|5": 2744,
+      "MSP-Podcast|6": 5843
+    },
+    "dataset_counts": {
+      "MELD": 13708,
+      "MSP-Podcast": 207216
+    },
+    "official_split_counts": {
+      "__missing__": 207216,
+      "test": 2610,
+      "train": 9989,
+      "validation": 1109
+    },
+    "plan_digest": "a598a227c818dd0befe4b7106e093989",
+    "requested_fraction": 1.0,
+    "selected_records": 220924,
+    "target_records": 220924
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "splits": {
+    "actual_ratios": {
+      "test": 0.10560645289782912,
+      "train": 0.7943184081403559,
+      "validation": 0.10007513896181493
+    },
+    "class_counts": {
+      "test": {
+        "0": 9128,
+        "1": 6230,
+        "2": 2631,
+        "3": 3931,
+        "4": 204,
+        "5": 342,
+        "6": 865
+      },
+      "train": {
+        "0": 67510,
+        "1": 48297,
+        "2": 20067,
+        "3": 29789,
+        "4": 1503,
+        "5": 2452,
+        "6": 5866
+      },
+      "validation": {
+        "0": 8516,
+        "1": 6059,
+        "2": 2534,
+        "3": 3747,
+        "4": 194,
+        "5": 311,
+        "6": 748
+      }
+    },
+    "counts": {
+      "test": 23331,
+      "train": 175484,
+      "validation": 22109
+    },
+    "dataset_counts": {
+      "test": {
+        "MELD": 2610,
+        "MSP-Podcast": 20721
+      },
+      "train": {
+        "MELD": 9711,
+        "MSP-Podcast": 165773
+      },
+      "validation": {
+        "MELD": 1387,
+        "MSP-Podcast": 20722
+      }
+    },
+    "official_split_counts": {
+      "test": {
+        "__missing__": 20721,
+        "test": 2610
+      },
+      "train": {
+        "__missing__": 165773,
+        "train": 9711
+      },
+      "validation": {
+        "__missing__": 20722,
+        "train": 278,
+        "validation": 1109
+      }
+    },
+    "ratios": {
+      "test": 0.1,
+      "train": 0.8,
+      "validation": 0.1
+    },
+    "sample_id_digests": {
+      "test": "865ccbec14e0d7625c7f1a79c294497f",
+      "train": "5babdee88d8bfa5a8b2784e9f8e2e34a",
+      "validation": "2b7b3070ec473667ffbd52764bcff2c3"
+    }
+  },
+  "strata": [
+    {
+      "assigned": {
+        "test": 1256,
+        "train": 4536,
+        "validation": 644
+      },
+      "pool": 6436,
+      "pool_by_lock_group": {
+        "free": 4710,
+        "locked_test": 1256,
+        "locked_validation": 470
+      },
+      "quota": {
+        "test": 643,
+        "train": 5149,
+        "validation": 644
+      },
+      "selected": 6436,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 402,
+        "train": 1675,
+        "validation": 231
+      },
+      "pool": 2308,
+      "pool_by_lock_group": {
+        "free": 1743,
+        "locked_test": 402,
+        "locked_validation": 163
+      },
+      "quota": {
+        "test": 231,
+        "train": 1846,
+        "validation": 231
+      },
+      "selected": 2308,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 208,
+        "train": 683,
+        "validation": 111
+      },
+      "pool": 1002,
+      "pool_by_lock_group": {
+        "free": 683,
+        "locked_test": 208,
+        "locked_validation": 111
+      },
+      "quota": {
+        "test": 100,
+        "train": 802,
+        "validation": 100
+      },
+      "selected": 1002,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 345,
+        "train": 1101,
+        "validation": 161
+      },
+      "pool": 1607,
+      "pool_by_lock_group": {
+        "free": 1109,
+        "locked_test": 345,
+        "locked_validation": 153
+      },
+      "quota": {
+        "test": 161,
+        "train": 1285,
+        "validation": 161
+      },
+      "selected": 1607,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 50,
+        "train": 268,
+        "validation": 40
+      },
+      "pool": 358,
+      "pool_by_lock_group": {
+        "free": 268,
+        "locked_test": 50,
+        "locked_validation": 40
+      },
+      "quota": {
+        "test": 36,
+        "train": 286,
+        "validation": 36
+      },
+      "selected": 358,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 68,
+        "train": 257,
+        "validation": 36
+      },
+      "pool": 361,
+      "pool_by_lock_group": {
+        "free": 271,
+        "locked_test": 68,
+        "locked_validation": 22
+      },
+      "quota": {
+        "test": 36,
+        "train": 289,
+        "validation": 36
+      },
+      "selected": 361,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 281,
+        "train": 1191,
+        "validation": 164
+      },
+      "pool": 1636,
+      "pool_by_lock_group": {
+        "free": 1205,
+        "locked_test": 281,
+        "locked_validation": 150
+      },
+      "quota": {
+        "test": 163,
+        "train": 1309,
+        "validation": 164
+      },
+      "selected": 1636,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 7872,
+        "train": 62974,
+        "validation": 7872
+      },
+      "pool": 78718,
+      "pool_by_lock_group": {
+        "free": 78718,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 7872,
+        "train": 62974,
+        "validation": 7872
+      },
+      "selected": 78718,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 5828,
+        "train": 46622,
+        "validation": 5828
+      },
+      "pool": 58278,
+      "pool_by_lock_group": {
+        "free": 58278,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 5828,
+        "train": 46622,
+        "validation": 5828
+      },
+      "selected": 58278,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 2423,
+        "train": 19384,
+        "validation": 2423
+      },
+      "pool": 24230,
+      "pool_by_lock_group": {
+        "free": 24230,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 2423,
+        "train": 19384,
+        "validation": 2423
+      },
+      "selected": 24230,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 3586,
+        "train": 28688,
+        "validation": 3586
+      },
+      "pool": 35860,
+      "pool_by_lock_group": {
+        "free": 35860,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 3586,
+        "train": 28688,
+        "validation": 3586
+      },
+      "selected": 35860,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 154,
+        "train": 1235,
+        "validation": 154
+      },
+      "pool": 1543,
+      "pool_by_lock_group": {
+        "free": 1543,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 154,
+        "train": 1235,
+        "validation": 154
+      },
+      "selected": 1543,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 274,
+        "train": 2195,
+        "validation": 275
+      },
+      "pool": 2744,
+      "pool_by_lock_group": {
+        "free": 2744,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 274,
+        "train": 2195,
+        "validation": 275
+      },
+      "selected": 2744,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "MSP-Podcast"
+      }
+    },
+    {
+      "assigned": {
+        "test": 584,
+        "train": 4675,
+        "validation": 584
+      },
+      "pool": 5843,
+      "pool_by_lock_group": {
+        "free": 5843,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 584,
+        "train": 4675,
+        "validation": 584
+      },
+      "selected": 5843,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "MSP-Podcast"
+      }
+    }
+  ],
+  "strata_omitted": 0,
+  "stratification_fields": [
+    "dataset",
+    "canonical_emotion_id"
+  ]
+}

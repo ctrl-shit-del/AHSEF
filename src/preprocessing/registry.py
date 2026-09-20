@@ -7,6 +7,7 @@ from src.preprocessing.adapters.mosei import MOSEIAdapter
 from src.preprocessing.adapters.rafdb import RAFDBAdapter
 from src.preprocessing.adapters.ravdess import RAVDESSAdapter
 from src.preprocessing.adapters.wesad import WESADAdapter
+from src.preprocessing.adapters.podcast import MSPPodcastAdapter
 
 class AdapterRegistry:
     """
@@ -48,6 +49,13 @@ class AdapterRegistry:
             "enabled": True,
             "modalities": ("audio", "video", "text"),
             "priority": 5,
+        },
+
+        "MSP-Podcast": {
+            "adapter": MSPPodcastAdapter,
+            "enabled": True,
+            "modalities": ("audio", "text"),
+            "priority": 6,
         },
 
         "RAF-DB": {

@@ -1,0 +1,72 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 1.7330255072525118,
+    "train_accuracy": 0.4336211085319519,
+    "train_macro_f1": 0.28830820322036743,
+    "val_loss": 1.6055504227584263,
+    "val_accuracy": 0.4781889021396637,
+    "val_macro_f1": 0.3232785761356354,
+    "best_val_macro_f1": 0.3232785761356354,
+    "best_epoch": 1,
+    "checkpoint_updated": true,
+    "epochs_without_improvement": 0,
+    "epoch_seconds": 91.433
+  },
+  {
+    "epoch": 2,
+    "train_loss": 1.6157410443111084,
+    "train_accuracy": 0.4872564375400543,
+    "train_macro_f1": 0.34217262268066406,
+    "val_loss": 1.5663126927501752,
+    "val_accuracy": 0.47972574830055237,
+    "val_macro_f1": 0.32908815145492554,
+    "best_val_macro_f1": 0.32908815145492554,
+    "best_epoch": 2,
+    "checkpoint_updated": true,
+    "epochs_without_improvement": 0,
+    "epoch_seconds": 61.297
+  },
+  {
+    "epoch": 3,
+    "train_loss": 1.5521237145591256,
+    "train_accuracy": 0.5014931559562683,
+    "train_macro_f1": 0.3633391261100769,
+    "val_loss": 1.5212984103076863,
+    "val_accuracy": 0.4998226761817932,
+    "val_macro_f1": 0.36129990220069885,
+    "best_val_macro_f1": 0.36129990220069885,
+    "best_epoch": 3,
+    "checkpoint_updated": true,
+    "epochs_without_improvement": 0,
+    "epoch_seconds": 61.886
+  },
+  {
+    "epoch": 4,
+    "train_loss": 1.5035597790550712,
+    "train_accuracy": 0.5180952548980713,
+    "train_macro_f1": 0.3839876651763916,
+    "val_loss": 1.5181235313415526,
+    "val_accuracy": 0.49698546528816223,
+    "val_macro_f1": 0.3667640686035156,
+    "best_val_macro_f1": 0.3667640686035156,
+    "best_epoch": 4,
+    "checkpoint_updated": true,
+    "epochs_without_improvement": 0,
+    "epoch_seconds": 63.348
+  },
+  {
+    "epoch": 5,
+    "train_loss": 1.4531128749378244,
+    "train_accuracy": 0.5262559056282043,
+    "train_macro_f1": 0.3990144431591034,
+    "val_loss": 1.4780032785433643,
+    "val_accuracy": 0.5189738869667053,
+    "val_macro_f1": 0.3677932322025299,
+    "best_val_macro_f1": 0.3677932322025299,
+    "best_epoch": 5,
+    "checkpoint_updated": true,
+    "epochs_without_improvement": 0,
+    "epoch_seconds": 61.627
+  }
+]

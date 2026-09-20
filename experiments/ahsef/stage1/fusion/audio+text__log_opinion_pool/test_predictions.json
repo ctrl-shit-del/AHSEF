@@ -1,0 +1,157 @@
+{
+  "schema": "ahsef.predictions.v1",
+  "modality": "audio+text",
+  "split": "test",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "samples": 482,
+  "predictions_path": "experiments\\ahsef\\stage1\\fusion\\audio+text__log_opinion_pool\\test_predictions.parquet",
+  "kind": "fused",
+  "component_modalities": [
+    "audio",
+    "text"
+  ],
+  "fusion": {
+    "method": "log_opinion_pool",
+    "weights": {
+      "audio": 0.55,
+      "text": 0.44999999999999996
+    },
+    "weights_normalised": true,
+    "selected_on_split": "validation",
+    "uses_test_labels": false,
+    "selection": {
+      "method": "exhaustive_grid_scan",
+      "objective": "macro_f1",
+      "grid": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "anchor": "audio",
+      "best_weight": 0.55,
+      "best_score": 0.321273535490036,
+      "pool_size": 509,
+      "scanned": [
+        {
+          "weight_audio": 0.05,
+          "macro_f1": 0.25752630829811096
+        },
+        {
+          "weight_audio": 0.1,
+          "macro_f1": 0.26757684350013733
+        },
+        {
+          "weight_audio": 0.15,
+          "macro_f1": 0.27190884947776794
+        },
+        {
+          "weight_audio": 0.2,
+          "macro_f1": 0.2861447036266327
+        },
+        {
+          "weight_audio": 0.25,
+          "macro_f1": 0.29219260811805725
+        },
+        {
+          "weight_audio": 0.3,
+          "macro_f1": 0.2941209673881531
+        },
+        {
+          "weight_audio": 0.35,
+          "macro_f1": 0.29758378863334656
+        },
+        {
+          "weight_audio": 0.4,
+          "macro_f1": 0.31488555669784546
+        },
+        {
+          "weight_audio": 0.45,
+          "macro_f1": 0.3210434317588806
+        },
+        {
+          "weight_audio": 0.5,
+          "macro_f1": 0.3155689239501953
+        },
+        {
+          "weight_audio": 0.55,
+          "macro_f1": 0.321273535490036
+        },
+        {
+          "weight_audio": 0.6,
+          "macro_f1": 0.31665894389152527
+        },
+        {
+          "weight_audio": 0.65,
+          "macro_f1": 0.30894121527671814
+        },
+        {
+          "weight_audio": 0.7,
+          "macro_f1": 0.2708980441093445
+        },
+        {
+          "weight_audio": 0.75,
+          "macro_f1": 0.27799203991889954
+        },
+        {
+          "weight_audio": 0.8,
+          "macro_f1": 0.2825113534927368
+        },
+        {
+          "weight_audio": 0.85,
+          "macro_f1": 0.28911349177360535
+        },
+        {
+          "weight_audio": 0.9,
+          "macro_f1": 0.27106985449790955
+        },
+        {
+          "weight_audio": 0.95,
+          "macro_f1": 0.2599402368068695
+        }
+      ]
+    }
+  },
+  "pool_size": 482,
+  "components": {
+    "audio": {
+      "experiment": "audio_25pct",
+      "iteration": "2",
+      "checkpoint_sha256": "bd317985860ad9c1b53e5e998288ef85a360a2f28e35b7e0028fa386fc94cb06",
+      "temperature": 1.0
+    },
+    "text": {
+      "experiment": "text_full",
+      "iteration": "1",
+      "checkpoint_sha256": "3dab6b9be6f4a3524754a2e137ed8cabb531f65a50cef7262bd219f7099dd313",
+      "temperature": 1.0
+    }
+  },
+  "latency_note": "Sum of component latencies: acquiring a modality costs its own inference, and AHSEF pays for both.",
+  "uses_labels_for_prediction": false
+}

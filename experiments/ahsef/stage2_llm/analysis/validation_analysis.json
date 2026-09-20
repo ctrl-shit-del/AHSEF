@@ -1,0 +1,627 @@
+{
+  "split": "validation",
+  "coverage": {
+    "samples": 1000,
+    "usable": 1000,
+    "coverage": 1.0,
+    "status_counts": {
+      "ok": 1000
+    },
+    "with_class_scores": 1000,
+    "score_coverage": 1.0,
+    "abstentions": 0,
+    "unmappable_examples": []
+  },
+  "llm_metrics": {
+    "samples": 1000,
+    "accuracy": 0.49399998784065247,
+    "macro_f1": 0.31450706720352173,
+    "weighted_f1": 0.47348752617836,
+    "macro_precision": 0.36664238572120667,
+    "macro_recall": 0.3183422088623047,
+    "per_class": {
+      "neutral": {
+        "precision": 0.5048543810844421,
+        "recall": 0.8103896379470825,
+        "f1": 0.6221336126327515,
+        "support": 385
+      },
+      "happy": {
+        "precision": 0.6984127163887024,
+        "recall": 0.32116788625717163,
+        "f1": 0.4399999976158142,
+        "support": 274
+      },
+      "sad": {
+        "precision": 0.4464285671710968,
+        "recall": 0.21739129722118378,
+        "f1": 0.2923976480960846,
+        "support": 115
+      },
+      "angry": {
+        "precision": 0.5090909004211426,
+        "recall": 0.33136093616485596,
+        "f1": 0.40143370628356934,
+        "support": 169
+      },
+      "fear": {
+        "precision": 0.0357142873108387,
+        "recall": 0.1111111119389534,
+        "f1": 0.054054055362939835,
+        "support": 9
+      },
+      "disgust": {
+        "precision": 0.06896551698446274,
+        "recall": 0.1428571492433548,
+        "f1": 0.09302326291799545,
+        "support": 14
+      },
+      "surprise": {
+        "precision": 0.3030303120613098,
+        "recall": 0.29411765933036804,
+        "f1": 0.2985074818134308,
+        "support": 34
+      }
+    },
+    "confusion_matrix": [
+      [
+        312,
+        24,
+        7,
+        21,
+        8,
+        8,
+        5
+      ],
+      [
+        146,
+        88,
+        4,
+        12,
+        5,
+        9,
+        10
+      ],
+      [
+        56,
+        8,
+        25,
+        13,
+        7,
+        3,
+        3
+      ],
+      [
+        79,
+        2,
+        15,
+        56,
+        7,
+        7,
+        3
+      ],
+      [
+        5,
+        0,
+        0,
+        3,
+        1,
+        0,
+        0
+      ],
+      [
+        5,
+        0,
+        2,
+        3,
+        0,
+        2,
+        2
+      ],
+      [
+        15,
+        4,
+        3,
+        2,
+        0,
+        0,
+        10
+      ]
+    ],
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ]
+  },
+  "text_baseline_metrics_same_samples": {
+    "samples": 1000,
+    "accuracy": 0.38100001215934753,
+    "macro_f1": 0.2789765000343323,
+    "weighted_f1": 0.404419869184494,
+    "macro_precision": 0.28177857398986816,
+    "macro_recall": 0.3380800187587738,
+    "per_class": {
+      "neutral": {
+        "precision": 0.5848214030265808,
+        "recall": 0.34025973081588745,
+        "f1": 0.43021345138549805,
+        "support": 385
+      },
+      "happy": {
+        "precision": 0.48739495873451233,
+        "recall": 0.42335766553878784,
+        "f1": 0.453125,
+        "support": 274
+      },
+      "sad": {
+        "precision": 0.2950819730758667,
+        "recall": 0.313043475151062,
+        "f1": 0.3037974536418915,
+        "support": 115
+      },
+      "angry": {
+        "precision": 0.3720930218696594,
+        "recall": 0.47337278723716736,
+        "f1": 0.4166666865348816,
+        "support": 169
+      },
+      "fear": {
+        "precision": 0.04477611929178238,
+        "recall": 0.3333333432674408,
+        "f1": 0.07894737273454666,
+        "support": 9
+      },
+      "disgust": {
+        "precision": 0.019607843831181526,
+        "recall": 0.0714285746216774,
+        "f1": 0.030769232660531998,
+        "support": 14
+      },
+      "surprise": {
+        "precision": 0.16867469251155853,
+        "recall": 0.4117647111415863,
+        "f1": 0.23931622505187988,
+        "support": 34
+      }
+    },
+    "confusion_matrix": [
+      [
+        131,
+        81,
+        39,
+        55,
+        26,
+        23,
+        30
+      ],
+      [
+        51,
+        116,
+        17,
+        51,
+        10,
+        11,
+        18
+      ],
+      [
+        16,
+        15,
+        36,
+        21,
+        13,
+        8,
+        6
+      ],
+      [
+        19,
+        21,
+        24,
+        80,
+        8,
+        6,
+        11
+      ],
+      [
+        1,
+        1,
+        0,
+        2,
+        3,
+        2,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        5,
+        1,
+        1,
+        4
+      ],
+      [
+        5,
+        3,
+        5,
+        1,
+        6,
+        0,
+        14
+      ]
+    ],
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ]
+  },
+  "uncertainty": {
+    "policy": "score_entropy",
+    "mean": 0.3815720249642583,
+    "median": 0.38621766474978875,
+    "std": 0.20109061507118053,
+    "mean_top1_score": 0.75098,
+    "mean_top1_prob": 0.7441911718061712,
+    "median_top1_prob": 0.8,
+    "mean_margin": 0.6142914375602923,
+    "ahsef_summary": {
+      "samples": 1000,
+      "mean_normalized_entropy": 0.3815720249642583,
+      "median_normalized_entropy": 0.38621766474978875,
+      "std_normalized_entropy": 0.20109061507118053,
+      "mean_predictive_entropy": 0.7425048759735375,
+      "mean_confidence": 0.75098,
+      "mean_margin": 0.6142914375602923,
+      "mean_uncertainty_when_correct": 0.33758716192872534,
+      "mean_uncertainty_when_wrong": 0.42451376871831603,
+      "uncertainty_separation": 0.08692660678959069,
+      "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+    },
+    "definition_note": "'uncertainty' is AHSEF-derived from the normalised self-reported class scores. 'llm_confidence' is the model's own self-report. They are different quantities and neither is a calibrated posterior."
+  },
+  "uncertainty_bins": [
+    {
+      "bin": "[0.0, 0.1)",
+      "lower": 0.0,
+      "upper": 0.1,
+      "samples": 86,
+      "accuracy": 0.6511627906976745,
+      "error_rate": 0.34883720930232553,
+      "mean_uncertainty": 0.0,
+      "fraction_correct": 0.6511627906976745
+    },
+    {
+      "bin": "[0.1, 0.2)",
+      "lower": 0.1,
+      "upper": 0.2,
+      "samples": 69,
+      "accuracy": 0.5652173913043478,
+      "error_rate": 0.4347826086956522,
+      "mean_uncertainty": 0.16457073613807305,
+      "fraction_correct": 0.5652173913043478
+    },
+    {
+      "bin": "[0.2, 0.3)",
+      "lower": 0.2,
+      "upper": 0.3,
+      "samples": 206,
+      "accuracy": 0.5776699029126213,
+      "error_rate": 0.4223300970873787,
+      "mean_uncertainty": 0.2390667164633547,
+      "fraction_correct": 0.5776699029126213
+    },
+    {
+      "bin": "[0.3, 0.4)",
+      "lower": 0.3,
+      "upper": 0.4,
+      "samples": 164,
+      "accuracy": 0.524390243902439,
+      "error_rate": 0.47560975609756095,
+      "mean_uncertainty": 0.34630668813828114,
+      "fraction_correct": 0.524390243902439
+    },
+    {
+      "bin": "[0.4, 0.5)",
+      "lower": 0.4,
+      "upper": 0.5,
+      "samples": 196,
+      "accuracy": 0.5357142857142857,
+      "error_rate": 0.4642857142857143,
+      "mean_uncertainty": 0.4485506860878302,
+      "fraction_correct": 0.5357142857142857
+    },
+    {
+      "bin": "[0.5, 0.6)",
+      "lower": 0.5,
+      "upper": 0.6,
+      "samples": 95,
+      "accuracy": 0.3894736842105263,
+      "error_rate": 0.6105263157894737,
+      "mean_uncertainty": 0.5536033200682007,
+      "fraction_correct": 0.3894736842105263
+    },
+    {
+      "bin": "[0.6, 0.7)",
+      "lower": 0.6,
+      "upper": 0.7,
+      "samples": 146,
+      "accuracy": 0.2876712328767123,
+      "error_rate": 0.7123287671232876,
+      "mean_uncertainty": 0.6491542577481544,
+      "fraction_correct": 0.2876712328767123
+    },
+    {
+      "bin": "[0.7, 0.8)",
+      "lower": 0.7,
+      "upper": 0.8,
+      "samples": 32,
+      "accuracy": 0.25,
+      "error_rate": 0.75,
+      "mean_uncertainty": 0.7468902460416058,
+      "fraction_correct": 0.25
+    },
+    {
+      "bin": "[0.8, 0.9)",
+      "lower": 0.8,
+      "upper": 0.9,
+      "samples": 6,
+      "accuracy": 0.3333333333333333,
+      "error_rate": 0.6666666666666667,
+      "mean_uncertainty": 0.8315573900577155,
+      "fraction_correct": 0.3333333333333333
+    },
+    {
+      "bin": "[0.9, 1.0]",
+      "lower": 0.9,
+      "upper": 1.0,
+      "samples": 0,
+      "accuracy": null,
+      "error_rate": null,
+      "mean_uncertainty": null,
+      "fraction_correct": null
+    }
+  ],
+  "uncertainty_vs_correctness": {
+    "spearman_rho": 0.21344582294098832,
+    "rho_ci95": [
+      0.15348366103808223,
+      0.2718418498069997
+    ],
+    "auroc_uncertainty_predicts_error": 0.6230777231921397,
+    "n": 1000,
+    "interpretation": "rho > 0 and AUROC > 0.5 mean higher uncertainty goes with being wrong, which is the precondition for the gate to work at all."
+  },
+  "latency": {
+    "total_ms": 981181.514171,
+    "total_seconds": 981.181514171,
+    "mean_ms": 981.181514171,
+    "median_ms": 696.102723,
+    "p95_ms": 2614.642990099999,
+    "min_ms": 470.12211,
+    "max_ms": 10722.01968
+  },
+  "tokens": {
+    "input_tokens": 684572,
+    "output_tokens": 148222,
+    "mean_input_tokens": 684.572,
+    "mean_output_tokens": 148.222
+  },
+  "cost": {
+    "monetary_cost_usd": null,
+    "reason": "Ollama publishes no per-token price for cloud-backed models through this interface. Token counts and latency are reported; no price is invented.",
+    "execution": "cloud"
+  },
+  "llm_confidence_calibration": {
+    "label": "llm_confidence",
+    "samples": 1000,
+    "num_bins": 10,
+    "accuracy": 0.494,
+    "mean_confidence": 0.75098,
+    "overconfidence": 0.25698,
+    "ece": 0.25698,
+    "mce": 0.33733668341708545,
+    "brier": 0.30354939999999997,
+    "confidence_vs_correctness": {
+      "mean_confidence_when_correct": 0.7862550607287448,
+      "mean_confidence_when_wrong": 0.7165415019762844,
+      "separation": 0.06971355875246044
+    },
+    "discrimination": {
+      "confidence_std": 0.14966108244964688,
+      "distinct_values": 11,
+      "auroc": 0.6282884735401898,
+      "note": "A self-report can be well calibrated in aggregate and still useless per sample. AUROC near 0.5, a near-zero separation, or very few distinct values all mean the number cannot support a per-sample gate."
+    },
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 1,
+        "mean_confidence": 0.1,
+        "accuracy": 0.0,
+        "gap": 0.1
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 0,
+        "mean_confidence": 0.0,
+        "accuracy": 0.0,
+        "gap": 0.0
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 0,
+        "mean_confidence": 0.0,
+        "accuracy": 0.0,
+        "gap": 0.0
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 18,
+        "mean_confidence": 0.4000000000000001,
+        "accuracy": 0.16666666666666666,
+        "gap": 0.23333333333333342
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 47,
+        "mean_confidence": 0.5,
+        "accuracy": 0.2553191489361702,
+        "gap": 0.2446808510638298
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6000000000000001,
+        "count": 220,
+        "mean_confidence": 0.5999999999999998,
+        "accuracy": 0.39545454545454545,
+        "gap": 0.2045454545454543
+      },
+      {
+        "lower": 0.6000000000000001,
+        "upper": 0.7000000000000001,
+        "count": 255,
+        "mean_confidence": 0.7,
+        "accuracy": 0.42745098039215684,
+        "gap": 0.2725490196078431
+      },
+      {
+        "lower": 0.7000000000000001,
+        "upper": 0.8,
+        "count": 114,
+        "mean_confidence": 0.8,
+        "accuracy": 0.6578947368421053,
+        "gap": 0.14210526315789473
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 146,
+        "mean_confidence": 0.879109589041096,
+        "accuracy": 0.5821917808219178,
+        "gap": 0.29691780821917824
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 199,
+        "mean_confidence": 0.955427135678392,
+        "accuracy": 0.6180904522613065,
+        "gap": 0.33733668341708545
+      }
+    ],
+    "is_a_posterior": false
+  },
+  "score_distribution_calibration": {
+    "label": "llm_score_distribution",
+    "samples": 1000,
+    "num_bins": 10,
+    "accuracy": 0.496,
+    "mean_confidence": 0.7441911718061712,
+    "overconfidence": 0.24819117180617123,
+    "ece": 0.24839117180617123,
+    "mce": 0.3327354794302959,
+    "brier": 0.7668723392741776,
+    "nll": 4.710839469810353,
+    "confidence_vs_correctness": {
+      "mean_confidence_when_correct": 0.7779457309863589,
+      "mean_confidence_when_wrong": 0.7109723992796373
+    },
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 0,
+        "mean_confidence": 0.0,
+        "accuracy": 0.0,
+        "gap": 0.0
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 0,
+        "mean_confidence": 0.0,
+        "accuracy": 0.0,
+        "gap": 0.0
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "count": 3,
+        "mean_confidence": 0.3,
+        "accuracy": 0.3333333333333333,
+        "gap": -0.033333333333333326
+      },
+      {
+        "lower": 0.30000000000000004,
+        "upper": 0.4,
+        "count": 25,
+        "mean_confidence": 0.39241025641025645,
+        "accuracy": 0.12,
+        "gap": 0.27241025641025646
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 151,
+        "mean_confidence": 0.4900747994365365,
+        "accuracy": 0.41721854304635764,
+        "gap": 0.07285625639017884
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 134,
+        "mean_confidence": 0.5923240938166311,
+        "accuracy": 0.3656716417910448,
+        "gap": 0.22665245202558632
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 100,
+        "mean_confidence": 0.6754404761904762,
+        "accuracy": 0.51,
+        "gap": 0.1654404761904762
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 225,
+        "mean_confidence": 0.7927317312890068,
+        "accuracy": 0.5066666666666667,
+        "gap": 0.28606506462234005
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 260,
+        "mean_confidence": 0.8971557155715574,
+        "accuracy": 0.5692307692307692,
+        "gap": 0.32792494634078817
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 102,
+        "mean_confidence": 0.9895982245283351,
+        "accuracy": 0.6568627450980392,
+        "gap": 0.3327354794302959
+      }
+    ],
+    "caveat": "Computed over normalised SELF-REPORTED scores, not a posterior. ECE/NLL here measure how well a self-report tracks correctness."
+  }
+}

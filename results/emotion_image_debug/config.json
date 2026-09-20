@@ -1,0 +1,29 @@
+{
+  "batch_size": 32,
+  "class_mapping": {
+    "angry": 3,
+    "disgust": 5,
+    "fear": 4,
+    "happy": 1,
+    "neutral": 0,
+    "sad": 2,
+    "surprise": 6
+  },
+  "device": "cpu",
+  "epochs": 2,
+  "hidden_dim": 64,
+  "image_size": 32,
+  "learning_rate": 0.001,
+  "manifest_dir": "metadata/experiments/emotion_7class",
+  "max_test_samples": 128,
+  "max_train_samples": 256,
+  "max_validation_samples": 128,
+  "modality": "image",
+  "name": "emotion_image_debug",
+  "num_classes": 7,
+  "python": "3.14.4",
+  "results_dir": "results/emotion_image_debug",
+  "seed": 42,
+  "torch": "2.13.0+cpu",
+  "weight_decay": 0.0001
+}

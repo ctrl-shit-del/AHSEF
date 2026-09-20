@@ -1,0 +1,323 @@
+{
+  "config": {
+    "dataset": "WESAD",
+    "datasets_root": "/run/media/mystic/Vengeance/capstone/datasets",
+    "modality": "physiology",
+    "sample_rate": 700,
+    "seed": 42,
+    "signal_group": "chest",
+    "source": "metadata/standardized/standardized.parquet",
+    "split_ratios": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "stride_seconds": 10.0,
+    "subject_aware": true,
+    "task": "wesad_state_3class",
+    "window_seconds": 60.0
+  },
+  "contributing_datasets": [
+    "WESAD"
+  ],
+  "deviations": {
+    "policy": "Windows spanning a condition boundary are discarded rather than assigned a dominant label; conditions outside the declared label space are never mapped onto it.",
+    "subject_split_rounding": {
+      "note": "Whole subjects are indivisible, so realised split ratios deviate from the requested ones; validation and test are guaranteed at least one subject each.",
+      "requested_ratios": {
+        "test": 0.1,
+        "train": 0.8,
+        "validation": 0.1
+      },
+      "subject_counts": {
+        "test": 1,
+        "train": 12,
+        "validation": 2
+      },
+      "subjects": 15
+    },
+    "windows_per_subject": {
+      "S10": 209,
+      "S11": 205,
+      "S13": 204,
+      "S14": 204,
+      "S15": 205,
+      "S16": 204,
+      "S17": 209,
+      "S2": 194,
+      "S3": 197,
+      "S4": 198,
+      "S5": 203,
+      "S6": 202,
+      "S7": 201,
+      "S8": 203,
+      "S9": 202
+    }
+  },
+  "eligibility": {
+    "modality_rule": {
+      "accepted_sources": [
+        "file"
+      ],
+      "availability_column": "has_physiology",
+      "path_column": "physiology_path",
+      "source_column": "physiology_source"
+    },
+    "subjects_scanned": 15,
+    "subjects_without_windows": []
+  },
+  "experiment": {
+    "description": "WESAD physiological-state windows, split by subject. WESAD carries no canonical emotion target, so the declared label space is wesad_state_3class.",
+    "modality": "physiology",
+    "output_dir": "experiments/physiology/full/metadata",
+    "task": "wesad_state_3class"
+  },
+  "features": {
+    "channels": [
+      "ACC_x",
+      "ACC_y",
+      "ACC_z",
+      "ECG",
+      "EMG",
+      "EDA",
+      "Temp",
+      "Resp"
+    ],
+    "dimension": 56,
+    "names": [
+      "ACC_x_mean",
+      "ACC_x_std",
+      "ACC_x_min",
+      "ACC_x_max",
+      "ACC_x_p25",
+      "ACC_x_p75",
+      "ACC_x_mean_abs_diff",
+      "ACC_y_mean",
+      "ACC_y_std",
+      "ACC_y_min",
+      "ACC_y_max",
+      "ACC_y_p25",
+      "ACC_y_p75",
+      "ACC_y_mean_abs_diff",
+      "ACC_z_mean",
+      "ACC_z_std",
+      "ACC_z_min",
+      "ACC_z_max",
+      "ACC_z_p25",
+      "ACC_z_p75",
+      "ACC_z_mean_abs_diff",
+      "ECG_mean",
+      "ECG_std",
+      "ECG_min",
+      "ECG_max",
+      "ECG_p25",
+      "ECG_p75",
+      "ECG_mean_abs_diff",
+      "EMG_mean",
+      "EMG_std",
+      "EMG_min",
+      "EMG_max",
+      "EMG_p25",
+      "EMG_p75",
+      "EMG_mean_abs_diff",
+      "EDA_mean",
+      "EDA_std",
+      "EDA_min",
+      "EDA_max",
+      "EDA_p25",
+      "EDA_p75",
+      "EDA_mean_abs_diff",
+      "Temp_mean",
+      "Temp_std",
+      "Temp_min",
+      "Temp_max",
+      "Temp_p25",
+      "Temp_p75",
+      "Temp_mean_abs_diff",
+      "Resp_mean",
+      "Resp_std",
+      "Resp_min",
+      "Resp_max",
+      "Resp_p25",
+      "Resp_p75",
+      "Resp_mean_abs_diff"
+    ],
+    "normalisation": "fitted on the training partition at training time",
+    "sample_rate": 700,
+    "statistics": [
+      "mean",
+      "std",
+      "min",
+      "max",
+      "p25",
+      "p75",
+      "mean_abs_diff"
+    ]
+  },
+  "integrity": {
+    "cross_split_sample_ids": 0,
+    "duplicate_sample_ids": 0,
+    "invalid_label_records": 0,
+    "leakage_checks_passed": true,
+    "official_holdout_in_train": 0,
+    "records_outside_contributing_datasets": 0,
+    "records_with_missing_modality_source": 0,
+    "source_path_column": "physiology_path",
+    "source_paths_rewritten": 0,
+    "subjects_in_multiple_splits": 0
+  },
+  "label_space": {
+    "classes": [
+      "baseline",
+      "stress",
+      "amusement"
+    ],
+    "description": "WESAD study conditions (baseline / stress / amusement).",
+    "limitation": "WESAD carries physiological-state annotations, not categorical emotion: every WESAD record in the standardized metadata has target_type='physiological_state' and canonical_emotion_valid=False. Forcing the 7-class emotion taxonomy onto it would fabricate labels, so the physiology baseline reports this task instead.",
+    "mapping": {
+      "amusement": 2,
+      "baseline": 0,
+      "stress": 1
+    },
+    "name": "wesad_state_3class",
+    "num_classes": 3
+  },
+  "pool": {
+    "class_counts": {
+      "0": 1671,
+      "1": 904,
+      "2": 465
+    },
+    "dataset_counts": {
+      "WESAD": 3040
+    },
+    "eligible_records": 3040,
+    "official_split_counts": {},
+    "subject_counts": {
+      "S10": 209,
+      "S11": 205,
+      "S13": 204,
+      "S14": 204,
+      "S15": 205,
+      "S16": 204,
+      "S17": 209,
+      "S2": 194,
+      "S3": 197,
+      "S4": 198,
+      "S5": 203,
+      "S6": 202,
+      "S7": 201,
+      "S8": 203,
+      "S9": 202
+    }
+  },
+  "representativeness": {
+    "class_share_after": {
+      "0": 0.5496710526315789,
+      "1": 0.29736842105263156,
+      "2": 0.15296052631578946
+    },
+    "class_share_before": {
+      "0": 0.5496710526315789,
+      "1": 0.29736842105263156,
+      "2": 0.15296052631578946
+    },
+    "dataset_share_after": {
+      "WESAD": 1.0
+    },
+    "dataset_share_before": {
+      "WESAD": 1.0
+    },
+    "max_class_share_drift": 0.0,
+    "max_dataset_share_drift": 0.0,
+    "note": "The full eligible window pool is used, so the selected distribution is the pool distribution by construction."
+  },
+  "sampling_method": "fixed 60s windows at a 10s stride over the chest channels, keeping only label-homogeneous windows, split subject-wise 0.8/0.1/0.1 with a seeded subject shuffle",
+  "seed": 42,
+  "selection": {
+    "actual_fraction": 1.0,
+    "class_counts": {
+      "0": 1671,
+      "1": 904,
+      "2": 465
+    },
+    "dataset_counts": {
+      "WESAD": 3040
+    },
+    "plan_digest": "be5baaa5ca882c10b7fa62d8e11d61a2",
+    "requested_fraction": 1.0,
+    "selected_records": 3040,
+    "target_records": 3040
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "splits": {
+    "actual_ratios": {
+      "test": 0.06513157894736842,
+      "train": 0.8016447368421052,
+      "validation": 0.13322368421052633
+    },
+    "class_counts": {
+      "test": {
+        "0": 110,
+        "1": 57,
+        "2": 31
+      },
+      "train": {
+        "0": 1337,
+        "1": 727,
+        "2": 373
+      },
+      "validation": {
+        "0": 224,
+        "1": 120,
+        "2": 61
+      }
+    },
+    "counts": {
+      "test": 198,
+      "train": 2437,
+      "validation": 405
+    },
+    "ratios": {
+      "test": 0.1,
+      "train": 0.8,
+      "validation": 0.1
+    },
+    "sample_id_digests": {
+      "test": "9d5fe2b02d2506532cb34c73fbf1895a",
+      "train": "a506e9382e33b5e4cbf6a7d49f1e2e94",
+      "validation": "5d9bb6b800fe282ee5bb6bc5f218e3a0"
+    },
+    "subject_counts": {
+      "test": 1,
+      "train": 12,
+      "validation": 2
+    },
+    "subjects": {
+      "test": [
+        "S4"
+      ],
+      "train": [
+        "S10",
+        "S11",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S2",
+        "S3",
+        "S5",
+        "S6",
+        "S8",
+        "S9"
+      ],
+      "validation": [
+        "S16",
+        "S7"
+      ]
+    }
+  },
+  "stratification_fields": [
+    "subject"
+  ]
+}

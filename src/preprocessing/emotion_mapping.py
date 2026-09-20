@@ -1,5 +1,4 @@
 UNIFIED_EMOTIONS = {
-
     "neutral": "neutral",
 
     "happy": "happy",
@@ -29,7 +28,7 @@ UNIFIED_EMOTIONS = {
 
     "calm": "calm",
 
-    "other": "other"
+    "other": "other",
 }
 
 RAVDESS_EMOTIONS = {
@@ -92,27 +91,22 @@ RAFDB_EMOTIONS = {
 }
 
 AFFECTNET_EMOTIONS = {
-
     0: "neutral",
-
     1: "happy",
-
     2: "sad",
-
     3: "surprise",
-
     4: "fear",
-
     5: "disgust",
-
     6: "angry",
-
     7: "contempt",
+    8: None,
+    9: None,
+    10: None,
+}
 
+AFFECTNET_ANNOTATION_STATES = {
     8: "none",
-
     9: "uncertain",
-
     10: "non_face",
 }
 
@@ -134,27 +128,28 @@ FERPLUS_EMOTIONS = {
 }
 
 WESAD_EMOTIONS = {
+    0: None,
+    1: None,
+    2: None,
+    3: None,
+    4: None,
+    5: None,
+    6: None,
+    7: None,
+}
 
+WESAD_ANNOTATION_STATES = {
     0: "transition",
-
     1: "baseline",
-
     2: "stress",
-
     3: "amusement",
-
     4: "meditation",
-
     5: "ignore",
-
     6: "ignore",
-
     7: "ignore",
-
 }
 
 IEMOCAP_EMOTIONS = {
-
     "ang": "angry",
     "hap": "happy",
     "exc": "excited",
@@ -165,7 +160,11 @@ IEMOCAP_EMOTIONS = {
     "sur": "surprise",
     "dis": "disgust",
     "oth": "other",
-    "xxx": "other",
+    "xxx": None,
+}
+
+IEMOCAP_ANNOTATION_STATES = {
+    "xxx": "unknown",
 }
 
 MELD_EMOTIONS = {
@@ -192,6 +191,29 @@ MOSEI_EMOTIONS = {
     "Negative": "sad",
 }
 
+MOSEI_ANNOTATION_STATES = {
+    "Positive": "positive_sentiment",
+    "Neutral": "neutral_sentiment",
+    "Negative": "negative_sentiment",
+}
+
+MSP_PODCAST_EMOTIONS = {
+    "N": "neutral",
+    "H": "happy",
+    "A": "angry",
+    "S": "sad",
+    "U": "surprise",
+    "F": "fear",
+    "D": "disgust",
+    "C": "contempt",
+    "O": "other",
+    "X": None,
+}
+
+MSP_PODCAST_ANNOTATION_STATES = {
+    "X": "no_agreement",
+}
+
 DATASET_EMOTION_MAPPINGS = {
     "RAVDESS": RAVDESS_EMOTIONS,
     "CREMA-D": CREMAD_EMOTIONS,
@@ -202,4 +224,5 @@ DATASET_EMOTION_MAPPINGS = {
     "IEMOCAP": IEMOCAP_EMOTIONS,
     "MELD": MELD_EMOTIONS,
     "CMU-MOSEI": MOSEI_EMOTIONS,
+    "MSP-Podcast": MSP_PODCAST_EMOTIONS,
 }

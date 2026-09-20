@@ -2,13 +2,14 @@
     "samples": 10039,
     "emotion_distribution": {
         "neutral": 1708,
-        "other": 2510,
+        "null": 2507,
         "frustrated": 1849,
         "angry": 1103,
         "sad": 1084,
         "happy": 595,
         "excited": 1041,
         "surprise": 107,
+        "other": 3,
         "fear": 40,
         "disgust": 2
     },

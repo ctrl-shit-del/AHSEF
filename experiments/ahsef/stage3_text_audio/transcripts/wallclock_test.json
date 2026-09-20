@@ -1,0 +1,35 @@
+{
+  "split": "test",
+  "samples": 482,
+  "generation_latency_ms": {
+    "mean": 938.8091271327802,
+    "median": 708.1490855,
+    "p95": 1738.6715945999993,
+    "min": 463.95837,
+    "max": 11798.501935,
+    "total": 452505.99927800003,
+    "source": "provider-reported completion latency, replayed from transcript"
+  },
+  "wall_clock": {
+    "measured_this_invocation": true,
+    "live_calls": 482,
+    "elapsed_seconds": 1622.9064755999998,
+    "mean_ms_per_live_call": 3367.0258829875515,
+    "generation_fraction_of_wall_clock": 0.27882444619040997,
+    "note": "Wall clock covers queueing, connection setup and cloud scheduling as well as generation. It is measured only for calls actually made in this invocation; a fully resumed pass reports measured=false rather than reusing an earlier run's number."
+  },
+  "latency_policy": "The Stage 3 cost model prices the LLM at measured wall clock, not at generation time, and records that cloud throughput is not constant. Audio is priced at its measured Stage 1 per-sample latency.",
+  "llm_config": {
+    "model": "gemma4:31b-cloud",
+    "host": "http://localhost:11434",
+    "prompt_version": "v2_explicit_json",
+    "temperature": 0.0,
+    "llm_seed": 42,
+    "num_predict": 700,
+    "repeats": 1,
+    "uncertainty_policy": "score_entropy",
+    "inherited_from": "experiments/ahsef/stage2_llm/frozen_config.json",
+    "note": "Stage 3 changes which samples the LLM is asked about, never how it is asked. Model, prompt, decoding parameters and uncertainty policy are the Stage 2 frozen values."
+  },
+  "recorded_at": "2026-08-30T10:56:12"
+}

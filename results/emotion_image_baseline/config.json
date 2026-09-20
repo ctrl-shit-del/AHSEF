@@ -1,0 +1,32 @@
+{
+  "experiment_name": "emotion_image_baseline",
+  "experiment_description": "Image-only modality-filtered 7-class categorical emotion baseline.",
+  "manifest_dir": "metadata/experiments/emotion_7class",
+  "modality": "image",
+  "num_classes": 7,
+  "class_mapping": {
+    "neutral": 0,
+    "happy": 1,
+    "sad": 2,
+    "angry": 3,
+    "fear": 4,
+    "disgust": 5,
+    "surprise": 6
+  },
+  "image_size": 48,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "epochs": 5,
+  "seed": 42,
+  "hidden_dim": 256,
+  "optimizer": "AdamW",
+  "loss": "CrossEntropyLoss",
+  "class_weight_policy": "inverse_frequency_from_train",
+  "device": "cpu",
+  "checkpoint_dir": "checkpoints/emotion_image_baseline",
+  "results_dir": "results/emotion_image_baseline",
+  "max_train_samples": null,
+  "max_val_samples": null,
+  "max_test_samples": null
+}

@@ -1,0 +1,327 @@
+{
+  "base_dir": "experiments/image/25pct",
+  "best_iteration": {
+    "best_epoch": 5,
+    "best_val_macro_f1": 0.3677932322025299,
+    "checkpoints": {
+      "best": "experiments/image/25pct/iteration_1/checkpoints/best.pt",
+      "last": "experiments/image/25pct/iteration_1/checkpoints/last.pt",
+      "reload_verified": true
+    },
+    "iteration": "1",
+    "test_accuracy": 0.5186893939971924,
+    "test_macro_f1": 0.3789462745189667,
+    "test_weighted_f1": 0.5410053730010986
+  },
+  "comparable_iterations": [
+    "1",
+    "2"
+  ],
+  "comparison": {
+    "best_val_macro_f1": {
+      "max": 0.3677932322025299,
+      "mean": 0.3665313273668289,
+      "min": 0.36526942253112793,
+      "n": 2,
+      "stdev": 0.0017846029330725306,
+      "values": [
+        0.3677932322025299,
+        0.36526942253112793
+      ]
+    },
+    "test_accuracy": {
+      "max": 0.5186893939971924,
+      "mean": 0.5057960748672485,
+      "min": 0.4929027557373047,
+      "n": 2,
+      "stdev": 0.018233906777571064,
+      "values": [
+        0.5186893939971924,
+        0.4929027557373047
+      ]
+    },
+    "test_loss": {
+      "max": 1.5945009358080955,
+      "mean": 1.581163000730524,
+      "min": 1.5678250656529524,
+      "n": 2,
+      "stdev": 0.018862688680753494,
+      "values": [
+        1.5678250656529524,
+        1.5945009358080955
+      ]
+    },
+    "test_macro_f1": {
+      "max": 0.3789462745189667,
+      "mean": 0.3675321191549301,
+      "min": 0.35611796379089355,
+      "n": 2,
+      "stdev": 0.016142053318854117,
+      "values": [
+        0.3789462745189667,
+        0.35611796379089355
+      ]
+    },
+    "test_weighted_f1": {
+      "max": 0.5410053730010986,
+      "mean": 0.530549168586731,
+      "min": 0.5200929641723633,
+      "n": 2,
+      "stdev": 0.014787306093744193,
+      "values": [
+        0.5410053730010986,
+        0.5200929641723633
+      ]
+    }
+  },
+  "experiment": "image_25pct",
+  "fraction": 0.25,
+  "iteration_count": 3,
+  "iterations": [
+    {
+      "best_epoch": 5,
+      "best_val_macro_f1": 0.3677932322025299,
+      "checkpoints": {
+        "best": "experiments/image/25pct/iteration_1/checkpoints/best.pt",
+        "last": "experiments/image/25pct/iteration_1/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/image/25pct/iteration_1/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 5,
+        "best_value": 0.3677932322025299,
+        "epochs_without_improvement": 0,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.3232785761356354,
+          0.32908815145492554,
+          0.36129990220069885,
+          0.3667640686035156,
+          0.3677932322025299
+        ],
+        "patience": 2,
+        "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.367793 at epoch 5",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "1",
+      "log_file": "experiments/image/25pct/iteration_1/logs/training.log",
+      "results_dir": "experiments/image/25pct/iteration_1/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 8454,
+        "train": 67642,
+        "validation": 8459
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.367793 at epoch 5",
+      "test_accuracy": 0.5186893939971924,
+      "test_loss": 1.5678250656529524,
+      "test_macro_f1": 0.3789462745189667,
+      "test_per_class_f1": [
+        0.5034013986587524,
+        0.7622453570365906,
+        0.3027268052101135,
+        0.3344370424747467,
+        0.31168830394744873,
+        0.18983955681324005,
+        0.24828532338142395
+      ],
+      "test_weighted_f1": 0.5410053730010986,
+      "total_seconds": 354.688,
+      "training_seconds": 339.745,
+      "validation_accuracy": 0.5189738869667053,
+      "validation_macro_f1": 0.3677932322025299,
+      "validation_weighted_f1": 0.5396472811698914
+    },
+    {
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.36526942253112793,
+      "checkpoints": {
+        "best": "experiments/image/25pct/iteration_2/checkpoints/best.pt",
+        "last": "experiments/image/25pct/iteration_2/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/image/25pct/iteration_2/config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 4,
+        "best_value": 0.36526942253112793,
+        "epochs_without_improvement": 1,
+        "min_delta": 0.0001,
+        "min_epochs": 2,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.32652878761291504,
+          0.34282663464546204,
+          0.35746675729751587,
+          0.36526942253112793,
+          0.36368343234062195
+        ],
+        "patience": 2,
+        "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.365269 at epoch 4",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 5,
+      "epochs_configured": 5,
+      "iteration": "2",
+      "log_file": "experiments/image/25pct/iteration_2/logs/training.log",
+      "results_dir": "experiments/image/25pct/iteration_2/results",
+      "run_seed": 43,
+      "samples": {
+        "test": 8454,
+        "train": 67642,
+        "validation": 8459
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.365269 at epoch 4",
+      "test_accuracy": 0.4929027557373047,
+      "test_loss": 1.5945009358080955,
+      "test_macro_f1": 0.35611796379089355,
+      "test_per_class_f1": [
+        0.5087432861328125,
+        0.7316182851791382,
+        0.26191988587379456,
+        0.3141153156757355,
+        0.2655298411846161,
+        0.16871164739131927,
+        0.2421875
+      ],
+      "test_weighted_f1": 0.5200929641723633,
+      "total_seconds": 317.163,
+      "training_seconds": 305.157,
+      "validation_accuracy": 0.5057335495948792,
+      "validation_macro_f1": 0.36526942253112793,
+      "validation_weighted_f1": 0.5317369699478149
+    },
+    {
+      "best_epoch": 2,
+      "best_val_macro_f1": 0.20077481865882874,
+      "checkpoints": {
+        "best": "experiments/image/25pct/iteration_debug/checkpoints/best.pt",
+        "last": "experiments/image/25pct/iteration_debug/checkpoints/last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments/image/25pct/iteration_debug/config.json",
+      "debug": true,
+      "early_stopping": {
+        "best_epoch": 2,
+        "best_value": 0.20077481865882874,
+        "epochs_without_improvement": 0,
+        "min_delta": 0.0001,
+        "min_epochs": 1,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.1558910459280014,
+          0.20077481865882874
+        ],
+        "patience": 1,
+        "reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.200775 at epoch 2",
+        "stopped_early": false,
+        "stopped_epoch": null
+      },
+      "epochs_completed": 2,
+      "epochs_configured": 2,
+      "iteration": "debug",
+      "log_file": "experiments/image/25pct/iteration_debug/logs/training.log",
+      "results_dir": "experiments/image/25pct/iteration_debug/results",
+      "run_seed": 42,
+      "samples": {
+        "test": 128,
+        "train": 256,
+        "validation": 128
+      },
+      "seed": 42,
+      "stop_reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.200775 at epoch 2",
+      "test_accuracy": 0.28125,
+      "test_loss": 1.989272877573967,
+      "test_macro_f1": 0.17123760282993317,
+      "test_per_class_f1": [
+        0.08163265883922577,
+        0.4848484992980957,
+        0.3750000298023224,
+        0.13953489065170288,
+        0.0,
+        0.0,
+        0.11764706671237946
+      ],
+      "test_weighted_f1": 0.31495001912117004,
+      "total_seconds": 2.17,
+      "training_seconds": 1.067,
+      "validation_accuracy": 0.3203125,
+      "validation_macro_f1": 0.20077481865882874,
+      "validation_weighted_f1": 0.3467138707637787
+    }
+  ],
+  "metadata_dir": "experiments/image/25pct/metadata",
+  "modality": "image",
+  "note": "Iterations are independent repeated runs. Test predictions are never averaged across iterations; each iteration's artefacts stand alone.",
+  "sampling_summary": {
+    "actual_fraction": 0.2499992608383276,
+    "actual_split_ratios": {
+      "test": 0.09998226006741175,
+      "train": 0.7999763467565489,
+      "validation": 0.10004139317603926
+    },
+    "contributing_datasets": [
+      "AffectNet+",
+      "FERPlus",
+      "RAF-DB"
+    ],
+    "eligible_records": 338221,
+    "integrity": {
+      "cross_split_sample_ids": 0,
+      "duplicate_sample_ids": 0,
+      "invalid_label_records": 0,
+      "leakage_checks_passed": true,
+      "official_holdout_in_train": 0,
+      "records_outside_contributing_datasets": 0,
+      "records_with_missing_modality_source": 0,
+      "source_path_column": "image_path",
+      "source_path_examples": [
+        {
+          "image_path": "FERPlus/images/000006.png",
+          "sample_id": "6"
+        },
+        {
+          "image_path": "FERPlus/images/000018.png",
+          "sample_id": "18"
+        },
+        {
+          "image_path": "FERPlus/images/000021.png",
+          "sample_id": "21"
+        }
+      ],
+      "source_paths_rewritten": 0
+    },
+    "path": "experiments/image/25pct/metadata/sampling_summary.json",
+    "requested_fraction": 0.25,
+    "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+    "seed": 42,
+    "selected_records": 84555,
+    "split_counts": {
+      "test": 8454,
+      "train": 67642,
+      "validation": 8459
+    },
+    "stratification_fields": [
+      "dataset",
+      "canonical_emotion_id"
+    ]
+  },
+  "selection_metric": "validation macro_f1 (higher is better)",
+  "validation_report": {
+    "failures": [],
+    "passed": true,
+    "path": "experiments/image/25pct/metadata/validation_report.json"
+  }
+}

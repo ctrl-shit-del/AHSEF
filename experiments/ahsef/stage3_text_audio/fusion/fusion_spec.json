@@ -1,0 +1,301 @@
+{
+  "selected": {
+    "method": "weighted_probability",
+    "weights": {
+      "audio": 0.7,
+      "text_llm": 0.3
+    },
+    "weights_normalised": true,
+    "selected_on_split": "validation",
+    "uses_test_labels": false,
+    "selection": {
+      "method": "exhaustive_grid_scan",
+      "objective": "macro_f1",
+      "grid": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "anchor": "text_llm",
+      "best_weight": 0.3,
+      "best_score": 0.3509645164012909,
+      "pool_size": 509,
+      "scanned": [
+        {
+          "weight_text_llm": 0.05,
+          "macro_f1": 0.2745719850063324
+        },
+        {
+          "weight_text_llm": 0.1,
+          "macro_f1": 0.2931535542011261
+        },
+        {
+          "weight_text_llm": 0.15,
+          "macro_f1": 0.29023098945617676
+        },
+        {
+          "weight_text_llm": 0.2,
+          "macro_f1": 0.3290797173976898
+        },
+        {
+          "weight_text_llm": 0.25,
+          "macro_f1": 0.3299616277217865
+        },
+        {
+          "weight_text_llm": 0.3,
+          "macro_f1": 0.3509645164012909
+        },
+        {
+          "weight_text_llm": 0.35,
+          "macro_f1": 0.3465346395969391
+        },
+        {
+          "weight_text_llm": 0.4,
+          "macro_f1": 0.32341691851615906
+        },
+        {
+          "weight_text_llm": 0.45,
+          "macro_f1": 0.3170594274997711
+        },
+        {
+          "weight_text_llm": 0.5,
+          "macro_f1": 0.3086068332195282
+        },
+        {
+          "weight_text_llm": 0.55,
+          "macro_f1": 0.2981537878513336
+        },
+        {
+          "weight_text_llm": 0.6,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.65,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.7,
+          "macro_f1": 0.31125807762145996
+        },
+        {
+          "weight_text_llm": 0.75,
+          "macro_f1": 0.3104425370693207
+        },
+        {
+          "weight_text_llm": 0.8,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.85,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.9,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.95,
+          "macro_f1": 0.30881693959236145
+        }
+      ]
+    }
+  },
+  "method_comparison": {
+    "weighted_probability": {
+      "weights": {
+        "audio": 0.7,
+        "text_llm": 0.3
+      },
+      "accuracy": 0.5127701163291931,
+      "macro_f1": 0.3509645164012909,
+      "weighted_f1": 0.48027077317237854,
+      "weight_scan": [
+        {
+          "weight_text_llm": 0.05,
+          "macro_f1": 0.2745719850063324
+        },
+        {
+          "weight_text_llm": 0.1,
+          "macro_f1": 0.2931535542011261
+        },
+        {
+          "weight_text_llm": 0.15,
+          "macro_f1": 0.29023098945617676
+        },
+        {
+          "weight_text_llm": 0.2,
+          "macro_f1": 0.3290797173976898
+        },
+        {
+          "weight_text_llm": 0.25,
+          "macro_f1": 0.3299616277217865
+        },
+        {
+          "weight_text_llm": 0.3,
+          "macro_f1": 0.3509645164012909
+        },
+        {
+          "weight_text_llm": 0.35,
+          "macro_f1": 0.3465346395969391
+        },
+        {
+          "weight_text_llm": 0.4,
+          "macro_f1": 0.32341691851615906
+        },
+        {
+          "weight_text_llm": 0.45,
+          "macro_f1": 0.3170594274997711
+        },
+        {
+          "weight_text_llm": 0.5,
+          "macro_f1": 0.3086068332195282
+        },
+        {
+          "weight_text_llm": 0.55,
+          "macro_f1": 0.2981537878513336
+        },
+        {
+          "weight_text_llm": 0.6,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.65,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.7,
+          "macro_f1": 0.31125807762145996
+        },
+        {
+          "weight_text_llm": 0.75,
+          "macro_f1": 0.3104425370693207
+        },
+        {
+          "weight_text_llm": 0.8,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.85,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.9,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.95,
+          "macro_f1": 0.30881693959236145
+        }
+      ]
+    },
+    "log_opinion_pool": {
+      "weights": {
+        "audio": 0.55,
+        "text_llm": 0.45
+      },
+      "accuracy": 0.5009823441505432,
+      "macro_f1": 0.33800625801086426,
+      "weighted_f1": 0.46420300006866455,
+      "weight_scan": [
+        {
+          "weight_text_llm": 0.05,
+          "macro_f1": 0.29334619641304016
+        },
+        {
+          "weight_text_llm": 0.1,
+          "macro_f1": 0.28623634576797485
+        },
+        {
+          "weight_text_llm": 0.15,
+          "macro_f1": 0.2958650290966034
+        },
+        {
+          "weight_text_llm": 0.2,
+          "macro_f1": 0.2918473780155182
+        },
+        {
+          "weight_text_llm": 0.25,
+          "macro_f1": 0.2888927459716797
+        },
+        {
+          "weight_text_llm": 0.3,
+          "macro_f1": 0.2826211750507355
+        },
+        {
+          "weight_text_llm": 0.35,
+          "macro_f1": 0.32166048884391785
+        },
+        {
+          "weight_text_llm": 0.4,
+          "macro_f1": 0.3342835009098053
+        },
+        {
+          "weight_text_llm": 0.45,
+          "macro_f1": 0.33800625801086426
+        },
+        {
+          "weight_text_llm": 0.5,
+          "macro_f1": 0.33551687002182007
+        },
+        {
+          "weight_text_llm": 0.55,
+          "macro_f1": 0.3221520781517029
+        },
+        {
+          "weight_text_llm": 0.6,
+          "macro_f1": 0.32144665718078613
+        },
+        {
+          "weight_text_llm": 0.65,
+          "macro_f1": 0.30645737051963806
+        },
+        {
+          "weight_text_llm": 0.7,
+          "macro_f1": 0.3193807899951935
+        },
+        {
+          "weight_text_llm": 0.75,
+          "macro_f1": 0.31397050619125366
+        },
+        {
+          "weight_text_llm": 0.8,
+          "macro_f1": 0.313858300447464
+        },
+        {
+          "weight_text_llm": 0.85,
+          "macro_f1": 0.31043678522109985
+        },
+        {
+          "weight_text_llm": 0.9,
+          "macro_f1": 0.30881693959236145
+        },
+        {
+          "weight_text_llm": 0.95,
+          "macro_f1": 0.30881693959236145
+        }
+      ]
+    },
+    "selection_rule": "The fusion rule is the configured --fusion-method ('weighted_probability'); both rules were scanned on validation and are reported above so the choice is auditable. Weights are chosen by macro-F1, matching the Stage 3 gate objective rather than by accuracy, which Stage 2 showed misleads on this corpus.",
+    "best_by_macro_f1": "weighted_probability"
+  },
+  "selected_on_split": "validation",
+  "uses_test_labels": false
+}

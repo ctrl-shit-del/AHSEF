@@ -1,0 +1,70 @@
+{
+  "schema": "ahsef.milestone.hsig.v1",
+  "target_name": "binary_correction",
+  "estimator": "ridge",
+  "feature_set": "evidence_only",
+  "feature_names": [
+    "uncertainty",
+    "score_top1",
+    "score_top2",
+    "score_margin",
+    "score_entropy",
+    "score_mass_top2",
+    "active_score_classes",
+    "llm_confidence",
+    "llm_ambiguity",
+    "llm_evidence_strength"
+  ],
+  "alpha": 100.0,
+  "seed": 42,
+  "fitted_on_split": "validation",
+  "scaler_mean": [
+    0.3956145375642518,
+    0.737605292952148,
+    0.13095651212844303,
+    0.606648780823705,
+    0.7698303437601021,
+    0.868561805080591,
+    4.365422396856582,
+    0.7514931237721021,
+    0.3797642436149313,
+    0.5135559921414538
+  ],
+  "scaler_scale": [
+    0.1941663954145373,
+    0.1702659876987354,
+    0.09651651337832219,
+    0.2576166973359595,
+    0.37783035944263516,
+    0.10122018127419138,
+    1.791724830091813,
+    0.14569571074515125,
+    0.22972423764581837,
+    0.24064608376428723
+  ],
+  "coefficients": [
+    -0.002472688789719723,
+    -0.0300164823233467,
+    0.008668668500667772,
+    -0.02308645258962819,
+    -0.0024726887897196974,
+    -0.04222593060894946,
+    0.008421240540118068,
+    -0.010177994634404669,
+    0.014365020216839731,
+    0.0017240560703419012
+  ],
+  "intercept": 0.12573673870333987,
+  "training_summary": {
+    "samples": 509,
+    "target_mean": 0.12573673870333987,
+    "target_std": 0.33155242608611374,
+    "distinct_target_values": 2
+  },
+  "quality": {
+    "note": "quality is reported out of fold, see targets block"
+  },
+  "created_at": "2026-08-31T10:55:02",
+  "uses_test_labels": false,
+  "serialisation_note": "Stored as plain coefficients rather than a pickle so a routing decision can be audited, and replayed, without scikit-learn."
+}

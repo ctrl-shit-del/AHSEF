@@ -1,0 +1,60 @@
+{
+  "schema": "ahsef.predictions.v1",
+  "modality": "text",
+  "split": "validation",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "samples": 22109,
+  "predictions_path": "experiments\\ahsef\\stage1\\predictions\\text__validation.parquet",
+  "experiment": "text_full",
+  "iteration": "1",
+  "task": "emotion_7class",
+  "task_limitation": null,
+  "metadata_dir": "experiments/text/full/metadata",
+  "manifest": "experiments\\text\\full\\metadata\\validation.parquet",
+  "checkpoint": "experiments\\text\\full\\iteration_1\\checkpoints\\best.pt",
+  "checkpoint_sha256": "3dab6b9be6f4a3524754a2e137ed8cabb531f65a50cef7262bd219f7099dd313",
+  "checkpoint_unchanged": true,
+  "baseline_best_epoch": 3,
+  "baseline_best_val_macro_f1": 0.27336013317108154,
+  "baseline_seed": 42,
+  "baseline_run_seed": null,
+  "model": {
+    "class": "TextEmotionBaseline",
+    "parameters": 4229639,
+    "num_classes": 7
+  },
+  "device": "cpu",
+  "temperature": 1.0,
+  "temperature_applied": false,
+  "uncertainty_definition": {
+    "confidence": "max_c p_c",
+    "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+    "entropy_base": "natural logarithm (nats)",
+    "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+    "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+    "calibrated": false,
+    "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+  },
+  "latency": {
+    "measured": true,
+    "wall_seconds": 438.4682,
+    "mean_latency_ms": 19.822785453887448,
+    "mean_inference_ms": 0.03963244832403291,
+    "mean_feature_ms": 19.78315300556342,
+    "note": "Wall-clock on this host, batch time divided evenly across the batch. Comparable across modalities only within one export run."
+  },
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.12.0+cpu"
+  },
+  "exported_at": "2026-08-29T09:58:06",
+  "uses_labels_for_prediction": false
+}

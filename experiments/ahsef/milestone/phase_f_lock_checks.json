@@ -1,0 +1,427 @@
+{
+  "protocol": "ahsef.milestone.phase_f.v1",
+  "conditions_declared": [
+    "1_frozen_policy_exists",
+    "2_frozen_policy_fingerprint_recorded",
+    "3_validation_configuration_frozen",
+    "4_no_prior_test_label_use",
+    "5_validation_and_test_disjoint",
+    "6_test_manifest_matches_lock",
+    "7_alignment_valid",
+    "8_no_contaminated_ids",
+    "9_model_fingerprints_match",
+    "10_cost_configuration_matches"
+  ],
+  "conditions_run": [
+    "1_frozen_policy_exists",
+    "2_frozen_policy_fingerprint_recorded",
+    "3_validation_configuration_frozen",
+    "4_no_prior_test_label_use",
+    "5_validation_and_test_disjoint",
+    "6_test_manifest_matches_lock",
+    "7_alignment_valid",
+    "8_no_contaminated_ids",
+    "9_model_fingerprints_match",
+    "10_cost_configuration_matches"
+  ],
+  "checks": [
+    {
+      "condition": "1_frozen_policy_exists",
+      "passed": true,
+      "detail": {
+        "path": "experiments\\ahsef\\milestone\\frozen_routing_policy.json",
+        "exists": true
+      },
+      "why_it_matters": "Without a frozen policy on disk there is nothing to evaluate, and any policy assembled here would have been chosen after the test split existed."
+    },
+    {
+      "condition": "2_frozen_policy_fingerprint_recorded",
+      "passed": true,
+      "detail": {
+        "sha256": "b2f8ced01204940599092f0db46c0965ebbae0b7e4ff1b38303ae94fa2cb6f37",
+        "frozen_at": "2026-08-31T10:55:05",
+        "protocol_version": "ahsef.milestone.phase_de.v1"
+      },
+      "why_it_matters": "The fingerprint is what lets a reader confirm that the policy evaluated here is the policy that was frozen, rather than one edited afterwards."
+    },
+    {
+      "condition": "3_validation_configuration_frozen",
+      "passed": true,
+      "detail": {
+        "selected_target": "uncertainty_only",
+        "budget": 0.1,
+        "fusion_weights": {
+          "audio": 0.6,
+          "text_llm": 0.4
+        },
+        "phase_de_selected_target": "uncertainty_only",
+        "phase_de_budget": 0.1,
+        "phase_de_fusion_weights": {
+          "audio": 0.6,
+          "text_llm": 0.4
+        }
+      },
+      "why_it_matters": "The frozen policy and the Phase D/E record must describe the same policy. If they disagree, one of them was edited and neither can be trusted."
+    },
+    {
+      "condition": "4_no_prior_test_label_use",
+      "passed": true,
+      "detail": {
+        "declarations": {
+          "policy.uses_test_labels": false,
+          "policy.test_partition_opened": false,
+          "policy.selection_rule.uses_test_labels": false,
+          "policy.selection_rule.uses_test_split": false,
+          "policy.fusion.uses_test_labels": false,
+          "phase_de.test_partition_opened": false,
+          "phase_de.test_labels_used": false,
+          "phase_de.thresholds_tuned_on_test": false,
+          "phase_d.test_partition_opened": false,
+          "stage3.uses_test_labels": false,
+          "text_llm.uses_labels_for_prediction": false,
+          "audio_strong.uses_labels_for_prediction": false
+        },
+        "decisions_covered": [
+          "target selection",
+          "threshold selection",
+          "budget selection",
+          "fusion-weight selection",
+          "model selection",
+          "prompt selection",
+          "uncertainty selection"
+        ]
+      },
+      "why_it_matters": "Every one of these was recorded by the phase that made the decision, at the time it made it. A flag written now would prove nothing."
+    },
+    {
+      "condition": "5_validation_and_test_disjoint",
+      "passed": true,
+      "detail": {
+        "validation_pool_size": 509,
+        "test_pool_size": 482,
+        "overlapping_ids": 0,
+        "examples": [],
+        "validation_fingerprint": "e3ff7bdd4fbd34d609e80bc899c91349a8298064e958ee72362064503c99c605",
+        "test_fingerprint": "22285e1ee58b7d3fedef12180873cc84ad795da4aa7c2a6fcb496b850094d838"
+      },
+      "why_it_matters": "A sample in both pools would have contributed to the policy that is now being evaluated on it."
+    },
+    {
+      "condition": "6_test_manifest_matches_lock",
+      "passed": true,
+      "detail": {
+        "audio_manifest_test_fingerprint": "cec265feb59a46f8da346ef96b48e622fef6235ca8f09c3ba425a51100ede94a",
+        "audio_manifest_test_samples": 5542,
+        "aligned_pool_fingerprint": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+        "stage3_recorded_pool_fingerprint": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+        "aligned_pool_size": 482,
+        "stage3_recorded_pool_size": 482
+      },
+      "why_it_matters": "The pool must be the one whose fingerprint was recorded before the policy was frozen, not one re-derived now from a manifest that may have moved."
+    },
+    {
+      "condition": "7_alignment_valid",
+      "passed": true,
+      "detail": {
+        "modalities": [
+          "audio",
+          "text"
+        ],
+        "task": "emotion_7class",
+        "size": 482,
+        "unique_ids": 482,
+        "labels_used_for_inclusion": false,
+        "pool_rule": "ids present in the SAME split of both the audio and the text experiment manifest. Ids shared across DIFFERENT splits are excluded and counted, because one model trained on them."
+      },
+      "why_it_matters": "The pool must contain each id once, must carry both modalities, and must not have used a label to decide membership."
+    },
+    {
+      "condition": "8_no_contaminated_ids",
+      "passed": true,
+      "detail": {
+        "validation_test_overlap": 0,
+        "recorded_cross_split_check": "not recorded by the pool",
+        "pool_excludes_cross_split_ids": true
+      },
+      "why_it_matters": "A sample that appears in another split's training manifest was seen by a model that is now being tested on it."
+    },
+    {
+      "condition": "9_model_fingerprints_match",
+      "passed": true,
+      "detail": {
+        "text_model": "gemma4:31b-cloud",
+        "text_prompt_sha256": "a6e8e7d02edb101f68b7886ec603871f31f6d9ce09fe37c01e47d20eb3e7ba7b",
+        "text_prompt_version": "v2_explicit_json",
+        "text_uncertainty_policy": "score_entropy",
+        "audio_experiment": "audio_strong_full",
+        "audio_iteration": "1",
+        "audio_probe_checkpoint_sha256": "306c3f745709d73ff566e0b2d37ca498f7937142035c8b9ccf9ed97944c9f56d",
+        "audio_checkpoint_unchanged": true,
+        "wav2vec2_config_fingerprint": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+        "wav2vec2_bundle": "WAV2VEC2_BASE",
+        "encoder_frozen": true,
+        "frozen_policy_experts": {
+          "text": "gemma4:31b-cloud, Stage 2 frozen prompt and decoding",
+          "audio": "audio_strong -- frozen WAV2VEC2_BASE + LayerWeightedProbe"
+        }
+      },
+      "why_it_matters": "The evaluated experts must be the ones the policy was frozen around. A different probe checkpoint or a different prompt is a different system."
+    },
+    {
+      "condition": "10_cost_configuration_matches",
+      "passed": true,
+      "detail": {
+        "policy_audio_ms": 289.0644272660753,
+        "loaded_audio_ms": 289.0644272660753,
+        "policy_text_ms": 3449.7265468379446,
+        "loaded_text_ms": 3449.7265468379446,
+        "cost_fingerprint": "e3534119a7c9ba50928f981b16a094b11ed074a3749466b64101bda96bb4e69a",
+        "includes_encoder": true,
+        "re_measured_on_evaluation_pool": false
+      },
+      "why_it_matters": "Re-pricing audio from test behaviour would make the reported saving a function of this run's host load rather than of the policy."
+    }
+  ],
+  "failed": [],
+  "all_passed": true,
+  "frozen_policy_sha256": "b2f8ced01204940599092f0db46c0965ebbae0b7e4ff1b38303ae94fa2cb6f37",
+  "frozen_policy": {
+    "experiment_id": "ahsef_50pct_milestone_v1",
+    "protocol_version": "ahsef.milestone.phase_de.v1",
+    "frozen_at": "2026-08-31T10:55:05",
+    "selected_target": "uncertainty_only",
+    "selection_rule": {
+      "primary_criterion": "mean validation macro-F1 over the low-budget operating region ['5%', '10%', '15%', '20%', '25%'], using out-of-fold scores",
+      "admissibility_gate": "the policy must exceed the matched-budget random control's 97.5th percentile macro-F1 at at least one interior budget",
+      "tie_break_1": "within 0.005 macro-F1, the simpler signal wins; a fitted target must clear uncertainty_only by more than that margin to be selected over it",
+      "tie_break_2": "higher retained fraction of the always-fusion macro-F1 gain at 10%",
+      "tie_break_3": "alphabetical target name, so the rule is total",
+      "metric": "macro_f1",
+      "why_not_accuracy": "Stage 2 measured that accuracy-shaped gating on this corpus buys neutral and loses macro-F1. Selecting on accuracy would reproduce that.",
+      "declared": "before any Phase D estimator was fitted or scored",
+      "uses_test_labels": false,
+      "uses_test_split": false
+    },
+    "selection_outcome": "TARGET SELECTED",
+    "parsimony_applied": true,
+    "routing_rule": {
+      "score": "the frozen Stage 2/3 routing uncertainty (normalised score entropy of the Gemma response), used directly",
+      "requires_estimator": false,
+      "estimator_fingerprint": null,
+      "estimator_artefact": null,
+      "decision": "acquire audio on the top-k samples by score",
+      "tie_break": "index order, so the acquired set is deterministic",
+      "k": "budget x pool size, rounded to nearest"
+    },
+    "acquisition_budget": {
+      "selected": 0.1,
+      "rule": "smallest budget meeting every MATERIAL_ROUTING_SUCCESS condition",
+      "grid": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    "fusion": {
+      "method": "weighted_probability",
+      "weights": {
+        "audio": 0.6,
+        "text_llm": 0.4
+      },
+      "weights_normalised": true,
+      "selected_on_split": "validation",
+      "uses_test_labels": false,
+      "selection": {
+        "method": "exhaustive_grid_scan",
+        "objective": "macro_f1",
+        "grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0
+        ],
+        "anchor": "text_llm",
+        "best_weight": 0.4,
+        "best_score": 0.4085569381713867,
+        "pool_size": 509,
+        "scanned": [
+          {
+            "weight_text_llm": 0.05,
+            "macro_f1": 0.3312579095363617
+          },
+          {
+            "weight_text_llm": 0.1,
+            "macro_f1": 0.33059436082839966
+          },
+          {
+            "weight_text_llm": 0.15,
+            "macro_f1": 0.34130722284317017
+          },
+          {
+            "weight_text_llm": 0.2,
+            "macro_f1": 0.3457390367984772
+          },
+          {
+            "weight_text_llm": 0.25,
+            "macro_f1": 0.34470605850219727
+          },
+          {
+            "weight_text_llm": 0.3,
+            "macro_f1": 0.3580116629600525
+          },
+          {
+            "weight_text_llm": 0.35,
+            "macro_f1": 0.3889220058917999
+          },
+          {
+            "weight_text_llm": 0.4,
+            "macro_f1": 0.4085569381713867
+          },
+          {
+            "weight_text_llm": 0.45,
+            "macro_f1": 0.3988488018512726
+          },
+          {
+            "weight_text_llm": 0.5,
+            "macro_f1": 0.3833385407924652
+          },
+          {
+            "weight_text_llm": 0.55,
+            "macro_f1": 0.3715357780456543
+          },
+          {
+            "weight_text_llm": 0.6,
+            "macro_f1": 0.36389192938804626
+          },
+          {
+            "weight_text_llm": 0.65,
+            "macro_f1": 0.3351914882659912
+          },
+          {
+            "weight_text_llm": 0.7,
+            "macro_f1": 0.325965017080307
+          },
+          {
+            "weight_text_llm": 0.75,
+            "macro_f1": 0.3119020164012909
+          },
+          {
+            "weight_text_llm": 0.8,
+            "macro_f1": 0.3096728026866913
+          },
+          {
+            "weight_text_llm": 0.85,
+            "macro_f1": 0.30977317690849304
+          },
+          {
+            "weight_text_llm": 0.9,
+            "macro_f1": 0.30881693959236145
+          },
+          {
+            "weight_text_llm": 0.95,
+            "macro_f1": 0.30881693959236145
+          }
+        ],
+        "reused_from": "experiments\\ahsef\\analysis\\audio_expert\\phase_c_aligned.json"
+      }
+    },
+    "experts": {
+      "text": "gemma4:31b-cloud, Stage 2 frozen prompt and decoding",
+      "audio": "audio_strong -- frozen WAV2VEC2_BASE + LayerWeightedProbe"
+    },
+    "costs": {
+      "text_llm": {
+        "latency_ms_per_sample": 3449.7265468379446,
+        "compute_units_per_sample": 22399500000000.0
+      },
+      "audio_strong": {
+        "latency_ms_per_sample": 289.0644272660753,
+        "compute_units_per_sample": 6042191899648.0,
+        "encoder_ms_per_sample": 288.88308016697573,
+        "head_ms_per_sample": 0.18134709909956967,
+        "encoder_parameters": 94370944,
+        "head_parameters": 266003,
+        "includes_encoder": true,
+        "includes_head": true
+      },
+      "audio_strong_share_of_text_latency": 0.08379343212900013,
+      "policy": {
+        "measured_on": "the Phase B-1 validation pass, not on the Phase D/E pool",
+        "re_measurement": "prohibited -- Phase E reads costs, it does not time anything",
+        "audio_strong_components": "frozen WAV2VEC2_BASE encoder (dominant) plus the trainable LayerWeightedProbe head",
+        "why_not_the_cached_head_latency": "The probe reads features the encoder already produced. At deployment the encoder runs per request, so charging only the head would understate the price of acquiring audio by roughly three orders of magnitude and would make every budget on the curve look free.",
+        "compute_units": "parameters x input_elements, the multiply-accumulate-order proxy used throughout this project. It is a proxy and is labelled as one.",
+        "text_llm_latency": "measured end-to-end wall clock from the Stage 3 pass, including queueing and cloud scheduling -- not generation time, which Stage 2 measured at roughly a fifth of it."
+      },
+      "sources": {
+        "audio_strong_latency": "experiments\\ahsef\\analysis\\audio_expert\\phase_b1_comparison.json",
+        "audio_strong_geometry": "experiments\\audio_strong\\features\\validation\\extraction_provenance.json",
+        "text_llm": "experiments\\ahsef\\stage3_text_audio\\frozen_config.json",
+        "encoder": "WAV2VEC2_BASE",
+        "encoder_input_elements": 64000,
+        "head_input_elements": 9216
+      },
+      "frozen": true,
+      "re_measured_on_evaluation_pool": false
+    },
+    "seeds": {
+      "estimator_seed": 42,
+      "random_control_seed": 42
+    },
+    "validation_performance": {
+      "budget": 0.1,
+      "acquired": 51,
+      "acquisition_rate": 0.10019646365422397,
+      "macro_f1": 0.36031046509742737,
+      "accuracy": 0.4990176856517792,
+      "weighted_f1": 0.47050583362579346
+    },
+    "material_routing_success": true,
+    "fingerprints": {
+      "pool": "e3ff7bdd4fbd34d609e80bc899c91349a8298064e958ee72362064503c99c605",
+      "cost_configuration": "e3534119a7c9ba50928f981b16a094b11ed074a3749466b64101bda96bb4e69a",
+      "targets": {
+        "binary_correction": "98cc54743ff4796bebf0b052fbb6caf130304de0809f3795f8e2870b900d55c3",
+        "signed_gain": "c1542ec4cd599d224c97e18fdfa0e777cf666d24d028e77a25f5651875337fd2",
+        "class_balanced_gain": "dedfd27706ddcbf48f401c6432c81d904ef47ced3d16a8e9913a655890ad09ef",
+        "macro_f1_marginal": "f68a9140f6d3417358ceed6fe4f28471173ddf396c59924f8fe732b8b271b612",
+        "uncertainty_reduction": "c5153e6fd1fd3d12d9fdb656c35ed2f4a434ec0a495ded9f3e12f375b8a25bd7"
+      }
+    },
+    "uses_test_labels": false,
+    "test_partition_opened": false,
+    "lock_note": "Everything the locked Phase F evaluation depends on is fixed here. Reselecting the target, refitting the estimator, moving the budget or retuning a fusion weight after this point invalidates the evaluation, and Phase F must verify this file before opening the test split."
+  },
+  "checked_at": "2026-08-31T12:07:26",
+  "rule": "If any condition fails, Phase F stops and reports which one. Nothing is repaired, substituted or worked around.",
+  "metadata_sources": {
+    "audio_meta": "experiments\\ahsef\\analysis\\audio_expert\\audio_strong__validation.json",
+    "extraction_provenance": "experiments\\audio_strong\\features\\validation\\extraction_provenance.json",
+    "test_pool": "experiments\\ahsef\\stage3_text_audio\\alignment\\pool_test.json"
+  },
+  "test_payload_read": false,
+  "test_labels_read": false
+}

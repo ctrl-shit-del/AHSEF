@@ -1,0 +1,233 @@
+{
+  "admitted_records": 5531,
+  "audit": {
+    "checks": [
+      {
+        "detail": "Every sample id appears at most once within its split",
+        "evidence": {},
+        "name": "no_duplicate_sample_ids",
+        "passed": true
+      },
+      {
+        "detail": "No sample id appears in more than one split",
+        "evidence": {},
+        "name": "no_cross_split_sample_ids",
+        "passed": true
+      },
+      {
+        "detail": "No speaker appears in more than one split",
+        "evidence": {
+          "overlaps": {},
+          "speakers_per_split": {
+            "test": [
+              "Session5_F",
+              "Session5_M"
+            ],
+            "train": [
+              "Session1_F",
+              "Session1_M",
+              "Session2_F",
+              "Session2_M",
+              "Session3_F",
+              "Session3_M"
+            ],
+            "validation": [
+              "Session4_F",
+              "Session4_M"
+            ]
+          },
+          "verifiable": true
+        },
+        "name": "speaker_independence",
+        "passed": true
+      },
+      {
+        "detail": "Every retained row carries a protocol class",
+        "evidence": {},
+        "name": "no_unlabelled_rows",
+        "passed": true
+      },
+      {
+        "detail": "All protocol classes appear in train, validation and test",
+        "evidence": {},
+        "name": "every_class_present_in_every_split",
+        "passed": true
+      },
+      {
+        "detail": "Every declared modality has a populated payload",
+        "evidence": {},
+        "name": "declared_modalities_have_payloads",
+        "passed": true
+      },
+      {
+        "detail": "All regression targets lie in [-1.0, 1.0]",
+        "evidence": {},
+        "name": "regression_targets_in_range",
+        "passed": true
+      },
+      {
+        "detail": "No feature cache built yet; nothing to check",
+        "evidence": {
+          "cache_root": "experiments\\hsen\\iemocap_ser4\\features"
+        },
+        "name": "feature_cache_split_isolation",
+        "passed": true
+      }
+    ],
+    "class_counts": {
+      "test": {
+        "angry": 170,
+        "happy": 442,
+        "neutral": 384,
+        "sad": 245
+      },
+      "train": {
+        "angry": 606,
+        "happy": 891,
+        "neutral": 1066,
+        "sad": 696
+      },
+      "validation": {
+        "angry": 327,
+        "happy": 303,
+        "neutral": 258,
+        "sad": 143
+      }
+    },
+    "counts": {
+      "test": 1241,
+      "train": 3259,
+      "validation": 1031
+    },
+    "experiment": "iemocap_ser4",
+    "modality_counts": {
+      "test": {
+        "audio": 1241,
+        "text": 1241,
+        "video": 0
+      },
+      "train": {
+        "audio": 3259,
+        "text": 3259,
+        "video": 0
+      },
+      "validation": {
+        "audio": 1031,
+        "text": 1031,
+        "video": 0
+      }
+    },
+    "passed": true,
+    "speakers": {
+      "test": [
+        "Session5_F",
+        "Session5_M"
+      ],
+      "train": [
+        "Session1_F",
+        "Session1_M",
+        "Session2_F",
+        "Session2_M",
+        "Session3_F",
+        "Session3_M"
+      ],
+      "validation": [
+        "Session4_F",
+        "Session4_M"
+      ]
+    }
+  },
+  "config": {
+    "built_at": "2026-09-10T05:47:34+00:00",
+    "dataset": "IEMOCAP",
+    "experiment": "iemocap_ser4",
+    "git_revision": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+    "label_protocol": "iemocap_ser4",
+    "seed": 42,
+    "source": "metadata\\standardized\\standardized.parquet",
+    "split_policy": "iemocap_cross_session",
+    "test_session": "Session5",
+    "validation_session": "Session4"
+  },
+  "counts": {
+    "test": 1241,
+    "train": 3259,
+    "validation": 1031
+  },
+  "excluded_by_protocol": 4508,
+  "label_space": {
+    "classes": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry"
+    ],
+    "description": "IEMOCAP four-way speech-emotion protocol with excited merged into happy (the standard 5,531-utterance subset).",
+    "limitation": "The happy class is the union of IEMOCAP's happy and excited annotations. That merge is the standard protocol, but it means per-class happy scores are not comparable with a space that keeps the two apart, such as iemocap_erc6.",
+    "mapping": {
+      "angry": 3,
+      "happy": 1,
+      "neutral": 0,
+      "sad": 2
+    },
+    "name": "iemocap_ser4",
+    "num_classes": 4
+  },
+  "labels": {
+    "arousal_supervised": 5531,
+    "class_counts": {
+      "angry": 1103,
+      "happy": 1636,
+      "neutral": 1708,
+      "sad": 1084
+    },
+    "label_space": {
+      "classes": [
+        "neutral",
+        "happy",
+        "sad",
+        "angry"
+      ],
+      "description": "IEMOCAP four-way speech-emotion protocol with excited merged into happy (the standard 5,531-utterance subset).",
+      "limitation": "The happy class is the union of IEMOCAP's happy and excited annotations. That merge is the standard protocol, but it means per-class happy scores are not comparable with a space that keeps the two apart, such as iemocap_erc6.",
+      "mapping": {
+        "angry": 3,
+        "happy": 1,
+        "neutral": 0,
+        "sad": 2
+      },
+      "name": "iemocap_ser4",
+      "num_classes": 4
+    },
+    "provenance": {
+      "adapter": "IEMOCAPLabelAdapter",
+      "class_mapping": {
+        "angry": "angry",
+        "excited": "happy",
+        "happy": "happy",
+        "neutral": "neutral",
+        "sad": "sad"
+      },
+      "emotion_column": "emotion",
+      "excited_merged_into_happy": true,
+      "protocol": "ser4",
+      "vad_scale": [
+        1.0,
+        5.0
+      ],
+      "vad_transform": "(x - 3) / 2 -> [-1, 1]; fixed, not fitted"
+    },
+    "samples": 5531,
+    "supervised": 5531,
+    "task": "single_label",
+    "valence_supervised": 5528
+  },
+  "source_records": 10039,
+  "text_provenance": {
+    "already_in_metadata": 0,
+    "joined_from_transcription_files": 10039,
+    "note": "joined_from_transcription_files drops to 0 once python -m src.preprocessing.generate_metadata is re-run with the transcript-aware IEMOCAP adapter",
+    "still_missing": 0,
+    "transcript_files_read": 10084
+  }
+}

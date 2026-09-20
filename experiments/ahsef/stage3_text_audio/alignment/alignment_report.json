@@ -1,0 +1,213 @@
+{
+  "phase": "A -- aligned Text+Audio pool",
+  "modalities": [
+    "audio",
+    "text"
+  ],
+  "task": "emotion_7class",
+  "minimum_pool": 200,
+  "splits": {
+    "validation": {
+      "size": 509,
+      "fingerprint_sha256": "c4715026f4d164b6e0c2ecd9bae0aa2f050ea114535331f317ee9c9af1cee23c",
+      "datasets": {
+        "MSP-Podcast": 509
+      },
+      "class_counts": {
+        "neutral": 172,
+        "happy": 151,
+        "sad": 63,
+        "angry": 95,
+        "fear": 6,
+        "disgust": 7,
+        "surprise": 15
+      },
+      "checks": {
+        "identical_sample_ids": true,
+        "identical_split_assignment": true,
+        "co_split_only": true,
+        "cross_split_shared_ids_excluded": 17594,
+        "train_contamination": {},
+        "label_spaces_compatible": true,
+        "label_agreement_verified": 509,
+        "class_order": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "disgust",
+          "surprise"
+        ],
+        "assets_verified": true,
+        "pool_expanded_across_splits": false
+      },
+      "availability": {
+        "text": {
+          "modality": "text",
+          "rows": 509,
+          "declared_has_flag": 509,
+          "payload_present": 509,
+          "available": 509,
+          "unavailable": 0,
+          "unavailable_sample_ids": [],
+          "declared_but_asset_missing": 0,
+          "declared_but_asset_missing_examples": [],
+          "rule": "A modality counts as available only when the has_<modality> flag, the payload column, and (for file-backed modalities) the file on disk all agree. Nothing is fabricated for an absent modality."
+        },
+        "audio": {
+          "modality": "audio",
+          "rows": 509,
+          "declared_has_flag": 509,
+          "payload_present": 509,
+          "available": 509,
+          "unavailable": 0,
+          "unavailable_sample_ids": [],
+          "declared_but_asset_missing": 0,
+          "declared_but_asset_missing_examples": [],
+          "rule": "A modality counts as available only when the has_<modality> flag, the payload column, and (for file-backed modalities) the file on disk all agree. Nothing is fabricated for an absent modality."
+        }
+      },
+      "provenance": {
+        "audio": {
+          "modality": "audio",
+          "experiment": "audio_25pct",
+          "manifest": "experiments\\audio\\25pct\\metadata\\validation.parquet",
+          "task": "emotion_7class",
+          "label_column": "canonical_emotion_id",
+          "split_counts": {
+            "train": 44348,
+            "validation": 5550,
+            "test": 5542
+          }
+        },
+        "text": {
+          "modality": "text",
+          "experiment": "text_full",
+          "manifest": "experiments\\text\\full\\metadata\\validation.parquet",
+          "task": "emotion_7class",
+          "label_column": "canonical_emotion_id",
+          "split_counts": {
+            "train": 175484,
+            "validation": 22109,
+            "test": 23331
+          }
+        }
+      }
+    },
+    "test": {
+      "size": 482,
+      "fingerprint_sha256": "c44ed7e03972e7745738e62f4117a91e1a8083319995d07688c09cd6ddbd8d11",
+      "datasets": {
+        "MSP-Podcast": 482
+      },
+      "class_counts": {
+        "neutral": 198,
+        "happy": 120,
+        "sad": 47,
+        "angry": 92,
+        "fear": 6,
+        "disgust": 8,
+        "surprise": 11
+      },
+      "checks": {
+        "identical_sample_ids": true,
+        "identical_split_assignment": true,
+        "co_split_only": true,
+        "cross_split_shared_ids_excluded": 17594,
+        "train_contamination": {},
+        "label_spaces_compatible": true,
+        "label_agreement_verified": 482,
+        "class_order": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "disgust",
+          "surprise"
+        ],
+        "assets_verified": true,
+        "pool_expanded_across_splits": false
+      },
+      "availability": {
+        "text": {
+          "modality": "text",
+          "rows": 482,
+          "declared_has_flag": 482,
+          "payload_present": 482,
+          "available": 482,
+          "unavailable": 0,
+          "unavailable_sample_ids": [],
+          "declared_but_asset_missing": 0,
+          "declared_but_asset_missing_examples": [],
+          "rule": "A modality counts as available only when the has_<modality> flag, the payload column, and (for file-backed modalities) the file on disk all agree. Nothing is fabricated for an absent modality."
+        },
+        "audio": {
+          "modality": "audio",
+          "rows": 482,
+          "declared_has_flag": 482,
+          "payload_present": 482,
+          "available": 482,
+          "unavailable": 0,
+          "unavailable_sample_ids": [],
+          "declared_but_asset_missing": 0,
+          "declared_but_asset_missing_examples": [],
+          "rule": "A modality counts as available only when the has_<modality> flag, the payload column, and (for file-backed modalities) the file on disk all agree. Nothing is fabricated for an absent modality."
+        }
+      },
+      "provenance": {
+        "audio": {
+          "modality": "audio",
+          "experiment": "audio_25pct",
+          "manifest": "experiments\\audio\\25pct\\metadata\\test.parquet",
+          "task": "emotion_7class",
+          "label_column": "canonical_emotion_id",
+          "split_counts": {
+            "train": 44348,
+            "validation": 5550,
+            "test": 5542
+          }
+        },
+        "text": {
+          "modality": "text",
+          "experiment": "text_full",
+          "manifest": "experiments\\text\\full\\metadata\\test.parquet",
+          "task": "emotion_7class",
+          "label_column": "canonical_emotion_id",
+          "split_counts": {
+            "train": 175484,
+            "validation": 22109,
+            "test": 23331
+          }
+        }
+      }
+    }
+  },
+  "splits_disjoint": true,
+  "verified": [
+    "identical sample ids in both modality manifests",
+    "identical split assignment (co-split rule)",
+    "no train/validation/test contamination",
+    "compatible seven-class emotion label space",
+    "agreeing ground truth for every pooled id",
+    "provenance recorded for both modalities",
+    "record-level availability of both modality payloads"
+  ],
+  "not_done": [
+    "the pool was NOT expanded by joining ids across different splits",
+    "no synthetic alignment was created",
+    "no cross-corpus pairing (audio+video, audio+image, audio+physiology) was fabricated"
+  ],
+  "limitation": "Both splits are drawn entirely from MSP-Podcast, the only corpus in this project carrying audio and text on the same record within one split. Stage 3 results therefore describe a Text->Audio routing policy on conversational podcast speech, not a corpus-general one.",
+  "experiment_id": "stage3_text_audio_v1",
+  "git_commit": "519b9c2e31b2c3bfc1007a29025df7642e96c1a3",
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "torch": "2.12.0+cpu",
+    "scikit_learn": "1.7.2"
+  }
+}

@@ -1,0 +1,800 @@
+{
+  "config": {
+    "batch_size": 16384,
+    "datasets": null,
+    "fraction": 0.25,
+    "max_strata_in_summary": 512,
+    "minimum_per_stratum": 1,
+    "modality": "image",
+    "seed": 42,
+    "source": "metadata/standardized/standardized.parquet",
+    "split_policy": "official_aware",
+    "split_ratios": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "stratify_by": [
+      "dataset",
+      "canonical_emotion_id"
+    ],
+    "task": "emotion_7class"
+  },
+  "contributing_datasets": [
+    "AffectNet+",
+    "FERPlus",
+    "RAF-DB"
+  ],
+  "deviations": {
+    "minimum_per_stratum_adjustments": [],
+    "policy": "Strata whose proportional share rounds below 1 are raised to that floor, which can make the realised fraction exceed the requested one. Strata that cannot fill a split quota from unlocked records keep the shortfall rather than moving official holdout records into training.",
+    "quota_exceptions": []
+  },
+  "eligibility": {
+    "excluded": {
+      "dataset_not_contributing": 321217,
+      "invalid_or_missing_target": 132898
+    },
+    "modality_rule": {
+      "accepted_sources": [
+        "file"
+      ],
+      "availability_column": "has_image",
+      "path_column": "image_path",
+      "source_column": "image_source"
+    },
+    "scanned_rows": 792336,
+    "task_rule": {
+      "label_column": "canonical_emotion_id",
+      "target_type": "categorical_emotion",
+      "valid_label_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validity_column": "emotion_target_valid"
+    }
+  },
+  "experiment": {
+    "description": "Image-only modality-filtered emotion_7class representative subset.",
+    "modality": "image",
+    "output_dir": "experiments/image/25pct/metadata",
+    "task": "emotion_7class"
+  },
+  "integrity": {
+    "cross_split_sample_ids": 0,
+    "duplicate_sample_ids": 0,
+    "invalid_label_records": 0,
+    "leakage_checks_passed": true,
+    "official_holdout_in_train": 0,
+    "records_outside_contributing_datasets": 0,
+    "records_with_missing_modality_source": 0,
+    "source_path_column": "image_path",
+    "source_path_examples": [
+      {
+        "image_path": "FERPlus/images/000006.png",
+        "sample_id": "6"
+      },
+      {
+        "image_path": "FERPlus/images/000018.png",
+        "sample_id": "18"
+      },
+      {
+        "image_path": "FERPlus/images/000021.png",
+        "sample_id": "21"
+      }
+    ],
+    "source_paths_rewritten": 0
+  },
+  "pool": {
+    "class_counts": {
+      "0": 81702,
+      "1": 141122,
+      "2": 37784,
+      "3": 39241,
+      "4": 11727,
+      "5": 9607,
+      "6": 17038
+    },
+    "dataset_class_counts": {
+      "AffectNet+|0": 75374,
+      "AffectNet+|1": 134915,
+      "AffectNet+|2": 25959,
+      "AffectNet+|3": 25382,
+      "AffectNet+|4": 6878,
+      "AffectNet+|5": 4303,
+      "AffectNet+|6": 14590,
+      "FERPlus|0": 3124,
+      "FERPlus|1": 250,
+      "FERPlus|2": 9365,
+      "FERPlus|3": 12992,
+      "FERPlus|4": 4494,
+      "FERPlus|5": 4427,
+      "FERPlus|6": 829,
+      "RAF-DB|0": 3204,
+      "RAF-DB|1": 5957,
+      "RAF-DB|2": 2460,
+      "RAF-DB|3": 867,
+      "RAF-DB|4": 355,
+      "RAF-DB|5": 877,
+      "RAF-DB|6": 1619
+    },
+    "dataset_counts": {
+      "AffectNet+": 287401,
+      "FERPlus": 35481,
+      "RAF-DB": 15339
+    },
+    "dataset_official_split_counts": {
+      "AffectNet+|train": 283901,
+      "AffectNet+|validation": 3500,
+      "FERPlus|train": 35481,
+      "RAF-DB|test": 3068,
+      "RAF-DB|train": 12271
+    },
+    "eligible_records": 338221,
+    "official_split_counts": {
+      "test": 3068,
+      "train": 331653,
+      "validation": 3500
+    }
+  },
+  "representativeness": {
+    "class_share_after": {
+      "0": 0.24157057536514695,
+      "1": 0.417243214475785,
+      "2": 0.11171426881911183,
+      "3": 0.11603098574892082,
+      "4": 0.03466382827745255,
+      "5": 0.028407545384660872,
+      "6": 0.050369581928922005
+    },
+    "class_share_before": {
+      "0": 0.2415639478329258,
+      "1": 0.41724789412839536,
+      "2": 0.11171393851948874,
+      "3": 0.11602177274622215,
+      "4": 0.03467259572882819,
+      "5": 0.02840450474689626,
+      "6": 0.050375346297243516
+    },
+    "dataset_share_after": {
+      "AffectNet+": 0.8497545975991958,
+      "FERPlus": 0.10489030808349595,
+      "RAF-DB": 0.04535509431730826
+    },
+    "dataset_share_before": {
+      "AffectNet+": 0.8497432152350091,
+      "FERPlus": 0.10490478119336173,
+      "RAF-DB": 0.045352003571629204
+    },
+    "max_class_share_drift": 9.213002698668649e-06,
+    "max_dataset_share_drift": 1.4473109865784095e-05
+  },
+  "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+  "seed": 42,
+  "selection": {
+    "actual_fraction": 0.2499992608383276,
+    "class_counts": {
+      "0": 20426,
+      "1": 35280,
+      "2": 9446,
+      "3": 9811,
+      "4": 2931,
+      "5": 2402,
+      "6": 4259
+    },
+    "dataset_class_counts": {
+      "AffectNet+|0": 18844,
+      "AffectNet+|1": 33729,
+      "AffectNet+|2": 6490,
+      "AffectNet+|3": 6346,
+      "AffectNet+|4": 1719,
+      "AffectNet+|5": 1076,
+      "AffectNet+|6": 3647,
+      "FERPlus|0": 781,
+      "FERPlus|1": 62,
+      "FERPlus|2": 2341,
+      "FERPlus|3": 3248,
+      "FERPlus|4": 1123,
+      "FERPlus|5": 1107,
+      "FERPlus|6": 207,
+      "RAF-DB|0": 801,
+      "RAF-DB|1": 1489,
+      "RAF-DB|2": 615,
+      "RAF-DB|3": 217,
+      "RAF-DB|4": 89,
+      "RAF-DB|5": 219,
+      "RAF-DB|6": 405
+    },
+    "dataset_counts": {
+      "AffectNet+": 71851,
+      "FERPlus": 8869,
+      "RAF-DB": 3835
+    },
+    "official_split_counts": {
+      "test": 383,
+      "train": 81527,
+      "validation": 2645
+    },
+    "plan_digest": "c97965863a66aac266911bdef033973b",
+    "requested_fraction": 0.25,
+    "selected_records": 84555,
+    "target_records": 84555
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "splits": {
+    "actual_ratios": {
+      "test": 0.09998226006741175,
+      "train": 0.7999763467565489,
+      "validation": 0.10004139317603926
+    },
+    "class_counts": {
+      "test": {
+        "0": 2042,
+        "1": 3528,
+        "2": 944,
+        "3": 981,
+        "4": 293,
+        "5": 240,
+        "6": 426
+      },
+      "train": {
+        "0": 16341,
+        "1": 28224,
+        "2": 7557,
+        "3": 7848,
+        "4": 2345,
+        "5": 1921,
+        "6": 3406
+      },
+      "validation": {
+        "0": 2043,
+        "1": 3528,
+        "2": 945,
+        "3": 982,
+        "4": 293,
+        "5": 241,
+        "6": 427
+      }
+    },
+    "counts": {
+      "test": 8454,
+      "train": 67642,
+      "validation": 8459
+    },
+    "dataset_counts": {
+      "test": {
+        "AffectNet+": 7184,
+        "FERPlus": 887,
+        "RAF-DB": 383
+      },
+      "train": {
+        "AffectNet+": 57480,
+        "FERPlus": 7095,
+        "RAF-DB": 3067
+      },
+      "validation": {
+        "AffectNet+": 7187,
+        "FERPlus": 887,
+        "RAF-DB": 385
+      }
+    },
+    "official_split_counts": {
+      "test": {
+        "test": 383,
+        "train": 8071
+      },
+      "train": {
+        "train": 67642
+      },
+      "validation": {
+        "train": 5814,
+        "validation": 2645
+      }
+    },
+    "ratios": {
+      "test": 0.1,
+      "train": 0.8,
+      "validation": 0.1
+    },
+    "sample_id_digests": {
+      "test": "b219da99379b51f4548211cb42fce33a",
+      "train": "4cb3844f946966e4fecc04940602615c",
+      "validation": "26767020ee31ee982262a000d11aece2"
+    }
+  },
+  "strata": [
+    {
+      "assigned": {
+        "test": 1884,
+        "train": 15075,
+        "validation": 1885
+      },
+      "pool": 75374,
+      "pool_by_lock_group": {
+        "free": 74874,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 1884,
+        "train": 15075,
+        "validation": 1885
+      },
+      "selected": 18844,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 3373,
+        "train": 26983,
+        "validation": 3373
+      },
+      "pool": 134915,
+      "pool_by_lock_group": {
+        "free": 134415,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 3373,
+        "train": 26983,
+        "validation": 3373
+      },
+      "selected": 33729,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 649,
+        "train": 5192,
+        "validation": 649
+      },
+      "pool": 25959,
+      "pool_by_lock_group": {
+        "free": 25459,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 649,
+        "train": 5192,
+        "validation": 649
+      },
+      "selected": 6490,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 634,
+        "train": 5077,
+        "validation": 635
+      },
+      "pool": 25382,
+      "pool_by_lock_group": {
+        "free": 24882,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 634,
+        "train": 5077,
+        "validation": 635
+      },
+      "selected": 6346,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 172,
+        "train": 1375,
+        "validation": 172
+      },
+      "pool": 6878,
+      "pool_by_lock_group": {
+        "free": 6378,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 172,
+        "train": 1375,
+        "validation": 172
+      },
+      "selected": 1719,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 107,
+        "train": 861,
+        "validation": 108
+      },
+      "pool": 4303,
+      "pool_by_lock_group": {
+        "free": 3803,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 107,
+        "train": 861,
+        "validation": 108
+      },
+      "selected": 1076,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 365,
+        "train": 2917,
+        "validation": 365
+      },
+      "pool": 14590,
+      "pool_by_lock_group": {
+        "free": 14090,
+        "locked_test": 0,
+        "locked_validation": 500
+      },
+      "quota": {
+        "test": 365,
+        "train": 2917,
+        "validation": 365
+      },
+      "selected": 3647,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "AffectNet+"
+      }
+    },
+    {
+      "assigned": {
+        "test": 78,
+        "train": 625,
+        "validation": 78
+      },
+      "pool": 3124,
+      "pool_by_lock_group": {
+        "free": 3124,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 78,
+        "train": 625,
+        "validation": 78
+      },
+      "selected": 781,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 6,
+        "train": 50,
+        "validation": 6
+      },
+      "pool": 250,
+      "pool_by_lock_group": {
+        "free": 250,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 6,
+        "train": 50,
+        "validation": 6
+      },
+      "selected": 62,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 234,
+        "train": 1873,
+        "validation": 234
+      },
+      "pool": 9365,
+      "pool_by_lock_group": {
+        "free": 9365,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 234,
+        "train": 1873,
+        "validation": 234
+      },
+      "selected": 2341,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 325,
+        "train": 2598,
+        "validation": 325
+      },
+      "pool": 12992,
+      "pool_by_lock_group": {
+        "free": 12992,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 325,
+        "train": 2598,
+        "validation": 325
+      },
+      "selected": 3248,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 112,
+        "train": 899,
+        "validation": 112
+      },
+      "pool": 4494,
+      "pool_by_lock_group": {
+        "free": 4494,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 112,
+        "train": 899,
+        "validation": 112
+      },
+      "selected": 1123,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 111,
+        "train": 885,
+        "validation": 111
+      },
+      "pool": 4427,
+      "pool_by_lock_group": {
+        "free": 4427,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 111,
+        "train": 885,
+        "validation": 111
+      },
+      "selected": 1107,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 21,
+        "train": 165,
+        "validation": 21
+      },
+      "pool": 829,
+      "pool_by_lock_group": {
+        "free": 829,
+        "locked_test": 0,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 21,
+        "train": 165,
+        "validation": 21
+      },
+      "selected": 207,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "FERPlus"
+      }
+    },
+    {
+      "assigned": {
+        "test": 80,
+        "train": 641,
+        "validation": 80
+      },
+      "pool": 3204,
+      "pool_by_lock_group": {
+        "free": 2524,
+        "locked_test": 680,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 80,
+        "train": 641,
+        "validation": 80
+      },
+      "selected": 801,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "RAF-DB"
+      }
+    },
+    {
+      "assigned": {
+        "test": 149,
+        "train": 1191,
+        "validation": 149
+      },
+      "pool": 5957,
+      "pool_by_lock_group": {
+        "free": 4772,
+        "locked_test": 1185,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 149,
+        "train": 1191,
+        "validation": 149
+      },
+      "selected": 1489,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "RAF-DB"
+      }
+    },
+    {
+      "assigned": {
+        "test": 61,
+        "train": 492,
+        "validation": 62
+      },
+      "pool": 2460,
+      "pool_by_lock_group": {
+        "free": 1982,
+        "locked_test": 478,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 61,
+        "train": 492,
+        "validation": 62
+      },
+      "selected": 615,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "RAF-DB"
+      }
+    },
+    {
+      "assigned": {
+        "test": 22,
+        "train": 173,
+        "validation": 22
+      },
+      "pool": 867,
+      "pool_by_lock_group": {
+        "free": 705,
+        "locked_test": 162,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 22,
+        "train": 173,
+        "validation": 22
+      },
+      "selected": 217,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "RAF-DB"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 71,
+        "validation": 9
+      },
+      "pool": 355,
+      "pool_by_lock_group": {
+        "free": 281,
+        "locked_test": 74,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 9,
+        "train": 71,
+        "validation": 9
+      },
+      "selected": 89,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "RAF-DB"
+      }
+    },
+    {
+      "assigned": {
+        "test": 22,
+        "train": 175,
+        "validation": 22
+      },
+      "pool": 877,
+      "pool_by_lock_group": {
+        "free": 717,
+        "locked_test": 160,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 22,
+        "train": 175,
+        "validation": 22
+      },
+      "selected": 219,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "RAF-DB"
+      }
+    },
+    {
+      "assigned": {
+        "test": 40,
+        "train": 324,
+        "validation": 41
+      },
+      "pool": 1619,
+      "pool_by_lock_group": {
+        "free": 1290,
+        "locked_test": 329,
+        "locked_validation": 0
+      },
+      "quota": {
+        "test": 40,
+        "train": 324,
+        "validation": 41
+      },
+      "selected": 405,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "RAF-DB"
+      }
+    }
+  ],
+  "strata_omitted": 0,
+  "stratification_fields": [
+    "dataset",
+    "canonical_emotion_id"
+  ]
+}

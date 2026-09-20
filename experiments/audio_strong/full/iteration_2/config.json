@@ -1,0 +1,90 @@
+{
+  "experiment": "audio_strong_full",
+  "iteration": "2",
+  "modality": "audio_strong",
+  "task": "emotion_7class",
+  "description": "Audio 7-class emotion expert over frozen wav2vec2 representations (layer-weighted probe head).",
+  "config": {
+    "experiment_name": "audio_strong_full",
+    "description": "Audio 7-class emotion expert over frozen wav2vec2 representations (layer-weighted probe head).",
+    "iteration": "2",
+    "experiment_root": "experiments",
+    "metadata_dir": null,
+    "modality": "audio_strong",
+    "task": "emotion_7class",
+    "num_classes": 7,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 40,
+    "optimizer": "AdamW",
+    "loss": "CrossEntropyLoss",
+    "class_weight_policy": "inverse_frequency_from_train",
+    "patience": 6,
+    "min_delta": 0.0001,
+    "min_epochs": 5,
+    "seed": 42,
+    "run_seed": 43,
+    "device": "auto",
+    "num_workers": 0,
+    "max_train": null,
+    "max_val": null,
+    "max_test": null,
+    "debug": false,
+    "defer_test": true,
+    "bundle": "WAV2VEC2_BASE",
+    "max_seconds": 4.0,
+    "cache_root": "experiments\\audio_strong\\features",
+    "hidden_dim": 256,
+    "dropout": 0.2
+  },
+  "class_mapping": {
+    "neutral": 0,
+    "happy": 1,
+    "sad": 2,
+    "angry": 3,
+    "fear": 4,
+    "disgust": 5,
+    "surprise": 6
+  },
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "metadata_dir": "experiments\\audio_strong\\full\\metadata",
+  "paths": {
+    "iteration_dir": "experiments\\audio_strong\\full\\iteration_2",
+    "checkpoints": "experiments\\audio_strong\\full\\iteration_2\\checkpoints",
+    "results": "experiments\\audio_strong\\full\\iteration_2\\results",
+    "log": "experiments\\audio_strong\\full\\iteration_2\\logs\\training.log"
+  },
+  "model_parameters": 266003,
+  "device": "cpu",
+  "seeds": {
+    "python_seed": 43,
+    "numpy_seed": 43,
+    "torch_seed": 43,
+    "deterministic_algorithms": "warn_only",
+    "notes": []
+  },
+  "environment": {
+    "python": "3.10.10",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.12.0+cpu",
+    "numpy": "2.2.6",
+    "cuda_available": false
+  },
+  "samples": {
+    "train": 18715,
+    "validation": 5550
+  },
+  "monitor": {
+    "metric": "validation macro_f1",
+    "mode": "max"
+  }
+}

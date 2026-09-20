@@ -1,0 +1,47 @@
+{
+  "policy": "inverse_frequency_from_train",
+  "computed_from": "experiments/audio/25pct/metadata/train.parquet",
+  "computed_from_split": "train",
+  "uses_validation_labels": false,
+  "uses_test_labels": false,
+  "task": "emotion_7class",
+  "label_column": "canonical_emotion_id",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "class_mapping": {
+    "neutral": 0,
+    "happy": 1,
+    "sad": 2,
+    "angry": 3,
+    "fear": 4,
+    "disgust": 5,
+    "surprise": 6
+  },
+  "training_distribution": {
+    "neutral": 96,
+    "happy": 67,
+    "sad": 37,
+    "angry": 42,
+    "fear": 4,
+    "disgust": 5,
+    "surprise": 5
+  },
+  "classes_absent_from_train": [],
+  "absent_class_weight": null,
+  "weights": [
+    0.380952388048172,
+    0.5458422303199768,
+    0.9884169697761536,
+    0.8707482814788818,
+    9.142857551574707,
+    7.314285755157471,
+    7.314285755157471
+  ]
+}

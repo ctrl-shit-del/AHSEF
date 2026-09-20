@@ -1,0 +1,367 @@
+{
+  "experiment": "audio_strong_full",
+  "iteration": "2",
+  "modality": "audio_strong",
+  "task": "emotion_7class",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "task_limitation": null,
+  "description": "Audio 7-class emotion expert over frozen wav2vec2 representations (layer-weighted probe head).",
+  "debug": false,
+  "metadata_dir": "experiments\\audio_strong\\full\\metadata",
+  "config": {
+    "experiment_name": "audio_strong_full",
+    "description": "Audio 7-class emotion expert over frozen wav2vec2 representations (layer-weighted probe head).",
+    "iteration": "2",
+    "experiment_root": "experiments",
+    "metadata_dir": null,
+    "modality": "audio_strong",
+    "task": "emotion_7class",
+    "num_classes": 7,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 40,
+    "optimizer": "AdamW",
+    "loss": "CrossEntropyLoss",
+    "class_weight_policy": "inverse_frequency_from_train",
+    "patience": 6,
+    "min_delta": 0.0001,
+    "min_epochs": 5,
+    "seed": 42,
+    "run_seed": 43,
+    "device": "auto",
+    "num_workers": 0,
+    "max_train": null,
+    "max_val": null,
+    "max_test": null,
+    "debug": false,
+    "defer_test": true,
+    "bundle": "WAV2VEC2_BASE",
+    "max_seconds": 4.0,
+    "cache_root": "experiments\\audio_strong\\features",
+    "hidden_dim": 256,
+    "dropout": 0.2
+  },
+  "seeds": {
+    "python_seed": 43,
+    "numpy_seed": 43,
+    "torch_seed": 43,
+    "deterministic_algorithms": "warn_only",
+    "notes": []
+  },
+  "device": "cpu",
+  "cuda_available": false,
+  "python_version": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch_version": "2.12.0+cpu",
+  "numpy_version": "2.2.6",
+  "model": {
+    "class": "LayerWeightedProbe",
+    "parameters": 266003,
+    "num_classes": 7,
+    "num_layers": 12,
+    "feature_dim": 768,
+    "hidden_dim": 256,
+    "dropout": 0.2,
+    "trainable_parameters": 266003,
+    "pooling": "learned softmax weighting over encoder layers",
+    "encoder_frozen": true,
+    "encoder_trained_by_this_project": false,
+    "front_end": {
+      "schema": "ahsef.audio.wav2vec2_layer_means.v1",
+      "bundle": "WAV2VEC2_BASE",
+      "sample_rate": 16000,
+      "max_seconds": 4.0,
+      "normalize_waveform": false,
+      "batch_size": 16,
+      "pooling": "mean over valid (unpadded) time frames, per transformer layer",
+      "frozen_encoder": true,
+      "storage_dtype": "float16",
+      "feature_cache": "experiments\\audio_strong\\features",
+      "cache_fingerprint": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+      "cached_train_samples": 18715
+    }
+  },
+  "samples": {
+    "train": 18715,
+    "validation": 5550,
+    "test": null
+  },
+  "train_dataset_counts": {
+    "CREMA-D": 966,
+    "IEMOCAP": 450,
+    "MSP-Podcast": 17000,
+    "RAVDESS": 299
+  },
+  "class_weights": {
+    "policy": "inverse_frequency_from_train",
+    "computed_from": "experiments\\audio_strong\\full\\metadata\\train.parquet",
+    "computed_from_split": "train",
+    "uses_validation_labels": false,
+    "uses_test_labels": false,
+    "task": "emotion_7class",
+    "label_column": "canonical_emotion_id",
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "class_mapping": {
+      "neutral": 0,
+      "happy": 1,
+      "sad": 2,
+      "angry": 3,
+      "fear": 4,
+      "disgust": 5,
+      "surprise": 6
+    },
+    "training_distribution": {
+      "neutral": 4000,
+      "happy": 4000,
+      "sad": 4000,
+      "angry": 4000,
+      "fear": 645,
+      "disgust": 842,
+      "surprise": 1228
+    },
+    "classes_absent_from_train": [],
+    "absent_class_weight": null,
+    "weights": [
+      0.6683928370475769,
+      0.6683928370475769,
+      0.6683928370475769,
+      0.6683928370475769,
+      4.145071983337402,
+      3.175262928009033,
+      2.177175521850586
+    ]
+  },
+  "epochs_configured": 40,
+  "epochs_completed": 7,
+  "best_epoch": 1,
+  "best_val_macro_f1": 0.37556785345077515,
+  "checkpoint_updates": [
+    1
+  ],
+  "early_stopping": {
+    "monitor": "val_macro_f1",
+    "mode": "max",
+    "patience": 6,
+    "min_delta": 0.0001,
+    "min_epochs": 5,
+    "best_value": 0.37556785345077515,
+    "best_epoch": 1,
+    "epochs_without_improvement": 6,
+    "stopped_early": true,
+    "stopped_epoch": 7,
+    "reason": "early stopping at epoch 7: val_macro_f1 did not improve for 6 consecutive epochs (patience=6, min_delta=0.0001); best val_macro_f1=0.375568 at epoch 1",
+    "monitored_history": [
+      0.37556785345077515,
+      0.3490000367164612,
+      0.36613741517066956,
+      0.36906805634498596,
+      0.3575727641582489,
+      0.3393915295600891,
+      0.36589938402175903
+    ]
+  },
+  "stop_reason": "early stopping at epoch 7: val_macro_f1 did not improve for 6 consecutive epochs (patience=6, min_delta=0.0001); best val_macro_f1=0.375568 at epoch 1",
+  "validation_metrics": {
+    "accuracy": 0.49225226044654846,
+    "macro_precision": 0.3650675415992737,
+    "macro_recall": 0.41714563965797424,
+    "macro_f1": 0.37556785345077515,
+    "weighted_f1": 0.5016725659370422,
+    "per_class_precision": [
+      0.5549558401107788,
+      0.5625,
+      0.3078787922859192,
+      0.651583731174469,
+      0.17142857611179352,
+      0.1840490847826004,
+      0.1230769231915474
+    ],
+    "per_class_recall": [
+      0.5511695742607117,
+      0.4458388388156891,
+      0.3762962818145752,
+      0.59565669298172,
+      0.5121951103210449,
+      0.2830188572406769,
+      0.15584415197372437
+    ],
+    "per_class_f1": [
+      0.5530562400817871,
+      0.4974207878112793,
+      0.3386666774749756,
+      0.6223663091659546,
+      0.2568807303905487,
+      0.22304832935333252,
+      0.13753582537174225
+    ],
+    "support": [
+      2052,
+      1514,
+      675,
+      967,
+      82,
+      106,
+      154
+    ],
+    "confusion_matrix": [
+      [
+        1131,
+        278,
+        406,
+        107,
+        50,
+        43,
+        37
+      ],
+      [
+        413,
+        675,
+        127,
+        146,
+        49,
+        30,
+        74
+      ],
+      [
+        281,
+        53,
+        254,
+        27,
+        44,
+        8,
+        8
+      ],
+      [
+        131,
+        119,
+        18,
+        576,
+        35,
+        44,
+        44
+      ],
+      [
+        12,
+        14,
+        4,
+        4,
+        42,
+        5,
+        1
+      ],
+      [
+        27,
+        13,
+        5,
+        6,
+        18,
+        30,
+        7
+      ],
+      [
+        43,
+        48,
+        11,
+        18,
+        7,
+        3,
+        24
+      ]
+    ],
+    "loss": 1.4708799578692462,
+    "samples": 5550,
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "per_class": {
+      "neutral": {
+        "precision": 0.5549558401107788,
+        "recall": 0.5511695742607117,
+        "f1": 0.5530562400817871,
+        "support": 2052
+      },
+      "happy": {
+        "precision": 0.5625,
+        "recall": 0.4458388388156891,
+        "f1": 0.4974207878112793,
+        "support": 1514
+      },
+      "sad": {
+        "precision": 0.3078787922859192,
+        "recall": 0.3762962818145752,
+        "f1": 0.3386666774749756,
+        "support": 675
+      },
+      "angry": {
+        "precision": 0.651583731174469,
+        "recall": 0.59565669298172,
+        "f1": 0.6223663091659546,
+        "support": 967
+      },
+      "fear": {
+        "precision": 0.17142857611179352,
+        "recall": 0.5121951103210449,
+        "f1": 0.2568807303905487,
+        "support": 82
+      },
+      "disgust": {
+        "precision": 0.1840490847826004,
+        "recall": 0.2830188572406769,
+        "f1": 0.22304832935333252,
+        "support": 106
+      },
+      "surprise": {
+        "precision": 0.1230769231915474,
+        "recall": 0.15584415197372437,
+        "f1": 0.13753582537174225,
+        "support": 154
+      }
+    }
+  },
+  "test_metrics": null,
+  "test_deferred": true,
+  "test_partition_opened": false,
+  "checkpoints": {
+    "best": "experiments\\audio_strong\\full\\iteration_2\\checkpoints\\best.pt",
+    "last": "experiments\\audio_strong\\full\\iteration_2\\checkpoints\\last.pt",
+    "reload_verified": true
+  },
+  "training_seconds": 41.312,
+  "total_seconds": 53.622,
+  "loader_events": [
+    {
+      "phase": "setup",
+      "split": "train"
+    },
+    {
+      "phase": "setup",
+      "split": "validation"
+    }
+  ],
+  "test_used_for_model_selection": false,
+  "sampling_summary_present": true,
+  "log_file": "experiments\\audio_strong\\full\\iteration_2\\logs\\training.log"
+}

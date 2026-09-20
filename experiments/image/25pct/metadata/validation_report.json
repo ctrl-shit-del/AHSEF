@@ -1,0 +1,186 @@
+{
+  "checks": [
+    {
+      "check": "train_partition_exists",
+      "detail": "experiments/image/25pct/metadata/train.parquet",
+      "passed": true
+    },
+    {
+      "check": "validation_partition_exists",
+      "detail": "experiments/image/25pct/metadata/validation.parquet",
+      "passed": true
+    },
+    {
+      "check": "test_partition_exists",
+      "detail": "experiments/image/25pct/metadata/test.parquet",
+      "passed": true
+    },
+    {
+      "check": "no_duplicate_sample_ids_within_split",
+      "detail": {
+        "test": 0,
+        "train": 0,
+        "validation": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "no_sample_id_across_splits",
+      "detail": {
+        "cross_split_sample_ids": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "experiment_split_column_matches_partition",
+      "detail": {
+        "mismatched_rows": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "canonical_labels_valid",
+      "detail": {
+        "invalid_label_records": 0,
+        "valid_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "image_modality_available_for_every_record",
+      "detail": {
+        "records_failing_modality_rule": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "dataset_identity_preserved",
+      "detail": {
+        "contributing_datasets": null,
+        "records_outside_contributing_datasets": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "official_holdout_never_in_train",
+      "detail": {
+        "official_validation_or_test_records_in_train": 0,
+        "split_policy": "official_aware"
+      },
+      "passed": true
+    },
+    {
+      "check": "split_ratios_within_tolerance",
+      "detail": {
+        "actual": {
+          "test": 0.09998226006741175,
+          "train": 0.7999763467565489,
+          "validation": 0.10004139317603926
+        },
+        "expected": {
+          "test": 0.1,
+          "train": 0.8,
+          "validation": 0.1
+        },
+        "tolerance": 0.02
+      },
+      "passed": true
+    },
+    {
+      "check": "dataset_representation_preserved",
+      "detail": {
+        "max_share_drift": 1.4473109865784095e-05,
+        "tolerance": 0.02
+      },
+      "passed": true
+    },
+    {
+      "check": "class_representation_preserved",
+      "detail": {
+        "max_share_drift": 9.213002698668649e-06,
+        "tolerance": 0.02
+      },
+      "passed": true
+    },
+    {
+      "check": "counts_match_sampling_summary",
+      "detail": {
+        "observed": {
+          "test": 8454,
+          "train": 67642,
+          "validation": 8459
+        },
+        "recorded": {
+          "test": 8454,
+          "train": 67642,
+          "validation": 8459
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "sample_id_digests_match_sampling_summary",
+      "detail": {
+        "observed": {
+          "test": "b219da99379b51f4548211cb42fce33a",
+          "train": "4cb3844f946966e4fecc04940602615c",
+          "validation": "26767020ee31ee982262a000d11aece2"
+        },
+        "recorded": {
+          "test": "b219da99379b51f4548211cb42fce33a",
+          "train": "4cb3844f946966e4fecc04940602615c",
+          "validation": "26767020ee31ee982262a000d11aece2"
+        }
+      },
+      "passed": true
+    },
+    {
+      "check": "source_paths_unchanged",
+      "detail": {
+        "matched": 84555,
+        "mismatched": 0,
+        "path_column": "image_path",
+        "selected_ids_absent_from_source": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "modality_files_exist",
+      "detail": {
+        "checked": 200,
+        "datasets_root": "/run/media/mystic/Vengeance/capstone/datasets",
+        "missing": [],
+        "missing_count": 0,
+        "of_total": 84555
+      },
+      "passed": true
+    },
+    {
+      "check": "sampling_deterministic_for_seed",
+      "detail": {
+        "recorded_plan_digest": "c97965863a66aac266911bdef033973b",
+        "replanned_digest": "c97965863a66aac266911bdef033973b",
+        "seed": 42
+      },
+      "passed": true
+    }
+  ],
+  "counts": {
+    "test": 8454,
+    "total": 84555,
+    "train": 67642,
+    "validation": 8459
+  },
+  "failures": [],
+  "metadata_dir": "experiments/image/25pct/metadata",
+  "notes": [],
+  "passed": true
+}

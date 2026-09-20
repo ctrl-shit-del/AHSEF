@@ -1,0 +1,144 @@
+{
+  "checks": [
+    {
+      "detail": "Every sample id appears at most once within its split",
+      "evidence": {},
+      "name": "no_duplicate_sample_ids",
+      "passed": true
+    },
+    {
+      "detail": "No sample id appears in more than one split",
+      "evidence": {},
+      "name": "no_cross_split_sample_ids",
+      "passed": true
+    },
+    {
+      "detail": "No speaker appears in more than one split",
+      "evidence": {
+        "overlaps": {},
+        "speakers_per_split": {
+          "test": [
+            "Session5_F",
+            "Session5_M"
+          ],
+          "train": [
+            "Session1_F",
+            "Session1_M",
+            "Session2_F",
+            "Session2_M",
+            "Session3_F",
+            "Session3_M"
+          ],
+          "validation": [
+            "Session4_F",
+            "Session4_M"
+          ]
+        },
+        "verifiable": true
+      },
+      "name": "speaker_independence",
+      "passed": true
+    },
+    {
+      "detail": "Every retained row carries a protocol class",
+      "evidence": {},
+      "name": "no_unlabelled_rows",
+      "passed": true
+    },
+    {
+      "detail": "All protocol classes appear in train, validation and test",
+      "evidence": {},
+      "name": "every_class_present_in_every_split",
+      "passed": true
+    },
+    {
+      "detail": "Every declared modality has a populated payload",
+      "evidence": {},
+      "name": "declared_modalities_have_payloads",
+      "passed": true
+    },
+    {
+      "detail": "All regression targets lie in [-1.0, 1.0]",
+      "evidence": {},
+      "name": "regression_targets_in_range",
+      "passed": true
+    },
+    {
+      "detail": "Cached features are partitioned exactly as the manifests are",
+      "evidence": {
+        "overlaps": {},
+        "stray": {}
+      },
+      "name": "feature_cache_split_isolation",
+      "passed": true
+    }
+  ],
+  "class_counts": {
+    "test": {
+      "angry": 170,
+      "excited": 299,
+      "frustrated": 381,
+      "happy": 143,
+      "neutral": 384,
+      "sad": 245
+    },
+    "train": {
+      "angry": 606,
+      "excited": 504,
+      "frustrated": 987,
+      "happy": 387,
+      "neutral": 1066,
+      "sad": 696
+    },
+    "validation": {
+      "angry": 327,
+      "excited": 238,
+      "frustrated": 481,
+      "happy": 65,
+      "neutral": 258,
+      "sad": 143
+    }
+  },
+  "counts": {
+    "test": 1622,
+    "train": 4246,
+    "validation": 1512
+  },
+  "experiment": "iemocap_erc6",
+  "modality_counts": {
+    "test": {
+      "audio": 1622,
+      "text": 1622,
+      "video": 0
+    },
+    "train": {
+      "audio": 4246,
+      "text": 4246,
+      "video": 0
+    },
+    "validation": {
+      "audio": 1512,
+      "text": 1512,
+      "video": 0
+    }
+  },
+  "passed": true,
+  "speakers": {
+    "test": [
+      "Session5_F",
+      "Session5_M"
+    ],
+    "train": [
+      "Session1_F",
+      "Session1_M",
+      "Session2_F",
+      "Session2_M",
+      "Session3_F",
+      "Session3_M"
+    ],
+    "validation": [
+      "Session4_F",
+      "Session4_M"
+    ]
+  }
+}

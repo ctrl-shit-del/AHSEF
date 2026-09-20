@@ -48,6 +48,8 @@ class BaseAdapter(ABC):
 
             "emotion": None,
 
+            "annotation_state": None,
+
             "valence": None,
 
             "arousal": None,
@@ -77,7 +79,6 @@ class BaseAdapter(ABC):
             "sentiment_score": None,
 
             "extras": {},
-
         }
 
         defaults.update(kwargs)

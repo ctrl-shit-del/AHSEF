@@ -1,0 +1,17 @@
+{
+  "batch_size": 16384,
+  "config": {
+    "held_out_session": "Session5",
+    "name": "physiology",
+    "seed": 42,
+    "split_policy": "subject_protocol_unsegmented",
+    "validation_session": null
+  },
+  "ignored_protocol_states": [
+    "transition",
+    "ignore"
+  ],
+  "records": 15,
+  "source": "metadata/standardized/standardized.parquet",
+  "target_definition": "WESAD protocol states; segmentation into windows is deferred"
+}

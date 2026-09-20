@@ -1,0 +1,523 @@
+{
+  "experiment": "audio_25pct",
+  "iteration": "2",
+  "modality": "audio",
+  "task": "emotion_7class",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "task_limitation": null,
+  "description": "Audio-only modality-filtered 7-class categorical emotion baseline.",
+  "debug": false,
+  "metadata_dir": "experiments/audio/25pct/metadata",
+  "config": {
+    "experiment_name": "audio_25pct",
+    "description": "Audio-only modality-filtered 7-class categorical emotion baseline.",
+    "iteration": "2",
+    "experiment_root": "experiments",
+    "metadata_dir": null,
+    "modality": "audio",
+    "task": "emotion_7class",
+    "num_classes": 7,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 5,
+    "optimizer": "AdamW",
+    "loss": "CrossEntropyLoss",
+    "class_weight_policy": "inverse_frequency_from_train",
+    "patience": 2,
+    "min_delta": 0.0001,
+    "min_epochs": 2,
+    "seed": 42,
+    "run_seed": 43,
+    "device": "auto",
+    "num_workers": 0,
+    "max_train": null,
+    "max_val": null,
+    "max_test": null,
+    "debug": false,
+    "max_seconds": 4.0,
+    "sample_rate": 16000,
+    "n_fft": 400,
+    "hop_length": 160,
+    "n_mels": 64,
+    "hidden_dim": 256
+  },
+  "seeds": {
+    "python_seed": 43,
+    "numpy_seed": 43,
+    "torch_seed": 43,
+    "deterministic_algorithms": "warn_only",
+    "notes": []
+  },
+  "device": "cpu",
+  "cuda_available": false,
+  "python_version": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "torch_version": "2.13.0+cpu",
+  "numpy_version": "2.4.6",
+  "model": {
+    "class": "AudioEmotionBaseline",
+    "parameters": 35335,
+    "num_classes": 7,
+    "n_mels": 64,
+    "hidden_dim": 256,
+    "pooling": "masked mean and standard deviation over time",
+    "front_end": {
+      "sample_rate": 16000,
+      "n_fft": 400,
+      "hop_length": 160,
+      "n_mels": 64,
+      "f_min": 20.0,
+      "f_max": null,
+      "log_offset": 1e-06
+    },
+    "max_seconds": 4.0,
+    "max_frames": 401
+  },
+  "samples": {
+    "train": 44348,
+    "validation": 5550,
+    "test": 5542
+  },
+  "train_dataset_counts": {
+    "CREMA-D": 1488,
+    "IEMOCAP": 928,
+    "MSP-Podcast": 41443,
+    "RAVDESS": 489
+  },
+  "class_weights": {
+    "policy": "inverse_frequency_from_train",
+    "computed_from": "experiments/audio/25pct/metadata/train.parquet",
+    "computed_from_split": "train",
+    "uses_validation_labels": false,
+    "uses_test_labels": false,
+    "task": "emotion_7class",
+    "label_column": "canonical_emotion_id",
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "class_mapping": {
+      "neutral": 0,
+      "happy": 1,
+      "sad": 2,
+      "angry": 3,
+      "fear": 4,
+      "disgust": 5,
+      "surprise": 6
+    },
+    "training_distribution": {
+      "neutral": 16415,
+      "happy": 12105,
+      "sad": 5391,
+      "angry": 7722,
+      "fear": 645,
+      "disgust": 842,
+      "surprise": 1228
+    },
+    "classes_absent_from_train": [],
+    "absent_class_weight": null,
+    "weights": [
+      0.3859536051750183,
+      0.5233728885650635,
+      1.1751861572265625,
+      0.820438802242279,
+      9.822369575500488,
+      7.524261951446533,
+      5.159143924713135
+    ]
+  },
+  "epochs_configured": 5,
+  "epochs_completed": 5,
+  "best_epoch": 4,
+  "best_val_macro_f1": 0.2624451816082001,
+  "checkpoint_updates": [
+    1,
+    2,
+    4
+  ],
+  "early_stopping": {
+    "monitor": "val_macro_f1",
+    "mode": "max",
+    "patience": 2,
+    "min_delta": 0.0001,
+    "min_epochs": 2,
+    "best_value": 0.2624451816082001,
+    "best_epoch": 4,
+    "epochs_without_improvement": 1,
+    "stopped_early": false,
+    "stopped_epoch": null,
+    "reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.262445 at epoch 4",
+    "monitored_history": [
+      0.2177221029996872,
+      0.25598588585853577,
+      0.17003296315670013,
+      0.2624451816082001,
+      0.22347679734230042
+    ]
+  },
+  "stop_reason": "completed the configured maximum of 5 epochs (5 run); best val_macro_f1=0.262445 at epoch 4",
+  "validation_metrics": {
+    "accuracy": 0.3490090072154999,
+    "macro_precision": 0.2793946862220764,
+    "macro_recall": 0.3001136779785156,
+    "macro_f1": 0.2624451816082001,
+    "weighted_f1": 0.33269214630126953,
+    "per_class_precision": [
+      0.5045180916786194,
+      0.39056047797203064,
+      0.23055554926395416,
+      0.4104423522949219,
+      0.26923078298568726,
+      0.09917355328798294,
+      0.05128205195069313
+    ],
+    "per_class_recall": [
+      0.16325536370277405,
+      0.43725231289863586,
+      0.4918518662452698,
+      0.5853154063224792,
+      0.17073170840740204,
+      0.22641509771347046,
+      0.025974025949835777
+    ],
+    "per_class_f1": [
+      0.24668629467487335,
+      0.4125896096229553,
+      0.31394800543785095,
+      0.48252344131469727,
+      0.20895521342754364,
+      0.13793103396892548,
+      0.03448275849223137
+    ],
+    "support": [
+      2052,
+      1514,
+      675,
+      967,
+      82,
+      106,
+      154
+    ],
+    "confusion_matrix": [
+      [
+        335,
+        545,
+        764,
+        285,
+        7,
+        83,
+        33
+      ],
+      [
+        145,
+        662,
+        218,
+        399,
+        4,
+        60,
+        26
+      ],
+      [
+        96,
+        141,
+        332,
+        67,
+        16,
+        22,
+        1
+      ],
+      [
+        55,
+        233,
+        66,
+        566,
+        2,
+        33,
+        12
+      ],
+      [
+        4,
+        17,
+        20,
+        8,
+        14,
+        18,
+        1
+      ],
+      [
+        8,
+        28,
+        15,
+        21,
+        9,
+        24,
+        1
+      ],
+      [
+        21,
+        69,
+        25,
+        33,
+        0,
+        2,
+        4
+      ]
+    ],
+    "loss": 1.7483480334926296,
+    "samples": 5550,
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "per_class": {
+      "neutral": {
+        "precision": 0.5045180916786194,
+        "recall": 0.16325536370277405,
+        "f1": 0.24668629467487335,
+        "support": 2052
+      },
+      "happy": {
+        "precision": 0.39056047797203064,
+        "recall": 0.43725231289863586,
+        "f1": 0.4125896096229553,
+        "support": 1514
+      },
+      "sad": {
+        "precision": 0.23055554926395416,
+        "recall": 0.4918518662452698,
+        "f1": 0.31394800543785095,
+        "support": 675
+      },
+      "angry": {
+        "precision": 0.4104423522949219,
+        "recall": 0.5853154063224792,
+        "f1": 0.48252344131469727,
+        "support": 967
+      },
+      "fear": {
+        "precision": 0.26923078298568726,
+        "recall": 0.17073170840740204,
+        "f1": 0.20895521342754364,
+        "support": 82
+      },
+      "disgust": {
+        "precision": 0.09917355328798294,
+        "recall": 0.22641509771347046,
+        "f1": 0.13793103396892548,
+        "support": 106
+      },
+      "surprise": {
+        "precision": 0.05128205195069313,
+        "recall": 0.025974025949835777,
+        "f1": 0.03448275849223137,
+        "support": 154
+      }
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.34608444571495056,
+    "macro_precision": 0.2643453776836395,
+    "macro_recall": 0.28595271706581116,
+    "macro_f1": 0.24682514369487762,
+    "weighted_f1": 0.3343420922756195,
+    "per_class_precision": [
+      0.5342857241630554,
+      0.3824940025806427,
+      0.21677851676940918,
+      0.40776699781417847,
+      0.10869564861059189,
+      0.1111111119389534,
+      0.0892857164144516
+    ],
+    "per_class_recall": [
+      0.18226121366024017,
+      0.4216787815093994,
+      0.47922849655151367,
+      0.5663900375366211,
+      0.0625,
+      0.2571428716182709,
+      0.03246753290295601
+    ],
+    "per_class_f1": [
+      0.2718023359775543,
+      0.4011317193508148,
+      0.2985212504863739,
+      0.4741641581058502,
+      0.079365074634552,
+      0.1551724225282669,
+      0.0476190522313118
+    ],
+    "support": [
+      2052,
+      1513,
+      674,
+      964,
+      80,
+      105,
+      154
+    ],
+    "confusion_matrix": [
+      [
+        374,
+        554,
+        751,
+        259,
+        8,
+        76,
+        30
+      ],
+      [
+        146,
+        638,
+        279,
+        381,
+        5,
+        55,
+        9
+      ],
+      [
+        90,
+        134,
+        323,
+        82,
+        18,
+        27,
+        0
+      ],
+      [
+        58,
+        239,
+        76,
+        546,
+        3,
+        34,
+        8
+      ],
+      [
+        5,
+        16,
+        23,
+        14,
+        5,
+        17,
+        0
+      ],
+      [
+        11,
+        23,
+        17,
+        16,
+        7,
+        27,
+        4
+      ],
+      [
+        16,
+        64,
+        21,
+        41,
+        0,
+        7,
+        5
+      ]
+    ],
+    "loss": 1.7322259721064215,
+    "samples": 5542,
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "per_class": {
+      "neutral": {
+        "precision": 0.5342857241630554,
+        "recall": 0.18226121366024017,
+        "f1": 0.2718023359775543,
+        "support": 2052
+      },
+      "happy": {
+        "precision": 0.3824940025806427,
+        "recall": 0.4216787815093994,
+        "f1": 0.4011317193508148,
+        "support": 1513
+      },
+      "sad": {
+        "precision": 0.21677851676940918,
+        "recall": 0.47922849655151367,
+        "f1": 0.2985212504863739,
+        "support": 674
+      },
+      "angry": {
+        "precision": 0.40776699781417847,
+        "recall": 0.5663900375366211,
+        "f1": 0.4741641581058502,
+        "support": 964
+      },
+      "fear": {
+        "precision": 0.10869564861059189,
+        "recall": 0.0625,
+        "f1": 0.079365074634552,
+        "support": 80
+      },
+      "disgust": {
+        "precision": 0.1111111119389534,
+        "recall": 0.2571428716182709,
+        "f1": 0.1551724225282669,
+        "support": 105
+      },
+      "surprise": {
+        "precision": 0.0892857164144516,
+        "recall": 0.03246753290295601,
+        "f1": 0.0476190522313118,
+        "support": 154
+      }
+    }
+  },
+  "checkpoints": {
+    "best": "experiments/audio/25pct/iteration_2/checkpoints/best.pt",
+    "last": "experiments/audio/25pct/iteration_2/checkpoints/last.pt",
+    "reload_verified": true
+  },
+  "training_seconds": 525.726,
+  "total_seconds": 557.36,
+  "loader_events": [
+    {
+      "phase": "setup",
+      "split": "train"
+    },
+    {
+      "phase": "setup",
+      "split": "validation"
+    },
+    {
+      "phase": "evaluation",
+      "split": "test"
+    }
+  ],
+  "test_used_for_model_selection": false,
+  "sampling_summary_present": true,
+  "log_file": "experiments/audio/25pct/iteration_2/logs/training.log"
+}

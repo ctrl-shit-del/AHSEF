@@ -1,0 +1,250 @@
+{
+  "base_dir": "experiments\\audio_strong\\full",
+  "best_epochs": {
+    "1": 5,
+    "2": 1
+  },
+  "best_iteration": {
+    "best_epoch": 5,
+    "best_val_macro_f1": 0.38311317563056946,
+    "checkpoints": {
+      "best": "experiments\\audio_strong\\full\\iteration_1\\checkpoints\\best.pt",
+      "last": "experiments\\audio_strong\\full\\iteration_1\\checkpoints\\last.pt",
+      "reload_verified": true
+    },
+    "iteration": "1",
+    "test_accuracy": null,
+    "test_macro_f1": null,
+    "test_weighted_f1": null
+  },
+  "class_names": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "comparable_iterations": [
+    "1",
+    "2"
+  ],
+  "comparison": {
+    "best_val_macro_f1": {
+      "max": 0.38311317563056946,
+      "mean": 0.3793405145406723,
+      "min": 0.37556785345077515,
+      "n": 2,
+      "stdev": 0.00533534847956982,
+      "values": [
+        0.38311317563056946,
+        0.37556785345077515
+      ]
+    }
+  },
+  "dataset_counts": null,
+  "dataset_fraction": 1.0,
+  "datasets_used": null,
+  "durations_seconds": {
+    "1": 77.365,
+    "2": 53.622
+  },
+  "experiment": "audio_strong_full",
+  "fraction": 1.0,
+  "fraction_label": "full",
+  "iteration_count": 2,
+  "iteration_seeds": {
+    "1": 42,
+    "2": 43
+  },
+  "iterations": [
+    {
+      "best_epoch": 5,
+      "best_val_macro_f1": 0.38311317563056946,
+      "checkpoints": {
+        "best": "experiments\\audio_strong\\full\\iteration_1\\checkpoints\\best.pt",
+        "last": "experiments\\audio_strong\\full\\iteration_1\\checkpoints\\last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments\\audio_strong\\full\\iteration_1\\config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 5,
+        "best_value": 0.38311317563056946,
+        "epochs_without_improvement": 6,
+        "min_delta": 0.0001,
+        "min_epochs": 5,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.3336009979248047,
+          0.35660621523857117,
+          0.3500964343547821,
+          0.3705151379108429,
+          0.38311317563056946,
+          0.3673878312110901,
+          0.3367363512516022,
+          0.3504221439361572,
+          0.3773186504840851,
+          0.35428813099861145,
+          0.3381357789039612
+        ],
+        "patience": 6,
+        "reason": "early stopping at epoch 11: val_macro_f1 did not improve for 6 consecutive epochs (patience=6, min_delta=0.0001); best val_macro_f1=0.383113 at epoch 5",
+        "stopped_early": true,
+        "stopped_epoch": 11
+      },
+      "epochs_completed": 11,
+      "epochs_configured": 40,
+      "iteration": "1",
+      "log_file": "experiments\\audio_strong\\full\\iteration_1\\logs\\training.log",
+      "modality": "audio_strong",
+      "model": {
+        "class": "LayerWeightedProbe",
+        "dropout": 0.2,
+        "encoder_frozen": true,
+        "encoder_trained_by_this_project": false,
+        "feature_dim": 768,
+        "front_end": {
+          "batch_size": 16,
+          "bundle": "WAV2VEC2_BASE",
+          "cache_fingerprint": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+          "cached_train_samples": 18715,
+          "feature_cache": "experiments\\audio_strong\\features",
+          "frozen_encoder": true,
+          "max_seconds": 4.0,
+          "normalize_waveform": false,
+          "pooling": "mean over valid (unpadded) time frames, per transformer layer",
+          "sample_rate": 16000,
+          "schema": "ahsef.audio.wav2vec2_layer_means.v1",
+          "storage_dtype": "float16"
+        },
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "num_layers": 12,
+        "parameters": 266003,
+        "pooling": "learned softmax weighting over encoder layers",
+        "trainable_parameters": 266003
+      },
+      "results_dir": "experiments\\audio_strong\\full\\iteration_1\\results",
+      "run_seed": 42,
+      "samples": {
+        "test": null,
+        "train": 18715,
+        "validation": 5550
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 11: val_macro_f1 did not improve for 6 consecutive epochs (patience=6, min_delta=0.0001); best val_macro_f1=0.383113 at epoch 5",
+      "task": "emotion_7class",
+      "test_accuracy": null,
+      "test_loss": null,
+      "test_macro_f1": null,
+      "test_per_class_f1": null,
+      "test_weighted_f1": null,
+      "total_seconds": 77.365,
+      "training_seconds": 65.031,
+      "validation_accuracy": 0.4740540683269501,
+      "validation_macro_f1": 0.38311317563056946,
+      "validation_weighted_f1": 0.4982871413230896
+    },
+    {
+      "best_epoch": 1,
+      "best_val_macro_f1": 0.37556785345077515,
+      "checkpoints": {
+        "best": "experiments\\audio_strong\\full\\iteration_2\\checkpoints\\best.pt",
+        "last": "experiments\\audio_strong\\full\\iteration_2\\checkpoints\\last.pt",
+        "reload_verified": true
+      },
+      "config_path": "experiments\\audio_strong\\full\\iteration_2\\config.json",
+      "debug": false,
+      "early_stopping": {
+        "best_epoch": 1,
+        "best_value": 0.37556785345077515,
+        "epochs_without_improvement": 6,
+        "min_delta": 0.0001,
+        "min_epochs": 5,
+        "mode": "max",
+        "monitor": "val_macro_f1",
+        "monitored_history": [
+          0.37556785345077515,
+          0.3490000367164612,
+          0.36613741517066956,
+          0.36906805634498596,
+          0.3575727641582489,
+          0.3393915295600891,
+          0.36589938402175903
+        ],
+        "patience": 6,
+        "reason": "early stopping at epoch 7: val_macro_f1 did not improve for 6 consecutive epochs (patience=6, min_delta=0.0001); best val_macro_f1=0.375568 at epoch 1",
+        "stopped_early": true,
+        "stopped_epoch": 7
+      },
+      "epochs_completed": 7,
+      "epochs_configured": 40,
+      "iteration": "2",
+      "log_file": "experiments\\audio_strong\\full\\iteration_2\\logs\\training.log",
+      "modality": "audio_strong",
+      "model": {
+        "class": "LayerWeightedProbe",
+        "dropout": 0.2,
+        "encoder_frozen": true,
+        "encoder_trained_by_this_project": false,
+        "feature_dim": 768,
+        "front_end": {
+          "batch_size": 16,
+          "bundle": "WAV2VEC2_BASE",
+          "cache_fingerprint": "dc1543bfda550c28c8655cfccb45b7dff3b9f5498af3f58e8ffd5eccbc75bd48",
+          "cached_train_samples": 18715,
+          "feature_cache": "experiments\\audio_strong\\features",
+          "frozen_encoder": true,
+          "max_seconds": 4.0,
+          "normalize_waveform": false,
+          "pooling": "mean over valid (unpadded) time frames, per transformer layer",
+          "sample_rate": 16000,
+          "schema": "ahsef.audio.wav2vec2_layer_means.v1",
+          "storage_dtype": "float16"
+        },
+        "hidden_dim": 256,
+        "num_classes": 7,
+        "num_layers": 12,
+        "parameters": 266003,
+        "pooling": "learned softmax weighting over encoder layers",
+        "trainable_parameters": 266003
+      },
+      "results_dir": "experiments\\audio_strong\\full\\iteration_2\\results",
+      "run_seed": 43,
+      "samples": {
+        "test": null,
+        "train": 18715,
+        "validation": 5550
+      },
+      "seed": 42,
+      "stop_reason": "early stopping at epoch 7: val_macro_f1 did not improve for 6 consecutive epochs (patience=6, min_delta=0.0001); best val_macro_f1=0.375568 at epoch 1",
+      "task": "emotion_7class",
+      "test_accuracy": null,
+      "test_loss": null,
+      "test_macro_f1": null,
+      "test_per_class_f1": null,
+      "test_weighted_f1": null,
+      "total_seconds": 53.622,
+      "training_seconds": 41.312,
+      "validation_accuracy": 0.49225226044654846,
+      "validation_macro_f1": 0.37556785345077515,
+      "validation_weighted_f1": 0.5016725659370422
+    }
+  ],
+  "metadata_dir": "experiments\\audio_strong\\full\\metadata",
+  "modality": "audio_strong",
+  "note": "Iterations are independent repeated runs. Test predictions are never averaged across iterations; each iteration's artefacts stand alone.",
+  "sampling_summary": null,
+  "selection_metric": "validation macro_f1 (higher is better)",
+  "split_counts": {
+    "test": null,
+    "train": 18715,
+    "validation": 5550
+  },
+  "task": "emotion_7class",
+  "task_limitation": null,
+  "validation_report": null
+}

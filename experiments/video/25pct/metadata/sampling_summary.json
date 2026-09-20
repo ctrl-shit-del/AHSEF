@@ -1,0 +1,436 @@
+{
+  "config": {
+    "batch_size": 16384,
+    "datasets": null,
+    "fraction": 0.25,
+    "holdout_overflow": "drop",
+    "max_strata_in_summary": 512,
+    "minimum_per_stratum": 1,
+    "modality": "video",
+    "seed": 42,
+    "source": "metadata/standardized/standardized.parquet",
+    "split_policy": "official_aware",
+    "split_ratios": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "stratify_by": [
+      "dataset",
+      "canonical_emotion_id"
+    ],
+    "task": "emotion_7class"
+  },
+  "contributing_datasets": [
+    "MELD",
+    "CMU-MOSEI"
+  ],
+  "deviations": {
+    "holdout_overflow": "drop",
+    "minimum_per_stratum_adjustments": [],
+    "policy": "Strata whose proportional share rounds below 1 are raised to that floor, which can make the realised fraction exceed the requested one. Strata that cannot fill a split quota from unlocked records keep the shortfall rather than moving official holdout records into training.",
+    "quota_exceptions": [],
+    "unplaced_eligible_records": 0,
+    "unplaced_reason": null
+  },
+  "eligibility": {
+    "excluded": {
+      "dataset_not_contributing": 755772,
+      "invalid_or_missing_target": 22856,
+      "modality_unavailable": 1
+    },
+    "modality_rule": {
+      "accepted_sources": [
+        "file"
+      ],
+      "availability_column": "has_video",
+      "path_column": "video_path",
+      "source_column": "video_source"
+    },
+    "scanned_rows": 792336,
+    "task_rule": {
+      "label_column": "canonical_emotion_id",
+      "target_type": "categorical_emotion",
+      "valid_label_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validity_column": "emotion_target_valid"
+    }
+  },
+  "experiment": {
+    "description": "Video-only modality-filtered emotion_7class representative subset.",
+    "modality": "video",
+    "output_dir": "experiments/video/25pct/metadata",
+    "task": "emotion_7class"
+  },
+  "integrity": {
+    "cross_split_sample_ids": 0,
+    "duplicate_sample_ids": 0,
+    "invalid_label_records": 0,
+    "leakage_checks_passed": true,
+    "official_holdout_in_train": 0,
+    "records_outside_contributing_datasets": 0,
+    "records_with_missing_modality_source": 0,
+    "source_path_column": "video_path",
+    "source_path_examples": [
+      {
+        "sample_id": "train_dia0_utt2",
+        "video_path": "MELD/train_splits/dia0_utt2.mp4"
+      },
+      {
+        "sample_id": "train_dia0_utt4",
+        "video_path": "MELD/train_splits/dia0_utt4.mp4"
+      },
+      {
+        "sample_id": "train_dia0_utt9",
+        "video_path": "MELD/train_splits/dia0_utt9.mp4"
+      }
+    ],
+    "source_paths_rewritten": 0
+  },
+  "pool": {
+    "class_counts": {
+      "0": 6435,
+      "1": 2308,
+      "2": 1002,
+      "3": 1607,
+      "4": 358,
+      "5": 361,
+      "6": 1636
+    },
+    "dataset_class_counts": {
+      "MELD|0": 6435,
+      "MELD|1": 2308,
+      "MELD|2": 1002,
+      "MELD|3": 1607,
+      "MELD|4": 358,
+      "MELD|5": 361,
+      "MELD|6": 1636
+    },
+    "dataset_counts": {
+      "MELD": 13707
+    },
+    "dataset_official_split_counts": {
+      "MELD|test": 2610,
+      "MELD|train": 9989,
+      "MELD|validation": 1108
+    },
+    "eligible_records": 13707,
+    "official_split_counts": {
+      "test": 2610,
+      "train": 9989,
+      "validation": 1108
+    }
+  },
+  "representativeness": {
+    "class_share_after": {
+      "0": 0.46950685730960023,
+      "1": 0.16836883571637,
+      "2": 0.07324190253866356,
+      "3": 0.11730376422526992,
+      "4": 0.0259702363583309,
+      "5": 0.026262036766851474,
+      "6": 0.11934636708491392
+    },
+    "class_share_before": {
+      "0": 0.4694681549573211,
+      "1": 0.1683811191362078,
+      "2": 0.07310133508426352,
+      "3": 0.11723936674691764,
+      "4": 0.026118041876413513,
+      "5": 0.02633690814912089,
+      "6": 0.1193550740497556
+    },
+    "dataset_share_after": {
+      "MELD": 1.0
+    },
+    "dataset_share_before": {
+      "MELD": 1.0
+    },
+    "max_class_share_drift": 0.00014780551808261239,
+    "max_dataset_share_drift": 0.0
+  },
+  "sampling_method": "stratified proportional selection by ['dataset', 'canonical_emotion_id'] using largest-remainder allocation, seeded per-stratum shuffling, and quota-driven 0.8/0.1/0.1 split assignment under the 'official_aware' official-split policy",
+  "seed": 42,
+  "selection": {
+    "actual_fraction": 0.25001823885605895,
+    "class_counts": {
+      "0": 1609,
+      "1": 577,
+      "2": 251,
+      "3": 402,
+      "4": 89,
+      "5": 90,
+      "6": 409
+    },
+    "dataset_class_counts": {
+      "MELD|0": 1609,
+      "MELD|1": 577,
+      "MELD|2": 251,
+      "MELD|3": 402,
+      "MELD|4": 89,
+      "MELD|5": 90,
+      "MELD|6": 409
+    },
+    "dataset_counts": {
+      "MELD": 3427
+    },
+    "official_split_counts": {
+      "test": 343,
+      "train": 2741,
+      "validation": 343
+    },
+    "plan_digest": "315761b6e80ed196dc4b69102e8ac6c9",
+    "requested_fraction": 0.25,
+    "selected_records": 3427,
+    "target_records": 3427
+  },
+  "source": "metadata/standardized/standardized.parquet",
+  "splits": {
+    "actual_ratios": {
+      "test": 0.10008754012255618,
+      "train": 0.7998249197548877,
+      "validation": 0.10008754012255618
+    },
+    "class_counts": {
+      "test": {
+        "0": 161,
+        "1": 58,
+        "2": 25,
+        "3": 40,
+        "4": 9,
+        "5": 9,
+        "6": 41
+      },
+      "train": {
+        "0": 1287,
+        "1": 461,
+        "2": 201,
+        "3": 322,
+        "4": 71,
+        "5": 72,
+        "6": 327
+      },
+      "validation": {
+        "0": 161,
+        "1": 58,
+        "2": 25,
+        "3": 40,
+        "4": 9,
+        "5": 9,
+        "6": 41
+      }
+    },
+    "counts": {
+      "test": 343,
+      "train": 2741,
+      "validation": 343
+    },
+    "dataset_counts": {
+      "test": {
+        "MELD": 343
+      },
+      "train": {
+        "MELD": 2741
+      },
+      "validation": {
+        "MELD": 343
+      }
+    },
+    "official_split_counts": {
+      "test": {
+        "test": 343
+      },
+      "train": {
+        "train": 2741
+      },
+      "validation": {
+        "validation": 343
+      }
+    },
+    "ratios": {
+      "test": 0.1,
+      "train": 0.8,
+      "validation": 0.1
+    },
+    "sample_id_digests": {
+      "test": "09d6d7116734ecea11b8fdeacc4393f9",
+      "train": "84c6a376aa5530dc81e05737ed172264",
+      "validation": "66df4423da1fedb7e2050d51a1f95bcc"
+    }
+  },
+  "strata": [
+    {
+      "assigned": {
+        "test": 161,
+        "train": 1287,
+        "validation": 161
+      },
+      "pool": 6435,
+      "pool_by_lock_group": {
+        "free": 4710,
+        "locked_test": 1256,
+        "locked_validation": 469
+      },
+      "quota": {
+        "test": 161,
+        "train": 1287,
+        "validation": 161
+      },
+      "selected": 1609,
+      "stratum": {
+        "canonical_emotion_id": 0,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 58,
+        "train": 461,
+        "validation": 58
+      },
+      "pool": 2308,
+      "pool_by_lock_group": {
+        "free": 1743,
+        "locked_test": 402,
+        "locked_validation": 163
+      },
+      "quota": {
+        "test": 58,
+        "train": 461,
+        "validation": 58
+      },
+      "selected": 577,
+      "stratum": {
+        "canonical_emotion_id": 1,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 25,
+        "train": 201,
+        "validation": 25
+      },
+      "pool": 1002,
+      "pool_by_lock_group": {
+        "free": 683,
+        "locked_test": 208,
+        "locked_validation": 111
+      },
+      "quota": {
+        "test": 25,
+        "train": 201,
+        "validation": 25
+      },
+      "selected": 251,
+      "stratum": {
+        "canonical_emotion_id": 2,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 40,
+        "train": 322,
+        "validation": 40
+      },
+      "pool": 1607,
+      "pool_by_lock_group": {
+        "free": 1109,
+        "locked_test": 345,
+        "locked_validation": 153
+      },
+      "quota": {
+        "test": 40,
+        "train": 322,
+        "validation": 40
+      },
+      "selected": 402,
+      "stratum": {
+        "canonical_emotion_id": 3,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 71,
+        "validation": 9
+      },
+      "pool": 358,
+      "pool_by_lock_group": {
+        "free": 268,
+        "locked_test": 50,
+        "locked_validation": 40
+      },
+      "quota": {
+        "test": 9,
+        "train": 71,
+        "validation": 9
+      },
+      "selected": 89,
+      "stratum": {
+        "canonical_emotion_id": 4,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 9,
+        "train": 72,
+        "validation": 9
+      },
+      "pool": 361,
+      "pool_by_lock_group": {
+        "free": 271,
+        "locked_test": 68,
+        "locked_validation": 22
+      },
+      "quota": {
+        "test": 9,
+        "train": 72,
+        "validation": 9
+      },
+      "selected": 90,
+      "stratum": {
+        "canonical_emotion_id": 5,
+        "dataset": "MELD"
+      }
+    },
+    {
+      "assigned": {
+        "test": 41,
+        "train": 327,
+        "validation": 41
+      },
+      "pool": 1636,
+      "pool_by_lock_group": {
+        "free": 1205,
+        "locked_test": 281,
+        "locked_validation": 150
+      },
+      "quota": {
+        "test": 41,
+        "train": 327,
+        "validation": 41
+      },
+      "selected": 409,
+      "stratum": {
+        "canonical_emotion_id": 6,
+        "dataset": "MELD"
+      }
+    }
+  ],
+  "strata_omitted": 0,
+  "stratification_fields": [
+    "dataset",
+    "canonical_emotion_id"
+  ]
+}

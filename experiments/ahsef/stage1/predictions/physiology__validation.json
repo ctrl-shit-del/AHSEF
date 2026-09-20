@@ -1,0 +1,60 @@
+{
+  "schema": "ahsef.predictions.v1",
+  "modality": "physiology",
+  "split": "validation",
+  "class_order": [
+    "baseline",
+    "stress",
+    "amusement"
+  ],
+  "samples": 405,
+  "predictions_path": "experiments\\ahsef\\stage1\\predictions\\physiology__validation.parquet",
+  "experiment": "physiology_full",
+  "iteration": "2",
+  "task": "wesad_state_3class",
+  "class_order_source": "run_summary.class_order",
+  "task_limitation": "WESAD carries physiological-state annotations, not categorical emotion: every WESAD record in the standardized metadata has target_type='physiological_state' and canonical_emotion_valid=False. Forcing the 7-class emotion taxonomy onto it would fabricate labels, so the physiology baseline reports this task instead.",
+  "metadata_dir": "experiments/physiology/full/metadata",
+  "manifest": "experiments\\physiology\\full\\metadata\\validation.parquet",
+  "checkpoint": "experiments\\physiology\\full\\iteration_2\\checkpoints\\best.pt",
+  "checkpoint_sha256": "bab28e8fa1e73d2a0ceb9428b7ea14f803db0107339cbfef222f1df6c7d60784",
+  "checkpoint_unchanged": true,
+  "baseline_best_epoch": 4,
+  "baseline_best_val_macro_f1": 0.7229375839233398,
+  "baseline_seed": 42,
+  "baseline_run_seed": 43,
+  "model": {
+    "class": "PhysiologyStateBaseline",
+    "parameters": 7939,
+    "num_classes": 3,
+    "feature_dim": 56,
+    "hidden_dim": 128,
+    "input": "per-channel window statistics, standardised with train-fitted scaling"
+  },
+  "device": "cpu",
+  "temperature": 1.0,
+  "temperature_applied": false,
+  "uncertainty_definition": {
+    "confidence": "max_c p_c",
+    "uncertainty": "normalized predictive entropy: -sum_c p_c ln(p_c) / ln(K)",
+    "entropy_base": "natural logarithm (nats)",
+    "margin": "p_(1) - p_(2), the top-1 minus top-2 probability",
+    "range": "normalized_entropy in [0, 1]; confidence in [1/K, 1]",
+    "calibrated": false,
+    "note": "Entropy is a property of the predictive distribution, not a calibrated probability of correctness. Calibration is measured separately in src.ahsef.calibration and reported alongside, never assumed."
+  },
+  "latency": {
+    "measured": true,
+    "wall_seconds": 0.0558,
+    "mean_latency_ms": 0.13038049382772937,
+    "mean_inference_ms": 0.01049209876563745,
+    "mean_feature_ms": 0.11988839506209191,
+    "note": "Wall-clock on this host, batch time divided evenly across the batch. Comparable across modalities only within one export run."
+  },
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.12.0+cpu"
+  },
+  "exported_at": "2026-08-29T10:15:42",
+  "uses_labels_for_prediction": false
+}

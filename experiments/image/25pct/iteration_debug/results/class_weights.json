@@ -1,0 +1,45 @@
+{
+  "policy": "inverse_frequency_from_train",
+  "computed_from": "experiments/image/25pct/metadata/train.parquet",
+  "computed_from_split": "train",
+  "uses_validation_labels": false,
+  "uses_test_labels": false,
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "class_mapping": {
+    "neutral": 0,
+    "happy": 1,
+    "sad": 2,
+    "angry": 3,
+    "fear": 4,
+    "disgust": 5,
+    "surprise": 6
+  },
+  "training_distribution": {
+    "neutral": 69,
+    "happy": 95,
+    "sad": 29,
+    "angry": 33,
+    "fear": 10,
+    "disgust": 7,
+    "surprise": 13
+  },
+  "classes_absent_from_train": [],
+  "absent_class_weight": null,
+  "weights": [
+    0.5300207138061523,
+    0.38496240973472595,
+    1.261083722114563,
+    1.1082251071929932,
+    3.6571428775787354,
+    5.224489688873291,
+    2.8131868839263916
+  ]
+}

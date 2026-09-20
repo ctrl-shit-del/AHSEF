@@ -1,0 +1,54 @@
+# PROFILE A -- full data, CUDA, mixed precision.  The runs that produce results.
+#
+#   python scripts/train_hsen_cuda.py --config src/hsen/configs/hsen_full_cuda.yaml
+#
+# Every value here is a default that a command-line flag overrides.  The model
+# block is the literature-backed configuration from the AHSEF survey and should
+# move only for the section-13 ablation or the section-14 controlled search.
+
+data:
+  dataset: iemocap              # iemocap -> iemocap_erc6 (six-way ERC protocol)
+  data_fraction: 1.0
+  modalities: audio+text        # video is deferred; IEMOCAP has no video cache
+
+compute:
+  device: cuda
+  amp: true
+  num_workers: 4
+  batch_size: 32                # conservative; raise on a card with headroom
+  eval_batch_size: 64
+
+model:
+  # Geometry fixed by the survey: ESED Table 7's measured optimum of d = 256
+  # (128 and 512 are both worse). Fusion was settled by the Phase 15 seed-variance
+  # study, not the survey: concat over audio+text is what the full-data run carries.
+  fusion: concat                # Phase 15: tied with Husformer on mean WF1, 13x more stable across seeds
+  model_dim: 256
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  attention_dropout: 0.1
+
+schedule:
+  epochs: 30
+  lr: 0.0001                    # ESED's IEMOCAP setting; a search candidate
+  weight_decay: 0.00001
+  optimizer: adamw
+  scheduler: cosine_warmup
+  warmup_ratio: 0.1             # ESED uses a 10% linear warm-up
+  gradient_clip: 1.0
+  patience: 5
+  min_epochs: 3
+  seed: 42
+
+loss:
+  # Classification only to start. The affect heads are built, exercised and
+  # reported every epoch; adding them to the objective is a deliberate
+  # experiment, not a default, because it changes what the model optimises.
+  lambda_cls: 1.0
+  lambda_valence: 0.0
+  lambda_arousal: 0.0
+  focal_gamma: 2.0
+  class_weights: balanced
+  regression_loss: mse
+  label_smoothing: 0.0

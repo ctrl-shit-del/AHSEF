@@ -1,0 +1,466 @@
+{
+  "experiment": "physiology_full",
+  "iteration": "debug",
+  "modality": "physiology",
+  "task": "wesad_state_3class",
+  "class_order": [
+    "baseline",
+    "stress",
+    "amusement"
+  ],
+  "task_limitation": "WESAD carries physiological-state annotations, not categorical emotion: every WESAD record in the standardized metadata has target_type='physiological_state' and canonical_emotion_valid=False. Forcing the 7-class emotion taxonomy onto it would fabricate labels, so the physiology baseline reports this task instead.",
+  "description": "Physiology-only WESAD study-condition baseline over subject-disjoint windows.",
+  "debug": true,
+  "metadata_dir": "experiments/physiology/full/metadata",
+  "config": {
+    "experiment_name": "physiology_full",
+    "description": "Physiology-only WESAD study-condition baseline over subject-disjoint windows.",
+    "iteration": "debug",
+    "experiment_root": "experiments",
+    "metadata_dir": null,
+    "modality": "physiology",
+    "task": "wesad_state_3class",
+    "num_classes": 3,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 2,
+    "optimizer": "AdamW",
+    "loss": "CrossEntropyLoss",
+    "class_weight_policy": "inverse_frequency_from_train",
+    "patience": 1,
+    "min_delta": 0.0001,
+    "min_epochs": 1,
+    "seed": 42,
+    "run_seed": null,
+    "device": "auto",
+    "num_workers": 0,
+    "max_train": 256,
+    "max_val": 128,
+    "max_test": 128,
+    "debug": true,
+    "hidden_dim": 128,
+    "require_subject_disjoint_splits": true
+  },
+  "seeds": {
+    "python_seed": 42,
+    "numpy_seed": 42,
+    "torch_seed": 42,
+    "deterministic_algorithms": "warn_only",
+    "notes": []
+  },
+  "device": "cpu",
+  "cuda_available": false,
+  "python_version": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "torch_version": "2.13.0+cpu",
+  "numpy_version": "2.4.6",
+  "model": {
+    "class": "PhysiologyStateBaseline",
+    "parameters": 7939,
+    "num_classes": 3,
+    "feature_dim": 56,
+    "hidden_dim": 128,
+    "input": "per-channel window statistics, standardised with train-fitted scaling"
+  },
+  "samples": {
+    "train": 256,
+    "validation": 128,
+    "test": 128
+  },
+  "train_dataset_counts": {
+    "WESAD": 256
+  },
+  "class_weights": {
+    "policy": "inverse_frequency_from_train",
+    "computed_from": "experiments/physiology/full/metadata/train.parquet",
+    "computed_from_split": "train",
+    "uses_validation_labels": false,
+    "uses_test_labels": false,
+    "task": "wesad_state_3class",
+    "label_column": "state_id",
+    "class_order": [
+      "baseline",
+      "stress",
+      "amusement"
+    ],
+    "class_mapping": {
+      "baseline": 0,
+      "stress": 1,
+      "amusement": 2
+    },
+    "training_distribution": {
+      "baseline": 146,
+      "stress": 73,
+      "amusement": 37
+    },
+    "classes_absent_from_train": [],
+    "absent_class_weight": null,
+    "weights": [
+      0.5844748616218567,
+      1.1689497232437134,
+      2.3063063621520996
+    ]
+  },
+  "epochs_configured": 2,
+  "epochs_completed": 2,
+  "best_epoch": 2,
+  "best_val_macro_f1": 0.7098039984703064,
+  "checkpoint_updates": [
+    1,
+    2
+  ],
+  "early_stopping": {
+    "monitor": "val_macro_f1",
+    "mode": "max",
+    "patience": 1,
+    "min_delta": 0.0001,
+    "min_epochs": 1,
+    "best_value": 0.7098039984703064,
+    "best_epoch": 2,
+    "epochs_without_improvement": 0,
+    "stopped_early": false,
+    "stopped_epoch": null,
+    "reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.709804 at epoch 2",
+    "monitored_history": [
+      0.5492823123931885,
+      0.7098039984703064
+    ]
+  },
+  "stop_reason": "completed the configured maximum of 2 epochs (2 run); best val_macro_f1=0.709804 at epoch 2",
+  "validation_metrics": {
+    "accuracy": 0.75,
+    "macro_precision": 0.7117825150489807,
+    "macro_recall": 0.7585434913635254,
+    "macro_f1": 0.7098039984703064,
+    "weighted_f1": 0.7673407196998596,
+    "per_class_precision": [
+      0.8799999952316284,
+      0.9318181872367859,
+      0.3235294222831726
+    ],
+    "per_class_recall": [
+      0.6285714507102966,
+      1.0,
+      0.6470588445663452
+    ],
+    "per_class_f1": [
+      0.7333333492279053,
+      0.9647058844566345,
+      0.4313725531101227
+    ],
+    "support": [
+      70,
+      41,
+      17
+    ],
+    "confusion_matrix": [
+      [
+        44,
+        3,
+        23
+      ],
+      [
+        0,
+        41,
+        0
+      ],
+      [
+        6,
+        0,
+        11
+      ]
+    ],
+    "loss": 0.7166036777198315,
+    "samples": 128,
+    "class_order": [
+      "baseline",
+      "stress",
+      "amusement"
+    ],
+    "per_class": {
+      "baseline": {
+        "precision": 0.8799999952316284,
+        "recall": 0.6285714507102966,
+        "f1": 0.7333333492279053,
+        "support": 70
+      },
+      "stress": {
+        "precision": 0.9318181872367859,
+        "recall": 1.0,
+        "f1": 0.9647058844566345,
+        "support": 41
+      },
+      "amusement": {
+        "precision": 0.3235294222831726,
+        "recall": 0.6470588445663452,
+        "f1": 0.4313725531101227,
+        "support": 17
+      }
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.546875,
+    "macro_precision": 0.21021020412445068,
+    "macro_recall": 0.3333333432674408,
+    "macro_f1": 0.25782689452171326,
+    "weighted_f1": 0.42299723625183105,
+    "per_class_precision": [
+      0.630630612373352,
+      0.0,
+      0.0
+    ],
+    "per_class_recall": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "per_class_f1": [
+      0.7734806537628174,
+      0.0,
+      0.0
+    ],
+    "support": [
+      70,
+      36,
+      22
+    ],
+    "confusion_matrix": [
+      [
+        70,
+        0,
+        0
+      ],
+      [
+        19,
+        0,
+        17
+      ],
+      [
+        22,
+        0,
+        0
+      ]
+    ],
+    "loss": 0.9913514405488968,
+    "samples": 128,
+    "class_order": [
+      "baseline",
+      "stress",
+      "amusement"
+    ],
+    "per_class": {
+      "baseline": {
+        "precision": 0.630630612373352,
+        "recall": 1.0,
+        "f1": 0.7734806537628174,
+        "support": 70
+      },
+      "stress": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 36
+      },
+      "amusement": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 22
+      }
+    }
+  },
+  "checkpoints": {
+    "best": "experiments/physiology/full/iteration_debug/checkpoints/best.pt",
+    "last": "experiments/physiology/full/iteration_debug/checkpoints/last.pt",
+    "reload_verified": true
+  },
+  "training_seconds": 0.088,
+  "total_seconds": 0.658,
+  "loader_events": [
+    {
+      "phase": "setup",
+      "split": "train"
+    },
+    {
+      "phase": "setup",
+      "split": "validation"
+    },
+    {
+      "phase": "evaluation",
+      "split": "test"
+    }
+  ],
+  "test_used_for_model_selection": false,
+  "sampling_summary_present": true,
+  "log_file": "experiments/physiology/full/iteration_debug/logs/training.log",
+  "preparation": {
+    "feature_standardisation": {
+      "computed_from_split": "train",
+      "uses_validation_windows": false,
+      "uses_test_windows": false,
+      "feature_dim": 56,
+      "mean": [
+        0.7934588193893433,
+        0.0158517025411129,
+        0.6822187304496765,
+        0.8919554352760315,
+        0.7860240340232849,
+        0.8005229830741882,
+        0.0013948054984211922,
+        -0.008731186389923096,
+        0.023323051631450653,
+        -0.13509999215602875,
+        0.08293125778436661,
+        -0.021283986046910286,
+        0.003630667459219694,
+        0.0013284055748954415,
+        -0.3666330575942993,
+        0.037932369858026505,
+        -0.5106819868087769,
+        -0.19385391473770142,
+        -0.3891806900501251,
+        -0.3488665819168091,
+        0.0024089692160487175,
+        0.00110464112367481,
+        0.25853610038757324,
+        -0.6535162925720215,
+        1.4172890186309814,
+        -0.09839321672916412,
+        0.038506731390953064,
+        0.01089621614664793,
+        -0.0031602084636688232,
+        0.013525577262043953,
+        -0.13330471515655518,
+        0.13064879179000854,
+        -0.01039266586303711,
+        0.004419967532157898,
+        0.00955156609416008,
+        4.45753288269043,
+        0.05883968621492386,
+        4.190793991088867,
+        4.684071063995361,
+        4.412319183349609,
+        4.494767665863037,
+        0.00805587600916624,
+        33.606163024902344,
+        0.11121650785207748,
+        32.242576599121094,
+        33.84085464477539,
+        33.569725036621094,
+        33.65015411376953,
+        0.025493543595075607,
+        0.059459030628204346,
+        3.4491701126098633,
+        -9.676867485046387,
+        10.875922203063965,
+        -2.1532609462738037,
+        2.248173952102661,
+        0.04182399809360504
+      ],
+      "std": [
+        0.13097785413265228,
+        0.023794811218976974,
+        0.47376230359077454,
+        0.16691595315933228,
+        0.13256019353866577,
+        0.13150449097156525,
+        0.00015527455252595246,
+        0.0694338008761406,
+        0.0312655009329319,
+        0.41639652848243713,
+        0.10499513149261475,
+        0.0750269815325737,
+        0.07259956747293472,
+        9.656236943555996e-05,
+        0.2717554569244385,
+        0.04571187496185303,
+        0.4524504840373993,
+        0.34625130891799927,
+        0.2654426097869873,
+        0.28162118792533875,
+        0.0003227347624488175,
+        0.000450511317467317,
+        0.05799826979637146,
+        0.27514100074768066,
+        0.20409579575061798,
+        0.037986595183610916,
+        0.02875146083533764,
+        0.0033097087871283293,
+        0.0006011953810229897,
+        0.006310378201305866,
+        0.11618655174970627,
+        0.10198058933019638,
+        0.002704678336158395,
+        0.002640983322635293,
+        0.002892884658649564,
+        2.5375418663024902,
+        0.09116159379482269,
+        2.486367702484131,
+        2.6745810508728027,
+        2.4989614486694336,
+        2.5686514377593994,
+        0.004405582323670387,
+        1.591384768486023,
+        0.8573108911514282,
+        19.19431495666504,
+        1.5312799215316772,
+        1.6160119771957397,
+        1.581230878829956,
+        0.00665936479344964,
+        0.09772957116365433,
+        1.5252478122711182,
+        5.572458267211914,
+        6.5605998039245605,
+        0.8155838847160339,
+        0.6809722185134888,
+        0.005404302850365639
+      ]
+    },
+    "subjects": {
+      "train": [
+        "S10",
+        "S11",
+        "S13",
+        "S14",
+        "S15",
+        "S17",
+        "S2",
+        "S3",
+        "S5",
+        "S6",
+        "S8",
+        "S9"
+      ],
+      "validation": [
+        "S16",
+        "S7"
+      ]
+    }
+  },
+  "subjects": {
+    "train": [
+      "S10",
+      "S11",
+      "S13",
+      "S14",
+      "S15",
+      "S17",
+      "S2",
+      "S3",
+      "S5",
+      "S6",
+      "S8",
+      "S9"
+    ],
+    "validation": [
+      "S16",
+      "S7"
+    ],
+    "test": [
+      "S4"
+    ]
+  },
+  "subject_disjoint_splits": true,
+  "feature_dim": 56
+}

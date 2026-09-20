@@ -1,0 +1,504 @@
+{
+  "experiment": "video_25pct",
+  "iteration": "debug",
+  "modality": "video",
+  "task": "emotion_7class",
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "task_limitation": null,
+  "description": "Video-only modality-filtered 7-class categorical emotion baseline.",
+  "debug": true,
+  "metadata_dir": "experiments/video/25pct/metadata",
+  "config": {
+    "experiment_name": "video_25pct",
+    "description": "Video-only modality-filtered 7-class categorical emotion baseline.",
+    "iteration": "debug",
+    "experiment_root": "experiments",
+    "metadata_dir": null,
+    "modality": "video",
+    "task": "emotion_7class",
+    "num_classes": 7,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 2,
+    "optimizer": "AdamW",
+    "loss": "CrossEntropyLoss",
+    "class_weight_policy": "inverse_frequency_from_train",
+    "patience": 1,
+    "min_delta": 0.0001,
+    "min_epochs": 1,
+    "seed": 42,
+    "run_seed": null,
+    "device": "auto",
+    "num_workers": 0,
+    "max_train": 256,
+    "max_val": 128,
+    "max_test": 128,
+    "debug": true,
+    "num_frames": 8,
+    "frame_size": 48,
+    "hidden_dim": 256,
+    "temporal": "mean"
+  },
+  "seeds": {
+    "python_seed": 42,
+    "numpy_seed": 42,
+    "torch_seed": 42,
+    "deterministic_algorithms": "warn_only",
+    "notes": []
+  },
+  "device": "cpu",
+  "cuda_available": false,
+  "python_version": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "torch_version": "2.13.0+cpu",
+  "numpy_version": "2.4.6",
+  "model": {
+    "class": "VideoEmotionBaseline",
+    "parameters": 1772039,
+    "num_classes": 7,
+    "num_frames": 8,
+    "frame_size": 48,
+    "hidden_dim": 256,
+    "temporal": "mean",
+    "pooling": "masked mean over frames"
+  },
+  "samples": {
+    "train": 256,
+    "validation": 128,
+    "test": 128
+  },
+  "train_dataset_counts": {
+    "MELD": 256
+  },
+  "class_weights": {
+    "policy": "inverse_frequency_from_train",
+    "computed_from": "experiments/video/25pct/metadata/train.parquet",
+    "computed_from_split": "train",
+    "uses_validation_labels": false,
+    "uses_test_labels": false,
+    "task": "emotion_7class",
+    "label_column": "canonical_emotion_id",
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "class_mapping": {
+      "neutral": 0,
+      "happy": 1,
+      "sad": 2,
+      "angry": 3,
+      "fear": 4,
+      "disgust": 5,
+      "surprise": 6
+    },
+    "training_distribution": {
+      "neutral": 130,
+      "happy": 45,
+      "sad": 15,
+      "angry": 30,
+      "fear": 9,
+      "disgust": 5,
+      "surprise": 22
+    },
+    "classes_absent_from_train": [],
+    "absent_class_weight": null,
+    "weights": [
+      0.28131869435310364,
+      0.8126984238624573,
+      2.4380953311920166,
+      1.2190476655960083,
+      4.063492298126221,
+      7.314285755157471,
+      1.6623376607894897
+    ]
+  },
+  "epochs_configured": 2,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_val_macro_f1": 0.14028313755989075,
+  "checkpoint_updates": [
+    1
+  ],
+  "early_stopping": {
+    "monitor": "val_macro_f1",
+    "mode": "max",
+    "patience": 1,
+    "min_delta": 0.0001,
+    "min_epochs": 1,
+    "best_value": 0.14028313755989075,
+    "best_epoch": 1,
+    "epochs_without_improvement": 1,
+    "stopped_early": true,
+    "stopped_epoch": 2,
+    "reason": "early stopping at epoch 2: val_macro_f1 degraded for 1 consecutive epochs (patience=1, min_delta=0.0001); best val_macro_f1=0.140283 at epoch 1",
+    "monitored_history": [
+      0.14028313755989075,
+      0.07783576101064682
+    ]
+  },
+  "stop_reason": "early stopping at epoch 2: val_macro_f1 degraded for 1 consecutive epochs (patience=1, min_delta=0.0001); best val_macro_f1=0.140283 at epoch 1",
+  "validation_metrics": {
+    "accuracy": 0.4765625,
+    "macro_precision": 0.21198156476020813,
+    "macro_recall": 0.16908666491508484,
+    "macro_f1": 0.14028313755989075,
+    "weighted_f1": 0.32214245200157166,
+    "per_class_precision": [
+      0.4838709533214569,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_recall": [
+      0.9836065769195557,
+      0.0,
+      0.20000000298023224,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_f1": [
+      0.6486486196517944,
+      0.0,
+      0.3333333134651184,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "support": [
+      61,
+      26,
+      5,
+      11,
+      5,
+      4,
+      16
+    ],
+    "confusion_matrix": [
+      [
+        60,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        25,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        10,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        16,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "loss": 1.9980878978967667,
+    "samples": 128,
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "per_class": {
+      "neutral": {
+        "precision": 0.4838709533214569,
+        "recall": 0.9836065769195557,
+        "f1": 0.6486486196517944,
+        "support": 61
+      },
+      "happy": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 26
+      },
+      "sad": {
+        "precision": 1.0,
+        "recall": 0.20000000298023224,
+        "f1": 0.3333333134651184,
+        "support": 5
+      },
+      "angry": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 11
+      },
+      "fear": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      },
+      "disgust": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4
+      },
+      "surprise": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 16
+      }
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.359375,
+    "macro_precision": 0.07780612260103226,
+    "macro_recall": 0.1371668130159378,
+    "macro_f1": 0.09577922523021698,
+    "weighted_f1": 0.23464134335517883,
+    "per_class_precision": [
+      0.4017857015132904,
+      0.0,
+      0.1428571492433548,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_recall": [
+      0.849056601524353,
+      0.0,
+      0.1111111119389534,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_class_f1": [
+      0.5454545617103577,
+      0.0,
+      0.125,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "support": [
+      53,
+      21,
+      9,
+      17,
+      3,
+      3,
+      22
+    ],
+    "confusion_matrix": [
+      [
+        45,
+        3,
+        4,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        7,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        15,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        19,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "loss": 2.0229648500680923,
+    "samples": 128,
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ],
+    "per_class": {
+      "neutral": {
+        "precision": 0.4017857015132904,
+        "recall": 0.849056601524353,
+        "f1": 0.5454545617103577,
+        "support": 53
+      },
+      "happy": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 21
+      },
+      "sad": {
+        "precision": 0.1428571492433548,
+        "recall": 0.1111111119389534,
+        "f1": 0.125,
+        "support": 9
+      },
+      "angry": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 17
+      },
+      "fear": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "disgust": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "surprise": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 22
+      }
+    }
+  },
+  "checkpoints": {
+    "best": "experiments/video/25pct/iteration_debug/checkpoints/best.pt",
+    "last": "experiments/video/25pct/iteration_debug/checkpoints/last.pt",
+    "reload_verified": true
+  },
+  "training_seconds": 103.105,
+  "total_seconds": 139.774,
+  "loader_events": [
+    {
+      "phase": "setup",
+      "split": "train"
+    },
+    {
+      "phase": "setup",
+      "split": "validation"
+    },
+    {
+      "phase": "evaluation",
+      "split": "test"
+    }
+  ],
+  "test_used_for_model_selection": false,
+  "sampling_summary_present": true,
+  "log_file": "experiments/video/25pct/iteration_debug/logs/training.log"
+}

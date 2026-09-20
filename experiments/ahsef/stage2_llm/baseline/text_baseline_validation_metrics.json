@@ -1,0 +1,154 @@
+{
+  "split": "validation",
+  "source": "experiments\\ahsef\\stage1\\predictions\\text__validation.parquet",
+  "samples": 1000,
+  "metrics": {
+    "samples": 1000,
+    "accuracy": 0.38100001215934753,
+    "macro_f1": 0.2789765000343323,
+    "weighted_f1": 0.404419869184494,
+    "macro_precision": 0.28177857398986816,
+    "macro_recall": 0.3380800187587738,
+    "per_class": {
+      "neutral": {
+        "precision": 0.5848214030265808,
+        "recall": 0.34025973081588745,
+        "f1": 0.43021345138549805,
+        "support": 385
+      },
+      "happy": {
+        "precision": 0.48739495873451233,
+        "recall": 0.42335766553878784,
+        "f1": 0.453125,
+        "support": 274
+      },
+      "sad": {
+        "precision": 0.2950819730758667,
+        "recall": 0.313043475151062,
+        "f1": 0.3037974536418915,
+        "support": 115
+      },
+      "angry": {
+        "precision": 0.3720930218696594,
+        "recall": 0.47337278723716736,
+        "f1": 0.4166666865348816,
+        "support": 169
+      },
+      "fear": {
+        "precision": 0.04477611929178238,
+        "recall": 0.3333333432674408,
+        "f1": 0.07894737273454666,
+        "support": 9
+      },
+      "disgust": {
+        "precision": 0.019607843831181526,
+        "recall": 0.0714285746216774,
+        "f1": 0.030769232660531998,
+        "support": 14
+      },
+      "surprise": {
+        "precision": 0.16867469251155853,
+        "recall": 0.4117647111415863,
+        "f1": 0.23931622505187988,
+        "support": 34
+      }
+    },
+    "confusion_matrix": [
+      [
+        131,
+        81,
+        39,
+        55,
+        26,
+        23,
+        30
+      ],
+      [
+        51,
+        116,
+        17,
+        51,
+        10,
+        11,
+        18
+      ],
+      [
+        16,
+        15,
+        36,
+        21,
+        13,
+        8,
+        6
+      ],
+      [
+        19,
+        21,
+        24,
+        80,
+        8,
+        6,
+        11
+      ],
+      [
+        1,
+        1,
+        0,
+        2,
+        3,
+        2,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        5,
+        1,
+        1,
+        4
+      ],
+      [
+        5,
+        3,
+        5,
+        1,
+        6,
+        0,
+        14
+      ]
+    ],
+    "class_order": [
+      "neutral",
+      "happy",
+      "sad",
+      "angry",
+      "fear",
+      "disgust",
+      "surprise"
+    ]
+  },
+  "uncertainty": {
+    "samples": 1000,
+    "mean_normalized_entropy": 0.794964723803232,
+    "median_normalized_entropy": 0.8365003155378928,
+    "std_normalized_entropy": 0.1478996957870837,
+    "mean_predictive_entropy": 1.5469299241896632,
+    "mean_confidence": 0.40749873230315325,
+    "mean_margin": 0.19554090876867908,
+    "mean_uncertainty_when_correct": 0.7460096299104717,
+    "mean_uncertainty_when_wrong": 0.8250970190748664,
+    "uncertainty_separation": 0.07908738916439473,
+    "separation_note": "Positive means the model is more uncertain when it is wrong, which is the precondition for uncertainty-triggered routing to help at all."
+  },
+  "latency": {
+    "total_ms": 19852.892267187308,
+    "total_seconds": 19.852892267187308,
+    "mean_ms": 19.852892267187308,
+    "median_ms": 21.45068828124863,
+    "p95_ms": 24.312876562497365,
+    "min_ms": 0.6095093750033698,
+    "max_ms": 28.875987499993983
+  },
+  "note": "Frozen Stage 1 text baseline restricted to the pilot manifest. Not retrained, not modified, not re-inferred."
+}

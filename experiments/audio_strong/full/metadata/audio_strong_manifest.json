@@ -1,0 +1,128 @@
+{
+  "experiment": "audio_strong_full",
+  "source_experiment": "audio_25pct",
+  "source_metadata_dir": "experiments\\audio\\25pct\\metadata",
+  "selection_method": "seeded_stratified_class_cap_v1",
+  "class_cap": 4000,
+  "seed": 42,
+  "class_order": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust",
+    "surprise"
+  ],
+  "splits": {
+    "train": {
+      "class_cap_report": {
+        "neutral": {
+          "available": 16415,
+          "kept": 4000,
+          "action": "capped from 16415"
+        },
+        "happy": {
+          "available": 12105,
+          "kept": 4000,
+          "action": "capped from 12105"
+        },
+        "sad": {
+          "available": 5391,
+          "kept": 4000,
+          "action": "capped from 5391"
+        },
+        "angry": {
+          "available": 7722,
+          "kept": 4000,
+          "action": "capped from 7722"
+        },
+        "fear": {
+          "available": 645,
+          "kept": 645,
+          "action": "kept whole"
+        },
+        "disgust": {
+          "available": 842,
+          "kept": 842,
+          "action": "kept whole"
+        },
+        "surprise": {
+          "available": 1228,
+          "kept": 1228,
+          "action": "kept whole"
+        }
+      },
+      "path": "experiments\\audio_strong\\full\\metadata\\train.parquet",
+      "samples": 18715,
+      "source_samples": 44348,
+      "fingerprint_sha256": "fa9c38efb498589e3867550a7d13b8c1fde028cbda988bec1a5359b68bcc3d14",
+      "class_counts": {
+        "neutral": 4000,
+        "happy": 4000,
+        "sad": 4000,
+        "angry": 4000,
+        "fear": 645,
+        "disgust": 842,
+        "surprise": 1228
+      },
+      "datasets": {
+        "CREMA-D": 966,
+        "IEMOCAP": 450,
+        "MSP-Podcast": 17000,
+        "RAVDESS": 299
+      }
+    },
+    "validation": {
+      "class_cap_report": null,
+      "copied_unchanged": true,
+      "path": "experiments\\audio_strong\\full\\metadata\\validation.parquet",
+      "samples": 5550,
+      "source_samples": 5550,
+      "fingerprint_sha256": "d36f8b00faec95ae2e5eae3b4c7319975f56d9abf9a12f0942be9af42e2b4908",
+      "class_counts": {
+        "neutral": 2052,
+        "happy": 1514,
+        "sad": 675,
+        "angry": 967,
+        "fear": 82,
+        "disgust": 106,
+        "surprise": 154
+      },
+      "datasets": {
+        "CREMA-D": 187,
+        "IEMOCAP": 117,
+        "MSP-Podcast": 5182,
+        "RAVDESS": 64
+      }
+    },
+    "test": {
+      "class_cap_report": null,
+      "copied_unchanged": true,
+      "path": "experiments\\audio_strong\\full\\metadata\\test.parquet",
+      "samples": 5542,
+      "source_samples": 5542,
+      "fingerprint_sha256": "cec265feb59a46f8da346ef96b48e622fef6235ca8f09c3ba425a51100ede94a",
+      "class_counts": {
+        "neutral": 2052,
+        "happy": 1513,
+        "sad": 674,
+        "angry": 964,
+        "fear": 80,
+        "disgust": 105,
+        "surprise": 154
+      },
+      "datasets": {
+        "CREMA-D": 187,
+        "IEMOCAP": 116,
+        "MSP-Podcast": 5179,
+        "RAVDESS": 60
+      }
+    }
+  },
+  "created_at": "2026-08-30T15:13:14",
+  "labels_used_for_inclusion": true,
+  "labels_note": "The cap is applied per class, so class labels decide how many TRAINING samples are kept. This is a training-set construction choice, applied to the training partition only. Validation and test are copied through untouched, so no evaluation sample is selected or excluded by its label.",
+  "splits_disjoint": true,
+  "evaluation_splits_identical_to_source": true
+}

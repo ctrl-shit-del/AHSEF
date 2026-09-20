@@ -3,7 +3,7 @@ from typing import List
 
 from src.common.models import EmotionRecord
 from src.preprocessing.core.base_adapter import BaseAdapter
-from src.preprocessing.emotion_mapping import UNIFIED_EMOTIONS
+from src.preprocessing.emotion_mapping import MOSEI_EMOTIONS
 
 
 class MOSEIAdapter(BaseAdapter):
@@ -72,7 +72,7 @@ class MOSEIAdapter(BaseAdapter):
             for row in reader:
 
                 # -----------------------------------------
-                # Basic identifiers
+                # Identifiers
                 # -----------------------------------------
 
                 video_id = (
@@ -106,7 +106,7 @@ class MOSEIAdapter(BaseAdapter):
                 )
 
                 # -----------------------------------------
-                # Annotation
+                # Original annotation
                 # -----------------------------------------
 
                 annotation = (
@@ -115,29 +115,43 @@ class MOSEIAdapter(BaseAdapter):
                 )
 
                 # -----------------------------------------
-                # Sentiment label
+                # Semantic mapping
                 # -----------------------------------------
 
-                label_value = row.get(
-                    "label",
-                    ""
-                ).strip()
+                emotion = MOSEI_EMOTIONS.get(
+                    annotation
+                )
+
+                annotation_state = None
+
+                # -----------------------------------------
+                # Sentiment score
+                # -----------------------------------------
 
                 label = None
 
+                label_value = (
+                    row.get("label", "")
+                    .strip()
+                )
+
                 if label_value:
+
                     try:
-                        label = float(label_value)
+
+                        label = float(
+                            label_value
+                        )
+
                     except ValueError:
+
                         label = None
 
                 # -----------------------------------------
-                # Dimension labels
+                # MOSEI V/A/D fields
                 #
-                # CMU-MOSEI label.csv currently contains
-                # label_T, label_A and label_V columns,
-                # but inspection showed all three are empty.
-                # Preserve them as None.
+                # These columns are currently empty in the
+                # inspected label.csv.
                 # -----------------------------------------
 
                 label_T = None
@@ -145,16 +159,7 @@ class MOSEIAdapter(BaseAdapter):
                 label_V = None
 
                 # -----------------------------------------
-                # Emotion
-                # -----------------------------------------
-
-                emotion = UNIFIED_EMOTIONS.get(
-                    annotation.lower(),
-                    annotation.lower(),
-                )
-
-                # -----------------------------------------
-                # PKL feature identifier
+                # Feature identifier
                 # -----------------------------------------
 
                 feature_id = (
@@ -184,7 +189,11 @@ class MOSEIAdapter(BaseAdapter):
 
                     emotion=emotion,
 
+                    annotation_state=annotation_state,
+
                     text=text,
+
+                    sentiment_score=label,
 
                     extras={
 
@@ -213,12 +222,6 @@ class MOSEIAdapter(BaseAdapter):
                         "feature_id": feature_id,
                     },
                 )
-
-                # -----------------------------------------
-                # Sentiment score
-                # -----------------------------------------
-
-                record.sentiment_score = label
 
                 self.add(record)
 
