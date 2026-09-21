@@ -1,8 +1,8 @@
 # ==============================
-# Datasets
+# Datasets  (root-level only -- see SOURCE GUARD at the bottom)
 # ==============================
-datasets/
-data/
+/datasets/
+/data/
 *.wav
 *.mp3
 *.mp4
@@ -20,10 +20,10 @@ data/
 # ==============================
 # Python
 # ==============================
-venv/
-.venv/
-env/
-ENV/
+/venv/
+/.venv/
+/env/
+/ENV/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -32,7 +32,9 @@ __pycache__/
 # Logs
 # ==============================
 *.log
-logs/
+/logs/
+experiments/**/logs/
+results/**/logs/
 
 # ==============================
 # Generated data / caches
@@ -46,13 +48,20 @@ logs/
 *.ckpt
 *.safetensors
 
-cache/
-caches/
+/cache/
+/caches/
+/feature_cache/
+/checkpoints/
+/outputs/
+/runs/
 experiments/**/features/
-feature_cache/
-checkpoints/
-outputs/
-runs/
+experiments/**/checkpoints/
+results/**/checkpoints/
+
+# ==============================
+# Packaging output for Colab
+# ==============================
+/_colab_upload/
 
 # ==============================
 # Jupyter
@@ -64,6 +73,7 @@ runs/
 # ==============================
 .vscode/
 .idea/
+.claude/
 *.swp
 *.swo
 .DS_Store
@@ -82,3 +92,15 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# ==============================
+# SOURCE GUARD -- must stay last
+# ==============================
+# Every rule above is an artefact rule. None of them may remove source code.
+# Three packages have already been lost this way: src/hsen/features (to
+# 'features/'), src/data (to 'data/') and src/data/datasets (to 'datasets/').
+# These lines make that class of mistake impossible: anything under src/ is
+# tracked regardless of what it is named, except compiled bytecode.
+!src/**
+src/**/__pycache__/
+src/**/*.py[cod]
