@@ -48,7 +48,7 @@ logs/
 
 cache/
 caches/
-features/
+experiments/**/features/
 feature_cache/
 checkpoints/
 outputs/
