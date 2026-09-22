@@ -357,11 +357,6 @@ class HSENTrainer:
     # ---------------------------------------------------------- one epoch
 
     def train_one_epoch(self, loader, epoch: int) -> dict:
-        # The KL regulariser's weight ramps over the first epochs, and the loss
-        # is otherwise called per batch with no idea which epoch it is in.
-        # No-op for the focal head.
-        if hasattr(self.loss, "set_epoch"):
-            self.loss.set_epoch(epoch)
         self.model.train()
         totals: dict[str, float] = {}
         seen = 0
@@ -461,7 +456,6 @@ class HSENTrainer:
         metrics = evaluate_predictions(
             stacked_outputs, stacked_truths, self.class_names,
             task=self.model_config.task, dataset=self.config.dataset,
-            head=getattr(self.loss_config, "classification_loss", "focal"),
         )
         metrics = {f"{prefix}{k}": v for k, v in metrics.items()}
         metrics |= {
@@ -577,12 +571,6 @@ class HSENTrainer:
         # reported validation numbers belong to the checkpoint that is shipped,
         # not to whichever epoch happened to run last.
         summary["validation"] = self.evaluate("validation", prefix="")
-        # On every run, not only when the test split is opened. Calibration,
-        # the uncertainty decomposition and anything that needs per-sample
-        # confidence are then post-processing over this file rather than a
-        # reason to retrain -- which is what CP1's validation-only runs, which
-        # left no artefact at all, made obvious.
-        self._save_predictions(self.config.run_dir / "validation_predictions.parquet")
 
         if self.config.evaluate_test:
             if "test" not in self.datasets:
@@ -605,14 +593,6 @@ class HSENTrainer:
             probabilities = torch.softmax(outputs["logits"], dim=-1).numpy()
             for index, name in enumerate(self.class_names):
                 frame[f"prob_{name}"] = probabilities[:, index]
-            # The logits themselves, because a softmax probability is lossy in
-            # exactly the ways later work needs: a temperature cannot be
-            # refitted from it and a Dirichlet alpha cannot be recovered from
-            # it. Storing K more float columns costs nothing next to the
-            # features and removes a whole class of "retrain to re-analyse".
-            raw = outputs["logits"].numpy()
-            for index, name in enumerate(self.class_names):
-                frame[f"logit_{name}"] = raw[:, index]
         if "class_id" in targets:
             frame["true_id"] = targets["class_id"].numpy()
         for name in ("valence", "arousal"):

@@ -39,7 +39,6 @@ from sklearn.metrics import (
     precision_recall_fscore_support,
 )
 
-from src.hsen.evidential import alpha_from_logits, uncertainty_decomposition
 from src.hsen.labels.base import MISSING_CLASS_ID
 
 
@@ -224,123 +223,12 @@ def sentiment_metrics(logits, class_ids, valence_prediction=None, valence_target
 
 
 # ======================================================================
-# Calibration and evidential uncertainty
-# ======================================================================
-
-def _binned_calibration(confidence: np.ndarray, correct: np.ndarray,
-                        bins: int = 15) -> tuple[float, float]:
-    """Expected and maximum calibration error over equal-width bins.
-
-    Equal-width rather than equal-count: the literature this is compared
-    against uses equal-width, and the two differ by enough that quoting one as
-    the other would be misleading. Empty bins contribute nothing rather than
-    zero, which is not the same thing when the bins are averaged.
-    """
-    edges = np.linspace(0.0, 1.0, bins + 1)
-    total = len(confidence)
-    if total == 0:
-        return float("nan"), float("nan")
-    expected, maximum = 0.0, 0.0
-    for lower, upper in zip(edges[:-1], edges[1:]):
-        inside = (confidence > lower) & (confidence <= upper)
-        if lower == 0.0:
-            inside |= confidence == 0.0
-        count = int(inside.sum())
-        if not count:
-            continue
-        gap = abs(float(confidence[inside].mean()) - float(correct[inside].mean()))
-        expected += (count / total) * gap
-        maximum = max(maximum, gap)
-    return float(expected), float(maximum)
-
-
-def _error_detection_auroc(uncertainty: np.ndarray, correct: np.ndarray) -> float:
-    """AUROC for ranking errors above correct predictions by uncertainty.
-
-    The question a routing policy actually asks -- "is this one I should not
-    trust?" -- is a ranking question, and ECE cannot answer it: a model can be
-    perfectly calibrated in aggregate and still rank its own errors no better
-    than chance. Both are reported for that reason.
-    """
-    errors = ~correct.astype(bool)
-    if errors.sum() == 0 or errors.sum() == len(errors):
-        return float("nan")
-    from sklearn.metrics import roc_auc_score
-    return float(roc_auc_score(errors.astype(np.int64), uncertainty))
-
-
-def confidence_report(uncertainty: np.ndarray, correct: np.ndarray,
-                      name: str, bins: int = 15) -> dict:
-    """One uncertainty measure scored as both a calibrator and a ranker."""
-    confidence = 1.0 - np.clip(uncertainty, 0.0, 1.0)
-    expected, maximum = _binned_calibration(confidence, correct, bins)
-    return {
-        f"{name}_ece": expected,
-        f"{name}_mce": maximum,
-        f"{name}_auroc": _error_detection_auroc(uncertainty, correct),
-        f"{name}_mean": float(np.mean(uncertainty)),
-        f"{name}_mean_when_correct": float(np.mean(uncertainty[correct.astype(bool)]))
-                                     if correct.any() else float("nan"),
-        f"{name}_mean_when_wrong": float(np.mean(uncertainty[~correct.astype(bool)]))
-                                   if (~correct.astype(bool)).any() else float("nan"),
-    }
-
-
-def evidential_metrics(logits, targets, bins: int = 15, prefix: str = "") -> dict:
-    """Every H4 number, from one model's own outputs.
-
-    Four confidence scores from the SAME predictions, so the comparison is
-    between measures rather than between models:
-
-        softmax   the max softmax probability -- the incumbent
-        entropy   1 - normalised entropy of the Dirichlet mean
-        vacuity   1 - K/S, evidence mass
-        composite 1 - (vacuity + (1 - vacuity) * dissonance)
-
-    The predicted class is identical under all four, so accuracy is identical
-    and only the ordering and the calibration of confidence differ. That is
-    precisely the comparison H4 claims to win, and running it inside one model
-    removes the obvious confound.
-    """
-    logits_tensor = logits if isinstance(logits, torch.Tensor) else torch.as_tensor(logits)
-    logits_tensor = logits_tensor.detach().float().cpu()
-    truth = _to_numpy(targets).astype(np.int64)
-
-    valid = truth != MISSING_CLASS_ID
-    if valid.sum() < 2:
-        return {}
-    logits_tensor, truth = logits_tensor[valid], truth[valid]
-
-    predictions = logits_tensor.argmax(dim=-1).numpy()
-    correct = (predictions == truth)
-
-    alpha = alpha_from_logits(logits_tensor.double())
-    pieces = uncertainty_decomposition(alpha)
-    softmax_confidence = torch.softmax(logits_tensor.double(), dim=-1).max(dim=-1).values
-
-    report = {"accuracy_check": float(correct.mean()), "n": int(correct.size)}
-    report |= confidence_report(
-        1.0 - softmax_confidence.numpy(), correct, "softmax", bins)
-    report |= confidence_report(
-        pieces["dirichlet_entropy"].numpy(), correct, "entropy", bins)
-    report |= confidence_report(pieces["vacuity"].numpy(), correct, "vacuity", bins)
-    report |= confidence_report(pieces["composite"].numpy(), correct, "composite", bins)
-    report |= {
-        "dissonance_mean": float(pieces["dissonance"].mean()),
-        "evidence_total_mean": float(pieces["evidence_total"].mean()),
-        "evidence_total_min": float(pieces["evidence_total"].min()),
-        "evidence_total_max": float(pieces["evidence_total"].max()),
-    }
-    return {f"{prefix}{key}": value for key, value in report.items()}
-
-
-# ======================================================================
 # Driver
 # ======================================================================
 
 def evaluate_predictions(
     outputs: dict, targets: dict, class_names: tuple[str, ...], task: str = "single_label",
-    dataset: str | None = None, head: str = "softmax",
+    dataset: str | None = None,
 ) -> dict:
     """Every metric appropriate to one task, from stacked epoch predictions."""
     if task == "multi_label":
@@ -351,11 +239,6 @@ def evaluate_predictions(
     for name in ("valence", "arousal"):
         if name in outputs and name in targets:
             metrics.update(regression_metrics(outputs[name], targets[name], prefix=f"{name}_"))
-
-    if head == "evidential" and task == "single_label":
-        metrics["evidential"] = evidential_metrics(
-            outputs["logits"], targets["class_id"],
-        )
 
     if dataset == "CMU-MOSEI" and task == "single_label":
         metrics["sentiment"] = sentiment_metrics(

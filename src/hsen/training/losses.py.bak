@@ -30,11 +30,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as functional
 
-from src.hsen.evidential import evidential_loss, kl_anneal_weight
 from src.hsen.labels.base import MISSING_CLASS_ID
 
 REGRESSION_LOSSES = ("mse", "huber", "ccc")
-CLASSIFICATION_LOSSES = ("focal", "evidential")
 
 
 @dataclass
@@ -57,19 +55,6 @@ class LossConfig:
     label_smoothing: float = 0.0
     regression_loss: str = "mse"
     huber_delta: float = 1.0
-    #: ``focal`` is the baseline objective and stays the default, so every run
-    #: made before CP2 reproduces unchanged. ``evidential`` reinterprets the
-    #: same head output as Dirichlet evidence; the head itself does not change
-    #: shape, and argmax(alpha) == argmax(logits), so accuracy and F1 are
-    #: computed on identical predicted classes either way.
-    classification_loss: str = "focal"
-    #: Weight the KL regulariser reaches after annealing. Sensoy et al. use 1.0.
-    lambda_kl: float = 1.0
-    #: Epochs over which the KL weight ramps from 0 to ``lambda_kl``. At full
-    #: weight from epoch 1 the term dominates before any evidence exists and
-    #: collapses the model onto the uniform prior -- the standard failure of
-    #: this loss. Zero disables annealing.
-    kl_anneal_epochs: int = 10
     #: Auxiliary per-modality classification, ESED's ``L_spec``. Zero here: the
     #: heads that would consume it are off in this phase's baseline.
     lambda_modality: float = 0.0
@@ -82,13 +67,6 @@ class LossConfig:
             )
         if self.focal_gamma < 0:
             raise ValueError("focal_gamma must be non-negative")
-        if self.classification_loss not in CLASSIFICATION_LOSSES:
-            raise ValueError(
-                f"Unknown classification loss {self.classification_loss!r}; "
-                f"expected one of {list(CLASSIFICATION_LOSSES)}"
-            )
-        if self.kl_anneal_epochs < 0:
-            raise ValueError("kl_anneal_epochs must be non-negative")
         if isinstance(self.class_weights, str) and self.class_weights not in ("balanced", "none"):
             raise ValueError(
                 f"class_weights must be 'balanced', 'none' or an explicit list, "
@@ -252,24 +230,6 @@ class HSENLoss(nn.Module):
         self.register_buffer(
             "alpha", class_weights if class_weights is not None else torch.empty(0),
         )
-        # The KL weight depends on the epoch, and the loss is called per batch
-        # with no idea which epoch it is in. Carried as state rather than
-        # threaded through forward(), because every other caller of this module
-        # -- the ablation harness, the tests -- would otherwise have to pass an
-        # argument that means nothing to them. Epochs count from 1.
-        self._epoch = 1
-
-    def set_epoch(self, epoch: int) -> None:
-        """Tell the objective which epoch it is in, for the KL anneal."""
-        self._epoch = int(epoch)
-
-    @property
-    def kl_weight(self) -> float:
-        if self.config.classification_loss != "evidential":
-            return 0.0
-        return kl_anneal_weight(
-            self._epoch, self.config.kl_anneal_epochs, self.config.lambda_kl,
-        )
 
     @property
     def _alpha(self) -> torch.Tensor | None:
@@ -283,24 +243,6 @@ class HSENLoss(nn.Module):
         if self.task == "multi_label":
             classification = multilabel_focal_loss(
                 outputs["logits"], targets["multilabel"], settings.focal_gamma, self._alpha,
-            )
-        elif settings.classification_loss == "evidential":
-            # The same head output, read as evidence. The class-weight vector
-            # is passed through deliberately: if one head were class-weighted
-            # and the other not, a difference in their calibration would be
-            # partly a difference in what they were asked to optimise, and H4
-            # would be measuring the wrong thing.
-            terms = evidential_loss(
-                outputs["logits"], targets["class_id"], self.num_classes,
-                kl_weight=self.kl_weight, alpha_weights=self._alpha,
-            )
-            classification = terms["evidential"]
-            # Reported, never summed -- they are already inside ``evidential``.
-            components["ev_fit"] = terms["fit"]
-            components["ev_variance"] = terms["variance"]
-            components["ev_kl"] = terms["kl"]
-            components["kl_weight"] = torch.as_tensor(
-                self.kl_weight, device=classification.device,
             )
         else:
             classification = focal_loss(

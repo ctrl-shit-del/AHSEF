@@ -138,6 +138,21 @@ def build_parser(profile: Profile, description: str) -> argparse.ArgumentParser:
                       type=float, default=0.0)
     loss.add_argument("--lambda_arousal", "--lambda-arousal", dest="lambda_arousal",
                       type=float, default=0.0)
+    loss.add_argument("--head", dest="classification_loss", default="focal",
+                      choices=["focal", "evidential"],
+                      help="Classification objective. 'evidential' reads the same "
+                           "head output as Dirichlet evidence and reports vacuity, "
+                           "dissonance and composite uncertainty alongside the "
+                           "usual metrics. Default 'focal' reproduces every "
+                           "earlier run unchanged.")
+    loss.add_argument("--lambda_kl", "--lambda-kl", dest="lambda_kl",
+                      type=float, default=1.0,
+                      help="Weight the evidential KL regulariser anneals up to.")
+    loss.add_argument("--kl_anneal_epochs", "--kl-anneal-epochs",
+                      dest="kl_anneal_epochs", type=int, default=10,
+                      help="Epochs over which the KL weight ramps from zero. "
+                           "0 disables annealing, which collapses the model onto "
+                           "the uniform prior -- see src/hsen/evidential.py.")
     loss.add_argument("--regression_loss", "--regression-loss", dest="regression_loss",
                       default="mse", choices=["mse", "huber", "ccc"])
     loss.add_argument("--label_smoothing", "--label-smoothing", dest="label_smoothing",
@@ -239,6 +254,9 @@ def configs_from_args(
         class_weights=args.class_weights,
         label_smoothing=args.label_smoothing,
         regression_loss=args.regression_loss,
+        classification_loss=args.classification_loss,
+        lambda_kl=args.lambda_kl,
+        kl_anneal_epochs=args.kl_anneal_epochs,
     )
     overrides = {
         "model_dim": args.model_dim,
