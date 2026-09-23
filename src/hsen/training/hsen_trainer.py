@@ -36,6 +36,9 @@ import pandas as pd
 import torch
 import torch.nn as nn
 
+from src.hsen.counterfactual import (
+    COUNTERFACTUAL_PROVENANCE, drop_modalities,
+)
 from src.hsen.data import HSENDataset, build_dataloader
 from src.hsen.models.hsen import HSENConfig, build_hsen
 from src.hsen.training.checkpoint import HSENCheckpointManager, RunRecord, hardware_record
@@ -86,6 +89,12 @@ class TrainerConfig:
 
     # --- bookkeeping ---------------------------------------------------
     log_every: int = 50
+    #: Per-sample, per-modality chance that a present modality is hidden
+    #: during TRAINING only. Zero reproduces every run made before CP3.
+    #: Needed because a corpus where every modality is always present
+    #: teaches the model nothing about how to behave when one is not,
+    #: and the routing policy is fitted on exactly those cases.
+    modality_dropout: float = 0.0
     resume: bool = False
     #: Break a stale run-directory lock. Only after confirming the holder is gone.
     force_lock: bool = False
@@ -369,6 +378,12 @@ class HSENTrainer:
             if self.config.max_train_batches and index >= self.config.max_train_batches:
                 break
             batch = self._to_device(raw)
+            if self.config.modality_dropout:
+                # Training only. evaluate() never masks, so validation numbers
+                # stay comparable with every run made before this existed.
+                batch["available"] = drop_modalities(
+                    batch["available"], self.config.modality_dropout,
+                )
             self.optimizer.zero_grad(set_to_none=True)
 
             with torch.autocast("cuda", enabled=self.amp):
@@ -680,6 +695,9 @@ class HSENTrainer:
         for split, dataset in self.datasets.items():
             lines.append(f"  {split:<14}  modality availability "
                          f"{dataset.availability_summary()}")
+        if self.config.modality_dropout:
+            lines.append(f"  modality dropout {self.config.modality_dropout} "
+                         f"({COUNTERFACTUAL_PROVENANCE})")
         lines.append("=" * 74)
         return "\n".join(lines)
 

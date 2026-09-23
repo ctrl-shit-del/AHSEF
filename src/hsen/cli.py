@@ -115,6 +115,14 @@ def build_parser(profile: Profile, description: str) -> argparse.ArgumentParser:
     schedule.add_argument("--min_epochs", "--min-epochs", dest="min_epochs",
                           type=int, default=3)
     schedule.add_argument("--seed", type=int, default=42)
+    schedule.add_argument("--modality_dropout", "--modality-dropout",
+                          dest="modality_dropout", type=float, default=0.0,
+                          help="Per-sample, per-modality chance of hiding a "
+                               "modality during training. Needed before any "
+                               "masked-inference analysis: a corpus with every "
+                               "modality always present teaches the model "
+                               "nothing about the routing states it will be "
+                               "asked about. 0.3 is the CP3 setting.")
 
     model = parser.add_argument_group("model (literature-fixed defaults)")
     model.add_argument("--fusion", default="concat", choices=list(FUSION_VARIANTS),
@@ -240,6 +248,7 @@ def configs_from_args(
         patience=args.patience,
         min_epochs=args.min_epochs,
         seed=args.seed,
+        modality_dropout=args.modality_dropout,
         resume=args.resume,
         force_lock=args.force_lock,
         evaluate_test=args.evaluate_test,
