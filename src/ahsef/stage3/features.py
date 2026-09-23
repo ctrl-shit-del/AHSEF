@@ -74,9 +74,56 @@ FEATURE_SETS: dict[str, tuple[str, ...]] = {
 
 DEFAULT_FEATURE_SET = "evidence_only"
 
+#: HSEN's evidence state, read off the Dirichlet rather than off a model's own
+#: self-report. Every one is computed from the ANCHOR subset's logits alone --
+#: no label, and nothing from the candidate modality, which is the whole point:
+#: HSIG must answer before the candidate is paid for.
+HSEN_EVIDENCE_FEATURES: tuple[str, ...] = (
+    "vacuity",              # K/S -- how little evidence has been accumulated
+    "dissonance",           # how much of the evidence contradicts itself
+    "composite",            # vacuity + (1 - vacuity) * dissonance
+    "dirichlet_entropy",    # entropy of the Dirichlet mean, normalised
+    "max_probability",      # the softmax incumbent, for comparison
+    "softmax_entropy",      # normalised entropy of the softmax
+)
+
+#: Vacuity on its own. A candidate, not a straw man: CP2 measured that vacuity
+#: barely tracks correctness (0.2022 when correct against 0.2193 when wrong),
+#: so if it predicts acquisition gain anyway, that separation of "would more
+#: data help" from "is this answer wrong" is the finding.
+HSEN_VACUITY_ONLY: tuple[str, ...] = ("vacuity",)
+
+#: Deliberately NOT merged into FEATURE_SETS. That mapping is the LLM
+#: pipeline's vocabulary and several places iterate it -- the stage-3 sweep in
+#: cli/stage3_stages.py, the --feature_set choices in the phase D/E CLI, and
+#: the test that every declared set is buildable from an LLM prediction frame.
+#: An HSEN set is buildable from none of those, so adding one there would make
+#: the sweep ask build_features for a column that cannot exist. The estimator
+#: resolves names through ALL_FEATURE_SETS instead, which is the only place
+#: that needs both vocabularies.
+HSEN_FEATURE_SETS: dict[str, tuple[str, ...]] = {
+    "hsen_vacuity_only": HSEN_VACUITY_ONLY,
+    "hsen_evidence": HSEN_EVIDENCE_FEATURES,
+}
+
+#: Every set either vocabulary declares. Only the estimator reads this;
+#: everything built around the LLM pipeline keeps reading FEATURE_SETS.
+ALL_FEATURE_SETS: dict[str, tuple[str, ...]] = {
+    **FEATURE_SETS, **HSEN_FEATURE_SETS,
+}
+
 #: Source columns each feature is read from, recorded so the frozen config can
 #: state the feature definition rather than gesture at it.
 FEATURE_DEFINITION = {
+    "vacuity": "K / sum(alpha) from the anchor subset's Dirichlet: the share "
+               "of the distribution that is prior rather than accumulated "
+               "evidence",
+    "dissonance": "Jousang dissonance of the anchor subset's belief masses: "
+                  "evidence that is present but mutually contradictory",
+    "composite": "vacuity + (1 - vacuity) * dissonance, in [0, 1]",
+    "dirichlet_entropy": "Shannon entropy of the Dirichlet mean, over log K",
+    "max_probability": "largest softmax probability under the anchor subset",
+    "softmax_entropy": "Shannon entropy of the softmax, over log K",
     "uncertainty": "routing uncertainty under the frozen policy (score_entropy -> "
                    "llm_normalized_score_entropy), in [0, 1]",
     "score_top1": "largest normalised self-reported class score",

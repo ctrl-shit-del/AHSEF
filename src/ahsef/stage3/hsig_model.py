@@ -63,7 +63,7 @@ import pandas as pd
 from src.ahsef.hsig import HSIG_TARGET, HSIG_TARGET_DEFINITION, GainEstimate, RoutingState
 from src.ahsef.stage3.features import (
     DEFAULT_FEATURE_SET,
-    FEATURE_SETS,
+    ALL_FEATURE_SETS as FEATURE_SETS,
     assert_label_free,
     feature_provenance,
 )
