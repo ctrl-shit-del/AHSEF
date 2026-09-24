@@ -192,6 +192,13 @@ def export(
 
             logits = model(features, masks, availability)["logits"].float().cpu()
             predicted = logits.argmax(dim=-1)
+            num_classes = logits.shape[-1]
+            # The protocol's neutral point, for an ORDINAL label space. MOSEI's
+            # classes run highly_negative -> highly_positive, so the middle
+            # index is neutral and distance from it is polarity strength. On an
+            # unordered space (IEMOCAP's emotions) the two derived columns below
+            # are meaningless and only the one-hot indicators should be used.
+            neutral_index = (num_classes - 1) // 2
             valid = (truth != MISSING_CLASS_ID) & keep
 
             alpha = alpha_from_logits(logits.double())
@@ -209,6 +216,13 @@ def export(
                     "n_modalities": len(subset),
                     "true_id": int(truth[row]),
                     "predicted_id": int(predicted[row]),
+                    # The ANCHOR's prediction, known before the candidate is
+                    # paid for -- not the fused one, which would be leakage.
+                    **{f"predicted_class_{index}": int(int(predicted[row]) == index)
+                       for index in range(num_classes)},
+                    "predicted_is_neutral": int(int(predicted[row]) == neutral_index),
+                    "predicted_polarity": (abs(int(predicted[row]) - neutral_index)
+                                           / max(1, neutral_index)),
                     "correct": int(predicted[row] == truth[row]),
                     "max_probability": float(probabilities[row].max()),
                     "softmax_entropy": float(entropy_softmax[row]),

@@ -93,6 +93,26 @@ HSEN_EVIDENCE_FEATURES: tuple[str, ...] = (
 #: data help" from "is this answer wrong" is the finding.
 HSEN_VACUITY_ONLY: tuple[str, ...] = ("vacuity",)
 
+#: One-hot indicators for the class the ANCHOR predicted. Not leakage: this is
+#: the prediction from the modalities already in hand, which is exactly what a
+#: deployed router knows when it decides whether to pay for another one.
+#: fused_prediction -- the prediction after paying -- stays blocked.
+#: Written for the 7-class sentiment protocol; a 6-class label space needs its
+#: own entry rather than a silently shorter tuple.
+HSEN_CLASS_INDICATORS: tuple[str, ...] = tuple(
+    f"predicted_class_{index}" for index in range(7)
+)
+
+#: The same information in two interpretable columns, valid only where the
+#: label space is ORDERED. CP3 measured that the candidate pays on the extreme
+#: classes and not on neutral, which is a statement about distance from
+#: neutral; saying it in two coefficients rather than seven indicators is what
+#: makes the frozen policy readable.
+HSEN_POLARITY_FEATURES: tuple[str, ...] = (
+    "predicted_is_neutral",
+    "predicted_polarity",
+)
+
 #: Deliberately NOT merged into FEATURE_SETS. That mapping is the LLM
 #: pipeline's vocabulary and several places iterate it -- the stage-3 sweep in
 #: cli/stage3_stages.py, the --feature_set choices in the phase D/E CLI, and
@@ -104,6 +124,15 @@ HSEN_VACUITY_ONLY: tuple[str, ...] = ("vacuity",)
 HSEN_FEATURE_SETS: dict[str, tuple[str, ...]] = {
     "hsen_vacuity_only": HSEN_VACUITY_ONLY,
     "hsen_evidence": HSEN_EVIDENCE_FEATURES,
+    # The class signal on its own -- the in-pipeline counterpart of the
+    # hand-built refusal rule, so the two can be compared on one footing.
+    "hsen_class_only": HSEN_CLASS_INDICATORS,
+    # Evidence and class together. This is the set that can express what
+    # neither half can alone: which uncertainty levels matter, per class.
+    "hsen_evidence_plus_class": HSEN_EVIDENCE_FEATURES + HSEN_CLASS_INDICATORS,
+    # The compact, freezable form. Prefer this one if it matches the indicator
+    # set: eight coefficients a reader can check beat thirteen.
+    "hsen_evidence_plus_polarity": HSEN_EVIDENCE_FEATURES + HSEN_POLARITY_FEATURES,
 }
 
 #: Every set either vocabulary declares. Only the estimator reads this;
@@ -124,6 +153,14 @@ FEATURE_DEFINITION = {
     "dirichlet_entropy": "Shannon entropy of the Dirichlet mean, over log K",
     "max_probability": "largest softmax probability under the anchor subset",
     "softmax_entropy": "Shannon entropy of the softmax, over log K",
+    "predicted_is_neutral": "1 when the anchor subset's argmax is the label "
+                            "space's neutral class, 0 otherwise",
+    "predicted_polarity": "distance of the anchor subset's argmax from the "
+                          "neutral class, over the maximum such distance; "
+                          "defined only for an ordered label space",
+    **{f"predicted_class_{index}":
+       f"1 when the anchor subset's argmax is class {index}, 0 otherwise"
+       for index in range(7)},
     "uncertainty": "routing uncertainty under the frozen policy (score_entropy -> "
                    "llm_normalized_score_entropy), in [0, 1]",
     "score_top1": "largest normalised self-reported class score",
